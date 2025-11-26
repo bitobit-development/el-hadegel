@@ -38,10 +38,12 @@ async function importData() {
     await prisma.mK.deleteMany();
     console.log('✅ Existing data cleared\n');
 
-    // Import MKs
+    // Import MKs and create ID mapping
     console.log('📥 Importing MKs...');
+    const mkIdMapping: Record<number, number> = {}; // old internal ID -> new internal ID
+
     for (const mk of exportData.mks) {
-      await prisma.mK.create({
+      const newMk = await prisma.mK.create({
         data: {
           mkId: mk.mkId,
           nameHe: mk.nameHe,
@@ -53,6 +55,7 @@ async function importData() {
           email: mk.email,
         },
       });
+      mkIdMapping[mk.id] = newMk.id; // Map old ID to new ID
     }
     console.log(`✅ Imported ${exportData.mks.length} MKs\n`);
 
@@ -88,9 +91,15 @@ async function importData() {
     // Import Tweets
     console.log('📥 Importing Tweets...');
     for (const tweet of exportData.tweets) {
+      const newMkId = mkIdMapping[tweet.mkId];
+      if (!newMkId) {
+        console.warn(`⚠️  Skipping tweet ${tweet.id}: MK ID ${tweet.mkId} not found`);
+        continue;
+      }
+
       await prisma.tweet.create({
         data: {
-          mkId: tweet.mkId,
+          mkId: newMkId, // Use mapped ID
           content: tweet.content,
           sourceUrl: tweet.sourceUrl,
           sourcePlatform: tweet.sourcePlatform,
@@ -104,9 +113,15 @@ async function importData() {
     // Import PositionHistory
     console.log('📥 Importing Position History...');
     for (const history of exportData.positionHistory) {
+      const newMkId = mkIdMapping[history.mkId];
+      if (!newMkId) {
+        console.warn(`⚠️  Skipping history ${history.id}: MK ID ${history.mkId} not found`);
+        continue;
+      }
+
       await prisma.positionHistory.create({
         data: {
-          mkId: history.mkId,
+          mkId: newMkId, // Use mapped ID
           position: history.position,
           notes: history.notes,
           changedBy: history.changedBy,

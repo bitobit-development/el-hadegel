@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 
 // Connect to SQLite database
-const db = new Database(path.join(process.cwd(), 'dev.db'));
+const db = new Database(path.join(process.cwd(), 'prisma/dev.db'));
 
 // Export function
 async function exportData() {
