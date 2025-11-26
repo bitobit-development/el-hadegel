@@ -10,6 +10,16 @@ import { Position } from '@prisma/client';
  * @param includeTweetCount - If true, includes tweet count for each MK
  */
 export async function getMKs(
+  filters: Partial<FilterOptions> | undefined,
+  includeTweetCount: true
+): Promise<MKDataWithTweetCount[]>;
+
+export async function getMKs(
+  filters?: Partial<FilterOptions>,
+  includeTweetCount?: false
+): Promise<MKData[]>;
+
+export async function getMKs(
   filters?: Partial<FilterOptions>,
   includeTweetCount: boolean = false
 ): Promise<MKData[] | MKDataWithTweetCount[]> {
