@@ -7,11 +7,8 @@
 
 import { chromium, Browser, Page } from 'playwright';
 import { PrismaClient } from '@prisma/client';
-import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3';
-
+import prisma from '../lib/prisma';
 // Initialize Prisma with better-sqlite3 adapter (same as lib/prisma.ts)
-const adapter = new PrismaBetterSqlite3({ url: 'file:./prisma/dev.db' });
-const prisma = new PrismaClient({ adapter });
 
 interface MKContact {
   mkId: number;
