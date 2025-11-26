@@ -100,7 +100,7 @@ async function scrapeContacts() {
         return { phone, email, nameHe };
       });
 
-      results.push({ mkId, ...contact });
+      results.push({ mkId, phone: contact.phone, email: contact.email, nameHe: contact.nameHe || undefined });
       console.log(`✅ ${contact.nameHe || mkId}: phone="${contact.phone}", email="${contact.email}"`);
       successCount++;
 
