@@ -19,7 +19,7 @@ export function AdminHeader({ user }: AdminHeaderProps) {
   };
 
   return (
-    <header className="mb-8 md:mb-10 lg:mb-12 rounded-2xl bg-gradient-to-r from-[#001f3f] to-[#002855] p-6 shadow-xl">
+    <header className="mb-8 md:mb-10 lg:mb-12 bg-gradient-to-r from-[#001f3f] to-[#002855] p-6 shadow-xl">
       <div className="container mx-auto">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-6">
