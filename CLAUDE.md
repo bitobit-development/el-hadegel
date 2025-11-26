@@ -115,7 +115,7 @@ FilterOptions - { factions, positions, searchQuery }
 ```
 
 **Constants**:
-- `POSITION_LABELS` - Hebrew translations (תומך, ניטרלי, מתנגד)
+- `POSITION_LABELS` - Hebrew translations (תומך, מתנדנד, מתנגד)
 - `POSITION_COLORS` - Tailwind classes (green-500, orange-500, red-500)
 
 **NextAuth Types** (`types/next-auth.d.ts`):

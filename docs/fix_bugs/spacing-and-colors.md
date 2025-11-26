@@ -166,7 +166,7 @@ const pieData = [
     fill: POSITION_CHART_COLORS.SUPPORT,
   },
   {
-    name: 'ניטרליים',
+    name: 'מתנדנדים',
     value: stats.neutral,
     fill: POSITION_CHART_COLORS.NEUTRAL,
   },

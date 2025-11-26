@@ -67,7 +67,7 @@ export type FilteredPositionStats = PositionStats & {
 // Position badge labels in Hebrew
 export const POSITION_LABELS: Record<PositionStatus, string> = {
   SUPPORT: 'תומך',
-  NEUTRAL: 'ניטרלי',
+  NEUTRAL: 'מתנדנד',
   AGAINST: 'מתנגד',
 };
 
