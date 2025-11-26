@@ -1,0 +1,85 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Knesset Member model
+model MK {
+  id              Int               @id @default(autoincrement())
+  mkId            Int               @unique // Official Knesset ID
+  nameHe          String            // Hebrew name
+  faction         String            // Party/Faction in Hebrew
+  photoUrl        String?           // Profile photo URL
+  profileUrl      String            // Link to official Knesset profile
+  phone           String?           // Contact phone number(s)
+  email           String?           // Contact email
+  currentPosition Position          @default(NEUTRAL)
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+
+  positionHistory PositionHistory[]
+  tweets          Tweet[]
+}
+
+// Position history tracking
+model PositionHistory {
+  id        Int      @id @default(autoincrement())
+  mkId      Int
+  mk        MK       @relation(fields: [mkId], references: [id], onDelete: Cascade)
+  position  Position
+  notes     String?  // Optional admin notes
+  changedBy String   // Admin email
+  changedAt DateTime @default(now())
+}
+
+// Admin users
+model Admin {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String   // Hashed with bcrypt
+  name      String
+  createdAt DateTime @default(now())
+}
+
+// Position enum
+enum Position {
+  SUPPORT  // Green - תומך
+  NEUTRAL  // Orange - ניטרלי
+  AGAINST  // Red - מתנגד
+}
+
+// Social media posts/statements from Knesset members
+model Tweet {
+  id             Int      @id @default(autoincrement())
+  mkId           Int
+  content        String   // Tweet/statement content
+  sourceUrl      String?  // Link to original post
+  sourcePlatform String   // e.g., "Twitter", "Facebook", "News", "Knesset Website"
+  postedAt       DateTime // When the post was originally published
+  createdAt      DateTime @default(now())
+
+  mk MK @relation(fields: [mkId], references: [id], onDelete: Cascade)
+
+  @@index([mkId])
+  @@index([postedAt])
+}
+
+// API keys for external integrations
+model ApiKey {
+  id         Int       @id @default(autoincrement())
+  name       String    // Descriptive name (e.g., "Tweet Scraper Bot")
+  keyHash    String    @unique // bcrypt hash of the API key
+  isActive   Boolean   @default(true)
+  lastUsedAt DateTime? // Last time this key was used
+  createdAt  DateTime  @default(now())
+  createdBy  String    // Admin email who created it
+
+  @@index([keyHash])
+}

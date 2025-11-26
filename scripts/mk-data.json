@@ -1,0 +1,726 @@
+{
+  "mks": [
+    {
+      "name": "אבי דיכטר",
+      "party": "הליכוד",
+      "mkId": "771",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/771"
+    },
+    {
+      "name": "אבי מעוז",
+      "party": "נעם - בראשות אבי מעוז",
+      "mkId": "1063",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1063"
+    },
+    {
+      "name": "אביגדור ליברמן",
+      "party": "ישראל ביתנו",
+      "mkId": "214",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/214"
+    },
+    {
+      "name": "אביחי אברהם בוארון",
+      "party": "הליכוד",
+      "mkId": "1126",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1126"
+    },
+    {
+      "name": "אוהד טל",
+      "party": "הציונות הדתית בראשות בצלאל סמוטריץ'",
+      "mkId": "1090",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1090"
+    },
+    {
+      "name": "אופיר כץ",
+      "party": "הליכוד",
+      "mkId": "976",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/976"
+    },
+    {
+      "name": "אופיר סופר",
+      "party": "הציונות הדתית בראשות בצלאל סמוטריץ'",
+      "mkId": "977",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/977"
+    },
+    {
+      "name": "אורי מקלב",
+      "party": "יהדות התורה",
+      "mkId": "814",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/814"
+    },
+    {
+      "name": "אוריאל בוסו",
+      "party": "התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ\"ל",
+      "mkId": "1039",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1039"
+    },
+    {
+      "name": "אורית סטרוק",
+      "party": "הציונות הדתית בראשות בצלאל סמוטריץ'",
+      "mkId": "884",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/884"
+    },
+    {
+      "name": "אורית פרקש הכהן",
+      "party": "כחול לבן - המחנה הממלכתי",
+      "mkId": "978",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/978"
+    },
+    {
+      "name": "אושר שקלים",
+      "party": "הליכוד",
+      "mkId": "1123",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1123"
+    },
+    {
+      "name": "אחמד טיבי",
+      "party": "חד\"ש-תע\"ל",
+      "mkId": "208",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/208"
+    },
+    {
+      "name": "איימן עודה",
+      "party": "חד\"ש-תע\"ל",
+      "mkId": "938",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/938"
+    },
+    {
+      "name": "אימאן ח'טיב יאסין",
+      "party": "רע\"ם",
+      "mkId": "1032",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1032"
+    },
+    {
+      "name": "איתמר בן גביר",
+      "party": "עוצמה יהודית בראשות איתמר בן גביר",
+      "mkId": "1056",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1056"
+    },
+    {
+      "name": "איתן גינזבורג",
+      "party": "כחול לבן - המחנה הממלכתי",
+      "mkId": "981",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/981"
+    },
+    {
+      "name": "אכרם חסון",
+      "party": "הימין הממלכתי",
+      "mkId": "854",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/854"
+    },
+    {
+      "name": "אלון שוסטר",
+      "party": "כחול לבן - המחנה הממלכתי",
+      "mkId": "982",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/982"
+    },
+    {
+      "name": "אלי דלל",
+      "party": "הליכוד",
+      "mkId": "1100",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1100"
+    },
+    {
+      "name": "אליהו רביבו",
+      "party": "הליכוד",
+      "mkId": "1111",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1111"
+    },
+    {
+      "name": "אלעזר שטרן",
+      "party": "יש עתיד",
+      "mkId": "899",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/899"
+    },
+    {
+      "name": "אמיר אוחנה",
+      "party": "הליכוד",
+      "mkId": "953",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/953"
+    },
+    {
+      "name": "אפרת רייטן מרום",
+      "party": "העבודה",
+      "mkId": "1068",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1068"
+    },
+    {
+      "name": "אריאל קלנר",
+      "party": "הליכוד",
+      "mkId": "987",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/987"
+    },
+    {
+      "name": "אריה מכלוף דרעי",
+      "party": "התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ\"ל",
+      "mkId": "41",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/41"
+    },
+    {
+      "name": "בועז ביסמוט",
+      "party": "הליכוד",
+      "mkId": "1095",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1095"
+    },
+    {
+      "name": "בועז טופורובסקי",
+      "party": "יש עתיד",
+      "mkId": "872",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/872"
+    },
+    {
+      "name": "בני גנץ",
+      "party": "כחול לבן - המחנה הממלכתי",
+      "mkId": "988",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/988"
+    },
+    {
+      "name": "בנימין נתניהו",
+      "party": "הליכוד",
+      "mkId": "90",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/90"
+    },
+    {
+      "name": "גילה גמליאל",
+      "party": "הליכוד",
+      "mkId": "723",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/723"
+    },
+    {
+      "name": "גלית דיסטל אטבריאן",
+      "party": "הליכוד",
+      "mkId": "1059",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1059"
+    },
+    {
+      "name": "גלעד קריב",
+      "party": "העבודה",
+      "mkId": "1066",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1066"
+    },
+    {
+      "name": "דבי ביטון",
+      "party": "יש עתיד",
+      "mkId": "1094",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1094"
+    },
+    {
+      "name": "דוד ביטן",
+      "party": "הליכוד",
+      "mkId": "914",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/914"
+    },
+    {
+      "name": "דן אילוז",
+      "party": "הליכוד",
+      "mkId": "1116",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1116"
+    },
+    {
+      "name": "ואליד אלהואשלה",
+      "party": "רע\"ם",
+      "mkId": "1093",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1093"
+    },
+    {
+      "name": "ווליד טאהא",
+      "party": "רע\"ם",
+      "mkId": "1026",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1026"
+    },
+    {
+      "name": "ולדימיר בליאק",
+      "party": "יש עתיד",
+      "mkId": "1049",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1049"
+    },
+    {
+      "name": "זאב אלקין",
+      "party": "הימין הממלכתי",
+      "mkId": "768",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/768"
+    },
+    {
+      "name": "חוה אתי עטייה",
+      "party": "הליכוד",
+      "mkId": "992",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/992"
+    },
+    {
+      "name": "חיים ביטון",
+      "party": "התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ\"ל",
+      "mkId": "1055",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1055"
+    },
+    {
+      "name": "חילי טרופר",
+      "party": "כחול לבן - המחנה הממלכתי",
+      "mkId": "1000",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1000"
+    },
+    {
+      "name": "חמד עמאר",
+      "party": "ישראל ביתנו",
+      "mkId": "837",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/837"
+    },
+    {
+      "name": "חנוך דב מלביצקי",
+      "party": "הליכוד",
+      "mkId": "1105",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1105"
+    },
+    {
+      "name": "טטיאנה מזרסקי",
+      "party": "יש עתיד",
+      "mkId": "1076",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1076"
+    },
+    {
+      "name": "טלי גוטליב",
+      "party": "הליכוד",
+      "mkId": "1098",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1098"
+    },
+    {
+      "name": "יאיר לפיד",
+      "party": "יש עתיד",
+      "mkId": "878",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/878"
+    },
+    {
+      "name": "יאסר חוג'יראת",
+      "party": "רע\"ם",
+      "mkId": "1103",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1103"
+    },
+    {
+      "name": "יבגני סובה",
+      "party": "ישראל ביתנו",
+      "mkId": "994",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/994"
+    },
+    {
+      "name": "יואב בן צור",
+      "party": "התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ\"ל",
+      "mkId": "906",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/906"
+    },
+    {
+      "name": "יואב סגלוביץ",
+      "party": "יש עתיד",
+      "mkId": "995",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/995"
+    },
+    {
+      "name": "יולי יואל אדלשטיין",
+      "party": "הליכוד",
+      "mkId": "1",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1"
+    },
+    {
+      "name": "יוליה מלינובסקי",
+      "party": "ישראל ביתנו",
+      "mkId": "956",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/956"
+    },
+    {
+      "name": "יונתן מישרקי",
+      "party": "התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ\"ל",
+      "mkId": "1115",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1115"
+    },
+    {
+      "name": "יוסף טייב",
+      "party": "התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ\"ל",
+      "mkId": "1043",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1043"
+    },
+    {
+      "name": "יוראי להב הרצנו",
+      "party": "יש עתיד",
+      "mkId": "998",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/998"
+    },
+    {
+      "name": "ינון אזולאי",
+      "party": "התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ\"ל",
+      "mkId": "970",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/970"
+    },
+    {
+      "name": "יסמין פרידמן",
+      "party": "יש עתיד",
+      "mkId": "1079",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1079"
+    },
+    {
+      "name": "יעל רון בן משה",
+      "party": "כחול לבן - המחנה הממלכתי",
+      "mkId": "1048",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1048"
+    },
+    {
+      "name": "יעקב אשר",
+      "party": "יהדות התורה",
+      "mkId": "861",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/861"
+    },
+    {
+      "name": "יעקב טסלר",
+      "party": "יהדות התורה",
+      "mkId": "996",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/996"
+    },
+    {
+      "name": "יעקב מרגי",
+      "party": "התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ\"ל",
+      "mkId": "751",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/751"
+    },
+    {
+      "name": "יצחק גולדקנופ",
+      "party": "יהדות התורה",
+      "mkId": "1099",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1099"
+    },
+    {
+      "name": "יצחק קרויזר",
+      "party": "עוצמה יהודית בראשות איתמר בן גביר",
+      "mkId": "1114",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1114"
+    },
+    {
+      "name": "יצחק שמעון וסרלאוף",
+      "party": "עוצמה יהודית בראשות איתמר בן גביר",
+      "mkId": "1102",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1102"
+    },
+    {
+      "name": "ירון לוי",
+      "party": "יש עתיד",
+      "mkId": "1127",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1127"
+    },
+    {
+      "name": "יריב לוין",
+      "party": "הליכוד",
+      "mkId": "826",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/826"
+    },
+    {
+      "name": "ישראל אייכלר",
+      "party": "יהדות התורה",
+      "mkId": "754",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/754"
+    },
+    {
+      "name": "ישראל כץ",
+      "party": "הליכוד",
+      "mkId": "69",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/69"
+    },
+    {
+      "name": "לימור סון הר מלך",
+      "party": "עוצמה יהודית בראשות איתמר בן גביר",
+      "mkId": "1108",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1108"
+    },
+    {
+      "name": "מאי גולן",
+      "party": "הליכוד",
+      "mkId": "1002",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1002"
+    },
+    {
+      "name": "מאיר כהן",
+      "party": "יש עתיד",
+      "mkId": "874",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/874"
+    },
+    {
+      "name": "מאיר פרוש",
+      "party": "יהדות התורה",
+      "mkId": "103",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/103"
+    },
+    {
+      "name": "מטי צרפתי הרכבי",
+      "party": "יש עתיד",
+      "mkId": "1091",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1091"
+    },
+    {
+      "name": "מיכאל מלכיאלי",
+      "party": "התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ\"ל",
+      "mkId": "957",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/957"
+    },
+    {
+      "name": "מיכאל מרדכי ביטון",
+      "party": "כחול לבן - המחנה הממלכתי",
+      "mkId": "1003",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1003"
+    },
+    {
+      "name": "מיכל מרים וולדיגר",
+      "party": "הציונות הדתית בראשות בצלאל סמוטריץ'",
+      "mkId": "1060",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1060"
+    },
+    {
+      "name": "מיכל שיר סגמן",
+      "party": "יש עתיד",
+      "mkId": "1004",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1004"
+    },
+    {
+      "name": "מיקי לוי",
+      "party": "יש עתיד",
+      "mkId": "876",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/876"
+    },
+    {
+      "name": "מירב בן ארי",
+      "party": "יש עתיד",
+      "mkId": "915",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/915"
+    },
+    {
+      "name": "מירב כהן",
+      "party": "יש עתיד",
+      "mkId": "1006",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1006"
+    },
+    {
+      "name": "מישל בוסקילה",
+      "party": "הימין הממלכתי",
+      "mkId": "1088",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1088"
+    },
+    {
+      "name": "מנסור עבאס",
+      "party": "רע\"ם",
+      "mkId": "1007",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1007"
+    },
+    {
+      "name": "מרב מיכאלי",
+      "party": "העבודה",
+      "mkId": "881",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/881"
+    },
+    {
+      "name": "משה אבוטבול",
+      "party": "התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ\"ל",
+      "mkId": "1029",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1029"
+    },
+    {
+      "name": "משה ארבל",
+      "party": "התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ\"ל",
+      "mkId": "1008",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1008"
+    },
+    {
+      "name": "משה גפני",
+      "party": "יהדות התורה",
+      "mkId": "35",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/35"
+    },
+    {
+      "name": "משה טור פז",
+      "party": "יש עתיד",
+      "mkId": "1050",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1050"
+    },
+    {
+      "name": "משה סולומון",
+      "party": "הציונות הדתית בראשות בצלאל סמוטריץ'",
+      "mkId": "1107",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1107"
+    },
+    {
+      "name": "משה סעדה",
+      "party": "הליכוד",
+      "mkId": "1109",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1109"
+    },
+    {
+      "name": "משה פסל",
+      "party": "הליכוד",
+      "mkId": "1124",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1124"
+    },
+    {
+      "name": "נאור שירי",
+      "party": "יש עתיד",
+      "mkId": "1112",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1112"
+    },
+    {
+      "name": "ניסים ואטורי",
+      "party": "הליכוד",
+      "mkId": "1045",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1045"
+    },
+    {
+      "name": "ניר ברקת",
+      "party": "הליכוד",
+      "mkId": "974",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/974"
+    },
+    {
+      "name": "נעמה לזימי",
+      "party": "העבודה",
+      "mkId": "1082",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1082"
+    },
+    {
+      "name": "סימון דוידסון",
+      "party": "יש עתיד",
+      "mkId": "1085",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1085"
+    },
+    {
+      "name": "סמיר בן סעיד",
+      "party": "חד\"ש-תע\"ל",
+      "mkId": "1129",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1129"
+    },
+    {
+      "name": "עאידה תומא סלימאן",
+      "party": "חד\"ש-תע\"ל",
+      "mkId": "948",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/948"
+    },
+    {
+      "name": "עדי עזוז",
+      "party": "יש עתיד",
+      "mkId": "1130",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1130"
+    },
+    {
+      "name": "עודד פורר",
+      "party": "ישראל ביתנו",
+      "mkId": "951",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/951"
+    },
+    {
+      "name": "עופר כסיף",
+      "party": "חד\"ש-תע\"ל",
+      "mkId": "1013",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1013"
+    },
+    {
+      "name": "עמיחי אליהו",
+      "party": "עוצמה יהודית בראשות איתמר בן גביר",
+      "mkId": "1096",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1096"
+    },
+    {
+      "name": "עמית הלוי",
+      "party": "הליכוד",
+      "mkId": "1044",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1044"
+    },
+    {
+      "name": "עפיף עבד",
+      "party": "הליכוד",
+      "mkId": "1128",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1128"
+    },
+    {
+      "name": "פנינה תמנו",
+      "party": "כחול לבן - המחנה הממלכתי",
+      "mkId": "905",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/905"
+    },
+    {
+      "name": "צבי ידידיה סוכות",
+      "party": "הציונות הדתית בראשות בצלאל סמוטריץ'",
+      "mkId": "1121",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1121"
+    },
+    {
+      "name": "צביקה פוגל",
+      "party": "עוצמה יהודית בראשות איתמר בן גביר",
+      "mkId": "1110",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1110"
+    },
+    {
+      "name": "צגה צגנש מלקו",
+      "party": "הליכוד",
+      "mkId": "1122",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1122"
+    },
+    {
+      "name": "קארין אלהרר",
+      "party": "יש עתיד",
+      "mkId": "860",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/860"
+    },
+    {
+      "name": "קטי קטרין שטרית",
+      "party": "הליכוד",
+      "mkId": "1018",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1018"
+    },
+    {
+      "name": "רון כץ",
+      "party": "יש עתיד",
+      "mkId": "1061",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1061"
+    },
+    {
+      "name": "רם בן ברק",
+      "party": "יש עתיד",
+      "mkId": "1022",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1022"
+    },
+    {
+      "name": "שלום דנינו",
+      "party": "הליכוד",
+      "mkId": "1101",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1101"
+    },
+    {
+      "name": "שלי טל מירון",
+      "party": "יש עתיד",
+      "mkId": "1118",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1118"
+    },
+    {
+      "name": "שלמה קרעי",
+      "party": "הליכוד",
+      "mkId": "1011",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1011"
+    },
+    {
+      "name": "שמחה רוטמן",
+      "party": "הציונות הדתית בראשות בצלאל סמוטריץ'",
+      "mkId": "1067",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1067"
+    },
+    {
+      "name": "שרון ניר",
+      "party": "ישראל ביתנו",
+      "mkId": "1106",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1106"
+    },
+    {
+      "name": "שרן מרים השכל",
+      "party": "הימין הממלכתי",
+      "mkId": "950",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/950"
+    },
+    {
+      "name": "ששון ששי גואטה",
+      "party": "הליכוד",
+      "mkId": "1125",
+      "profileUrl": "https://m.knesset.gov.il/mk/apps/mk/mk-personal-details/1125"
+    }
+  ],
+  "outputDir": "/Users/haim/Projects/el-hadegel/docs/parlament-website/pm-profile-img",
+  "timestamp": "2025-11-25T09:49:50.888Z"
+}

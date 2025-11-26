@@ -1,0 +1,487 @@
+openapi: 3.0.3
+info:
+  title: EL HADEGEL Tweet Tracking API
+  description: |
+    REST API for submitting and retrieving social media posts and statements from Israeli Knesset members regarding the IDF recruitment law.
+
+    This API is designed for automated systems (AI agents, scrapers, bots) to push tweets and statements to the EL HADEGEL platform.
+
+    ## Authentication
+    All endpoints require API key authentication using Bearer token format.
+
+    ## Rate Limiting
+    - 100 requests per hour per API key
+    - Rate limit headers included in all responses
+
+    ## Base URL
+    Production: `https://www.elhadegel.co.il`
+    Development: `http://localhost:3000`
+  version: 1.0.0
+  contact:
+    name: EL HADEGEL Support
+    email: admin@el-hadegel.com
+
+servers:
+  - url: https://www.elhadegel.co.il
+    description: Production server
+  - url: http://localhost:3000
+    description: Development server
+
+security:
+  - BearerAuth: []
+
+tags:
+  - name: Tweets
+    description: Operations for creating and retrieving tweets/statements
+
+paths:
+  /api/tweets:
+    post:
+      tags:
+        - Tweets
+      summary: Create a new tweet/statement
+      description: |
+        Submit a new social media post or statement from a Knesset member.
+
+        The tweet will be associated with the specified MK and displayed on their profile.
+      operationId: createTweet
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTweetRequest'
+            examples:
+              twitter:
+                summary: Twitter post
+                value:
+                  mkId: 1
+                  content: "אני תומך בחוק הגיוס השוויוני. כל אזרח חייב לשרת את המדינה."
+                  sourceUrl: "https://twitter.com/example/status/123456"
+                  sourcePlatform: "Twitter"
+                  postedAt: "2024-01-15T10:30:00Z"
+              news:
+                summary: News article
+                value:
+                  mkId: 5
+                  content: "ח\"כ אמר בראיון כי הוא מתנגד לחוק הגיוס בצורתו הנוכחית."
+                  sourceUrl: "https://www.ynet.co.il/article/example"
+                  sourcePlatform: "News"
+                  postedAt: "2024-01-14T08:15:00Z"
+              facebook:
+                summary: Facebook post without URL
+                value:
+                  mkId: 12
+                  content: "השיח על חוק הגיוס צריך להתנהל בכבוד ובהקשבה הדדית. אני קורא לכל הצדדים למצוא פתרון מאוזן."
+                  sourcePlatform: "Facebook"
+                  postedAt: "2024-01-16T14:20:00Z"
+      responses:
+        '201':
+          description: Tweet created successfully
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: 100
+              description: Maximum requests per hour
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: 99
+              description: Remaining requests in current window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                example: 1640000000000
+              description: Timestamp when rate limit resets (milliseconds)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateTweetResponse'
+              example:
+                success: true
+                tweet:
+                  id: 42
+                  mkId: 1
+                  mkName: "אבי דיכטר"
+                  content: "אני תומך בחוק הגיוס השוויוני. כל אזרח חייב לשרת את המדינה."
+                  sourceUrl: "https://twitter.com/example/status/123456"
+                  sourcePlatform: "Twitter"
+                  postedAt: "2024-01-15T10:30:00.000Z"
+                  createdAt: "2024-01-15T11:00:00.000Z"
+        '400':
+          description: Invalid request data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                validation_error:
+                  summary: Validation error
+                  value:
+                    success: false
+                    error: "Invalid request data"
+                    details:
+                      - path: ["mkId"]
+                        message: "Expected number, received string"
+                invalid_date:
+                  summary: Invalid date format
+                  value:
+                    success: false
+                    error: "Invalid request data"
+                    details:
+                      - path: ["postedAt"]
+                        message: "Invalid datetime"
+                content_too_long:
+                  summary: Content exceeds max length
+                  value:
+                    success: false
+                    error: "Invalid request data"
+                    details:
+                      - path: ["content"]
+                        message: "String must contain at most 5000 character(s)"
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                missing_key:
+                  summary: Missing API key
+                  value:
+                    success: false
+                    error: "Missing API key"
+                invalid_key:
+                  summary: Invalid API key
+                  value:
+                    success: false
+                    error: "Invalid API key"
+        '404':
+          description: MK not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                success: false
+                error: "MK with ID 999 not found"
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitError'
+              example:
+                success: false
+                error: "Rate limit exceeded. Try again later."
+                resetAt: "2024-01-15T12:00:00.000Z"
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                success: false
+                error: "Internal server error"
+
+    get:
+      tags:
+        - Tweets
+      summary: Retrieve tweets
+      description: |
+        Get a list of tweets with optional filtering by MK and pagination.
+
+        Tweets are returned in reverse chronological order (newest first).
+      operationId: getTweets
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: mkId
+          in: query
+          description: Filter by Knesset member ID
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 120
+            example: 1
+        - name: limit
+          in: query
+          description: Maximum number of tweets to return
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 50
+            example: 20
+        - name: offset
+          in: query
+          description: Number of tweets to skip (for pagination)
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+            example: 0
+      responses:
+        '200':
+          description: Tweets retrieved successfully
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: 100
+              description: Maximum requests per hour
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: 98
+              description: Remaining requests in current window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                example: 1640000000000
+              description: Timestamp when rate limit resets (milliseconds)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetTweetsResponse'
+              example:
+                success: true
+                tweets:
+                  - id: 42
+                    mkId: 1
+                    mkName: "אבי דיכטר"
+                    content: "אני תומך בחוק הגיוס השוויוני."
+                    sourceUrl: "https://twitter.com/example/status/123456"
+                    sourcePlatform: "Twitter"
+                    postedAt: "2024-01-15T10:30:00.000Z"
+                    createdAt: "2024-01-15T11:00:00.000Z"
+                  - id: 41
+                    mkId: 1
+                    mkName: "אבי דיכטר"
+                    content: "נושא הגיוס דורש פתרון מקיף."
+                    sourceUrl: null
+                    sourcePlatform: "Knesset Website"
+                    postedAt: "2024-01-14T16:20:00.000Z"
+                    createdAt: "2024-01-14T17:00:00.000Z"
+                pagination:
+                  total: 150
+                  limit: 20
+                  offset: 0
+                  hasMore: true
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                success: false
+                error: "Invalid API key"
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitError'
+              example:
+                success: false
+                error: "Rate limit exceeded. Try again later."
+                resetAt: "2024-01-15T12:00:00.000Z"
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                success: false
+                error: "Internal server error"
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Key
+      description: |
+        API key authentication using Bearer token format.
+
+        Format: `Authorization: Bearer <your-api-key>`
+
+        Contact admin@el-hadegel.com to obtain an API key.
+
+  schemas:
+    CreateTweetRequest:
+      type: object
+      required:
+        - mkId
+        - content
+        - sourcePlatform
+        - postedAt
+      properties:
+        mkId:
+          type: integer
+          description: The Knesset member's ID (1-120)
+          minimum: 1
+          maximum: 120
+          example: 1
+        content:
+          type: string
+          description: The tweet/statement content (max 5000 characters)
+          minLength: 1
+          maxLength: 5000
+          example: "אני תומך בחוק הגיוס השוויוני. כל אזרח חייב לשרת את המדינה."
+        sourceUrl:
+          type: string
+          format: uri
+          description: URL to the original post (optional)
+          example: "https://twitter.com/example/status/123456"
+        sourcePlatform:
+          type: string
+          description: Platform where the statement was made
+          enum:
+            - Twitter
+            - Facebook
+            - Instagram
+            - News
+            - Knesset Website
+            - Other
+          example: "Twitter"
+        postedAt:
+          type: string
+          format: date-time
+          description: When the post was originally published (ISO 8601 format, UTC recommended)
+          example: "2024-01-15T10:30:00Z"
+
+    CreateTweetResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        tweet:
+          $ref: '#/components/schemas/Tweet'
+
+    GetTweetsResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        tweets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tweet'
+        pagination:
+          type: object
+          properties:
+            total:
+              type: integer
+              description: Total number of tweets matching the filter
+              example: 150
+            limit:
+              type: integer
+              description: Requested limit
+              example: 20
+            offset:
+              type: integer
+              description: Requested offset
+              example: 0
+            hasMore:
+              type: boolean
+              description: Whether there are more results available
+              example: true
+
+    Tweet:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Tweet ID
+          example: 42
+        mkId:
+          type: integer
+          description: Knesset member ID
+          example: 1
+        mkName:
+          type: string
+          description: Knesset member name (Hebrew)
+          example: "אבי דיכטר"
+        content:
+          type: string
+          description: Tweet content
+          example: "אני תומך בחוק הגיוס השוויוני."
+        sourceUrl:
+          type: string
+          format: uri
+          nullable: true
+          description: URL to original post (null if not provided)
+          example: "https://twitter.com/example/status/123456"
+        sourcePlatform:
+          type: string
+          description: Platform name
+          enum:
+            - Twitter
+            - Facebook
+            - Instagram
+            - News
+            - Knesset Website
+            - Other
+          example: "Twitter"
+        postedAt:
+          type: string
+          format: date-time
+          description: When the post was originally published
+          example: "2024-01-15T10:30:00.000Z"
+        createdAt:
+          type: string
+          format: date-time
+          description: When the tweet was added to the database
+          example: "2024-01-15T11:00:00.000Z"
+
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        error:
+          type: string
+          description: Error message
+          example: "Invalid request data"
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              path:
+                type: array
+                items:
+                  type: string
+                description: Path to the field with the error
+              message:
+                type: string
+                description: Validation error message
+          description: Validation error details (only present for validation errors)
+
+    RateLimitError:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        error:
+          type: string
+          example: "Rate limit exceeded. Try again later."
+        resetAt:
+          type: string
+          format: date-time
+          description: When the rate limit will reset
+          example: "2024-01-15T12:00:00.000Z"

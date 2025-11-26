@@ -39,3 +39,14 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+/lib/generated/prisma
+
+# Database files
+*.db
+*.db-journal
+dev.db
+data-export.json
+
+# Playwright screenshots
+.playwright-mcp/
