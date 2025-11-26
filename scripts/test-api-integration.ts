@@ -3,7 +3,7 @@
  * Tests authentication, validation, CRUD operations, and error handling
  */
 
-import { prisma } from '@/lib/prisma';
+import prisma from '@/lib/prisma';
 
 const API_BASE = 'http://localhost:3000';
 const VALID_API_KEY = 'test-api-key-dev-2024';
