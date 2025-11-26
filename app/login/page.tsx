@@ -58,7 +58,7 @@ export default function LoginPage() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="admin@el-hadegel.com"
+                placeholder="email@example.com"
                 required
                 disabled={loading}
                 className="text-right"
@@ -88,10 +88,6 @@ export default function LoginPage() {
               {loading ? 'מתחבר...' : 'התחבר'}
             </Button>
           </form>
-          <div className="mt-4 text-sm text-muted-foreground text-center">
-            <p>אימייל ברירת מחדל: admin@el-hadegel.com</p>
-            <p>סיסמה ברירת מחדל: admin123</p>
-          </div>
         </CardContent>
       </Card>
     </div>

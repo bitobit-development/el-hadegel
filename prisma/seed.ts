@@ -61,23 +61,34 @@ async function main() {
 
   console.log(`✅ Successfully seeded ${mksToCreate.length} Knesset members`);
 
-  // Create a default admin user (password: admin123 - hashed with bcrypt)
-  // For production, this should be changed!
+  // Create admin users with production credentials
   const bcrypt = require('bcryptjs');
-  const hashedPassword = await bcrypt.hash('admin123', 10);
+  console.log('Creating admin users...');
 
-  await prisma.admin.upsert({
-    where: { email: 'admin@el-hadegel.com' },
-    update: {},
-    create: {
-      email: 'admin@el-hadegel.com',
-      password: hashedPassword,
-      name: 'Admin',
-    },
+  // Hash passwords
+  const admin1Password = await bcrypt.hash('Tsitsi2025!!', 10);
+  const admin2Password = await bcrypt.hash('Itamar2025!!', 10);
+
+  // Delete existing admins to avoid conflicts
+  await prisma.admin.deleteMany();
+
+  // Create new admin accounts
+  await prisma.admin.createMany({
+    data: [
+      {
+        email: 'admin@elhadegel.co.il',
+        password: admin1Password,
+        name: 'Admin',
+      },
+      {
+        email: 'itamar@elhadegel.co.il',
+        password: admin2Password,
+        name: 'Itamar',
+      },
+    ],
   });
 
-  console.log('✅ Created default admin user (email: admin@el-hadegel.com, password: admin123)');
-  console.log('⚠️  Remember to change the admin password in production!');
+  console.log('✅ Created 2 admin users');
 }
 
 main()
