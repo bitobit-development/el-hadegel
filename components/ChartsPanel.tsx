@@ -190,6 +190,7 @@ export const ChartsPanel = ({
                         cy="50%"
                         labelLine={true}
                         label={({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {
+                          if (midAngle === undefined || cx === undefined || cy === undefined || outerRadius === undefined) return null;
                           const RADIAN = Math.PI / 180;
                           const radius = outerRadius + 40;
                           const x = cx + radius * Math.cos(-midAngle * RADIAN);
