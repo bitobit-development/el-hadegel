@@ -6,11 +6,11 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { PositionBadge } from '@/components/position-badge';
 import { TweetIcon } from '@/components/TweetIcon';
 import { TweetsDialog } from '@/components/TweetsDialog';
-import { MKData } from '@/types/mk';
+import { MKDataWithTweetCount } from '@/types/mk';
 import { ExternalLink, Phone, Mail, MessageSquare } from 'lucide-react';
 
 interface MKCardProps {
-  mk: MKData;
+  mk: MKDataWithTweetCount;
 }
 
 export function MKCard({ mk }: MKCardProps) {
