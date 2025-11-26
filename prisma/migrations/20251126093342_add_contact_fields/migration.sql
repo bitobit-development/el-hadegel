@@ -1,3 +1,0 @@
--- AlterTable
-ALTER TABLE "MK" ADD COLUMN "email" TEXT;
-ALTER TABLE "MK" ADD COLUMN "phone" TEXT;
