@@ -15,7 +15,7 @@ const prismaClientSingleton = () => {
   }
 
   // Create Prisma adapter for Neon with connection string
-  const adapter = new PrismaNeon(connectionString);
+  const adapter = new PrismaNeon({ connectionString });
 
   // Return Prisma client with Neon adapter
   return new PrismaClient({ adapter });
