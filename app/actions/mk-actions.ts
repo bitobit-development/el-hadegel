@@ -35,9 +35,12 @@ export async function getMKs(
     where.currentPosition = { in: filters.positions as Position[] };
   }
 
-  // Apply search query
+  // Apply search query (searches both name and faction)
   if (filters?.searchQuery && filters.searchQuery.trim().length > 0) {
-    where.nameHe = { contains: filters.searchQuery.trim() };
+    where.OR = [
+      { nameHe: { contains: filters.searchQuery.trim(), mode: 'insensitive' } },
+      { faction: { contains: filters.searchQuery.trim(), mode: 'insensitive' } },
+    ];
   }
 
   const mks = await prisma.mK.findMany({

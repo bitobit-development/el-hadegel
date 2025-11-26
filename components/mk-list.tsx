@@ -28,9 +28,14 @@ export function MKList({ mks, factions }: MKListProps) {
         return false;
       }
 
-      // Search query
-      if (searchQuery.trim() && !mk.nameHe.includes(searchQuery.trim())) {
-        return false;
+      // Search query (searches both name and faction)
+      if (searchQuery.trim()) {
+        const query = searchQuery.trim().toLowerCase();
+        const nameMatch = mk.nameHe.toLowerCase().includes(query);
+        const factionMatch = mk.faction.toLowerCase().includes(query);
+        if (!nameMatch && !factionMatch) {
+          return false;
+        }
       }
 
       return true;
