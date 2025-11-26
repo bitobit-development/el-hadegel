@@ -9,7 +9,18 @@ const rubik = Rubik({
 
 export const metadata: Metadata = {
   title: "אל הדגל",
-  description: "אתר בעברית עם תמיכה ב-RTL",
+  description: "מעקב אחר עמדות חברי הכנסת בנושאים חקיקתיים חשובים",
+  openGraph: {
+    title: "אל הדגל",
+    description: "מעקב אחר עמדות חברי הכנסת בנושאים חקיקתיים חשובים",
+    locale: "he_IL",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "אל הדגל",
+    description: "מעקב אחר עמדות חברי הכנסת בנושאים חקיקתיים חשובים",
+  },
 };
 
 export default function RootLayout({
