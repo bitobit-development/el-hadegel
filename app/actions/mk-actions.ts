@@ -1,28 +1,45 @@
 'use server';
 
 import prisma from '@/lib/prisma';
-import { MKData, MKDataWithTweetCount, PositionStats, FilterOptions, PositionStatus, ChartFilterOptions, FilteredPositionStats } from '@/types/mk';
+import { MKData, MKDataWithTweetCount, MKDataWithStatusInfoCount, MKDataWithCounts, PositionStats, FilterOptions, PositionStatus, ChartFilterOptions, FilteredPositionStats } from '@/types/mk';
+import { isStatusInfoEnabled } from '@/lib/feature-flags';
 import { Position } from '@prisma/client';
 
 /**
  * Get all MKs with optional filtering
  * @param filters - Optional filtering options
  * @param includeTweetCount - If true, includes tweet count for each MK
+ * @param includeStatusInfoCount - If true, includes status info count for each MK
  */
 export async function getMKs(
   filters: Partial<FilterOptions> | undefined,
-  includeTweetCount: true
+  includeTweetCount: true,
+  includeStatusInfoCount: true
+): Promise<MKDataWithCounts[]>;
+
+export async function getMKs(
+  filters: Partial<FilterOptions> | undefined,
+  includeTweetCount: true,
+  includeStatusInfoCount?: false
 ): Promise<MKDataWithTweetCount[]>;
 
 export async function getMKs(
+  filters: Partial<FilterOptions> | undefined,
+  includeTweetCount: false,
+  includeStatusInfoCount: true
+): Promise<MKDataWithStatusInfoCount[]>;
+
+export async function getMKs(
   filters?: Partial<FilterOptions>,
-  includeTweetCount?: false
+  includeTweetCount?: false,
+  includeStatusInfoCount?: false
 ): Promise<MKData[]>;
 
 export async function getMKs(
   filters?: Partial<FilterOptions>,
-  includeTweetCount: boolean = false
-): Promise<MKData[] | MKDataWithTweetCount[]> {
+  includeTweetCount: boolean = false,
+  includeStatusInfoCount: boolean = false
+): Promise<MKData[] | MKDataWithTweetCount[] | MKDataWithStatusInfoCount[] | MKDataWithCounts[]> {
   const where: any = {};
 
   // Apply faction filter
@@ -48,29 +65,54 @@ export async function getMKs(
     orderBy: { nameHe: 'asc' },
   });
 
-  // If tweet count is not requested, return basic MK data
-  if (!includeTweetCount) {
+  // If no counts are requested, return basic MK data
+  if (!includeTweetCount && !includeStatusInfoCount) {
     return mks.map(mk => ({
       ...mk,
       currentPosition: mk.currentPosition as PositionStatus,
     }));
   }
 
-  // Get tweet counts for all MKs
-  const tweetCounts = await prisma.tweet.groupBy({
-    by: ['mkId'],
-    _count: true,
+  // Get tweet counts if requested
+  let tweetCountMap = new Map<number, number>();
+  if (includeTweetCount) {
+    const tweetCounts = await prisma.tweet.groupBy({
+      by: ['mkId'],
+      _count: true,
+    });
+    tweetCountMap = new Map(
+      tweetCounts.map(tc => [tc.mkId, tc._count])
+    );
+  }
+
+  // Get status info counts if requested and feature is enabled
+  let statusInfoCountMap = new Map<number, number>();
+  if (includeStatusInfoCount && isStatusInfoEnabled()) {
+    const statusInfoCounts = await prisma.mKStatusInfo.groupBy({
+      by: ['mkId'],
+      _count: true,
+    });
+    statusInfoCountMap = new Map(
+      statusInfoCounts.map(sic => [sic.mkId, sic._count])
+    );
+  }
+
+  return mks.map(mk => {
+    const result: any = {
+      ...mk,
+      currentPosition: mk.currentPosition as PositionStatus,
+    };
+
+    if (includeTweetCount) {
+      result.tweetCount = tweetCountMap.get(mk.id) || 0;
+    }
+
+    if (includeStatusInfoCount) {
+      result.statusInfoCount = statusInfoCountMap.get(mk.id) || 0;
+    }
+
+    return result;
   });
-
-  const countMap = new Map(
-    tweetCounts.map(tc => [tc.mkId, tc._count])
-  );
-
-  return mks.map(mk => ({
-    ...mk,
-    currentPosition: mk.currentPosition as PositionStatus,
-    tweetCount: countMap.get(mk.id) || 0,
-  }));
 }
 
 /**

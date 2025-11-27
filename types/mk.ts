@@ -21,6 +21,17 @@ export interface MKDataWithTweetCount extends MKData {
   tweetCount: number;
 }
 
+// Extended MK data with status info count
+export interface MKDataWithStatusInfoCount extends MKData {
+  statusInfoCount: number;
+}
+
+// Extended MK data with both tweet and status info counts
+export interface MKDataWithCounts extends MKData {
+  tweetCount: number;
+  statusInfoCount: number;
+}
+
 // Position history entry
 export interface PositionHistoryEntry {
   id: number;

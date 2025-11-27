@@ -3,10 +3,10 @@
 import { useState, useMemo } from 'react';
 import { MKCard } from '@/components/mk-card';
 import { FilterPanel } from '@/components/filter-panel';
-import { MKDataWithTweetCount, PositionStatus } from '@/types/mk';
+import { MKDataWithCounts, PositionStatus } from '@/types/mk';
 
 interface MKListProps {
-  mks: MKDataWithTweetCount[];
+  mks: MKDataWithCounts[];
   factions: string[];
 }
 

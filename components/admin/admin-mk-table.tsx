@@ -10,19 +10,23 @@ import { PositionBadge } from '@/components/position-badge';
 import { updateMKPosition, bulkUpdatePositions } from '@/app/actions/mk-actions';
 import { PositionUpdateDialog } from './position-update-dialog';
 import { PositionHistoryDialog } from './position-history-dialog';
-import { Search, History } from 'lucide-react';
+import { CreateStatusInfoDialog } from './CreateStatusInfoDialog';
+import { Search, History, Info } from 'lucide-react';
 import { Input } from '@/components/ui/input';
+import { isStatusInfoEnabled } from '@/lib/feature-flags';
 
 interface AdminMKTableProps {
   mks: MKData[];
+  adminEmail: string;
 }
 
-export function AdminMKTable({ mks }: AdminMKTableProps) {
+export function AdminMKTable({ mks, adminEmail }: AdminMKTableProps) {
   const router = useRouter();
   const [selectedMKs, setSelectedMKs] = useState<Set<number>>(new Set());
   const [searchQuery, setSearchQuery] = useState('');
   const [editingMK, setEditingMK] = useState<MKData | null>(null);
   const [historyMK, setHistoryMK] = useState<MKData | null>(null);
+  const [statusInfoMK, setStatusInfoMK] = useState<MKData | null>(null);
   const [bulkUpdateDialogOpen, setBulkUpdateDialogOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -169,6 +173,16 @@ export function AdminMKTable({ mks }: AdminMKTableProps) {
                         >
                           <History className="h-4 w-4" />
                         </Button>
+                        {isStatusInfoEnabled() && (
+                          <Button
+                            size="sm"
+                            variant="ghost"
+                            onClick={() => setStatusInfoMK(mk)}
+                            title="הוסף מידע"
+                          >
+                            <Info className="h-4 w-4" />
+                          </Button>
+                        )}
                       </div>
                     </td>
                   </tr>
@@ -208,6 +222,16 @@ export function AdminMKTable({ mks }: AdminMKTableProps) {
           mk={historyMK}
           open={!!historyMK}
           onClose={() => setHistoryMK(null)}
+        />
+      )}
+
+      {statusInfoMK && (
+        <CreateStatusInfoDialog
+          mkId={statusInfoMK.id}
+          mkName={statusInfoMK.nameHe}
+          adminEmail={adminEmail}
+          open={!!statusInfoMK}
+          onOpenChange={(open) => !open && setStatusInfoMK(null)}
         />
       )}
     </>

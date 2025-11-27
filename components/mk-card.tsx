@@ -3,14 +3,16 @@
 import { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
 import { PositionBadge } from '@/components/position-badge';
 import { TweetIcon } from '@/components/TweetIcon';
 import { TweetsDialog } from '@/components/TweetsDialog';
-import { MKDataWithTweetCount } from '@/types/mk';
-import { ExternalLink, Phone, Mail, MessageSquare } from 'lucide-react';
+import { StatusInfoIcon } from '@/components/StatusInfoIcon';
+import { MKDataWithCounts } from '@/types/mk';
+import { ExternalLink, Phone, Mail, MessageSquare, Info } from 'lucide-react';
 
 interface MKCardProps {
-  mk: MKDataWithTweetCount;
+  mk: MKDataWithCounts;
 }
 
 export function MKCard({ mk }: MKCardProps) {
@@ -71,15 +73,18 @@ export function MKCard({ mk }: MKCardProps) {
           {/* Position Badge */}
           <PositionBadge position={mk.currentPosition} />
 
-          {/* Posts Icon - Always visible */}
-          <div onClick={(e) => e.stopPropagation()}>
-            <button
+          {/* Icons Container - Posts and Status Info */}
+          <div className="flex gap-3 items-center" onClick={(e) => e.stopPropagation()}>
+            {/* Posts Icon - Always visible */}
+            <Button
+              variant="outline"
+              size="sm"
               onClick={() => setIsTweetsDialogOpen(true)}
-              className="relative group/posts"
+              className="gap-2 hover:bg-blue-50 hover:border-blue-300 transition-colors"
               title={
                 mk.tweetCount && mk.tweetCount > 0
                   ? `${mk.tweetCount} פוסטים`
-                  : 'אין פוסטים נאספו'
+                  : 'אין פוסטים זמינים'
               }
               aria-label={
                 mk.tweetCount && mk.tweetCount > 0
@@ -87,34 +92,32 @@ export function MKCard({ mk }: MKCardProps) {
                   : 'אין פוסטים זמינים'
               }
             >
-              {/* Icon Container */}
-              <div
-                className={`p-2 rounded-full transition-all ${
+              <MessageSquare
+                className={`h-4 w-4 ${
                   mk.tweetCount && mk.tweetCount > 0
-                    ? 'bg-blue-500/20 group-hover/posts:bg-blue-500/30'
-                    : 'bg-white/5 group-hover/posts:bg-white/10'
+                    ? 'text-blue-600'
+                    : 'text-gray-400'
                 }`}
-              >
-                <MessageSquare
-                  className={`h-5 w-5 ${
-                    mk.tweetCount && mk.tweetCount > 0
-                      ? 'text-blue-200'
-                      : 'text-white/30'
-                  }`}
-                />
-              </div>
-
-              {/* Count Badge - Always visible */}
-              <div
-                className={`absolute -top-1 -right-1 min-w-[20px] h-5 px-1.5 rounded-full flex items-center justify-center text-xs font-bold ${
+              />
+              <span
+                className={`text-xs px-1.5 py-0.5 rounded-full font-medium ${
                   mk.tweetCount && mk.tweetCount > 0
-                    ? 'bg-blue-500 text-white'
-                    : 'bg-gray-600 text-gray-300'
+                    ? 'bg-blue-100 text-blue-700'
+                    : 'bg-gray-100 text-gray-500'
                 }`}
               >
                 {mk.tweetCount || 0}
-              </div>
-            </button>
+              </span>
+            </Button>
+
+            {/* Status Info Icon - Only when count > 0 */}
+            {mk.statusInfoCount !== undefined && mk.statusInfoCount > 0 && (
+              <StatusInfoIcon
+                mkId={mk.id}
+                mkName={mk.nameHe}
+                count={mk.statusInfoCount}
+              />
+            )}
           </div>
 
           {/* Contact Information */}

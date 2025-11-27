@@ -25,6 +25,7 @@ model MK {
 
   positionHistory PositionHistory[]
   tweets          Tweet[]
+  statusInfo      MKStatusInfo[]
 }
 
 // Position history tracking
@@ -81,4 +82,17 @@ model ApiKey {
   createdBy  String    // Admin email who created it
 
   @@index([keyHash])
+}
+
+// Status information entries for MKs (development-only feature)
+model MKStatusInfo {
+  id        Int      @id @default(autoincrement())
+  mkId      Int
+  mk        MK       @relation(fields: [mkId], references: [id], onDelete: Cascade)
+  content   String   // Status info content (max 2000 characters)
+  createdAt DateTime @default(now())
+  createdBy String   // Admin email who created the entry
+
+  @@index([mkId])
+  @@index([createdAt])
 }

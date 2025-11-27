@@ -1,9 +1,16 @@
 import { getMKs, getPositionStats } from '@/app/actions/mk-actions';
 import { AdminMKTable } from '@/components/admin/admin-mk-table';
 import { StatsDashboard } from '@/components/stats-dashboard';
+import { auth } from '@/auth';
 
 export default async function AdminPage() {
-  const [mks, stats] = await Promise.all([getMKs(), getPositionStats()]);
+  const [mks, stats, session] = await Promise.all([
+    getMKs(),
+    getPositionStats(),
+    auth(),
+  ]);
+
+  const adminEmail = session?.user?.email || 'unknown';
 
   return (
     <div className="space-y-8">
@@ -16,7 +23,7 @@ export default async function AdminPage() {
 
       <StatsDashboard stats={stats} />
 
-      <AdminMKTable mks={mks} />
+      <AdminMKTable mks={mks} adminEmail={adminEmail} />
     </div>
   );
 }

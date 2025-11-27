@@ -5,9 +5,9 @@ import { MKList } from '@/components/mk-list';
 import Image from 'next/image';
 
 export default async function HomePage() {
-  // Fetch all data in parallel (including tweet counts for MKs)
+  // Fetch all data in parallel (including tweet counts and status info counts for MKs)
   const [mks, stats, factions] = await Promise.all([
-    getMKs(undefined, true), // Include tweet counts
+    getMKs(undefined, true, true), // Include tweet counts and status info counts
     getPositionStats(),
     getFactions(),
   ]);
