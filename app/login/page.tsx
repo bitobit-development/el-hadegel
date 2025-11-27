@@ -30,7 +30,7 @@ export default function LoginPage() {
       if (result?.error) {
         setError('אימייל או סיסמה שגויים');
       } else if (result?.ok) {
-        router.push('/admin');
+        router.push('/');
         router.refresh();
       }
     } catch (err) {

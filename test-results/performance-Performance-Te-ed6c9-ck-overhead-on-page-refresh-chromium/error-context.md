@@ -1,0 +1,3373 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e5]:
+        - generic [ref=e6]:
+          - img "אל הדגל" [ref=e7]
+          - generic [ref=e8]:
+            - heading "אל הדגל - מעקב עמדות" [level=1] [ref=e9]
+            - paragraph [ref=e10]: מערכת מעקב עמדות חברי הכנסת
+        - generic [ref=e11]:
+          - generic [ref=e12]:
+            - paragraph [ref=e13]: Admin
+            - paragraph [ref=e14]: admin@elhadegel.co.il
+          - link "לוח בקרה" [ref=e15] [cursor=pointer]:
+            - /url: /admin
+            - button "לוח בקרה" [ref=e16]:
+              - img
+              - text: לוח בקרה
+          - button "התנתק" [ref=e17]:
+            - img
+            - text: התנתק
+    - generic [ref=e19]:
+      - banner [ref=e20]:
+        - generic [ref=e21]:
+          - generic [ref=e22]:
+            - heading "אל הדגל - מעקב עמדות חוק הגיוס (השתמטות)" [level=1] [ref=e23]
+            - paragraph [ref=e24]: עמדות חברי הכנסת על חוק הגיוס לצה״ל
+          - img "אל הדגל" [ref=e25]
+      - generic [ref=e26]:
+        - generic [ref=e30]:
+          - heading "סטטיסטיקה" [level=2] [ref=e31]
+          - generic [ref=e32]:
+            - generic [ref=e33]:
+              - generic [ref=e34]: "3"
+              - generic [ref=e35]: תומך
+              - generic [ref=e36]: (2.5%)
+            - generic [ref=e37]:
+              - generic [ref=e38]: "115"
+              - generic [ref=e39]: מתנדנד
+              - generic [ref=e40]: (95.8%)
+            - generic [ref=e41]:
+              - generic [ref=e42]: "2"
+              - generic [ref=e43]: מתנגד
+              - generic [ref=e44]: (1.7%)
+          - generic [ref=e45]:
+            - generic [ref=e46]: התפלגות עמדות (120 חברי כנסת)
+            - generic [ref=e47]:
+              - 'generic "תומך: 3 (2.5%)" [ref=e48]'
+              - 'generic "מתנדנד: 115 (95.8%)" [ref=e49]'
+              - 'generic "מתנגד: 2 (1.7%)" [ref=e50]'
+        - generic [ref=e53]:
+          - heading "תרשימים סטטיסטיים" [level=2] [ref=e55]
+          - generic [ref=e56]:
+            - button "הצג תרשים עמודות" [ref=e57]: עמודות
+            - button "הצג תרשים עוגה" [ref=e58]: עוגה
+          - generic [ref=e59]:
+            - generic [ref=e63]: התפלגות עמדות
+            - generic [ref=e67]:
+              - generic [ref=e69]:
+                - button "נקה את כל הסינונים" [disabled]: נקה סינון
+                - generic [ref=e70]:
+                  - paragraph [ref=e71]: 120 מתוך 120 ח״כים
+                  - generic [ref=e72]: סינון נתונים
+              - generic [ref=e74]:
+                - generic [ref=e75]:
+                  - generic [ref=e76]: סינון לפי סיעה
+                  - generic [ref=e77]:
+                    - generic [ref=e78]:
+                      - checkbox "סנן לפי סיעת הימין הממלכתי" [ref=e79]
+                      - checkbox
+                      - generic [ref=e80] [cursor=pointer]: הימין הממלכתי
+                    - generic [ref=e81]:
+                      - checkbox "סנן לפי סיעת הליכוד" [ref=e82]
+                      - checkbox
+                      - generic [ref=e83] [cursor=pointer]: הליכוד
+                    - generic [ref=e84]:
+                      - checkbox "סנן לפי סיעת העבודה" [ref=e85]
+                      - checkbox
+                      - generic [ref=e86] [cursor=pointer]: העבודה
+                    - generic [ref=e87]:
+                      - checkbox "סנן לפי סיעת הציונות הדתית בראשות בצלאל סמוטריץ'" [ref=e88]
+                      - checkbox
+                      - generic [ref=e89] [cursor=pointer]: הציונות הדתית בראשות בצלאל סמוטריץ'
+                    - generic [ref=e90]:
+                      - checkbox "סנן לפי סיעת התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ\"ל" [ref=e91]
+                      - checkbox
+                      - generic [ref=e92] [cursor=pointer]: התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ"ל
+                    - generic [ref=e93]:
+                      - checkbox "סנן לפי סיעת חד\"ש-תע\"ל" [ref=e94]
+                      - checkbox
+                      - generic [ref=e95] [cursor=pointer]: חד"ש-תע"ל
+                    - generic [ref=e96]:
+                      - checkbox "סנן לפי סיעת יהדות התורה" [ref=e97]
+                      - checkbox
+                      - generic [ref=e98] [cursor=pointer]: יהדות התורה
+                    - generic [ref=e99]:
+                      - checkbox "סנן לפי סיעת יש עתיד" [ref=e100]
+                      - checkbox
+                      - generic [ref=e101] [cursor=pointer]: יש עתיד
+                    - generic [ref=e102]:
+                      - checkbox "סנן לפי סיעת ישראל ביתנו" [ref=e103]
+                      - checkbox
+                      - generic [ref=e104] [cursor=pointer]: ישראל ביתנו
+                    - generic [ref=e105]:
+                      - checkbox "סנן לפי סיעת כחול לבן - המחנה הממלכתי" [ref=e106]
+                      - checkbox
+                      - generic [ref=e107] [cursor=pointer]: כחול לבן - המחנה הממלכתי
+                    - generic [ref=e108]:
+                      - checkbox "סנן לפי סיעת נעם - בראשות אבי מעוז" [ref=e109]
+                      - checkbox
+                      - generic [ref=e110] [cursor=pointer]: נעם - בראשות אבי מעוז
+                    - generic [ref=e111]:
+                      - checkbox "סנן לפי סיעת עוצמה יהודית בראשות איתמר בן גביר" [ref=e112]
+                      - checkbox
+                      - generic [ref=e113] [cursor=pointer]: עוצמה יהודית בראשות איתמר בן גביר
+                    - generic [ref=e114]:
+                      - checkbox "סנן לפי סיעת רע\"ם" [ref=e115]
+                      - checkbox
+                      - generic [ref=e116] [cursor=pointer]: רע"ם
+                - generic [ref=e117]:
+                  - generic [ref=e118]: סינון לפי חברי כנסת
+                  - textbox "חיפוש חבר כנסת" [ref=e119]:
+                    - /placeholder: חיפוש ח״כ...
+                  - generic [ref=e120]:
+                    - generic [ref=e121]:
+                      - checkbox "סנן לפי אבי דיכטר" [ref=e122]
+                      - checkbox
+                      - generic [ref=e123] [cursor=pointer]:
+                        - text: אבי דיכטר
+                        - generic [ref=e124]: (הליכוד)
+                    - generic [ref=e125]:
+                      - checkbox "סנן לפי אבי מעוז" [ref=e126]
+                      - checkbox
+                      - generic [ref=e127] [cursor=pointer]:
+                        - text: אבי מעוז
+                        - generic [ref=e128]: (נעם - בראשות אבי מעוז)
+                    - generic [ref=e129]:
+                      - checkbox "סנן לפי אביגדור ליברמן" [ref=e130]
+                      - checkbox
+                      - generic [ref=e131] [cursor=pointer]:
+                        - text: אביגדור ליברמן
+                        - generic [ref=e132]: (ישראל ביתנו)
+                    - generic [ref=e133]:
+                      - checkbox "סנן לפי אביחי אברהם בוארון" [ref=e134]
+                      - checkbox
+                      - generic [ref=e135] [cursor=pointer]:
+                        - text: אביחי אברהם בוארון
+                        - generic [ref=e136]: (הליכוד)
+                    - generic [ref=e137]:
+                      - checkbox "סנן לפי אוהד טל" [ref=e138]
+                      - checkbox
+                      - generic [ref=e139] [cursor=pointer]:
+                        - text: אוהד טל
+                        - generic [ref=e140]: (הציונות הדתית בראשות בצלאל סמוטריץ')
+                    - generic [ref=e141]:
+                      - checkbox "סנן לפי אופיר כץ" [ref=e142]
+                      - checkbox
+                      - generic [ref=e143] [cursor=pointer]:
+                        - text: אופיר כץ
+                        - generic [ref=e144]: (הליכוד)
+                    - generic [ref=e145]:
+                      - checkbox "סנן לפי אופיר סופר" [ref=e146]
+                      - checkbox
+                      - generic [ref=e147] [cursor=pointer]:
+                        - text: אופיר סופר
+                        - generic [ref=e148]: (הציונות הדתית בראשות בצלאל סמוטריץ')
+                    - generic [ref=e149]:
+                      - checkbox "סנן לפי אורי מקלב" [ref=e150]
+                      - checkbox
+                      - generic [ref=e151] [cursor=pointer]:
+                        - text: אורי מקלב
+                        - generic [ref=e152]: (יהדות התורה)
+                    - generic [ref=e153]:
+                      - checkbox "סנן לפי אוריאל בוסו" [ref=e154]
+                      - checkbox
+                      - generic [ref=e155] [cursor=pointer]:
+                        - text: אוריאל בוסו
+                        - generic [ref=e156]: (התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ"ל)
+                    - generic [ref=e157]:
+                      - checkbox "סנן לפי אורית סטרוק" [ref=e158]
+                      - checkbox
+                      - generic [ref=e159] [cursor=pointer]:
+                        - text: אורית סטרוק
+                        - generic [ref=e160]: (הציונות הדתית בראשות בצלאל סמוטריץ')
+                    - generic [ref=e161]:
+                      - checkbox "סנן לפי אורית פרקש הכהן" [ref=e162]
+                      - checkbox
+                      - generic [ref=e163] [cursor=pointer]:
+                        - text: אורית פרקש הכהן
+                        - generic [ref=e164]: (כחול לבן - המחנה הממלכתי)
+                    - generic [ref=e165]:
+                      - checkbox "סנן לפי אושר שקלים" [ref=e166]
+                      - checkbox
+                      - generic [ref=e167] [cursor=pointer]:
+                        - text: אושר שקלים
+                        - generic [ref=e168]: (הליכוד)
+                    - generic [ref=e169]:
+                      - checkbox "סנן לפי אחמד טיבי" [ref=e170]
+                      - checkbox
+                      - generic [ref=e171] [cursor=pointer]:
+                        - text: אחמד טיבי
+                        - generic [ref=e172]: (חד"ש-תע"ל)
+                    - generic [ref=e173]:
+                      - checkbox "סנן לפי איימן עודה" [ref=e174]
+                      - checkbox
+                      - generic [ref=e175] [cursor=pointer]:
+                        - text: איימן עודה
+                        - generic [ref=e176]: (חד"ש-תע"ל)
+                    - generic [ref=e177]:
+                      - checkbox "סנן לפי אימאן ח'טיב יאסין" [ref=e178]
+                      - checkbox
+                      - generic [ref=e179] [cursor=pointer]:
+                        - text: אימאן ח'טיב יאסין
+                        - generic [ref=e180]: (רע"ם)
+                    - generic [ref=e181]:
+                      - checkbox "סנן לפי איתמר בן גביר" [ref=e182]
+                      - checkbox
+                      - generic [ref=e183] [cursor=pointer]:
+                        - text: איתמר בן גביר
+                        - generic [ref=e184]: (עוצמה יהודית בראשות איתמר בן גביר)
+                    - generic [ref=e185]:
+                      - checkbox "סנן לפי איתן גינזבורג" [ref=e186]
+                      - checkbox
+                      - generic [ref=e187] [cursor=pointer]:
+                        - text: איתן גינזבורג
+                        - generic [ref=e188]: (כחול לבן - המחנה הממלכתי)
+                    - generic [ref=e189]:
+                      - checkbox "סנן לפי אכרם חסון" [ref=e190]
+                      - checkbox
+                      - generic [ref=e191] [cursor=pointer]:
+                        - text: אכרם חסון
+                        - generic [ref=e192]: (הימין הממלכתי)
+                    - generic [ref=e193]:
+                      - checkbox "סנן לפי אלון שוסטר" [ref=e194]
+                      - checkbox
+                      - generic [ref=e195] [cursor=pointer]:
+                        - text: אלון שוסטר
+                        - generic [ref=e196]: (כחול לבן - המחנה הממלכתי)
+                    - generic [ref=e197]:
+                      - checkbox "סנן לפי אלי דלל" [ref=e198]
+                      - checkbox
+                      - generic [ref=e199] [cursor=pointer]:
+                        - text: אלי דלל
+                        - generic [ref=e200]: (הליכוד)
+                    - generic [ref=e201]:
+                      - checkbox "סנן לפי אליהו רביבו" [ref=e202]
+                      - checkbox
+                      - generic [ref=e203] [cursor=pointer]:
+                        - text: אליהו רביבו
+                        - generic [ref=e204]: (הליכוד)
+                    - generic [ref=e205]:
+                      - checkbox "סנן לפי אלעזר שטרן" [ref=e206]
+                      - checkbox
+                      - generic [ref=e207] [cursor=pointer]:
+                        - text: אלעזר שטרן
+                        - generic [ref=e208]: (יש עתיד)
+                    - generic [ref=e209]:
+                      - checkbox "סנן לפי אמיר אוחנה" [ref=e210]
+                      - checkbox
+                      - generic [ref=e211] [cursor=pointer]:
+                        - text: אמיר אוחנה
+                        - generic [ref=e212]: (הליכוד)
+                    - generic [ref=e213]:
+                      - checkbox "סנן לפי אפרת רייטן מרום" [ref=e214]
+                      - checkbox
+                      - generic [ref=e215] [cursor=pointer]:
+                        - text: אפרת רייטן מרום
+                        - generic [ref=e216]: (העבודה)
+                    - generic [ref=e217]:
+                      - checkbox "סנן לפי אריאל קלנר" [ref=e218]
+                      - checkbox
+                      - generic [ref=e219] [cursor=pointer]:
+                        - text: אריאל קלנר
+                        - generic [ref=e220]: (הליכוד)
+                    - generic [ref=e221]:
+                      - checkbox "סנן לפי אריה מכלוף דרעי" [ref=e222]
+                      - checkbox
+                      - generic [ref=e223] [cursor=pointer]:
+                        - text: אריה מכלוף דרעי
+                        - generic [ref=e224]: (התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ"ל)
+                    - generic [ref=e225]:
+                      - checkbox "סנן לפי בועז ביסמוט" [ref=e226]
+                      - checkbox
+                      - generic [ref=e227] [cursor=pointer]:
+                        - text: בועז ביסמוט
+                        - generic [ref=e228]: (הליכוד)
+                    - generic [ref=e229]:
+                      - checkbox "סנן לפי בועז טופורובסקי" [ref=e230]
+                      - checkbox
+                      - generic [ref=e231] [cursor=pointer]:
+                        - text: בועז טופורובסקי
+                        - generic [ref=e232]: (יש עתיד)
+                    - generic [ref=e233]:
+                      - checkbox "סנן לפי בני גנץ" [ref=e234]
+                      - checkbox
+                      - generic [ref=e235] [cursor=pointer]:
+                        - text: בני גנץ
+                        - generic [ref=e236]: (כחול לבן - המחנה הממלכתי)
+                    - generic [ref=e237]:
+                      - checkbox "סנן לפי בנימין נתניהו" [ref=e238]
+                      - checkbox
+                      - generic [ref=e239] [cursor=pointer]:
+                        - text: בנימין נתניהו
+                        - generic [ref=e240]: (הליכוד)
+                    - generic [ref=e241]:
+                      - checkbox "סנן לפי גילה גמליאל" [ref=e242]
+                      - checkbox
+                      - generic [ref=e243] [cursor=pointer]:
+                        - text: גילה גמליאל
+                        - generic [ref=e244]: (הליכוד)
+                    - generic [ref=e245]:
+                      - checkbox "סנן לפי גלית דיסטל אטבריאן" [ref=e246]
+                      - checkbox
+                      - generic [ref=e247] [cursor=pointer]:
+                        - text: גלית דיסטל אטבריאן
+                        - generic [ref=e248]: (הליכוד)
+                    - generic [ref=e249]:
+                      - checkbox "סנן לפי גלעד קריב" [ref=e250]
+                      - checkbox
+                      - generic [ref=e251] [cursor=pointer]:
+                        - text: גלעד קריב
+                        - generic [ref=e252]: (העבודה)
+                    - generic [ref=e253]:
+                      - checkbox "סנן לפי דבי ביטון" [ref=e254]
+                      - checkbox
+                      - generic [ref=e255] [cursor=pointer]:
+                        - text: דבי ביטון
+                        - generic [ref=e256]: (יש עתיד)
+                    - generic [ref=e257]:
+                      - checkbox "סנן לפי דוד ביטן" [ref=e258]
+                      - checkbox
+                      - generic [ref=e259] [cursor=pointer]:
+                        - text: דוד ביטן
+                        - generic [ref=e260]: (הליכוד)
+                    - generic [ref=e261]:
+                      - checkbox "סנן לפי דן אילוז" [ref=e262]
+                      - checkbox
+                      - generic [ref=e263] [cursor=pointer]:
+                        - text: דן אילוז
+                        - generic [ref=e264]: (הליכוד)
+                    - generic [ref=e265]:
+                      - checkbox "סנן לפי ואליד אלהואשלה" [ref=e266]
+                      - checkbox
+                      - generic [ref=e267] [cursor=pointer]:
+                        - text: ואליד אלהואשלה
+                        - generic [ref=e268]: (רע"ם)
+                    - generic [ref=e269]:
+                      - checkbox "סנן לפי ווליד טאהא" [ref=e270]
+                      - checkbox
+                      - generic [ref=e271] [cursor=pointer]:
+                        - text: ווליד טאהא
+                        - generic [ref=e272]: (רע"ם)
+                    - generic [ref=e273]:
+                      - checkbox "סנן לפי ולדימיר בליאק" [ref=e274]
+                      - checkbox
+                      - generic [ref=e275] [cursor=pointer]:
+                        - text: ולדימיר בליאק
+                        - generic [ref=e276]: (יש עתיד)
+                    - generic [ref=e277]:
+                      - checkbox "סנן לפי זאב אלקין" [ref=e278]
+                      - checkbox
+                      - generic [ref=e279] [cursor=pointer]:
+                        - text: זאב אלקין
+                        - generic [ref=e280]: (הימין הממלכתי)
+                    - generic [ref=e281]:
+                      - checkbox "סנן לפי חוה אתי עטייה" [ref=e282]
+                      - checkbox
+                      - generic [ref=e283] [cursor=pointer]:
+                        - text: חוה אתי עטייה
+                        - generic [ref=e284]: (הליכוד)
+                    - generic [ref=e285]:
+                      - checkbox "סנן לפי חיים ביטון" [ref=e286]
+                      - checkbox
+                      - generic [ref=e287] [cursor=pointer]:
+                        - text: חיים ביטון
+                        - generic [ref=e288]: (התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ"ל)
+                    - generic [ref=e289]:
+                      - checkbox "סנן לפי חילי טרופר" [ref=e290]
+                      - checkbox
+                      - generic [ref=e291] [cursor=pointer]:
+                        - text: חילי טרופר
+                        - generic [ref=e292]: (כחול לבן - המחנה הממלכתי)
+                    - generic [ref=e293]:
+                      - checkbox "סנן לפי חמד עמאר" [ref=e294]
+                      - checkbox
+                      - generic [ref=e295] [cursor=pointer]:
+                        - text: חמד עמאר
+                        - generic [ref=e296]: (ישראל ביתנו)
+                    - generic [ref=e297]:
+                      - checkbox "סנן לפי חנוך דב מלביצקי" [ref=e298]
+                      - checkbox
+                      - generic [ref=e299] [cursor=pointer]:
+                        - text: חנוך דב מלביצקי
+                        - generic [ref=e300]: (הליכוד)
+                    - generic [ref=e301]:
+                      - checkbox "סנן לפי טטיאנה מזרסקי" [ref=e302]
+                      - checkbox
+                      - generic [ref=e303] [cursor=pointer]:
+                        - text: טטיאנה מזרסקי
+                        - generic [ref=e304]: (יש עתיד)
+                    - generic [ref=e305]:
+                      - checkbox "סנן לפי טלי גוטליב" [ref=e306]
+                      - checkbox
+                      - generic [ref=e307] [cursor=pointer]:
+                        - text: טלי גוטליב
+                        - generic [ref=e308]: (הליכוד)
+                    - generic [ref=e309]:
+                      - checkbox "סנן לפי יאיר לפיד" [ref=e310]
+                      - checkbox
+                      - generic [ref=e311] [cursor=pointer]:
+                        - text: יאיר לפיד
+                        - generic [ref=e312]: (יש עתיד)
+                    - generic [ref=e313]:
+                      - checkbox "סנן לפי יאסר חוג'יראת" [ref=e314]
+                      - checkbox
+                      - generic [ref=e315] [cursor=pointer]:
+                        - text: יאסר חוג'יראת
+                        - generic [ref=e316]: (רע"ם)
+                    - generic [ref=e317]:
+                      - checkbox "סנן לפי יבגני סובה" [ref=e318]
+                      - checkbox
+                      - generic [ref=e319] [cursor=pointer]:
+                        - text: יבגני סובה
+                        - generic [ref=e320]: (ישראל ביתנו)
+                    - generic [ref=e321]:
+                      - checkbox "סנן לפי יואב בן צור" [ref=e322]
+                      - checkbox
+                      - generic [ref=e323] [cursor=pointer]:
+                        - text: יואב בן צור
+                        - generic [ref=e324]: (התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ"ל)
+                    - generic [ref=e325]:
+                      - checkbox "סנן לפי יואב סגלוביץ" [ref=e326]
+                      - checkbox
+                      - generic [ref=e327] [cursor=pointer]:
+                        - text: יואב סגלוביץ
+                        - generic [ref=e328]: (יש עתיד)
+                    - generic [ref=e329]:
+                      - checkbox "סנן לפי יולי יואל אדלשטיין" [ref=e330]
+                      - checkbox
+                      - generic [ref=e331] [cursor=pointer]:
+                        - text: יולי יואל אדלשטיין
+                        - generic [ref=e332]: (הליכוד)
+                    - generic [ref=e333]:
+                      - checkbox "סנן לפי יוליה מלינובסקי" [ref=e334]
+                      - checkbox
+                      - generic [ref=e335] [cursor=pointer]:
+                        - text: יוליה מלינובסקי
+                        - generic [ref=e336]: (ישראל ביתנו)
+                    - generic [ref=e337]:
+                      - checkbox "סנן לפי יונתן מישרקי" [ref=e338]
+                      - checkbox
+                      - generic [ref=e339] [cursor=pointer]:
+                        - text: יונתן מישרקי
+                        - generic [ref=e340]: (התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ"ל)
+                    - generic [ref=e341]:
+                      - checkbox "סנן לפי יוסף טייב" [ref=e342]
+                      - checkbox
+                      - generic [ref=e343] [cursor=pointer]:
+                        - text: יוסף טייב
+                        - generic [ref=e344]: (התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ"ל)
+                    - generic [ref=e345]:
+                      - checkbox "סנן לפי יוראי להב הרצנו" [ref=e346]
+                      - checkbox
+                      - generic [ref=e347] [cursor=pointer]:
+                        - text: יוראי להב הרצנו
+                        - generic [ref=e348]: (יש עתיד)
+                    - generic [ref=e349]:
+                      - checkbox "סנן לפי ינון אזולאי" [ref=e350]
+                      - checkbox
+                      - generic [ref=e351] [cursor=pointer]:
+                        - text: ינון אזולאי
+                        - generic [ref=e352]: (התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ"ל)
+                    - generic [ref=e353]:
+                      - checkbox "סנן לפי יסמין פרידמן" [ref=e354]
+                      - checkbox
+                      - generic [ref=e355] [cursor=pointer]:
+                        - text: יסמין פרידמן
+                        - generic [ref=e356]: (יש עתיד)
+                    - generic [ref=e357]:
+                      - checkbox "סנן לפי יעל רון בן משה" [ref=e358]
+                      - checkbox
+                      - generic [ref=e359] [cursor=pointer]:
+                        - text: יעל רון בן משה
+                        - generic [ref=e360]: (כחול לבן - המחנה הממלכתי)
+                    - generic [ref=e361]:
+                      - checkbox "סנן לפי יעקב אשר" [ref=e362]
+                      - checkbox
+                      - generic [ref=e363] [cursor=pointer]:
+                        - text: יעקב אשר
+                        - generic [ref=e364]: (יהדות התורה)
+                    - generic [ref=e365]:
+                      - checkbox "סנן לפי יעקב טסלר" [ref=e366]
+                      - checkbox
+                      - generic [ref=e367] [cursor=pointer]:
+                        - text: יעקב טסלר
+                        - generic [ref=e368]: (יהדות התורה)
+                    - generic [ref=e369]:
+                      - checkbox "סנן לפי יעקב מרגי" [ref=e370]
+                      - checkbox
+                      - generic [ref=e371] [cursor=pointer]:
+                        - text: יעקב מרגי
+                        - generic [ref=e372]: (התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ"ל)
+                    - generic [ref=e373]:
+                      - checkbox "סנן לפי יצחק גולדקנופ" [ref=e374]
+                      - checkbox
+                      - generic [ref=e375] [cursor=pointer]:
+                        - text: יצחק גולדקנופ
+                        - generic [ref=e376]: (יהדות התורה)
+                    - generic [ref=e377]:
+                      - checkbox "סנן לפי יצחק קרויזר" [ref=e378]
+                      - checkbox
+                      - generic [ref=e379] [cursor=pointer]:
+                        - text: יצחק קרויזר
+                        - generic [ref=e380]: (עוצמה יהודית בראשות איתמר בן גביר)
+                    - generic [ref=e381]:
+                      - checkbox "סנן לפי יצחק שמעון וסרלאוף" [ref=e382]
+                      - checkbox
+                      - generic [ref=e383] [cursor=pointer]:
+                        - text: יצחק שמעון וסרלאוף
+                        - generic [ref=e384]: (עוצמה יהודית בראשות איתמר בן גביר)
+                    - generic [ref=e385]:
+                      - checkbox "סנן לפי ירון לוי" [ref=e386]
+                      - checkbox
+                      - generic [ref=e387] [cursor=pointer]:
+                        - text: ירון לוי
+                        - generic [ref=e388]: (יש עתיד)
+                    - generic [ref=e389]:
+                      - checkbox "סנן לפי יריב לוין" [ref=e390]
+                      - checkbox
+                      - generic [ref=e391] [cursor=pointer]:
+                        - text: יריב לוין
+                        - generic [ref=e392]: (הליכוד)
+                    - generic [ref=e393]:
+                      - checkbox "סנן לפי ישראל אייכלר" [ref=e394]
+                      - checkbox
+                      - generic [ref=e395] [cursor=pointer]:
+                        - text: ישראל אייכלר
+                        - generic [ref=e396]: (יהדות התורה)
+                    - generic [ref=e397]:
+                      - checkbox "סנן לפי ישראל כץ" [ref=e398]
+                      - checkbox
+                      - generic [ref=e399] [cursor=pointer]:
+                        - text: ישראל כץ
+                        - generic [ref=e400]: (הליכוד)
+                    - generic [ref=e401]:
+                      - checkbox "סנן לפי לימור סון הר מלך" [ref=e402]
+                      - checkbox
+                      - generic [ref=e403] [cursor=pointer]:
+                        - text: לימור סון הר מלך
+                        - generic [ref=e404]: (עוצמה יהודית בראשות איתמר בן גביר)
+                    - generic [ref=e405]:
+                      - checkbox "סנן לפי מאי גולן" [ref=e406]
+                      - checkbox
+                      - generic [ref=e407] [cursor=pointer]:
+                        - text: מאי גולן
+                        - generic [ref=e408]: (הליכוד)
+                    - generic [ref=e409]:
+                      - checkbox "סנן לפי מאיר כהן" [ref=e410]
+                      - checkbox
+                      - generic [ref=e411] [cursor=pointer]:
+                        - text: מאיר כהן
+                        - generic [ref=e412]: (יש עתיד)
+                    - generic [ref=e413]:
+                      - checkbox "סנן לפי מאיר פרוש" [ref=e414]
+                      - checkbox
+                      - generic [ref=e415] [cursor=pointer]:
+                        - text: מאיר פרוש
+                        - generic [ref=e416]: (יהדות התורה)
+                    - generic [ref=e417]:
+                      - checkbox "סנן לפי מטי צרפתי הרכבי" [ref=e418]
+                      - checkbox
+                      - generic [ref=e419] [cursor=pointer]:
+                        - text: מטי צרפתי הרכבי
+                        - generic [ref=e420]: (יש עתיד)
+                    - generic [ref=e421]:
+                      - checkbox "סנן לפי מיכאל מלכיאלי" [ref=e422]
+                      - checkbox
+                      - generic [ref=e423] [cursor=pointer]:
+                        - text: מיכאל מלכיאלי
+                        - generic [ref=e424]: (התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ"ל)
+                    - generic [ref=e425]:
+                      - checkbox "סנן לפי מיכאל מרדכי ביטון" [ref=e426]
+                      - checkbox
+                      - generic [ref=e427] [cursor=pointer]:
+                        - text: מיכאל מרדכי ביטון
+                        - generic [ref=e428]: (כחול לבן - המחנה הממלכתי)
+                    - generic [ref=e429]:
+                      - checkbox "סנן לפי מיכל מרים וולדיגר" [ref=e430]
+                      - checkbox
+                      - generic [ref=e431] [cursor=pointer]:
+                        - text: מיכל מרים וולדיגר
+                        - generic [ref=e432]: (הציונות הדתית בראשות בצלאל סמוטריץ')
+                    - generic [ref=e433]:
+                      - checkbox "סנן לפי מיכל שיר סגמן" [ref=e434]
+                      - checkbox
+                      - generic [ref=e435] [cursor=pointer]:
+                        - text: מיכל שיר סגמן
+                        - generic [ref=e436]: (יש עתיד)
+                    - generic [ref=e437]:
+                      - checkbox "סנן לפי מיקי לוי" [ref=e438]
+                      - checkbox
+                      - generic [ref=e439] [cursor=pointer]:
+                        - text: מיקי לוי
+                        - generic [ref=e440]: (יש עתיד)
+                    - generic [ref=e441]:
+                      - checkbox "סנן לפי מירב בן ארי" [ref=e442]
+                      - checkbox
+                      - generic [ref=e443] [cursor=pointer]:
+                        - text: מירב בן ארי
+                        - generic [ref=e444]: (יש עתיד)
+                    - generic [ref=e445]:
+                      - checkbox "סנן לפי מירב כהן" [ref=e446]
+                      - checkbox
+                      - generic [ref=e447] [cursor=pointer]:
+                        - text: מירב כהן
+                        - generic [ref=e448]: (יש עתיד)
+                    - generic [ref=e449]:
+                      - checkbox "סנן לפי מישל בוסקילה" [ref=e450]
+                      - checkbox
+                      - generic [ref=e451] [cursor=pointer]:
+                        - text: מישל בוסקילה
+                        - generic [ref=e452]: (הימין הממלכתי)
+                    - generic [ref=e453]:
+                      - checkbox "סנן לפי מנסור עבאס" [ref=e454]
+                      - checkbox
+                      - generic [ref=e455] [cursor=pointer]:
+                        - text: מנסור עבאס
+                        - generic [ref=e456]: (רע"ם)
+                    - generic [ref=e457]:
+                      - checkbox "סנן לפי מרב מיכאלי" [ref=e458]
+                      - checkbox
+                      - generic [ref=e459] [cursor=pointer]:
+                        - text: מרב מיכאלי
+                        - generic [ref=e460]: (העבודה)
+                    - generic [ref=e461]:
+                      - checkbox "סנן לפי משה אבוטבול" [ref=e462]
+                      - checkbox
+                      - generic [ref=e463] [cursor=pointer]:
+                        - text: משה אבוטבול
+                        - generic [ref=e464]: (התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ"ל)
+                    - generic [ref=e465]:
+                      - checkbox "סנן לפי משה ארבל" [ref=e466]
+                      - checkbox
+                      - generic [ref=e467] [cursor=pointer]:
+                        - text: משה ארבל
+                        - generic [ref=e468]: (התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ"ל)
+                    - generic [ref=e469]:
+                      - checkbox "סנן לפי משה גפני" [ref=e470]
+                      - checkbox
+                      - generic [ref=e471] [cursor=pointer]:
+                        - text: משה גפני
+                        - generic [ref=e472]: (יהדות התורה)
+                    - generic [ref=e473]:
+                      - checkbox "סנן לפי משה טור פז" [ref=e474]
+                      - checkbox
+                      - generic [ref=e475] [cursor=pointer]:
+                        - text: משה טור פז
+                        - generic [ref=e476]: (יש עתיד)
+                    - generic [ref=e477]:
+                      - checkbox "סנן לפי משה סולומון" [ref=e478]
+                      - checkbox
+                      - generic [ref=e479] [cursor=pointer]:
+                        - text: משה סולומון
+                        - generic [ref=e480]: (הציונות הדתית בראשות בצלאל סמוטריץ')
+                    - generic [ref=e481]:
+                      - checkbox "סנן לפי משה סעדה" [ref=e482]
+                      - checkbox
+                      - generic [ref=e483] [cursor=pointer]:
+                        - text: משה סעדה
+                        - generic [ref=e484]: (הליכוד)
+                    - generic [ref=e485]:
+                      - checkbox "סנן לפי משה פסל" [ref=e486]
+                      - checkbox
+                      - generic [ref=e487] [cursor=pointer]:
+                        - text: משה פסל
+                        - generic [ref=e488]: (הליכוד)
+                    - generic [ref=e489]:
+                      - checkbox "סנן לפי נאור שירי" [ref=e490]
+                      - checkbox
+                      - generic [ref=e491] [cursor=pointer]:
+                        - text: נאור שירי
+                        - generic [ref=e492]: (יש עתיד)
+                    - generic [ref=e493]:
+                      - checkbox "סנן לפי ניסים ואטורי" [ref=e494]
+                      - checkbox
+                      - generic [ref=e495] [cursor=pointer]:
+                        - text: ניסים ואטורי
+                        - generic [ref=e496]: (הליכוד)
+                    - generic [ref=e497]:
+                      - checkbox "סנן לפי ניר ברקת" [ref=e498]
+                      - checkbox
+                      - generic [ref=e499] [cursor=pointer]:
+                        - text: ניר ברקת
+                        - generic [ref=e500]: (הליכוד)
+                    - generic [ref=e501]:
+                      - checkbox "סנן לפי נעמה לזימי" [ref=e502]
+                      - checkbox
+                      - generic [ref=e503] [cursor=pointer]:
+                        - text: נעמה לזימי
+                        - generic [ref=e504]: (העבודה)
+                    - generic [ref=e505]:
+                      - checkbox "סנן לפי סימון דוידסון" [ref=e506]
+                      - checkbox
+                      - generic [ref=e507] [cursor=pointer]:
+                        - text: סימון דוידסון
+                        - generic [ref=e508]: (יש עתיד)
+                    - generic [ref=e509]:
+                      - checkbox "סנן לפי סמיר בן סעיד" [ref=e510]
+                      - checkbox
+                      - generic [ref=e511] [cursor=pointer]:
+                        - text: סמיר בן סעיד
+                        - generic [ref=e512]: (חד"ש-תע"ל)
+                    - generic [ref=e513]:
+                      - checkbox "סנן לפי עאידה תומא סלימאן" [ref=e514]
+                      - checkbox
+                      - generic [ref=e515] [cursor=pointer]:
+                        - text: עאידה תומא סלימאן
+                        - generic [ref=e516]: (חד"ש-תע"ל)
+                    - generic [ref=e517]:
+                      - checkbox "סנן לפי עדי עזוז" [ref=e518]
+                      - checkbox
+                      - generic [ref=e519] [cursor=pointer]:
+                        - text: עדי עזוז
+                        - generic [ref=e520]: (יש עתיד)
+                    - generic [ref=e521]:
+                      - checkbox "סנן לפי עודד פורר" [ref=e522]
+                      - checkbox
+                      - generic [ref=e523] [cursor=pointer]:
+                        - text: עודד פורר
+                        - generic [ref=e524]: (ישראל ביתנו)
+                    - generic [ref=e525]:
+                      - checkbox "סנן לפי עופר כסיף" [ref=e526]
+                      - checkbox
+                      - generic [ref=e527] [cursor=pointer]:
+                        - text: עופר כסיף
+                        - generic [ref=e528]: (חד"ש-תע"ל)
+                    - generic [ref=e529]:
+                      - checkbox "סנן לפי עמיחי אליהו" [ref=e530]
+                      - checkbox
+                      - generic [ref=e531] [cursor=pointer]:
+                        - text: עמיחי אליהו
+                        - generic [ref=e532]: (עוצמה יהודית בראשות איתמר בן גביר)
+                    - generic [ref=e533]:
+                      - checkbox "סנן לפי עמית הלוי" [ref=e534]
+                      - checkbox
+                      - generic [ref=e535] [cursor=pointer]:
+                        - text: עמית הלוי
+                        - generic [ref=e536]: (הליכוד)
+                    - generic [ref=e537]:
+                      - checkbox "סנן לפי עפיף עבד" [ref=e538]
+                      - checkbox
+                      - generic [ref=e539] [cursor=pointer]:
+                        - text: עפיף עבד
+                        - generic [ref=e540]: (הליכוד)
+                    - generic [ref=e541]:
+                      - checkbox "סנן לפי פנינה תמנו" [ref=e542]
+                      - checkbox
+                      - generic [ref=e543] [cursor=pointer]:
+                        - text: פנינה תמנו
+                        - generic [ref=e544]: (כחול לבן - המחנה הממלכתי)
+                    - generic [ref=e545]:
+                      - checkbox "סנן לפי צבי ידידיה סוכות" [ref=e546]
+                      - checkbox
+                      - generic [ref=e547] [cursor=pointer]:
+                        - text: צבי ידידיה סוכות
+                        - generic [ref=e548]: (הציונות הדתית בראשות בצלאל סמוטריץ')
+                    - generic [ref=e549]:
+                      - checkbox "סנן לפי צביקה פוגל" [ref=e550]
+                      - checkbox
+                      - generic [ref=e551] [cursor=pointer]:
+                        - text: צביקה פוגל
+                        - generic [ref=e552]: (עוצמה יהודית בראשות איתמר בן גביר)
+                    - generic [ref=e553]:
+                      - checkbox "סנן לפי צגה צגנש מלקו" [ref=e554]
+                      - checkbox
+                      - generic [ref=e555] [cursor=pointer]:
+                        - text: צגה צגנש מלקו
+                        - generic [ref=e556]: (הליכוד)
+                    - generic [ref=e557]:
+                      - checkbox "סנן לפי קארין אלהרר" [ref=e558]
+                      - checkbox
+                      - generic [ref=e559] [cursor=pointer]:
+                        - text: קארין אלהרר
+                        - generic [ref=e560]: (יש עתיד)
+                    - generic [ref=e561]:
+                      - checkbox "סנן לפי קטי קטרין שטרית" [ref=e562]
+                      - checkbox
+                      - generic [ref=e563] [cursor=pointer]:
+                        - text: קטי קטרין שטרית
+                        - generic [ref=e564]: (הליכוד)
+                    - generic [ref=e565]:
+                      - checkbox "סנן לפי רון כץ" [ref=e566]
+                      - checkbox
+                      - generic [ref=e567] [cursor=pointer]:
+                        - text: רון כץ
+                        - generic [ref=e568]: (יש עתיד)
+                    - generic [ref=e569]:
+                      - checkbox "סנן לפי רם בן ברק" [ref=e570]
+                      - checkbox
+                      - generic [ref=e571] [cursor=pointer]:
+                        - text: רם בן ברק
+                        - generic [ref=e572]: (יש עתיד)
+                    - generic [ref=e573]:
+                      - checkbox "סנן לפי שלום דנינו" [ref=e574]
+                      - checkbox
+                      - generic [ref=e575] [cursor=pointer]:
+                        - text: שלום דנינו
+                        - generic [ref=e576]: (הליכוד)
+                    - generic [ref=e577]:
+                      - checkbox "סנן לפי שלי טל מירון" [ref=e578]
+                      - checkbox
+                      - generic [ref=e579] [cursor=pointer]:
+                        - text: שלי טל מירון
+                        - generic [ref=e580]: (יש עתיד)
+                    - generic [ref=e581]:
+                      - checkbox "סנן לפי שלמה קרעי" [ref=e582]
+                      - checkbox
+                      - generic [ref=e583] [cursor=pointer]:
+                        - text: שלמה קרעי
+                        - generic [ref=e584]: (הליכוד)
+                    - generic [ref=e585]:
+                      - checkbox "סנן לפי שמחה רוטמן" [ref=e586]
+                      - checkbox
+                      - generic [ref=e587] [cursor=pointer]:
+                        - text: שמחה רוטמן
+                        - generic [ref=e588]: (הציונות הדתית בראשות בצלאל סמוטריץ')
+                    - generic [ref=e589]:
+                      - checkbox "סנן לפי שרון ניר" [ref=e590]
+                      - checkbox
+                      - generic [ref=e591] [cursor=pointer]:
+                        - text: שרון ניר
+                        - generic [ref=e592]: (ישראל ביתנו)
+                    - generic [ref=e593]:
+                      - checkbox "סנן לפי שרן מרים השכל" [ref=e594]
+                      - checkbox
+                      - generic [ref=e595] [cursor=pointer]:
+                        - text: שרן מרים השכל
+                        - generic [ref=e596]: (הימין הממלכתי)
+                    - generic [ref=e597]:
+                      - checkbox "סנן לפי ששון ששי גואטה" [ref=e598]
+                      - checkbox
+                      - generic [ref=e599] [cursor=pointer]:
+                        - text: ששון ששי גואטה
+                        - generic [ref=e600]: (הליכוד)
+        - generic [ref=e602]:
+          - generic [ref=e605]:
+            - generic [ref=e606]:
+              - img [ref=e607]
+              - textbox "חיפוש לפי שם או סיעה..." [ref=e610]
+            - button "הצג סינונים" [ref=e612]
+          - generic [ref=e613]: מציג 120 מתוך 120 חברי כנסת
+          - generic [ref=e614]:
+            - generic [ref=e615]:
+              - button "עבור לעמוד הפרופיל של אבי דיכטר" [ref=e616] [cursor=pointer]:
+                - img [ref=e617]
+              - generic [ref=e622]:
+                - generic [ref=e624]: אד
+                - generic [ref=e625]:
+                  - heading "אבי דיכטר" [level=3] [ref=e626]
+                  - paragraph [ref=e627]: הליכוד
+                - generic [ref=e628]: תומך
+                - button "אין פוסטים זמינים" [ref=e630]:
+                  - img
+                  - generic [ref=e631]: "0"
+                - generic [ref=e632]:
+                  - link "02-6408422" [ref=e633] [cursor=pointer]:
+                    - /url: tel:026408422
+                    - img [ref=e634]
+                    - generic [ref=e636]: 02-6408422
+                  - link "davraham@knesset.gov.il" [ref=e637] [cursor=pointer]:
+                    - /url: mailto:davraham@knesset.gov.il
+                    - img [ref=e638]
+                    - generic [ref=e641]: davraham@knesset.gov.il
+            - generic [ref=e642]:
+              - button "עבור לעמוד הפרופיל של אבי מעוז" [ref=e643] [cursor=pointer]:
+                - img [ref=e644]
+              - generic [ref=e649]:
+                - generic [ref=e651]: אמ
+                - generic [ref=e652]:
+                  - heading "אבי מעוז" [level=3] [ref=e653]
+                  - paragraph [ref=e654]: נעם - בראשות אבי מעוז
+                - generic [ref=e655]: תומך
+                - button "אין פוסטים זמינים" [ref=e657]:
+                  - img
+                  - generic [ref=e658]: "0"
+                - generic [ref=e659]:
+                  - link "02-6408110, 02-6408212" [ref=e660] [cursor=pointer]:
+                    - /url: tel:026408110,026408212
+                    - img [ref=e661]
+                    - generic [ref=e663]: 02-6408110, 02-6408212
+                  - link "amaaoz@knesset.gov.il" [ref=e664] [cursor=pointer]:
+                    - /url: mailto:amaaoz@knesset.gov.il
+                    - img [ref=e665]
+                    - generic [ref=e668]: amaaoz@knesset.gov.il
+            - generic [ref=e669]:
+              - button "עבור לעמוד הפרופיל של אביגדור ליברמן" [ref=e670] [cursor=pointer]:
+                - img [ref=e671]
+              - generic [ref=e676]:
+                - generic [ref=e678]: אל
+                - generic [ref=e679]:
+                  - heading "אביגדור ליברמן" [level=3] [ref=e680]
+                  - paragraph [ref=e681]: ישראל ביתנו
+                - generic [ref=e682]: מתנגד
+                - button "אין פוסטים זמינים" [ref=e684]:
+                  - img
+                  - generic [ref=e685]: "0"
+                - generic [ref=e686]:
+                  - link "02-6408870, 02-6408871" [ref=e687] [cursor=pointer]:
+                    - /url: tel:026408870,026408871
+                    - img [ref=e688]
+                    - generic [ref=e690]: 02-6408870, 02-6408871
+                  - link "aliberman@knesset.gov.il" [ref=e691] [cursor=pointer]:
+                    - /url: mailto:aliberman@knesset.gov.il
+                    - img [ref=e692]
+                    - generic [ref=e695]: aliberman@knesset.gov.il
+            - generic [ref=e696]:
+              - button "עבור לעמוד הפרופיל של אביחי אברהם בוארון" [ref=e697] [cursor=pointer]:
+                - img [ref=e698]
+              - generic [ref=e703]:
+                - generic [ref=e705]: אב
+                - generic [ref=e706]:
+                  - heading "אביחי אברהם בוארון" [level=3] [ref=e707]
+                  - paragraph [ref=e708]: הליכוד
+                - generic [ref=e709]: תומך
+                - button "אין פוסטים זמינים" [ref=e711]:
+                  - img
+                  - generic [ref=e712]: "0"
+                - generic [ref=e713]:
+                  - link "02-6753333" [ref=e714] [cursor=pointer]:
+                    - /url: tel:026753333
+                    - img [ref=e715]
+                    - generic [ref=e717]: 02-6753333
+                  - link "hak_boaron@knesset.gov.il" [ref=e718] [cursor=pointer]:
+                    - /url: mailto:hak_boaron@knesset.gov.il
+                    - img [ref=e719]
+                    - generic [ref=e722]: hak_boaron@knesset.gov.il
+            - generic [ref=e723]:
+              - button "עבור לעמוד הפרופיל של אוהד טל" [ref=e724] [cursor=pointer]:
+                - img [ref=e725]
+              - generic [ref=e730]:
+                - generic [ref=e732]: אט
+                - generic [ref=e733]:
+                  - heading "אוהד טל" [level=3] [ref=e734]
+                  - paragraph [ref=e735]: הציונות הדתית בראשות בצלאל סמוטריץ'
+                - generic [ref=e736]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e738]:
+                  - img
+                  - generic [ref=e739]: "0"
+                - generic [ref=e740]:
+                  - link "02-6408115" [ref=e741] [cursor=pointer]:
+                    - /url: tel:026408115
+                    - img [ref=e742]
+                    - generic [ref=e744]: 02-6408115
+                  - link "ohadt@knesset.gov.il" [ref=e745] [cursor=pointer]:
+                    - /url: mailto:ohadt@knesset.gov.il
+                    - img [ref=e746]
+                    - generic [ref=e749]: ohadt@knesset.gov.il
+            - generic [ref=e750]:
+              - button "עבור לעמוד הפרופיל של אופיר כץ" [ref=e751] [cursor=pointer]:
+                - img [ref=e752]
+              - generic [ref=e757]:
+                - generic [ref=e759]: אכ
+                - generic [ref=e760]:
+                  - heading "אופיר כץ" [level=3] [ref=e761]
+                  - paragraph [ref=e762]: הליכוד
+                - generic [ref=e763]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e765]:
+                  - img
+                  - generic [ref=e766]: "0"
+                - generic [ref=e767]:
+                  - link "02-6408465" [ref=e768] [cursor=pointer]:
+                    - /url: tel:026408465
+                    - img [ref=e769]
+                    - generic [ref=e771]: 02-6408465
+                  - link "okatz@knesset.gov.il" [ref=e772] [cursor=pointer]:
+                    - /url: mailto:okatz@knesset.gov.il
+                    - img [ref=e773]
+                    - generic [ref=e776]: okatz@knesset.gov.il
+            - generic [ref=e777]:
+              - button "עבור לעמוד הפרופיל של אופיר סופר" [ref=e778] [cursor=pointer]:
+                - img [ref=e779]
+              - generic [ref=e784]:
+                - generic [ref=e786]: אס
+                - generic [ref=e787]:
+                  - heading "אופיר סופר" [level=3] [ref=e788]
+                  - paragraph [ref=e789]: הציונות הדתית בראשות בצלאל סמוטריץ'
+                - generic [ref=e790]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e792]:
+                  - img
+                  - generic [ref=e793]: "0"
+                - generic [ref=e794]:
+                  - link "02-6408023" [ref=e795] [cursor=pointer]:
+                    - /url: tel:026408023
+                    - img [ref=e796]
+                    - generic [ref=e798]: 02-6408023
+                  - link "osofer@knesset.gov.il" [ref=e799] [cursor=pointer]:
+                    - /url: mailto:osofer@knesset.gov.il
+                    - img [ref=e800]
+                    - generic [ref=e803]: osofer@knesset.gov.il
+            - generic [ref=e804]:
+              - button "עבור לעמוד הפרופיל של אורי מקלב" [ref=e805] [cursor=pointer]:
+                - img [ref=e806]
+              - generic [ref=e811]:
+                - generic [ref=e813]: אמ
+                - generic [ref=e814]:
+                  - heading "אורי מקלב" [level=3] [ref=e815]
+                  - paragraph [ref=e816]: יהדות התורה
+                - generic [ref=e817]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e819]:
+                  - img
+                  - generic [ref=e820]: "0"
+                - generic [ref=e821]:
+                  - link "02-6408135" [ref=e822] [cursor=pointer]:
+                    - /url: tel:026408135
+                    - img [ref=e823]
+                    - generic [ref=e825]: 02-6408135
+                  - link "umaklev@knesset.gov.il" [ref=e826] [cursor=pointer]:
+                    - /url: mailto:umaklev@knesset.gov.il
+                    - img [ref=e827]
+                    - generic [ref=e830]: umaklev@knesset.gov.il
+            - generic [ref=e831]:
+              - button "עבור לעמוד הפרופיל של אוריאל בוסו" [ref=e832] [cursor=pointer]:
+                - img [ref=e833]
+              - generic [ref=e838]:
+                - generic [ref=e840]: אב
+                - generic [ref=e841]:
+                  - heading "אוריאל בוסו" [level=3] [ref=e842]
+                  - paragraph [ref=e843]: התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ"ל
+                - generic [ref=e844]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e846]:
+                  - img
+                  - generic [ref=e847]: "0"
+                - generic [ref=e848]:
+                  - link "02-6408396, 02-6408376" [ref=e849] [cursor=pointer]:
+                    - /url: tel:026408396,026408376
+                    - img [ref=e850]
+                    - generic [ref=e852]: 02-6408396, 02-6408376
+                  - link "urielb@knesset.gov.il" [ref=e853] [cursor=pointer]:
+                    - /url: mailto:urielb@knesset.gov.il
+                    - img [ref=e854]
+                    - generic [ref=e857]: urielb@knesset.gov.il
+            - generic [ref=e858]:
+              - button "עבור לעמוד הפרופיל של אורית סטרוק" [ref=e859] [cursor=pointer]:
+                - img [ref=e860]
+              - generic [ref=e865]:
+                - generic [ref=e867]: אס
+                - generic [ref=e868]:
+                  - heading "אורית סטרוק" [level=3] [ref=e869]
+                  - paragraph [ref=e870]: הציונות הדתית בראשות בצלאל סמוטריץ'
+                - generic [ref=e871]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e873]:
+                  - img
+                  - generic [ref=e874]: "0"
+                - generic [ref=e875]:
+                  - link "02-6408043" [ref=e876] [cursor=pointer]:
+                    - /url: tel:026408043
+                    - img [ref=e877]
+                    - generic [ref=e879]: 02-6408043
+                  - link "ostruk@knesset.gov.il" [ref=e880] [cursor=pointer]:
+                    - /url: mailto:ostruk@knesset.gov.il
+                    - img [ref=e881]
+                    - generic [ref=e884]: ostruk@knesset.gov.il
+            - generic [ref=e885]:
+              - button "עבור לעמוד הפרופיל של אורית פרקש הכהן" [ref=e886] [cursor=pointer]:
+                - img [ref=e887]
+              - generic [ref=e892]:
+                - generic [ref=e894]: אה
+                - generic [ref=e895]:
+                  - heading "אורית פרקש הכהן" [level=3] [ref=e896]
+                  - paragraph [ref=e897]: כחול לבן - המחנה הממלכתי
+                - generic [ref=e898]: מתנגד
+                - button "אין פוסטים זמינים" [ref=e900]:
+                  - img
+                  - generic [ref=e901]: "0"
+                - generic [ref=e902]:
+                  - link "02-6408373" [ref=e903] [cursor=pointer]:
+                    - /url: tel:026408373
+                    - img [ref=e904]
+                    - generic [ref=e906]: 02-6408373
+                  - link "ofarkash@knesset.gov.il" [ref=e907] [cursor=pointer]:
+                    - /url: mailto:ofarkash@knesset.gov.il
+                    - img [ref=e908]
+                    - generic [ref=e911]: ofarkash@knesset.gov.il
+            - generic [ref=e912]:
+              - button "עבור לעמוד הפרופיל של אושר שקלים" [ref=e913] [cursor=pointer]:
+                - img [ref=e914]
+              - generic [ref=e919]:
+                - generic [ref=e921]: אש
+                - generic [ref=e922]:
+                  - heading "אושר שקלים" [level=3] [ref=e923]
+                  - paragraph [ref=e924]: הליכוד
+                - generic [ref=e925]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e927]:
+                  - img
+                  - generic [ref=e928]: "0"
+                - generic [ref=e929]:
+                  - link "02-6408105" [ref=e930] [cursor=pointer]:
+                    - /url: tel:026408105
+                    - img [ref=e931]
+                    - generic [ref=e933]: 02-6408105
+                  - link "oshkalim@knesset.gov.il" [ref=e934] [cursor=pointer]:
+                    - /url: mailto:oshkalim@knesset.gov.il
+                    - img [ref=e935]
+                    - generic [ref=e938]: oshkalim@knesset.gov.il
+            - generic [ref=e939]:
+              - button "עבור לעמוד הפרופיל של אחמד טיבי" [ref=e940] [cursor=pointer]:
+                - img [ref=e941]
+              - generic [ref=e946]:
+                - generic [ref=e948]: אט
+                - generic [ref=e949]:
+                  - heading "אחמד טיבי" [level=3] [ref=e950]
+                  - paragraph [ref=e951]: חד"ש-תע"ל
+                - generic [ref=e952]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e954]:
+                  - img
+                  - generic [ref=e955]: "0"
+                - generic [ref=e956]:
+                  - link "02-6408337" [ref=e957] [cursor=pointer]:
+                    - /url: tel:026408337
+                    - img [ref=e958]
+                    - generic [ref=e960]: 02-6408337
+                  - link "atibi@knesset.gov.il" [ref=e961] [cursor=pointer]:
+                    - /url: mailto:atibi@knesset.gov.il
+                    - img [ref=e962]
+                    - generic [ref=e965]: atibi@knesset.gov.il
+            - generic [ref=e966]:
+              - button "עבור לעמוד הפרופיל של איימן עודה" [ref=e967] [cursor=pointer]:
+                - img [ref=e968]
+              - generic [ref=e973]:
+                - generic [ref=e975]: אע
+                - generic [ref=e976]:
+                  - heading "איימן עודה" [level=3] [ref=e977]
+                  - paragraph [ref=e978]: חד"ש-תע"ל
+                - generic [ref=e979]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e981]:
+                  - img
+                  - generic [ref=e982]: "0"
+                - generic [ref=e983]:
+                  - link "02-6408419, 02-6408418" [ref=e984] [cursor=pointer]:
+                    - /url: tel:026408419,026408418
+                    - img [ref=e985]
+                    - generic [ref=e987]: 02-6408419, 02-6408418
+                  - link "aymanod@knesset.gov.il" [ref=e988] [cursor=pointer]:
+                    - /url: mailto:aymanod@knesset.gov.il
+                    - img [ref=e989]
+                    - generic [ref=e992]: aymanod@knesset.gov.il
+            - generic [ref=e993]:
+              - button "עבור לעמוד הפרופיל של אימאן ח'טיב יאסין" [ref=e994] [cursor=pointer]:
+                - img [ref=e995]
+              - generic [ref=e1000]:
+                - generic [ref=e1002]: אי
+                - generic [ref=e1003]:
+                  - heading "אימאן ח'טיב יאסין" [level=3] [ref=e1004]
+                  - paragraph [ref=e1005]: רע"ם
+                - generic [ref=e1006]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e1008]:
+                  - img
+                  - generic [ref=e1009]: "0"
+                - generic [ref=e1010]:
+                  - link "02-6408750" [ref=e1011] [cursor=pointer]:
+                    - /url: tel:026408750
+                    - img [ref=e1012]
+                    - generic [ref=e1014]: 02-6408750
+                  - link "ayasin@knesset.gov.il" [ref=e1015] [cursor=pointer]:
+                    - /url: mailto:ayasin@knesset.gov.il
+                    - img [ref=e1016]
+                    - generic [ref=e1019]: ayasin@knesset.gov.il
+            - generic [ref=e1020]:
+              - button "עבור לעמוד הפרופיל של איתמר בן גביר" [ref=e1021] [cursor=pointer]:
+                - img [ref=e1022]
+              - generic [ref=e1027]:
+                - generic [ref=e1029]: אג
+                - generic [ref=e1030]:
+                  - heading "איתמר בן גביר" [level=3] [ref=e1031]
+                  - paragraph [ref=e1032]: עוצמה יהודית בראשות איתמר בן גביר
+                - generic [ref=e1033]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e1035]:
+                  - img
+                  - generic [ref=e1036]: "0"
+                - generic [ref=e1037]:
+                  - link "02-6408196" [ref=e1038] [cursor=pointer]:
+                    - /url: tel:026408196
+                    - img [ref=e1039]
+                    - generic [ref=e1041]: 02-6408196
+                  - link "ibengvir@knesset.gov.il" [ref=e1042] [cursor=pointer]:
+                    - /url: mailto:ibengvir@knesset.gov.il
+                    - img [ref=e1043]
+                    - generic [ref=e1046]: ibengvir@knesset.gov.il
+            - generic [ref=e1047]:
+              - button "עבור לעמוד הפרופיל של איתן גינזבורג" [ref=e1048] [cursor=pointer]:
+                - img [ref=e1049]
+              - generic [ref=e1054]:
+                - generic [ref=e1056]: אג
+                - generic [ref=e1057]:
+                  - heading "איתן גינזבורג" [level=3] [ref=e1058]
+                  - paragraph [ref=e1059]: כחול לבן - המחנה הממלכתי
+                - generic [ref=e1060]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e1062]:
+                  - img
+                  - generic [ref=e1063]: "0"
+                - generic [ref=e1064]:
+                  - link "02-6408399, 02-6408397" [ref=e1065] [cursor=pointer]:
+                    - /url: tel:026408399,026408397
+                    - img [ref=e1066]
+                    - generic [ref=e1068]: 02-6408399, 02-6408397
+                  - link "eginzburg@knesset.gov.il" [ref=e1069] [cursor=pointer]:
+                    - /url: mailto:eginzburg@knesset.gov.il
+                    - img [ref=e1070]
+                    - generic [ref=e1073]: eginzburg@knesset.gov.il
+            - generic [ref=e1074]:
+              - button "עבור לעמוד הפרופיל של אכרם חסון" [ref=e1075] [cursor=pointer]:
+                - img [ref=e1076]
+              - generic [ref=e1081]:
+                - generic [ref=e1083]: אח
+                - generic [ref=e1084]:
+                  - heading "אכרם חסון" [level=3] [ref=e1085]
+                  - paragraph [ref=e1086]: הימין הממלכתי
+                - generic [ref=e1087]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e1089]:
+                  - img
+                  - generic [ref=e1090]: "0"
+                - generic [ref=e1091]:
+                  - link "02-6408145" [ref=e1092] [cursor=pointer]:
+                    - /url: tel:026408145
+                    - img [ref=e1093]
+                    - generic [ref=e1095]: 02-6408145
+                  - link "akramh@knesset.gov.il" [ref=e1096] [cursor=pointer]:
+                    - /url: mailto:akramh@knesset.gov.il
+                    - img [ref=e1097]
+                    - generic [ref=e1100]: akramh@knesset.gov.il
+            - generic [ref=e1101]:
+              - button "עבור לעמוד הפרופיל של אלון שוסטר" [ref=e1102] [cursor=pointer]:
+                - img [ref=e1103]
+              - generic [ref=e1108]:
+                - generic [ref=e1110]: אש
+                - generic [ref=e1111]:
+                  - heading "אלון שוסטר" [level=3] [ref=e1112]
+                  - paragraph [ref=e1113]: כחול לבן - המחנה הממלכתי
+                - generic [ref=e1114]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e1116]:
+                  - img
+                  - generic [ref=e1117]: "0"
+                - generic [ref=e1118]:
+                  - link "02-6408853" [ref=e1119] [cursor=pointer]:
+                    - /url: tel:026408853
+                    - img [ref=e1120]
+                    - generic [ref=e1122]: 02-6408853
+                  - link "aschuster@knesset.gov.il" [ref=e1123] [cursor=pointer]:
+                    - /url: mailto:aschuster@knesset.gov.il
+                    - img [ref=e1124]
+                    - generic [ref=e1127]: aschuster@knesset.gov.il
+            - generic [ref=e1128]:
+              - button "עבור לעמוד הפרופיל של אלי דלל" [ref=e1129] [cursor=pointer]:
+                - img [ref=e1130]
+              - generic [ref=e1135]:
+                - generic [ref=e1137]: אד
+                - generic [ref=e1138]:
+                  - heading "אלי דלל" [level=3] [ref=e1139]
+                  - paragraph [ref=e1140]: הליכוד
+                - generic [ref=e1141]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e1143]:
+                  - img
+                  - generic [ref=e1144]: "0"
+                - generic [ref=e1145]:
+                  - link "02-6408022" [ref=e1146] [cursor=pointer]:
+                    - /url: tel:026408022
+                    - img [ref=e1147]
+                    - generic [ref=e1149]: 02-6408022
+                  - link "edalal@knesset.gov.il" [ref=e1150] [cursor=pointer]:
+                    - /url: mailto:edalal@knesset.gov.il
+                    - img [ref=e1151]
+                    - generic [ref=e1154]: edalal@knesset.gov.il
+            - generic [ref=e1155]:
+              - button "עבור לעמוד הפרופיל של אליהו רביבו" [ref=e1156] [cursor=pointer]:
+                - img [ref=e1157]
+              - generic [ref=e1162]:
+                - generic [ref=e1164]: אר
+                - generic [ref=e1165]:
+                  - heading "אליהו רביבו" [level=3] [ref=e1166]
+                  - paragraph [ref=e1167]: הליכוד
+                - generic [ref=e1168]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e1170]:
+                  - img
+                  - generic [ref=e1171]: "0"
+                - generic [ref=e1172]:
+                  - link "02-6408236" [ref=e1173] [cursor=pointer]:
+                    - /url: tel:026408236
+                    - img [ref=e1174]
+                    - generic [ref=e1176]: 02-6408236
+                  - link "erevivo@knesset.gov.il" [ref=e1177] [cursor=pointer]:
+                    - /url: mailto:erevivo@knesset.gov.il
+                    - img [ref=e1178]
+                    - generic [ref=e1181]: erevivo@knesset.gov.il
+            - generic [ref=e1182]:
+              - button "עבור לעמוד הפרופיל של אלעזר שטרן" [ref=e1183] [cursor=pointer]:
+                - img [ref=e1184]
+              - generic [ref=e1189]:
+                - generic [ref=e1191]: אש
+                - generic [ref=e1192]:
+                  - heading "אלעזר שטרן" [level=3] [ref=e1193]
+                  - paragraph [ref=e1194]: יש עתיד
+                - generic [ref=e1195]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e1197]:
+                  - img
+                  - generic [ref=e1198]: "0"
+                - generic [ref=e1199]:
+                  - link "02-6408464, 02-6408462" [ref=e1200] [cursor=pointer]:
+                    - /url: tel:026408464,026408462
+                    - img [ref=e1201]
+                    - generic [ref=e1203]: 02-6408464, 02-6408462
+                  - link "sterne@knesset.gov.il" [ref=e1204] [cursor=pointer]:
+                    - /url: mailto:sterne@knesset.gov.il
+                    - img [ref=e1205]
+                    - generic [ref=e1208]: sterne@knesset.gov.il
+            - generic [ref=e1209]:
+              - button "עבור לעמוד הפרופיל של אמיר אוחנה" [ref=e1210] [cursor=pointer]:
+                - img [ref=e1211]
+              - generic [ref=e1216]:
+                - generic [ref=e1218]: אא
+                - generic [ref=e1219]:
+                  - heading "אמיר אוחנה" [level=3] [ref=e1220]
+                  - paragraph [ref=e1221]: הליכוד
+                - generic [ref=e1222]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e1224]:
+                  - img
+                  - generic [ref=e1225]: "0"
+                - generic [ref=e1226]:
+                  - link "02-6408406" [ref=e1227] [cursor=pointer]:
+                    - /url: tel:026408406
+                    - img [ref=e1228]
+                    - generic [ref=e1230]: 02-6408406
+                  - link "amiro@knesset.gov.il" [ref=e1231] [cursor=pointer]:
+                    - /url: mailto:amiro@knesset.gov.il
+                    - img [ref=e1232]
+                    - generic [ref=e1235]: amiro@knesset.gov.il
+            - generic [ref=e1236]:
+              - button "עבור לעמוד הפרופיל של אפרת רייטן מרום" [ref=e1237] [cursor=pointer]:
+                - img [ref=e1238]
+              - generic [ref=e1243]:
+                - generic [ref=e1245]: אמ
+                - generic [ref=e1246]:
+                  - heading "אפרת רייטן מרום" [level=3] [ref=e1247]
+                  - paragraph [ref=e1248]: העבודה
+                - generic [ref=e1249]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e1251]:
+                  - img
+                  - generic [ref=e1252]: "0"
+                - generic [ref=e1253]:
+                  - link "02-6408307" [ref=e1254] [cursor=pointer]:
+                    - /url: tel:026408307
+                    - img [ref=e1255]
+                    - generic [ref=e1257]: 02-6408307
+                  - link "eraiten@knesset.gov.il" [ref=e1258] [cursor=pointer]:
+                    - /url: mailto:eraiten@knesset.gov.il
+                    - img [ref=e1259]
+                    - generic [ref=e1262]: eraiten@knesset.gov.il
+            - generic [ref=e1263]:
+              - button "עבור לעמוד הפרופיל של אריאל קלנר" [ref=e1264] [cursor=pointer]:
+                - img [ref=e1265]
+              - generic [ref=e1270]:
+                - generic [ref=e1272]: אק
+                - generic [ref=e1273]:
+                  - heading "אריאל קלנר" [level=3] [ref=e1274]
+                  - paragraph [ref=e1275]: הליכוד
+                - generic [ref=e1276]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e1278]:
+                  - img
+                  - generic [ref=e1279]: "0"
+                - generic [ref=e1280]:
+                  - link "02-6496217" [ref=e1281] [cursor=pointer]:
+                    - /url: tel:026496217
+                    - img [ref=e1282]
+                    - generic [ref=e1284]: 02-6496217
+                  - link "kallner@knesset.gov.il" [ref=e1285] [cursor=pointer]:
+                    - /url: mailto:kallner@knesset.gov.il
+                    - img [ref=e1286]
+                    - generic [ref=e1289]: kallner@knesset.gov.il
+            - generic [ref=e1290]:
+              - button "עבור לעמוד הפרופיל של אריה מכלוף דרעי" [ref=e1291] [cursor=pointer]:
+                - img [ref=e1292]
+              - generic [ref=e1297]:
+                - generic [ref=e1299]: אד
+                - generic [ref=e1300]:
+                  - heading "אריה מכלוף דרעי" [level=3] [ref=e1301]
+                  - paragraph [ref=e1302]: התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ"ל
+                - generic [ref=e1303]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e1305]:
+                  - img
+                  - generic [ref=e1306]: "0"
+                - generic [ref=e1307]:
+                  - link "02-6408698" [ref=e1308] [cursor=pointer]:
+                    - /url: tel:026408698
+                    - img [ref=e1309]
+                    - generic [ref=e1311]: 02-6408698
+                  - link "aderey@knesset.gov.il" [ref=e1312] [cursor=pointer]:
+                    - /url: mailto:aderey@knesset.gov.il
+                    - img [ref=e1313]
+                    - generic [ref=e1316]: aderey@knesset.gov.il
+            - generic [ref=e1317]:
+              - button "עבור לעמוד הפרופיל של בועז ביסמוט" [ref=e1318] [cursor=pointer]:
+                - img [ref=e1319]
+              - generic [ref=e1324]:
+                - generic [ref=e1326]: בב
+                - generic [ref=e1327]:
+                  - heading "בועז ביסמוט" [level=3] [ref=e1328]
+                  - paragraph [ref=e1329]: הליכוד
+                - generic [ref=e1330]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e1332]:
+                  - img
+                  - generic [ref=e1333]: "0"
+                - generic [ref=e1334]:
+                  - link "02-6408381" [ref=e1335] [cursor=pointer]:
+                    - /url: tel:026408381
+                    - img [ref=e1336]
+                    - generic [ref=e1338]: 02-6408381
+                  - link "bbismut@knesset.gov.il" [ref=e1339] [cursor=pointer]:
+                    - /url: mailto:bbismut@knesset.gov.il
+                    - img [ref=e1340]
+                    - generic [ref=e1343]: bbismut@knesset.gov.il
+            - generic [ref=e1344]:
+              - button "עבור לעמוד הפרופיל של בועז טופורובסקי" [ref=e1345] [cursor=pointer]:
+                - img [ref=e1346]
+              - generic [ref=e1351]:
+                - generic [ref=e1353]: בט
+                - generic [ref=e1354]:
+                  - heading "בועז טופורובסקי" [level=3] [ref=e1355]
+                  - paragraph [ref=e1356]: יש עתיד
+                - generic [ref=e1357]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e1359]:
+                  - img
+                  - generic [ref=e1360]: "0"
+                - generic [ref=e1361]:
+                  - link "02-6408387" [ref=e1362] [cursor=pointer]:
+                    - /url: tel:026408387
+                    - img [ref=e1363]
+                    - generic [ref=e1365]: 02-6408387
+                  - link "btoporovsky@knesset.gov.il" [ref=e1366] [cursor=pointer]:
+                    - /url: mailto:btoporovsky@knesset.gov.il
+                    - img [ref=e1367]
+                    - generic [ref=e1370]: btoporovsky@knesset.gov.il
+            - generic [ref=e1371]:
+              - button "עבור לעמוד הפרופיל של בני גנץ" [ref=e1372] [cursor=pointer]:
+                - img [ref=e1373]
+              - generic [ref=e1378]:
+                - generic [ref=e1380]: בג
+                - generic [ref=e1381]:
+                  - heading "בני גנץ" [level=3] [ref=e1382]
+                  - paragraph [ref=e1383]: כחול לבן - המחנה הממלכתי
+                - generic [ref=e1384]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e1386]:
+                  - img
+                  - generic [ref=e1387]: "0"
+                - generic [ref=e1388]:
+                  - link "02-6408200" [ref=e1389] [cursor=pointer]:
+                    - /url: tel:026408200
+                    - img [ref=e1390]
+                    - generic [ref=e1392]: 02-6408200
+                  - link "bgantz@knesset.gov.il" [ref=e1393] [cursor=pointer]:
+                    - /url: mailto:bgantz@knesset.gov.il
+                    - img [ref=e1394]
+                    - generic [ref=e1397]: bgantz@knesset.gov.il
+            - generic [ref=e1398]:
+              - button "עבור לעמוד הפרופיל של בנימין נתניהו" [ref=e1399] [cursor=pointer]:
+                - img [ref=e1400]
+              - generic [ref=e1405]:
+                - generic [ref=e1407]: בנ
+                - generic [ref=e1408]:
+                  - heading "בנימין נתניהו" [level=3] [ref=e1409]
+                  - paragraph [ref=e1410]: הליכוד
+                - generic [ref=e1411]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e1413]:
+                  - img
+                  - generic [ref=e1414]: "0"
+                - generic [ref=e1415]:
+                  - link "02-6403227" [ref=e1416] [cursor=pointer]:
+                    - /url: tel:026403227
+                    - img [ref=e1417]
+                    - generic [ref=e1419]: 02-6403227
+                  - link "bnetanyahu@knesset.gov.il" [ref=e1420] [cursor=pointer]:
+                    - /url: mailto:bnetanyahu@knesset.gov.il
+                    - img [ref=e1421]
+                    - generic [ref=e1424]: bnetanyahu@knesset.gov.il
+            - generic [ref=e1425]:
+              - button "עבור לעמוד הפרופיל של גילה גמליאל" [ref=e1426] [cursor=pointer]:
+                - img [ref=e1427]
+              - generic [ref=e1432]:
+                - generic [ref=e1434]: גג
+                - generic [ref=e1435]:
+                  - heading "גילה גמליאל" [level=3] [ref=e1436]
+                  - paragraph [ref=e1437]: הליכוד
+                - generic [ref=e1438]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e1440]:
+                  - img
+                  - generic [ref=e1441]: "0"
+                - generic [ref=e1442]:
+                  - link "02-6408430, 02-6408431" [ref=e1443] [cursor=pointer]:
+                    - /url: tel:026408430,026408431
+                    - img [ref=e1444]
+                    - generic [ref=e1446]: 02-6408430, 02-6408431
+                  - link "ggamliel@knesset.gov.il" [ref=e1447] [cursor=pointer]:
+                    - /url: mailto:ggamliel@knesset.gov.il
+                    - img [ref=e1448]
+                    - generic [ref=e1451]: ggamliel@knesset.gov.il
+            - generic [ref=e1452]:
+              - button "עבור לעמוד הפרופיל של גלית דיסטל אטבריאן" [ref=e1453] [cursor=pointer]:
+                - img [ref=e1454]
+              - generic [ref=e1459]:
+                - generic [ref=e1461]: גא
+                - generic [ref=e1462]:
+                  - heading "גלית דיסטל אטבריאן" [level=3] [ref=e1463]
+                  - paragraph [ref=e1464]: הליכוד
+                - generic [ref=e1465]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e1467]:
+                  - img
+                  - generic [ref=e1468]: "0"
+                - generic [ref=e1469]:
+                  - link "02-6408145" [ref=e1470] [cursor=pointer]:
+                    - /url: tel:026408145
+                    - img [ref=e1471]
+                    - generic [ref=e1473]: 02-6408145
+                  - link "gdistal@knesset.gov.il" [ref=e1474] [cursor=pointer]:
+                    - /url: mailto:gdistal@knesset.gov.il
+                    - img [ref=e1475]
+                    - generic [ref=e1478]: gdistal@knesset.gov.il
+            - generic [ref=e1479]:
+              - button "עבור לעמוד הפרופיל של גלעד קריב" [ref=e1480] [cursor=pointer]:
+                - img [ref=e1481]
+              - generic [ref=e1486]:
+                - generic [ref=e1488]: גק
+                - generic [ref=e1489]:
+                  - heading "גלעד קריב" [level=3] [ref=e1490]
+                  - paragraph [ref=e1491]: העבודה
+                - generic [ref=e1492]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e1494]:
+                  - img
+                  - generic [ref=e1495]: "0"
+                - generic [ref=e1496]:
+                  - link "02-6408880" [ref=e1497] [cursor=pointer]:
+                    - /url: tel:026408880
+                    - img [ref=e1498]
+                    - generic [ref=e1500]: 02-6408880
+                  - link "gkariv@knesset.gov.il" [ref=e1501] [cursor=pointer]:
+                    - /url: mailto:gkariv@knesset.gov.il
+                    - img [ref=e1502]
+                    - generic [ref=e1505]: gkariv@knesset.gov.il
+            - generic [ref=e1506]:
+              - button "עבור לעמוד הפרופיל של דבי ביטון" [ref=e1507] [cursor=pointer]:
+                - img [ref=e1508]
+              - generic [ref=e1513]:
+                - generic [ref=e1515]: דב
+                - generic [ref=e1516]:
+                  - heading "דבי ביטון" [level=3] [ref=e1517]
+                  - paragraph [ref=e1518]: יש עתיד
+                - generic [ref=e1519]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e1521]:
+                  - img
+                  - generic [ref=e1522]: "0"
+                - generic [ref=e1523]:
+                  - link "02-6408330" [ref=e1524] [cursor=pointer]:
+                    - /url: tel:026408330
+                    - img [ref=e1525]
+                    - generic [ref=e1527]: 02-6408330
+                  - link "dvbiton@knesset.gov.il" [ref=e1528] [cursor=pointer]:
+                    - /url: mailto:dvbiton@knesset.gov.il
+                    - img [ref=e1529]
+                    - generic [ref=e1532]: dvbiton@knesset.gov.il
+            - generic [ref=e1533]:
+              - button "עבור לעמוד הפרופיל של דוד ביטן" [ref=e1534] [cursor=pointer]:
+                - img [ref=e1535]
+              - generic [ref=e1540]:
+                - generic [ref=e1542]: דב
+                - generic [ref=e1543]:
+                  - heading "דוד ביטן" [level=3] [ref=e1544]
+                  - paragraph [ref=e1545]: הליכוד
+                - generic [ref=e1546]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e1548]:
+                  - img
+                  - generic [ref=e1549]: "0"
+                - generic [ref=e1550]:
+                  - link "02-6408033, 02-6408821" [ref=e1551] [cursor=pointer]:
+                    - /url: tel:026408033,026408821
+                    - img [ref=e1552]
+                    - generic [ref=e1554]: 02-6408033, 02-6408821
+                  - link "dbitan@knesset.gov.il" [ref=e1555] [cursor=pointer]:
+                    - /url: mailto:dbitan@knesset.gov.il
+                    - img [ref=e1556]
+                    - generic [ref=e1559]: dbitan@knesset.gov.il
+            - generic [ref=e1560]:
+              - button "עבור לעמוד הפרופיל של דן אילוז" [ref=e1561] [cursor=pointer]:
+                - img [ref=e1562]
+              - generic [ref=e1567]:
+                - generic [ref=e1569]: דא
+                - generic [ref=e1570]:
+                  - heading "דן אילוז" [level=3] [ref=e1571]
+                  - paragraph [ref=e1572]: הליכוד
+                - generic [ref=e1573]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e1575]:
+                  - img
+                  - generic [ref=e1576]: "0"
+                - generic [ref=e1577]:
+                  - link "02-6406506" [ref=e1578] [cursor=pointer]:
+                    - /url: tel:026406506
+                    - img [ref=e1579]
+                    - generic [ref=e1581]: 02-6406506
+                  - link "danillouz@knesset.gov.il" [ref=e1582] [cursor=pointer]:
+                    - /url: mailto:danillouz@knesset.gov.il
+                    - img [ref=e1583]
+                    - generic [ref=e1586]: danillouz@knesset.gov.il
+            - generic [ref=e1587]:
+              - button "עבור לעמוד הפרופיל של ואליד אלהואשלה" [ref=e1588] [cursor=pointer]:
+                - img [ref=e1589]
+              - generic [ref=e1594]:
+                - generic [ref=e1596]: וא
+                - generic [ref=e1597]:
+                  - heading "ואליד אלהואשלה" [level=3] [ref=e1598]
+                  - paragraph [ref=e1599]: רע"ם
+                - generic [ref=e1600]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e1602]:
+                  - img
+                  - generic [ref=e1603]: "0"
+                - generic [ref=e1604]:
+                  - link "02-6408171" [ref=e1605] [cursor=pointer]:
+                    - /url: tel:026408171
+                    - img [ref=e1606]
+                    - generic [ref=e1608]: 02-6408171
+                  - link "waleed.alh@knesset.gov.il" [ref=e1609] [cursor=pointer]:
+                    - /url: mailto:waleed.alh@knesset.gov.il
+                    - img [ref=e1610]
+                    - generic [ref=e1613]: waleed.alh@knesset.gov.il
+            - generic [ref=e1614]:
+              - button "עבור לעמוד הפרופיל של ווליד טאהא" [ref=e1615] [cursor=pointer]:
+                - img [ref=e1616]
+              - generic [ref=e1621]:
+                - generic [ref=e1623]: וט
+                - generic [ref=e1624]:
+                  - heading "ווליד טאהא" [level=3] [ref=e1625]
+                  - paragraph [ref=e1626]: רע"ם
+                - generic [ref=e1627]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e1629]:
+                  - img
+                  - generic [ref=e1630]: "0"
+                - generic [ref=e1631]:
+                  - link "02-6408978" [ref=e1632] [cursor=pointer]:
+                    - /url: tel:026408978
+                    - img [ref=e1633]
+                    - generic [ref=e1635]: 02-6408978
+                  - link "hak_taha@knesset.gov.il" [ref=e1636] [cursor=pointer]:
+                    - /url: mailto:hak_taha@knesset.gov.il
+                    - img [ref=e1637]
+                    - generic [ref=e1640]: hak_taha@knesset.gov.il
+            - generic [ref=e1641]:
+              - button "עבור לעמוד הפרופיל של ולדימיר בליאק" [ref=e1642] [cursor=pointer]:
+                - img [ref=e1643]
+              - generic [ref=e1648]:
+                - generic [ref=e1650]: וב
+                - generic [ref=e1651]:
+                  - heading "ולדימיר בליאק" [level=3] [ref=e1652]
+                  - paragraph [ref=e1653]: יש עתיד
+                - generic [ref=e1654]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e1656]:
+                  - img
+                  - generic [ref=e1657]: "0"
+                - generic [ref=e1658]:
+                  - link "02-6408007, 02-6408005" [ref=e1659] [cursor=pointer]:
+                    - /url: tel:026408007,026408005
+                    - img [ref=e1660]
+                    - generic [ref=e1662]: 02-6408007, 02-6408005
+                  - link "vbeliak@knesset.gov.il" [ref=e1663] [cursor=pointer]:
+                    - /url: mailto:vbeliak@knesset.gov.il
+                    - img [ref=e1664]
+                    - generic [ref=e1667]: vbeliak@knesset.gov.il
+            - generic [ref=e1668]:
+              - button "עבור לעמוד הפרופיל של זאב אלקין" [ref=e1669] [cursor=pointer]:
+                - img [ref=e1670]
+              - generic [ref=e1675]:
+                - generic [ref=e1677]: זא
+                - generic [ref=e1678]:
+                  - heading "זאב אלקין" [level=3] [ref=e1679]
+                  - paragraph [ref=e1680]: הימין הממלכתי
+                - generic [ref=e1681]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e1683]:
+                  - img
+                  - generic [ref=e1684]: "0"
+                - generic [ref=e1685]:
+                  - link "02-6408838" [ref=e1686] [cursor=pointer]:
+                    - /url: tel:026408838
+                    - img [ref=e1687]
+                    - generic [ref=e1689]: 02-6408838
+                  - link "zelkin@knesset.gov.il" [ref=e1690] [cursor=pointer]:
+                    - /url: mailto:zelkin@knesset.gov.il
+                    - img [ref=e1691]
+                    - generic [ref=e1694]: zelkin@knesset.gov.il
+            - generic [ref=e1695]:
+              - button "עבור לעמוד הפרופיל של חוה אתי עטייה" [ref=e1696] [cursor=pointer]:
+                - img [ref=e1697]
+              - generic [ref=e1702]:
+                - generic [ref=e1704]: חע
+                - generic [ref=e1705]:
+                  - heading "חוה אתי עטייה" [level=3] [ref=e1706]
+                  - paragraph [ref=e1707]: הליכוד
+                - generic [ref=e1708]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e1710]:
+                  - img
+                  - generic [ref=e1711]: "0"
+                - generic [ref=e1712]:
+                  - link "02-6753333" [ref=e1713] [cursor=pointer]:
+                    - /url: tel:026753333
+                    - img [ref=e1714]
+                    - generic [ref=e1716]: 02-6753333
+                  - link "hatia@knesset.gov.il" [ref=e1717] [cursor=pointer]:
+                    - /url: mailto:hatia@knesset.gov.il
+                    - img [ref=e1718]
+                    - generic [ref=e1721]: hatia@knesset.gov.il
+            - generic [ref=e1722]:
+              - button "עבור לעמוד הפרופיל של חיים ביטון" [ref=e1723] [cursor=pointer]:
+                - img [ref=e1724]
+              - generic [ref=e1729]:
+                - generic [ref=e1731]: חב
+                - generic [ref=e1732]:
+                  - heading "חיים ביטון" [level=3] [ref=e1733]
+                  - paragraph [ref=e1734]: התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ"ל
+                - generic [ref=e1735]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e1737]:
+                  - img
+                  - generic [ref=e1738]: "0"
+                - generic [ref=e1739]:
+                  - link "02-6408050" [ref=e1740] [cursor=pointer]:
+                    - /url: tel:026408050
+                    - img [ref=e1741]
+                    - generic [ref=e1743]: 02-6408050
+                  - link "chbiton@knesset.gov.il" [ref=e1744] [cursor=pointer]:
+                    - /url: mailto:chbiton@knesset.gov.il
+                    - img [ref=e1745]
+                    - generic [ref=e1748]: chbiton@knesset.gov.il
+            - generic [ref=e1749]:
+              - button "עבור לעמוד הפרופיל של חילי טרופר" [ref=e1750] [cursor=pointer]:
+                - img [ref=e1751]
+              - generic [ref=e1756]:
+                - generic [ref=e1758]: חט
+                - generic [ref=e1759]:
+                  - heading "חילי טרופר" [level=3] [ref=e1760]
+                  - paragraph [ref=e1761]: כחול לבן - המחנה הממלכתי
+                - generic [ref=e1762]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e1764]:
+                  - img
+                  - generic [ref=e1765]: "0"
+                - generic [ref=e1766]:
+                  - link "02-6408143" [ref=e1767] [cursor=pointer]:
+                    - /url: tel:026408143
+                    - img [ref=e1768]
+                    - generic [ref=e1770]: 02-6408143
+                  - link "ctropper@knesset.gov.il" [ref=e1771] [cursor=pointer]:
+                    - /url: mailto:ctropper@knesset.gov.il
+                    - img [ref=e1772]
+                    - generic [ref=e1775]: ctropper@knesset.gov.il
+            - generic [ref=e1776]:
+              - button "עבור לעמוד הפרופיל של חמד עמאר" [ref=e1777] [cursor=pointer]:
+                - img [ref=e1778]
+              - generic [ref=e1783]:
+                - generic [ref=e1785]: חע
+                - generic [ref=e1786]:
+                  - heading "חמד עמאר" [level=3] [ref=e1787]
+                  - paragraph [ref=e1788]: ישראל ביתנו
+                - generic [ref=e1789]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e1791]:
+                  - img
+                  - generic [ref=e1792]: "0"
+                - generic [ref=e1793]:
+                  - link "02-6408683" [ref=e1794] [cursor=pointer]:
+                    - /url: tel:026408683
+                    - img [ref=e1795]
+                    - generic [ref=e1797]: 02-6408683
+                  - link "amarh@knesset.gov.il" [ref=e1798] [cursor=pointer]:
+                    - /url: mailto:amarh@knesset.gov.il
+                    - img [ref=e1799]
+                    - generic [ref=e1802]: amarh@knesset.gov.il
+            - generic [ref=e1803]:
+              - button "עבור לעמוד הפרופיל של חנוך דב מלביצקי" [ref=e1804] [cursor=pointer]:
+                - img [ref=e1805]
+              - generic [ref=e1810]:
+                - generic [ref=e1812]: חמ
+                - generic [ref=e1813]:
+                  - heading "חנוך דב מלביצקי" [level=3] [ref=e1814]
+                  - paragraph [ref=e1815]: הליכוד
+                - generic [ref=e1816]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e1818]:
+                  - img
+                  - generic [ref=e1819]: "0"
+                - generic [ref=e1820]:
+                  - link "02-6408895" [ref=e1821] [cursor=pointer]:
+                    - /url: tel:026408895
+                    - img [ref=e1822]
+                    - generic [ref=e1824]: 02-6408895
+                  - link "chmelavitzky@knesset.gov.il" [ref=e1825] [cursor=pointer]:
+                    - /url: mailto:chmelavitzky@knesset.gov.il
+                    - img [ref=e1826]
+                    - generic [ref=e1829]: chmelavitzky@knesset.gov.il
+            - generic [ref=e1830]:
+              - button "עבור לעמוד הפרופיל של טטיאנה מזרסקי" [ref=e1831] [cursor=pointer]:
+                - img [ref=e1832]
+              - generic [ref=e1837]:
+                - generic [ref=e1839]: טמ
+                - generic [ref=e1840]:
+                  - heading "טטיאנה מזרסקי" [level=3] [ref=e1841]
+                  - paragraph [ref=e1842]: יש עתיד
+                - generic [ref=e1843]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e1845]:
+                  - img
+                  - generic [ref=e1846]: "0"
+                - generic [ref=e1847]:
+                  - link "02-6408447" [ref=e1848] [cursor=pointer]:
+                    - /url: tel:026408447
+                    - img [ref=e1849]
+                    - generic [ref=e1851]: 02-6408447
+                  - link "tmazarsky@knesset.gov.il" [ref=e1852] [cursor=pointer]:
+                    - /url: mailto:tmazarsky@knesset.gov.il
+                    - img [ref=e1853]
+                    - generic [ref=e1856]: tmazarsky@knesset.gov.il
+            - generic [ref=e1857]:
+              - button "עבור לעמוד הפרופיל של טלי גוטליב" [ref=e1858] [cursor=pointer]:
+                - img [ref=e1859]
+              - generic [ref=e1864]:
+                - generic [ref=e1866]: טג
+                - generic [ref=e1867]:
+                  - heading "טלי גוטליב" [level=3] [ref=e1868]
+                  - paragraph [ref=e1869]: הליכוד
+                - generic [ref=e1870]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e1872]:
+                  - img
+                  - generic [ref=e1873]: "0"
+                - generic [ref=e1874]:
+                  - link "02-6408722" [ref=e1875] [cursor=pointer]:
+                    - /url: tel:026408722
+                    - img [ref=e1876]
+                    - generic [ref=e1878]: 02-6408722
+                  - link "tgotlib@knesset.gov.il" [ref=e1879] [cursor=pointer]:
+                    - /url: mailto:tgotlib@knesset.gov.il
+                    - img [ref=e1880]
+                    - generic [ref=e1883]: tgotlib@knesset.gov.il
+            - generic [ref=e1884]:
+              - button "עבור לעמוד הפרופיל של יאיר לפיד" [ref=e1885] [cursor=pointer]:
+                - img [ref=e1886]
+              - generic [ref=e1891]:
+                - generic [ref=e1893]: יל
+                - generic [ref=e1894]:
+                  - heading "יאיר לפיד" [level=3] [ref=e1895]
+                  - paragraph [ref=e1896]: יש עתיד
+                - generic [ref=e1897]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e1899]:
+                  - img
+                  - generic [ref=e1900]: "0"
+                - generic [ref=e1901]:
+                  - link "02-6753555" [ref=e1902] [cursor=pointer]:
+                    - /url: tel:026753555
+                    - img [ref=e1903]
+                    - generic [ref=e1905]: 02-6753555
+                  - link "ylapid@knesset.gov.il" [ref=e1906] [cursor=pointer]:
+                    - /url: mailto:ylapid@knesset.gov.il
+                    - img [ref=e1907]
+                    - generic [ref=e1910]: ylapid@knesset.gov.il
+            - generic [ref=e1911]:
+              - button "עבור לעמוד הפרופיל של יאסר חוג'יראת" [ref=e1912] [cursor=pointer]:
+                - img [ref=e1913]
+              - generic [ref=e1918]:
+                - generic [ref=e1920]: יח
+                - generic [ref=e1921]:
+                  - heading "יאסר חוג'יראת" [level=3] [ref=e1922]
+                  - paragraph [ref=e1923]: רע"ם
+                - generic [ref=e1924]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e1926]:
+                  - img
+                  - generic [ref=e1927]: "0"
+                - generic [ref=e1928]:
+                  - link "02-6408159" [ref=e1929] [cursor=pointer]:
+                    - /url: tel:026408159
+                    - img [ref=e1930]
+                    - generic [ref=e1932]: 02-6408159
+                  - link "yschogarat@knesset.gov.il" [ref=e1933] [cursor=pointer]:
+                    - /url: mailto:yschogarat@knesset.gov.il
+                    - img [ref=e1934]
+                    - generic [ref=e1937]: yschogarat@knesset.gov.il
+            - generic [ref=e1938]:
+              - button "עבור לעמוד הפרופיל של יבגני סובה" [ref=e1939] [cursor=pointer]:
+                - img [ref=e1940]
+              - generic [ref=e1945]:
+                - generic [ref=e1947]: יס
+                - generic [ref=e1948]:
+                  - heading "יבגני סובה" [level=3] [ref=e1949]
+                  - paragraph [ref=e1950]: ישראל ביתנו
+                - generic [ref=e1951]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e1953]:
+                  - img
+                  - generic [ref=e1954]: "0"
+                - generic [ref=e1955]:
+                  - link "02-6408981" [ref=e1956] [cursor=pointer]:
+                    - /url: tel:026408981
+                    - img [ref=e1957]
+                    - generic [ref=e1959]: 02-6408981
+                  - link "esova@knesset.gov.il" [ref=e1960] [cursor=pointer]:
+                    - /url: mailto:esova@knesset.gov.il
+                    - img [ref=e1961]
+                    - generic [ref=e1964]: esova@knesset.gov.il
+            - generic [ref=e1965]:
+              - button "עבור לעמוד הפרופיל של יואב בן צור" [ref=e1966] [cursor=pointer]:
+                - img [ref=e1967]
+              - generic [ref=e1972]:
+                - generic [ref=e1974]: יצ
+                - generic [ref=e1975]:
+                  - heading "יואב בן צור" [level=3] [ref=e1976]
+                  - paragraph [ref=e1977]: התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ"ל
+                - generic [ref=e1978]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e1980]:
+                  - img
+                  - generic [ref=e1981]: "0"
+                - generic [ref=e1982]:
+                  - link "02-6408340" [ref=e1983] [cursor=pointer]:
+                    - /url: tel:026408340
+                    - img [ref=e1984]
+                    - generic [ref=e1986]: 02-6408340
+                  - link "ybentzur@knesset.gov.il" [ref=e1987] [cursor=pointer]:
+                    - /url: mailto:ybentzur@knesset.gov.il
+                    - img [ref=e1988]
+                    - generic [ref=e1991]: ybentzur@knesset.gov.il
+            - generic [ref=e1992]:
+              - button "עבור לעמוד הפרופיל של יואב סגלוביץ" [ref=e1993] [cursor=pointer]:
+                - img [ref=e1994]
+              - generic [ref=e1999]:
+                - generic [ref=e2001]: יס
+                - generic [ref=e2002]:
+                  - heading "יואב סגלוביץ" [level=3] [ref=e2003]
+                  - paragraph [ref=e2004]: יש עתיד
+                - generic [ref=e2005]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e2007]:
+                  - img
+                  - generic [ref=e2008]: "0"
+                - generic [ref=e2009]:
+                  - link "02-6408150" [ref=e2010] [cursor=pointer]:
+                    - /url: tel:026408150
+                    - img [ref=e2011]
+                    - generic [ref=e2013]: 02-6408150
+                  - link "yoavse@knesset.gov.il" [ref=e2014] [cursor=pointer]:
+                    - /url: mailto:yoavse@knesset.gov.il
+                    - img [ref=e2015]
+                    - generic [ref=e2018]: yoavse@knesset.gov.il
+            - generic [ref=e2019]:
+              - button "עבור לעמוד הפרופיל של יולי יואל אדלשטיין" [ref=e2020] [cursor=pointer]:
+                - img [ref=e2021]
+              - generic [ref=e2026]:
+                - generic [ref=e2028]: יא
+                - generic [ref=e2029]:
+                  - heading "יולי יואל אדלשטיין" [level=3] [ref=e2030]
+                  - paragraph [ref=e2031]: הליכוד
+                - generic [ref=e2032]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e2034]:
+                  - img
+                  - generic [ref=e2035]: "0"
+                - generic [ref=e2036]:
+                  - link "02-6408460" [ref=e2037] [cursor=pointer]:
+                    - /url: tel:026408460
+                    - img [ref=e2038]
+                    - generic [ref=e2040]: 02-6408460
+                  - link "yedelstein@knesset.gov.il" [ref=e2041] [cursor=pointer]:
+                    - /url: mailto:yedelstein@knesset.gov.il
+                    - img [ref=e2042]
+                    - generic [ref=e2045]: yedelstein@knesset.gov.il
+            - generic [ref=e2046]:
+              - button "עבור לעמוד הפרופיל של יוליה מלינובסקי" [ref=e2047] [cursor=pointer]:
+                - img [ref=e2048]
+              - generic [ref=e2053]:
+                - generic [ref=e2055]: ימ
+                - generic [ref=e2056]:
+                  - heading "יוליה מלינובסקי" [level=3] [ref=e2057]
+                  - paragraph [ref=e2058]: ישראל ביתנו
+                - generic [ref=e2059]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e2061]:
+                  - img
+                  - generic [ref=e2062]: "0"
+                - generic [ref=e2063]:
+                  - link "02-6408154" [ref=e2064] [cursor=pointer]:
+                    - /url: tel:026408154
+                    - img [ref=e2065]
+                    - generic [ref=e2067]: 02-6408154
+                  - link "ymalinovsky@knesset.gov.il" [ref=e2068] [cursor=pointer]:
+                    - /url: mailto:ymalinovsky@knesset.gov.il
+                    - img [ref=e2069]
+                    - generic [ref=e2072]: ymalinovsky@knesset.gov.il
+            - generic [ref=e2073]:
+              - button "עבור לעמוד הפרופיל של יונתן מישרקי" [ref=e2074] [cursor=pointer]:
+                - img [ref=e2075]
+              - generic [ref=e2080]:
+                - generic [ref=e2082]: ימ
+                - generic [ref=e2083]:
+                  - heading "יונתן מישרקי" [level=3] [ref=e2084]
+                  - paragraph [ref=e2085]: התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ"ל
+                - generic [ref=e2086]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e2088]:
+                  - img
+                  - generic [ref=e2089]: "0"
+                - generic [ref=e2090]:
+                  - link "02-6753655, 02-6496081" [ref=e2091] [cursor=pointer]:
+                    - /url: tel:026753655,026496081
+                    - img [ref=e2092]
+                    - generic [ref=e2094]: 02-6753655, 02-6496081
+                  - link "msyoni@knesset.gov.il" [ref=e2095] [cursor=pointer]:
+                    - /url: mailto:msyoni@knesset.gov.il
+                    - img [ref=e2096]
+                    - generic [ref=e2099]: msyoni@knesset.gov.il
+            - generic [ref=e2100]:
+              - button "עבור לעמוד הפרופיל של יוסף טייב" [ref=e2101] [cursor=pointer]:
+                - img [ref=e2102]
+              - generic [ref=e2107]:
+                - generic [ref=e2109]: יט
+                - generic [ref=e2110]:
+                  - heading "יוסף טייב" [level=3] [ref=e2111]
+                  - paragraph [ref=e2112]: התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ"ל
+                - generic [ref=e2113]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e2115]:
+                  - img
+                  - generic [ref=e2116]: "0"
+                - generic [ref=e2117]:
+                  - link "02-6408169" [ref=e2118] [cursor=pointer]:
+                    - /url: tel:026408169
+                    - img [ref=e2119]
+                    - generic [ref=e2121]: 02-6408169
+                  - link "jtaieb@knesset.gov.il" [ref=e2122] [cursor=pointer]:
+                    - /url: mailto:jtaieb@knesset.gov.il
+                    - img [ref=e2123]
+                    - generic [ref=e2126]: jtaieb@knesset.gov.il
+            - generic [ref=e2127]:
+              - button "עבור לעמוד הפרופיל של יוראי להב הרצנו" [ref=e2128] [cursor=pointer]:
+                - img [ref=e2129]
+              - generic [ref=e2134]:
+                - generic [ref=e2136]: יה
+                - generic [ref=e2137]:
+                  - heading "יוראי להב הרצנו" [level=3] [ref=e2138]
+                  - paragraph [ref=e2139]: יש עתיד
+                - generic [ref=e2140]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e2142]:
+                  - img
+                  - generic [ref=e2143]: "0"
+                - generic [ref=e2144]:
+                  - link "02-6753333" [ref=e2145] [cursor=pointer]:
+                    - /url: tel:026753333
+                    - img [ref=e2146]
+                    - generic [ref=e2148]: 02-6753333
+                  - link "ylahav@knesset.gov.il" [ref=e2149] [cursor=pointer]:
+                    - /url: mailto:ylahav@knesset.gov.il
+                    - img [ref=e2150]
+                    - generic [ref=e2153]: ylahav@knesset.gov.il
+            - generic [ref=e2154]:
+              - button "עבור לעמוד הפרופיל של ינון אזולאי" [ref=e2155] [cursor=pointer]:
+                - img [ref=e2156]
+              - generic [ref=e2161]:
+                - generic [ref=e2163]: יא
+                - generic [ref=e2164]:
+                  - heading "ינון אזולאי" [level=3] [ref=e2165]
+                  - paragraph [ref=e2166]: התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ"ל
+                - generic [ref=e2167]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e2169]:
+                  - img
+                  - generic [ref=e2170]: "0"
+                - generic [ref=e2171]:
+                  - link "02-6408453, 02-6408454" [ref=e2172] [cursor=pointer]:
+                    - /url: tel:026408453,026408454
+                    - img [ref=e2173]
+                    - generic [ref=e2175]: 02-6408453, 02-6408454
+                  - link "yazulai@knesset.gov.il" [ref=e2176] [cursor=pointer]:
+                    - /url: mailto:yazulai@knesset.gov.il
+                    - img [ref=e2177]
+                    - generic [ref=e2180]: yazulai@knesset.gov.il
+            - generic [ref=e2181]:
+              - button "עבור לעמוד הפרופיל של יסמין פרידמן" [ref=e2182] [cursor=pointer]:
+                - img [ref=e2183]
+              - generic [ref=e2188]:
+                - generic [ref=e2190]: יפ
+                - generic [ref=e2191]:
+                  - heading "יסמין פרידמן" [level=3] [ref=e2192]
+                  - paragraph [ref=e2193]: יש עתיד
+                - generic [ref=e2194]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e2196]:
+                  - img
+                  - generic [ref=e2197]: "0"
+                - generic [ref=e2198]:
+                  - link "02-6408004" [ref=e2199] [cursor=pointer]:
+                    - /url: tel:026408004
+                    - img [ref=e2200]
+                    - generic [ref=e2202]: 02-6408004
+                  - link "yfridman@knesset.gov.il" [ref=e2203] [cursor=pointer]:
+                    - /url: mailto:yfridman@knesset.gov.il
+                    - img [ref=e2204]
+                    - generic [ref=e2207]: yfridman@knesset.gov.il
+            - generic [ref=e2208]:
+              - button "עבור לעמוד הפרופיל של יעל רון בן משה" [ref=e2209] [cursor=pointer]:
+                - img [ref=e2210]
+              - generic [ref=e2215]:
+                - generic [ref=e2217]: ימ
+                - generic [ref=e2218]:
+                  - heading "יעל רון בן משה" [level=3] [ref=e2219]
+                  - paragraph [ref=e2220]: כחול לבן - המחנה הממלכתי
+                - generic [ref=e2221]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e2223]:
+                  - img
+                  - generic [ref=e2224]: "0"
+                - generic [ref=e2225]:
+                  - link "02-6408553, 02-6408162" [ref=e2226] [cursor=pointer]:
+                    - /url: tel:026408553,026408162
+                    - img [ref=e2227]
+                    - generic [ref=e2229]: 02-6408553, 02-6408162
+                  - link "yaelron@knesset.gov.il" [ref=e2230] [cursor=pointer]:
+                    - /url: mailto:yaelron@knesset.gov.il
+                    - img [ref=e2231]
+                    - generic [ref=e2234]: yaelron@knesset.gov.il
+            - generic [ref=e2235]:
+              - button "עבור לעמוד הפרופיל של יעקב אשר" [ref=e2236] [cursor=pointer]:
+                - img [ref=e2237]
+              - generic [ref=e2242]:
+                - generic [ref=e2244]: יא
+                - generic [ref=e2245]:
+                  - heading "יעקב אשר" [level=3] [ref=e2246]
+                  - paragraph [ref=e2247]: יהדות התורה
+                - generic [ref=e2248]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e2250]:
+                  - img
+                  - generic [ref=e2251]: "0"
+                - generic [ref=e2252]:
+                  - link "02-6408435, 02-6408434" [ref=e2253] [cursor=pointer]:
+                    - /url: tel:026408435,026408434
+                    - img [ref=e2254]
+                    - generic [ref=e2256]: 02-6408435, 02-6408434
+                  - link "yakova@knesset.gov.il" [ref=e2257] [cursor=pointer]:
+                    - /url: mailto:yakova@knesset.gov.il
+                    - img [ref=e2258]
+                    - generic [ref=e2261]: yakova@knesset.gov.il
+            - generic [ref=e2262]:
+              - button "עבור לעמוד הפרופיל של יעקב טסלר" [ref=e2263] [cursor=pointer]:
+                - img [ref=e2264]
+              - generic [ref=e2269]:
+                - generic [ref=e2271]: יט
+                - generic [ref=e2272]:
+                  - heading "יעקב טסלר" [level=3] [ref=e2273]
+                  - paragraph [ref=e2274]: יהדות התורה
+                - generic [ref=e2275]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e2277]:
+                  - img
+                  - generic [ref=e2278]: "0"
+                - generic [ref=e2279]:
+                  - link "02-6408167" [ref=e2280] [cursor=pointer]:
+                    - /url: tel:026408167
+                    - img [ref=e2281]
+                    - generic [ref=e2283]: 02-6408167
+                  - link "ytesler@knesset.gov.il" [ref=e2284] [cursor=pointer]:
+                    - /url: mailto:ytesler@knesset.gov.il
+                    - img [ref=e2285]
+                    - generic [ref=e2288]: ytesler@knesset.gov.il
+            - generic [ref=e2289]:
+              - button "עבור לעמוד הפרופיל של יעקב מרגי" [ref=e2290] [cursor=pointer]:
+                - img [ref=e2291]
+              - generic [ref=e2296]:
+                - generic [ref=e2298]: ימ
+                - generic [ref=e2299]:
+                  - heading "יעקב מרגי" [level=3] [ref=e2300]
+                  - paragraph [ref=e2301]: התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ"ל
+                - generic [ref=e2302]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e2304]:
+                  - img
+                  - generic [ref=e2305]: "0"
+                - generic [ref=e2306]:
+                  - link "02-6408040" [ref=e2307] [cursor=pointer]:
+                    - /url: tel:026408040
+                    - img [ref=e2308]
+                    - generic [ref=e2310]: 02-6408040
+                  - link "ymargi@knesset.gov.il" [ref=e2311] [cursor=pointer]:
+                    - /url: mailto:ymargi@knesset.gov.il
+                    - img [ref=e2312]
+                    - generic [ref=e2315]: ymargi@knesset.gov.il
+            - generic [ref=e2316]:
+              - button "עבור לעמוד הפרופיל של יצחק גולדקנופ" [ref=e2317] [cursor=pointer]:
+                - img [ref=e2318]
+              - generic [ref=e2323]:
+                - generic [ref=e2325]: יג
+                - generic [ref=e2326]:
+                  - heading "יצחק גולדקנופ" [level=3] [ref=e2327]
+                  - paragraph [ref=e2328]: יהדות התורה
+                - generic [ref=e2329]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e2331]:
+                  - img
+                  - generic [ref=e2332]: "0"
+                - generic [ref=e2333]:
+                  - link "02-6496276" [ref=e2334] [cursor=pointer]:
+                    - /url: tel:026496276
+                    - img [ref=e2335]
+                    - generic [ref=e2337]: 02-6496276
+                  - link "ygoldknop@knesset.gov.il" [ref=e2338] [cursor=pointer]:
+                    - /url: mailto:ygoldknop@knesset.gov.il
+                    - img [ref=e2339]
+                    - generic [ref=e2342]: ygoldknop@knesset.gov.il
+            - generic [ref=e2343]:
+              - button "עבור לעמוד הפרופיל של יצחק קרויזר" [ref=e2344] [cursor=pointer]:
+                - img [ref=e2345]
+              - generic [ref=e2350]:
+                - generic [ref=e2352]: יק
+                - generic [ref=e2353]:
+                  - heading "יצחק קרויזר" [level=3] [ref=e2354]
+                  - paragraph [ref=e2355]: עוצמה יהודית בראשות איתמר בן גביר
+                - generic [ref=e2356]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e2358]:
+                  - img
+                  - generic [ref=e2359]: "0"
+                - generic [ref=e2360]:
+                  - link "02-6403137" [ref=e2361] [cursor=pointer]:
+                    - /url: tel:026403137
+                    - img [ref=e2362]
+                    - generic [ref=e2364]: 02-6403137
+                  - link "ykroyzer@knesset.gov.il" [ref=e2365] [cursor=pointer]:
+                    - /url: mailto:ykroyzer@knesset.gov.il
+                    - img [ref=e2366]
+                    - generic [ref=e2369]: ykroyzer@knesset.gov.il
+            - generic [ref=e2370]:
+              - button "עבור לעמוד הפרופיל של יצחק שמעון וסרלאוף" [ref=e2371] [cursor=pointer]:
+                - img [ref=e2372]
+              - generic [ref=e2377]:
+                - generic [ref=e2379]: יו
+                - generic [ref=e2380]:
+                  - heading "יצחק שמעון וסרלאוף" [level=3] [ref=e2381]
+                  - paragraph [ref=e2382]: עוצמה יהודית בראשות איתמר בן גביר
+                - generic [ref=e2383]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e2385]:
+                  - img
+                  - generic [ref=e2386]: "0"
+                - generic [ref=e2387]:
+                  - link "02-6408166" [ref=e2388] [cursor=pointer]:
+                    - /url: tel:026408166
+                    - img [ref=e2389]
+                    - generic [ref=e2391]: 02-6408166
+                  - link "yvaserlof@knesset.gov.il" [ref=e2392] [cursor=pointer]:
+                    - /url: mailto:yvaserlof@knesset.gov.il
+                    - img [ref=e2393]
+                    - generic [ref=e2396]: yvaserlof@knesset.gov.il
+            - generic [ref=e2397]:
+              - button "עבור לעמוד הפרופיל של ירון לוי" [ref=e2398] [cursor=pointer]:
+                - img [ref=e2399]
+              - generic [ref=e2404]:
+                - generic [ref=e2406]: יל
+                - generic [ref=e2407]:
+                  - heading "ירון לוי" [level=3] [ref=e2408]
+                  - paragraph [ref=e2409]: יש עתיד
+                - generic [ref=e2410]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e2412]:
+                  - img
+                  - generic [ref=e2413]: "0"
+                - generic [ref=e2414]:
+                  - link "02-6408894" [ref=e2415] [cursor=pointer]:
+                    - /url: tel:026408894
+                    - img [ref=e2416]
+                    - generic [ref=e2418]: 02-6408894
+                  - link "yalevi@knesset.gov.il" [ref=e2419] [cursor=pointer]:
+                    - /url: mailto:yalevi@knesset.gov.il
+                    - img [ref=e2420]
+                    - generic [ref=e2423]: yalevi@knesset.gov.il
+            - generic [ref=e2424]:
+              - button "עבור לעמוד הפרופיל של יריב לוין" [ref=e2425] [cursor=pointer]:
+                - img [ref=e2426]
+              - generic [ref=e2431]:
+                - generic [ref=e2433]: יל
+                - generic [ref=e2434]:
+                  - heading "יריב לוין" [level=3] [ref=e2435]
+                  - paragraph [ref=e2436]: הליכוד
+                - generic [ref=e2437]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e2439]:
+                  - img
+                  - generic [ref=e2440]: "0"
+                - generic [ref=e2441]:
+                  - link "02-6408411" [ref=e2442] [cursor=pointer]:
+                    - /url: tel:026408411
+                    - img [ref=e2443]
+                    - generic [ref=e2445]: 02-6408411
+                  - link "ylevin@knesset.gov.il" [ref=e2446] [cursor=pointer]:
+                    - /url: mailto:ylevin@knesset.gov.il
+                    - img [ref=e2447]
+                    - generic [ref=e2450]: ylevin@knesset.gov.il
+            - generic [ref=e2451]:
+              - button "עבור לעמוד הפרופיל של ישראל אייכלר" [ref=e2452] [cursor=pointer]:
+                - img [ref=e2453]
+              - generic [ref=e2458]:
+                - generic [ref=e2460]: יא
+                - generic [ref=e2461]:
+                  - heading "ישראל אייכלר" [level=3] [ref=e2462]
+                  - paragraph [ref=e2463]: יהדות התורה
+                - generic [ref=e2464]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e2466]:
+                  - img
+                  - generic [ref=e2467]: "0"
+                - generic [ref=e2468]:
+                  - link "02-6408475" [ref=e2469] [cursor=pointer]:
+                    - /url: tel:026408475
+                    - img [ref=e2470]
+                    - generic [ref=e2472]: 02-6408475
+                  - link "ieichler@knesset.gov.il" [ref=e2473] [cursor=pointer]:
+                    - /url: mailto:ieichler@knesset.gov.il
+                    - img [ref=e2474]
+                    - generic [ref=e2477]: ieichler@knesset.gov.il
+            - generic [ref=e2478]:
+              - button "עבור לעמוד הפרופיל של ישראל כץ" [ref=e2479] [cursor=pointer]:
+                - img [ref=e2480]
+              - generic [ref=e2485]:
+                - generic [ref=e2487]: יכ
+                - generic [ref=e2488]:
+                  - heading "ישראל כץ" [level=3] [ref=e2489]
+                  - paragraph [ref=e2490]: הליכוד
+                - generic [ref=e2491]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e2493]:
+                  - img
+                  - generic [ref=e2494]: "0"
+                - link "yiskatz@knesset.gov.il" [ref=e2496] [cursor=pointer]:
+                  - /url: mailto:yiskatz@knesset.gov.il
+                  - img [ref=e2497]
+                  - generic [ref=e2500]: yiskatz@knesset.gov.il
+            - generic [ref=e2501]:
+              - button "עבור לעמוד הפרופיל של לימור סון הר מלך" [ref=e2502] [cursor=pointer]:
+                - img [ref=e2503]
+              - generic [ref=e2508]:
+                - generic [ref=e2510]: למ
+                - generic [ref=e2511]:
+                  - heading "לימור סון הר מלך" [level=3] [ref=e2512]
+                  - paragraph [ref=e2513]: עוצמה יהודית בראשות איתמר בן גביר
+                - generic [ref=e2514]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e2516]:
+                  - img
+                  - generic [ref=e2517]: "0"
+                - generic [ref=e2518]:
+                  - link "02-6408487" [ref=e2519] [cursor=pointer]:
+                    - /url: tel:026408487
+                    - img [ref=e2520]
+                    - generic [ref=e2522]: 02-6408487
+                  - link "lsun.har@knesset.gov.il" [ref=e2523] [cursor=pointer]:
+                    - /url: mailto:lsun.har@knesset.gov.il
+                    - img [ref=e2524]
+                    - generic [ref=e2527]: lsun.har@knesset.gov.il
+            - generic [ref=e2528]:
+              - button "עבור לעמוד הפרופיל של מאי גולן" [ref=e2529] [cursor=pointer]:
+                - img [ref=e2530]
+              - generic [ref=e2535]:
+                - generic [ref=e2537]: מג
+                - generic [ref=e2538]:
+                  - heading "מאי גולן" [level=3] [ref=e2539]
+                  - paragraph [ref=e2540]: הליכוד
+                - generic [ref=e2541]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e2543]:
+                  - img
+                  - generic [ref=e2544]: "0"
+                - generic [ref=e2545]:
+                  - link "02-6496267, 02-6408054" [ref=e2546] [cursor=pointer]:
+                    - /url: tel:026496267,026408054
+                    - img [ref=e2547]
+                    - generic [ref=e2549]: 02-6496267, 02-6408054
+                  - link "mgolan@knesset.gov.il" [ref=e2550] [cursor=pointer]:
+                    - /url: mailto:mgolan@knesset.gov.il
+                    - img [ref=e2551]
+                    - generic [ref=e2554]: mgolan@knesset.gov.il
+            - generic [ref=e2555]:
+              - button "עבור לעמוד הפרופיל של מאיר כהן" [ref=e2556] [cursor=pointer]:
+                - img [ref=e2557]
+              - generic [ref=e2562]:
+                - generic [ref=e2564]: מכ
+                - generic [ref=e2565]:
+                  - heading "מאיר כהן" [level=3] [ref=e2566]
+                  - paragraph [ref=e2567]: יש עתיד
+                - generic [ref=e2568]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e2570]:
+                  - img
+                  - generic [ref=e2571]: "0"
+                - generic [ref=e2572]:
+                  - link "02-6408383" [ref=e2573] [cursor=pointer]:
+                    - /url: tel:026408383
+                    - img [ref=e2574]
+                    - generic [ref=e2576]: 02-6408383
+                  - link "cohenmeir@knesset.gov.il" [ref=e2577] [cursor=pointer]:
+                    - /url: mailto:cohenmeir@knesset.gov.il
+                    - img [ref=e2578]
+                    - generic [ref=e2581]: cohenmeir@knesset.gov.il
+            - generic [ref=e2582]:
+              - button "עבור לעמוד הפרופיל של מאיר פרוש" [ref=e2583] [cursor=pointer]:
+                - img [ref=e2584]
+              - generic [ref=e2589]:
+                - generic [ref=e2591]: מפ
+                - generic [ref=e2592]:
+                  - heading "מאיר פרוש" [level=3] [ref=e2593]
+                  - paragraph [ref=e2594]: יהדות התורה
+                - generic [ref=e2595]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e2597]:
+                  - img
+                  - generic [ref=e2598]: "0"
+                - generic [ref=e2599]:
+                  - link "02-6408304" [ref=e2600] [cursor=pointer]:
+                    - /url: tel:026408304
+                    - img [ref=e2601]
+                    - generic [ref=e2603]: 02-6408304
+                  - link "mporush@knesset.gov.il" [ref=e2604] [cursor=pointer]:
+                    - /url: mailto:mporush@knesset.gov.il
+                    - img [ref=e2605]
+                    - generic [ref=e2608]: mporush@knesset.gov.il
+            - generic [ref=e2609]:
+              - button "עבור לעמוד הפרופיל של מטי צרפתי הרכבי" [ref=e2610] [cursor=pointer]:
+                - img [ref=e2611]
+              - generic [ref=e2616]:
+                - generic [ref=e2618]: מה
+                - generic [ref=e2619]:
+                  - heading "מטי צרפתי הרכבי" [level=3] [ref=e2620]
+                  - paragraph [ref=e2621]: יש עתיד
+                - generic [ref=e2622]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e2624]:
+                  - img
+                  - generic [ref=e2625]: "0"
+                - generic [ref=e2626]:
+                  - link "02-6408574" [ref=e2627] [cursor=pointer]:
+                    - /url: tel:026408574
+                    - img [ref=e2628]
+                    - generic [ref=e2630]: 02-6408574
+                  - link "mattisarfatti@knesset.gov.il" [ref=e2631] [cursor=pointer]:
+                    - /url: mailto:mattisarfatti@knesset.gov.il
+                    - img [ref=e2632]
+                    - generic [ref=e2635]: mattisarfatti@knesset.gov.il
+            - generic [ref=e2636]:
+              - button "עבור לעמוד הפרופיל של מיכאל מלכיאלי" [ref=e2637] [cursor=pointer]:
+                - img [ref=e2638]
+              - generic [ref=e2643]:
+                - generic [ref=e2645]: ממ
+                - generic [ref=e2646]:
+                  - heading "מיכאל מלכיאלי" [level=3] [ref=e2647]
+                  - paragraph [ref=e2648]: התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ"ל
+                - generic [ref=e2649]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e2651]:
+                  - img
+                  - generic [ref=e2652]: "0"
+                - generic [ref=e2653]:
+                  - link "02-6408666" [ref=e2654] [cursor=pointer]:
+                    - /url: tel:026408666
+                    - img [ref=e2655]
+                    - generic [ref=e2657]: 02-6408666
+                  - link "malkielim@knesset.gov.il" [ref=e2658] [cursor=pointer]:
+                    - /url: mailto:malkielim@knesset.gov.il
+                    - img [ref=e2659]
+                    - generic [ref=e2662]: malkielim@knesset.gov.il
+            - generic [ref=e2663]:
+              - button "עבור לעמוד הפרופיל של מיכאל מרדכי ביטון" [ref=e2664] [cursor=pointer]:
+                - img [ref=e2665]
+              - generic [ref=e2670]:
+                - generic [ref=e2672]: מב
+                - generic [ref=e2673]:
+                  - heading "מיכאל מרדכי ביטון" [level=3] [ref=e2674]
+                  - paragraph [ref=e2675]: כחול לבן - המחנה הממלכתי
+                - generic [ref=e2676]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e2678]:
+                  - img
+                  - generic [ref=e2679]: "0"
+                - generic [ref=e2680]:
+                  - link "02-6408028, 02-6408075" [ref=e2681] [cursor=pointer]:
+                    - /url: tel:026408028,026408075
+                    - img [ref=e2682]
+                    - generic [ref=e2684]: 02-6408028, 02-6408075
+                  - link "mbiton@knesset.gov.il" [ref=e2685] [cursor=pointer]:
+                    - /url: mailto:mbiton@knesset.gov.il
+                    - img [ref=e2686]
+                    - generic [ref=e2689]: mbiton@knesset.gov.il
+            - generic [ref=e2690]:
+              - button "עבור לעמוד הפרופיל של מיכל מרים וולדיגר" [ref=e2691] [cursor=pointer]:
+                - img [ref=e2692]
+              - generic [ref=e2697]:
+                - generic [ref=e2699]: מו
+                - generic [ref=e2700]:
+                  - heading "מיכל מרים וולדיגר" [level=3] [ref=e2701]
+                  - paragraph [ref=e2702]: הציונות הדתית בראשות בצלאל סמוטריץ'
+                - generic [ref=e2703]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e2705]:
+                  - img
+                  - generic [ref=e2706]: "0"
+                - generic [ref=e2707]:
+                  - link "02-6408518" [ref=e2708] [cursor=pointer]:
+                    - /url: tel:026408518
+                    - img [ref=e2709]
+                    - generic [ref=e2711]: 02-6408518
+                  - link "michalwoldiger@knesset.gov.il" [ref=e2712] [cursor=pointer]:
+                    - /url: mailto:michalwoldiger@knesset.gov.il
+                    - img [ref=e2713]
+                    - generic [ref=e2716]: michalwoldiger@knesset.gov.il
+            - generic [ref=e2717]:
+              - button "עבור לעמוד הפרופיל של מיכל שיר סגמן" [ref=e2718] [cursor=pointer]:
+                - img [ref=e2719]
+              - generic [ref=e2724]:
+                - generic [ref=e2726]: מס
+                - generic [ref=e2727]:
+                  - heading "מיכל שיר סגמן" [level=3] [ref=e2728]
+                  - paragraph [ref=e2729]: יש עתיד
+                - generic [ref=e2730]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e2732]:
+                  - img
+                  - generic [ref=e2733]: "0"
+                - generic [ref=e2734]:
+                  - link "02-6408145" [ref=e2735] [cursor=pointer]:
+                    - /url: tel:026408145
+                    - img [ref=e2736]
+                    - generic [ref=e2738]: 02-6408145
+                  - link "mshir@knesset.gov.il" [ref=e2739] [cursor=pointer]:
+                    - /url: mailto:mshir@knesset.gov.il
+                    - img [ref=e2740]
+                    - generic [ref=e2743]: mshir@knesset.gov.il
+            - generic [ref=e2744]:
+              - button "עבור לעמוד הפרופיל של מיקי לוי" [ref=e2745] [cursor=pointer]:
+                - img [ref=e2746]
+              - generic [ref=e2751]:
+                - generic [ref=e2753]: מל
+                - generic [ref=e2754]:
+                  - heading "מיקי לוי" [level=3] [ref=e2755]
+                  - paragraph [ref=e2756]: יש עתיד
+                - generic [ref=e2757]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e2759]:
+                  - img
+                  - generic [ref=e2760]: "0"
+                - generic [ref=e2761]:
+                  - link "02-6408187" [ref=e2762] [cursor=pointer]:
+                    - /url: tel:026408187
+                    - img [ref=e2763]
+                    - generic [ref=e2765]: 02-6408187
+                  - link "mickeylevy@knesset.gov.il" [ref=e2766] [cursor=pointer]:
+                    - /url: mailto:mickeylevy@knesset.gov.il
+                    - img [ref=e2767]
+                    - generic [ref=e2770]: mickeylevy@knesset.gov.il
+            - generic [ref=e2771]:
+              - button "עבור לעמוד הפרופיל של מירב בן ארי" [ref=e2772] [cursor=pointer]:
+                - img [ref=e2773]
+              - generic [ref=e2778]:
+                - generic [ref=e2780]: מא
+                - generic [ref=e2781]:
+                  - heading "מירב בן ארי" [level=3] [ref=e2782]
+                  - paragraph [ref=e2783]: יש עתיד
+                - generic [ref=e2784]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e2786]:
+                  - img
+                  - generic [ref=e2787]: "0"
+                - generic [ref=e2788]:
+                  - link "02-6408010" [ref=e2789] [cursor=pointer]:
+                    - /url: tel:026408010
+                    - img [ref=e2790]
+                    - generic [ref=e2792]: 02-6408010
+                  - link "bmerav@knesset.gov.il" [ref=e2793] [cursor=pointer]:
+                    - /url: mailto:bmerav@knesset.gov.il
+                    - img [ref=e2794]
+                    - generic [ref=e2797]: bmerav@knesset.gov.il
+            - generic [ref=e2798]:
+              - button "עבור לעמוד הפרופיל של מירב כהן" [ref=e2799] [cursor=pointer]:
+                - img [ref=e2800]
+              - generic [ref=e2805]:
+                - generic [ref=e2807]: מכ
+                - generic [ref=e2808]:
+                  - heading "מירב כהן" [level=3] [ref=e2809]
+                  - paragraph [ref=e2810]: יש עתיד
+                - generic [ref=e2811]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e2813]:
+                  - img
+                  - generic [ref=e2814]: "0"
+                - generic [ref=e2815]:
+                  - link "02-6408310" [ref=e2816] [cursor=pointer]:
+                    - /url: tel:026408310
+                    - img [ref=e2817]
+                    - generic [ref=e2819]: 02-6408310
+                  - link "mecohen@knesset.gov.il" [ref=e2820] [cursor=pointer]:
+                    - /url: mailto:mecohen@knesset.gov.il
+                    - img [ref=e2821]
+                    - generic [ref=e2824]: mecohen@knesset.gov.il
+            - generic [ref=e2825]:
+              - button "עבור לעמוד הפרופיל של מישל בוסקילה" [ref=e2826] [cursor=pointer]:
+                - img [ref=e2827]
+              - generic [ref=e2832]:
+                - generic [ref=e2834]: מב
+                - generic [ref=e2835]:
+                  - heading "מישל בוסקילה" [level=3] [ref=e2836]
+                  - paragraph [ref=e2837]: הימין הממלכתי
+                - generic [ref=e2838]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e2840]:
+                  - img
+                  - generic [ref=e2841]: "0"
+                - generic [ref=e2842]:
+                  - link "02-6753333" [ref=e2843] [cursor=pointer]:
+                    - /url: tel:026753333
+                    - img [ref=e2844]
+                    - generic [ref=e2846]: 02-6753333
+                  - link "mbuskila@knesset.gov.il" [ref=e2847] [cursor=pointer]:
+                    - /url: mailto:mbuskila@knesset.gov.il
+                    - img [ref=e2848]
+                    - generic [ref=e2851]: mbuskila@knesset.gov.il
+            - generic [ref=e2852]:
+              - button "עבור לעמוד הפרופיל של מנסור עבאס" [ref=e2853] [cursor=pointer]:
+                - img [ref=e2854]
+              - generic [ref=e2859]:
+                - generic [ref=e2861]: מע
+                - generic [ref=e2862]:
+                  - heading "מנסור עבאס" [level=3] [ref=e2863]
+                  - paragraph [ref=e2864]: רע"ם
+                - generic [ref=e2865]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e2867]:
+                  - img
+                  - generic [ref=e2868]: "0"
+                - generic [ref=e2869]:
+                  - link "02-6408161, 02-6408203" [ref=e2870] [cursor=pointer]:
+                    - /url: tel:026408161,026408203
+                    - img [ref=e2871]
+                    - generic [ref=e2873]: 02-6408161, 02-6408203
+                  - link "mabas@knesset.gov.il" [ref=e2874] [cursor=pointer]:
+                    - /url: mailto:mabas@knesset.gov.il
+                    - img [ref=e2875]
+                    - generic [ref=e2878]: mabas@knesset.gov.il
+            - generic [ref=e2879]:
+              - button "עבור לעמוד הפרופיל של מרב מיכאלי" [ref=e2880] [cursor=pointer]:
+                - img [ref=e2881]
+              - generic [ref=e2886]:
+                - generic [ref=e2888]: ממ
+                - generic [ref=e2889]:
+                  - heading "מרב מיכאלי" [level=3] [ref=e2890]
+                  - paragraph [ref=e2891]: העבודה
+                - generic [ref=e2892]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e2894]:
+                  - img
+                  - generic [ref=e2895]: "0"
+                - generic [ref=e2896]:
+                  - link "02-6408009" [ref=e2897] [cursor=pointer]:
+                    - /url: tel:026408009
+                    - img [ref=e2898]
+                    - generic [ref=e2900]: 02-6408009
+                  - link "michaelim@knesset.gov.il" [ref=e2901] [cursor=pointer]:
+                    - /url: mailto:michaelim@knesset.gov.il
+                    - img [ref=e2902]
+                    - generic [ref=e2905]: michaelim@knesset.gov.il
+            - generic [ref=e2906]:
+              - button "עבור לעמוד הפרופיל של משה אבוטבול" [ref=e2907] [cursor=pointer]:
+                - img [ref=e2908]
+              - generic [ref=e2913]:
+                - generic [ref=e2915]: מא
+                - generic [ref=e2916]:
+                  - heading "משה אבוטבול" [level=3] [ref=e2917]
+                  - paragraph [ref=e2918]: התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ"ל
+                - generic [ref=e2919]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e2921]:
+                  - img
+                  - generic [ref=e2922]: "0"
+                - generic [ref=e2923]:
+                  - link "02-6408751" [ref=e2924] [cursor=pointer]:
+                    - /url: tel:026408751
+                    - img [ref=e2925]
+                    - generic [ref=e2927]: 02-6408751
+                  - link "mabutbul@knesset.gov.il" [ref=e2928] [cursor=pointer]:
+                    - /url: mailto:mabutbul@knesset.gov.il
+                    - img [ref=e2929]
+                    - generic [ref=e2932]: mabutbul@knesset.gov.il
+            - generic [ref=e2933]:
+              - button "עבור לעמוד הפרופיל של משה ארבל" [ref=e2934] [cursor=pointer]:
+                - img [ref=e2935]
+              - generic [ref=e2940]:
+                - generic [ref=e2942]: מא
+                - generic [ref=e2943]:
+                  - heading "משה ארבל" [level=3] [ref=e2944]
+                  - paragraph [ref=e2945]: התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ"ל
+                - generic [ref=e2946]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e2948]:
+                  - img
+                  - generic [ref=e2949]: "0"
+                - generic [ref=e2950]:
+                  - link "02-6408528, 02-6408412" [ref=e2951] [cursor=pointer]:
+                    - /url: tel:026408528,026408412
+                    - img [ref=e2952]
+                    - generic [ref=e2954]: 02-6408528, 02-6408412
+                  - link "marbel@knesset.gov.il" [ref=e2955] [cursor=pointer]:
+                    - /url: mailto:marbel@knesset.gov.il
+                    - img [ref=e2956]
+                    - generic [ref=e2959]: marbel@knesset.gov.il
+            - generic [ref=e2960]:
+              - button "עבור לעמוד הפרופיל של משה גפני" [ref=e2961] [cursor=pointer]:
+                - img [ref=e2962]
+              - generic [ref=e2967]:
+                - generic [ref=e2969]: מג
+                - generic [ref=e2970]:
+                  - heading "משה גפני" [level=3] [ref=e2971]
+                  - paragraph [ref=e2972]: יהדות התורה
+                - generic [ref=e2973]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e2975]:
+                  - img
+                  - generic [ref=e2976]: "0"
+                - generic [ref=e2977]:
+                  - link "02-6408997, 02-6408328" [ref=e2978] [cursor=pointer]:
+                    - /url: tel:026408997,026408328
+                    - img [ref=e2979]
+                    - generic [ref=e2981]: 02-6408997, 02-6408328
+                  - link "mgafni@knesset.gov.il" [ref=e2982] [cursor=pointer]:
+                    - /url: mailto:mgafni@knesset.gov.il
+                    - img [ref=e2983]
+                    - generic [ref=e2986]: mgafni@knesset.gov.il
+            - generic [ref=e2987]:
+              - button "עבור לעמוד הפרופיל של משה טור פז" [ref=e2988] [cursor=pointer]:
+                - img [ref=e2989]
+              - generic [ref=e2994]:
+                - generic [ref=e2996]: מפ
+                - generic [ref=e2997]:
+                  - heading "משה טור פז" [level=3] [ref=e2998]
+                  - paragraph [ref=e2999]: יש עתיד
+                - generic [ref=e3000]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e3002]:
+                  - img
+                  - generic [ref=e3003]: "0"
+                - generic [ref=e3004]:
+                  - link "02-6408152" [ref=e3005] [cursor=pointer]:
+                    - /url: tel:026408152
+                    - img [ref=e3006]
+                    - generic [ref=e3008]: 02-6408152
+                  - link "mturpaz@knesset.gov.il" [ref=e3009] [cursor=pointer]:
+                    - /url: mailto:mturpaz@knesset.gov.il
+                    - img [ref=e3010]
+                    - generic [ref=e3013]: mturpaz@knesset.gov.il
+            - generic [ref=e3014]:
+              - button "עבור לעמוד הפרופיל של משה סולומון" [ref=e3015] [cursor=pointer]:
+                - img [ref=e3016]
+              - generic [ref=e3021]:
+                - generic [ref=e3023]: מס
+                - generic [ref=e3024]:
+                  - heading "משה סולומון" [level=3] [ref=e3025]
+                  - paragraph [ref=e3026]: הציונות הדתית בראשות בצלאל סמוטריץ'
+                - generic [ref=e3027]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e3029]:
+                  - img
+                  - generic [ref=e3030]: "0"
+                - generic [ref=e3031]:
+                  - link "02-6408396" [ref=e3032] [cursor=pointer]:
+                    - /url: tel:026408396
+                    - img [ref=e3033]
+                    - generic [ref=e3035]: 02-6408396
+                  - link "mosolomon@knesset.gov.il" [ref=e3036] [cursor=pointer]:
+                    - /url: mailto:mosolomon@knesset.gov.il
+                    - img [ref=e3037]
+                    - generic [ref=e3040]: mosolomon@knesset.gov.il
+            - generic [ref=e3041]:
+              - button "עבור לעמוד הפרופיל של משה סעדה" [ref=e3042] [cursor=pointer]:
+                - img [ref=e3043]
+              - generic [ref=e3048]:
+                - generic [ref=e3050]: מס
+                - generic [ref=e3051]:
+                  - heading "משה סעדה" [level=3] [ref=e3052]
+                  - paragraph [ref=e3053]: הליכוד
+                - generic [ref=e3054]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e3056]:
+                  - img
+                  - generic [ref=e3057]: "0"
+                - generic [ref=e3058]:
+                  - link "02-6408600" [ref=e3059] [cursor=pointer]:
+                    - /url: tel:026408600
+                    - img [ref=e3060]
+                    - generic [ref=e3062]: 02-6408600
+                  - link "mosaada@knesset.gov.il" [ref=e3063] [cursor=pointer]:
+                    - /url: mailto:mosaada@knesset.gov.il
+                    - img [ref=e3064]
+                    - generic [ref=e3067]: mosaada@knesset.gov.il
+            - generic [ref=e3068]:
+              - button "עבור לעמוד הפרופיל של משה פסל" [ref=e3069] [cursor=pointer]:
+                - img [ref=e3070]
+              - generic [ref=e3075]:
+                - generic [ref=e3077]: מפ
+                - generic [ref=e3078]:
+                  - heading "משה פסל" [level=3] [ref=e3079]
+                  - paragraph [ref=e3080]: הליכוד
+                - generic [ref=e3081]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e3083]:
+                  - img
+                  - generic [ref=e3084]: "0"
+                - generic [ref=e3085]:
+                  - link "02-6753333" [ref=e3086] [cursor=pointer]:
+                    - /url: tel:026753333
+                    - img [ref=e3087]
+                    - generic [ref=e3089]: 02-6753333
+                  - link "hak_passal@knesset.gov.il" [ref=e3090] [cursor=pointer]:
+                    - /url: mailto:hak_passal@knesset.gov.il
+                    - img [ref=e3091]
+                    - generic [ref=e3094]: hak_passal@knesset.gov.il
+            - generic [ref=e3095]:
+              - button "עבור לעמוד הפרופיל של נאור שירי" [ref=e3096] [cursor=pointer]:
+                - img [ref=e3097]
+              - generic [ref=e3102]:
+                - generic [ref=e3104]: נש
+                - generic [ref=e3105]:
+                  - heading "נאור שירי" [level=3] [ref=e3106]
+                  - paragraph [ref=e3107]: יש עתיד
+                - generic [ref=e3108]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e3110]:
+                  - img
+                  - generic [ref=e3111]: "0"
+                - generic [ref=e3112]:
+                  - link "02-6496273" [ref=e3113] [cursor=pointer]:
+                    - /url: tel:026496273
+                    - img [ref=e3114]
+                    - generic [ref=e3116]: 02-6496273
+                  - link "nshiri@knesset.gov.il" [ref=e3117] [cursor=pointer]:
+                    - /url: mailto:nshiri@knesset.gov.il
+                    - img [ref=e3118]
+                    - generic [ref=e3121]: nshiri@knesset.gov.il
+            - generic [ref=e3122]:
+              - button "עבור לעמוד הפרופיל של ניסים ואטורי" [ref=e3123] [cursor=pointer]:
+                - img [ref=e3124]
+              - generic [ref=e3129]:
+                - generic [ref=e3131]: נו
+                - generic [ref=e3132]:
+                  - heading "ניסים ואטורי" [level=3] [ref=e3133]
+                  - paragraph [ref=e3134]: הליכוד
+                - generic [ref=e3135]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e3137]:
+                  - img
+                  - generic [ref=e3138]: "0"
+                - generic [ref=e3139]:
+                  - link "02-6408070" [ref=e3140] [cursor=pointer]:
+                    - /url: tel:026408070
+                    - img [ref=e3141]
+                    - generic [ref=e3143]: 02-6408070
+                  - link "nvaturi@knesset.gov.il" [ref=e3144] [cursor=pointer]:
+                    - /url: mailto:nvaturi@knesset.gov.il
+                    - img [ref=e3145]
+                    - generic [ref=e3148]: nvaturi@knesset.gov.il
+            - generic [ref=e3149]:
+              - button "עבור לעמוד הפרופיל של ניר ברקת" [ref=e3150] [cursor=pointer]:
+                - img [ref=e3151]
+              - generic [ref=e3156]:
+                - generic [ref=e3158]: נב
+                - generic [ref=e3159]:
+                  - heading "ניר ברקת" [level=3] [ref=e3160]
+                  - paragraph [ref=e3161]: הליכוד
+                - generic [ref=e3162]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e3164]:
+                  - img
+                  - generic [ref=e3165]: "0"
+                - generic [ref=e3166]:
+                  - link "02-6408416" [ref=e3167] [cursor=pointer]:
+                    - /url: tel:026408416
+                    - img [ref=e3168]
+                    - generic [ref=e3170]: 02-6408416
+                  - link "nbarkat@knesset.gov.il" [ref=e3171] [cursor=pointer]:
+                    - /url: mailto:nbarkat@knesset.gov.il
+                    - img [ref=e3172]
+                    - generic [ref=e3175]: nbarkat@knesset.gov.il
+            - generic [ref=e3176]:
+              - button "עבור לעמוד הפרופיל של נעמה לזימי" [ref=e3177] [cursor=pointer]:
+                - img [ref=e3178]
+              - generic [ref=e3183]:
+                - generic [ref=e3185]: נל
+                - generic [ref=e3186]:
+                  - heading "נעמה לזימי" [level=3] [ref=e3187]
+                  - paragraph [ref=e3188]: העבודה
+                - generic [ref=e3189]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e3191]:
+                  - img
+                  - generic [ref=e3192]: "0"
+                - generic [ref=e3193]:
+                  - link "02-6408184" [ref=e3194] [cursor=pointer]:
+                    - /url: tel:026408184
+                    - img [ref=e3195]
+                    - generic [ref=e3197]: 02-6408184
+                  - link "naamalazimi@knesset.gov.il" [ref=e3198] [cursor=pointer]:
+                    - /url: mailto:naamalazimi@knesset.gov.il
+                    - img [ref=e3199]
+                    - generic [ref=e3202]: naamalazimi@knesset.gov.il
+            - generic [ref=e3203]:
+              - button "עבור לעמוד הפרופיל של סימון דוידסון" [ref=e3204] [cursor=pointer]:
+                - img [ref=e3205]
+              - generic [ref=e3210]:
+                - generic [ref=e3212]: סד
+                - generic [ref=e3213]:
+                  - heading "סימון דוידסון" [level=3] [ref=e3214]
+                  - paragraph [ref=e3215]: יש עתיד
+                - generic [ref=e3216]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e3218]:
+                  - img
+                  - generic [ref=e3219]: "0"
+                - generic [ref=e3220]:
+                  - link "02-6408388" [ref=e3221] [cursor=pointer]:
+                    - /url: tel:026408388
+                    - img [ref=e3222]
+                    - generic [ref=e3224]: 02-6408388
+                  - link "hak_davidson@knesset.gov.il" [ref=e3225] [cursor=pointer]:
+                    - /url: mailto:hak_davidson@knesset.gov.il
+                    - img [ref=e3226]
+                    - generic [ref=e3229]: hak_davidson@knesset.gov.il
+            - generic [ref=e3230]:
+              - button "עבור לעמוד הפרופיל של סמיר בן סעיד" [ref=e3231] [cursor=pointer]:
+                - img [ref=e3232]
+              - generic [ref=e3237]:
+                - generic [ref=e3239]: סס
+                - generic [ref=e3240]:
+                  - heading "סמיר בן סעיד" [level=3] [ref=e3241]
+                  - paragraph [ref=e3242]: חד"ש-תע"ל
+                - generic [ref=e3243]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e3245]:
+                  - img
+                  - generic [ref=e3246]: "0"
+                - generic [ref=e3247]:
+                  - link "02-6753333" [ref=e3248] [cursor=pointer]:
+                    - /url: tel:026753333
+                    - img [ref=e3249]
+                    - generic [ref=e3251]: 02-6753333
+                  - link "samirb@knesset.gov.il" [ref=e3252] [cursor=pointer]:
+                    - /url: mailto:samirb@knesset.gov.il
+                    - img [ref=e3253]
+                    - generic [ref=e3256]: samirb@knesset.gov.il
+            - generic [ref=e3257]:
+              - button "עבור לעמוד הפרופיל של עאידה תומא סלימאן" [ref=e3258] [cursor=pointer]:
+                - img [ref=e3259]
+              - generic [ref=e3264]:
+                - generic [ref=e3266]: עס
+                - generic [ref=e3267]:
+                  - heading "עאידה תומא סלימאן" [level=3] [ref=e3268]
+                  - paragraph [ref=e3269]: חד"ש-תע"ל
+                - generic [ref=e3270]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e3272]:
+                  - img
+                  - generic [ref=e3273]: "0"
+                - generic [ref=e3274]:
+                  - link "02-6408367, 02-6408368" [ref=e3275] [cursor=pointer]:
+                    - /url: tel:026408367,026408368
+                    - img [ref=e3276]
+                    - generic [ref=e3278]: 02-6408367, 02-6408368
+                  - link "aidat@knesset.gov.il" [ref=e3279] [cursor=pointer]:
+                    - /url: mailto:aidat@knesset.gov.il
+                    - img [ref=e3280]
+                    - generic [ref=e3283]: aidat@knesset.gov.il
+            - generic [ref=e3284]:
+              - button "עבור לעמוד הפרופיל של עדי עזוז" [ref=e3285] [cursor=pointer]:
+                - img [ref=e3286]
+              - generic [ref=e3291]:
+                - generic [ref=e3293]: עע
+                - generic [ref=e3294]:
+                  - heading "עדי עזוז" [level=3] [ref=e3295]
+                  - paragraph [ref=e3296]: יש עתיד
+                - generic [ref=e3297]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e3299]:
+                  - img
+                  - generic [ref=e3300]: "0"
+                - generic [ref=e3301]:
+                  - link "02-6753333" [ref=e3302] [cursor=pointer]:
+                    - /url: tel:026753333
+                    - img [ref=e3303]
+                    - generic [ref=e3305]: 02-6753333
+                  - link "aezuz@knesset.gov.il" [ref=e3306] [cursor=pointer]:
+                    - /url: mailto:aezuz@knesset.gov.il
+                    - img [ref=e3307]
+                    - generic [ref=e3310]: aezuz@knesset.gov.il
+            - generic [ref=e3311]:
+              - button "עבור לעמוד הפרופיל של עודד פורר" [ref=e3312] [cursor=pointer]:
+                - img [ref=e3313]
+              - generic [ref=e3318]:
+                - generic [ref=e3320]: עפ
+                - generic [ref=e3321]:
+                  - heading "עודד פורר" [level=3] [ref=e3322]
+                  - paragraph [ref=e3323]: ישראל ביתנו
+                - generic [ref=e3324]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e3326]:
+                  - img
+                  - generic [ref=e3327]: "0"
+                - generic [ref=e3328]:
+                  - link "02-6408331" [ref=e3329] [cursor=pointer]:
+                    - /url: tel:026408331
+                    - img [ref=e3330]
+                    - generic [ref=e3332]: 02-6408331
+                  - link "odedfo@knesset.gov.il" [ref=e3333] [cursor=pointer]:
+                    - /url: mailto:odedfo@knesset.gov.il
+                    - img [ref=e3334]
+                    - generic [ref=e3337]: odedfo@knesset.gov.il
+            - generic [ref=e3338]:
+              - button "עבור לעמוד הפרופיל של עופר כסיף" [ref=e3339] [cursor=pointer]:
+                - img [ref=e3340]
+              - generic [ref=e3345]:
+                - generic [ref=e3347]: עכ
+                - generic [ref=e3348]:
+                  - heading "עופר כסיף" [level=3] [ref=e3349]
+                  - paragraph [ref=e3350]: חד"ש-תע"ל
+                - generic [ref=e3351]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e3353]:
+                  - img
+                  - generic [ref=e3354]: "0"
+                - generic [ref=e3355]:
+                  - link "02-6408125" [ref=e3356] [cursor=pointer]:
+                    - /url: tel:026408125
+                    - img [ref=e3357]
+                    - generic [ref=e3359]: 02-6408125
+                  - link "ocassif@knesset.gov.il" [ref=e3360] [cursor=pointer]:
+                    - /url: mailto:ocassif@knesset.gov.il
+                    - img [ref=e3361]
+                    - generic [ref=e3364]: ocassif@knesset.gov.il
+            - generic [ref=e3365]:
+              - button "עבור לעמוד הפרופיל של עמיחי אליהו" [ref=e3366] [cursor=pointer]:
+                - img [ref=e3367]
+              - generic [ref=e3372]:
+                - generic [ref=e3374]: עא
+                - generic [ref=e3375]:
+                  - heading "עמיחי אליהו" [level=3] [ref=e3376]
+                  - paragraph [ref=e3377]: עוצמה יהודית בראשות איתמר בן גביר
+                - generic [ref=e3378]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e3380]:
+                  - img
+                  - generic [ref=e3381]: "0"
+                - generic [ref=e3382]:
+                  - link "02-6408883" [ref=e3383] [cursor=pointer]:
+                    - /url: tel:026408883
+                    - img [ref=e3384]
+                    - generic [ref=e3386]: 02-6408883
+                  - link "abene@knesset.gov.il" [ref=e3387] [cursor=pointer]:
+                    - /url: mailto:abene@knesset.gov.il
+                    - img [ref=e3388]
+                    - generic [ref=e3391]: abene@knesset.gov.il
+            - generic [ref=e3392]:
+              - button "עבור לעמוד הפרופיל של עמית הלוי" [ref=e3393] [cursor=pointer]:
+                - img [ref=e3394]
+              - generic [ref=e3399]:
+                - generic [ref=e3401]: עה
+                - generic [ref=e3402]:
+                  - heading "עמית הלוי" [level=3] [ref=e3403]
+                  - paragraph [ref=e3404]: הליכוד
+                - generic [ref=e3405]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e3407]:
+                  - img
+                  - generic [ref=e3408]: "0"
+                - generic [ref=e3409]:
+                  - link "02-6753333" [ref=e3410] [cursor=pointer]:
+                    - /url: tel:026753333
+                    - img [ref=e3411]
+                    - generic [ref=e3413]: 02-6753333
+                  - link "ahalevi@knesset.gov.il" [ref=e3414] [cursor=pointer]:
+                    - /url: mailto:ahalevi@knesset.gov.il
+                    - img [ref=e3415]
+                    - generic [ref=e3418]: ahalevi@knesset.gov.il
+            - generic [ref=e3419]:
+              - button "עבור לעמוד הפרופיל של עפיף עבד" [ref=e3420] [cursor=pointer]:
+                - img [ref=e3421]
+              - generic [ref=e3426]:
+                - generic [ref=e3428]: עע
+                - generic [ref=e3429]:
+                  - heading "עפיף עבד" [level=3] [ref=e3430]
+                  - paragraph [ref=e3431]: הליכוד
+                - generic [ref=e3432]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e3434]:
+                  - img
+                  - generic [ref=e3435]: "0"
+                - generic [ref=e3436]:
+                  - link "02-6753333" [ref=e3437] [cursor=pointer]:
+                    - /url: tel:026753333
+                    - img [ref=e3438]
+                    - generic [ref=e3440]: 02-6753333
+                  - link "abbed@knesset.gov.il" [ref=e3441] [cursor=pointer]:
+                    - /url: mailto:abbed@knesset.gov.il
+                    - img [ref=e3442]
+                    - generic [ref=e3445]: abbed@knesset.gov.il
+            - generic [ref=e3446]:
+              - button "עבור לעמוד הפרופיל של פנינה תמנו" [ref=e3447] [cursor=pointer]:
+                - img [ref=e3448]
+              - generic [ref=e3453]:
+                - generic [ref=e3455]: פת
+                - generic [ref=e3456]:
+                  - heading "פנינה תמנו" [level=3] [ref=e3457]
+                  - paragraph [ref=e3458]: כחול לבן - המחנה הממלכתי
+                - generic [ref=e3459]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e3461]:
+                  - img
+                  - generic [ref=e3462]: "0"
+                - generic [ref=e3463]:
+                  - link "02-6496203" [ref=e3464] [cursor=pointer]:
+                    - /url: tel:026496203
+                    - img [ref=e3465]
+                    - generic [ref=e3467]: 02-6496203
+                  - link "ptamano@knesset.gov.il" [ref=e3468] [cursor=pointer]:
+                    - /url: mailto:ptamano@knesset.gov.il
+                    - img [ref=e3469]
+                    - generic [ref=e3472]: ptamano@knesset.gov.il
+            - generic [ref=e3473]:
+              - button "עבור לעמוד הפרופיל של צבי ידידיה סוכות" [ref=e3474] [cursor=pointer]:
+                - img [ref=e3475]
+              - generic [ref=e3480]:
+                - generic [ref=e3482]: צס
+                - generic [ref=e3483]:
+                  - heading "צבי ידידיה סוכות" [level=3] [ref=e3484]
+                  - paragraph [ref=e3485]: הציונות הדתית בראשות בצלאל סמוטריץ'
+                - generic [ref=e3486]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e3488]:
+                  - img
+                  - generic [ref=e3489]: "0"
+                - generic [ref=e3490]:
+                  - link "02-6406872" [ref=e3491] [cursor=pointer]:
+                    - /url: tel:026406872
+                    - img [ref=e3492]
+                    - generic [ref=e3494]: 02-6406872
+                  - link "tzvisuccot@knesset.gov.il" [ref=e3495] [cursor=pointer]:
+                    - /url: mailto:tzvisuccot@knesset.gov.il
+                    - img [ref=e3496]
+                    - generic [ref=e3499]: tzvisuccot@knesset.gov.il
+            - generic [ref=e3500]:
+              - button "עבור לעמוד הפרופיל של צביקה פוגל" [ref=e3501] [cursor=pointer]:
+                - img [ref=e3502]
+              - generic [ref=e3507]:
+                - generic [ref=e3509]: צפ
+                - generic [ref=e3510]:
+                  - heading "צביקה פוגל" [level=3] [ref=e3511]
+                  - paragraph [ref=e3512]: עוצמה יהודית בראשות איתמר בן גביר
+                - generic [ref=e3513]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e3515]:
+                  - img
+                  - generic [ref=e3516]: "0"
+                - generic [ref=e3517]:
+                  - link "02-6753676" [ref=e3518] [cursor=pointer]:
+                    - /url: tel:026753676
+                    - img [ref=e3519]
+                    - generic [ref=e3521]: 02-6753676
+                  - link "tzfoghel@knesset.gov.il" [ref=e3522] [cursor=pointer]:
+                    - /url: mailto:tzfoghel@knesset.gov.il
+                    - img [ref=e3523]
+                    - generic [ref=e3526]: tzfoghel@knesset.gov.il
+            - generic [ref=e3527]:
+              - button "עבור לעמוד הפרופיל של צגה צגנש מלקו" [ref=e3528] [cursor=pointer]:
+                - img [ref=e3529]
+              - generic [ref=e3534]:
+                - generic [ref=e3536]: צמ
+                - generic [ref=e3537]:
+                  - heading "צגה צגנש מלקו" [level=3] [ref=e3538]
+                  - paragraph [ref=e3539]: הליכוד
+                - generic [ref=e3540]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e3542]:
+                  - img
+                  - generic [ref=e3543]: "0"
+                - generic [ref=e3544]:
+                  - link "02-6753205" [ref=e3545] [cursor=pointer]:
+                    - /url: tel:026753205
+                    - img [ref=e3546]
+                    - generic [ref=e3548]: 02-6753205
+                  - link "tmelaku@knesset.gov.il" [ref=e3549] [cursor=pointer]:
+                    - /url: mailto:tmelaku@knesset.gov.il
+                    - img [ref=e3550]
+                    - generic [ref=e3553]: tmelaku@knesset.gov.il
+            - generic [ref=e3554]:
+              - button "עבור לעמוד הפרופיל של קארין אלהרר" [ref=e3555] [cursor=pointer]:
+                - img [ref=e3556]
+              - generic [ref=e3561]:
+                - generic [ref=e3563]: קא
+                - generic [ref=e3564]:
+                  - heading "קארין אלהרר" [level=3] [ref=e3565]
+                  - paragraph [ref=e3566]: יש עתיד
+                - generic [ref=e3567]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e3569]:
+                  - img
+                  - generic [ref=e3570]: "0"
+                - generic [ref=e3571]:
+                  - link "02-6408011" [ref=e3572] [cursor=pointer]:
+                    - /url: tel:026408011
+                    - img [ref=e3573]
+                    - generic [ref=e3575]: 02-6408011
+                  - link "kelharrar@knesset.gov.il" [ref=e3576] [cursor=pointer]:
+                    - /url: mailto:kelharrar@knesset.gov.il
+                    - img [ref=e3577]
+                    - generic [ref=e3580]: kelharrar@knesset.gov.il
+            - generic [ref=e3581]:
+              - button "עבור לעמוד הפרופיל של קטי קטרין שטרית" [ref=e3582] [cursor=pointer]:
+                - img [ref=e3583]
+              - generic [ref=e3588]:
+                - generic [ref=e3590]: קש
+                - generic [ref=e3591]:
+                  - heading "קטי קטרין שטרית" [level=3] [ref=e3592]
+                  - paragraph [ref=e3593]: הליכוד
+                - generic [ref=e3594]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e3596]:
+                  - img
+                  - generic [ref=e3597]: "0"
+                - generic [ref=e3598]:
+                  - link "02-6408517, 02-6408174" [ref=e3599] [cursor=pointer]:
+                    - /url: tel:026408517,026408174
+                    - img [ref=e3600]
+                    - generic [ref=e3602]: 02-6408517, 02-6408174
+                  - link "kshitrit@knesset.gov.il" [ref=e3603] [cursor=pointer]:
+                    - /url: mailto:kshitrit@knesset.gov.il
+                    - img [ref=e3604]
+                    - generic [ref=e3607]: kshitrit@knesset.gov.il
+            - generic [ref=e3608]:
+              - button "עבור לעמוד הפרופיל של רון כץ" [ref=e3609] [cursor=pointer]:
+                - img [ref=e3610]
+              - generic [ref=e3615]:
+                - generic [ref=e3617]: רכ
+                - generic [ref=e3618]:
+                  - heading "רון כץ" [level=3] [ref=e3619]
+                  - paragraph [ref=e3620]: יש עתיד
+                - generic [ref=e3621]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e3623]:
+                  - img
+                  - generic [ref=e3624]: "0"
+                - generic [ref=e3625]:
+                  - link "02-6408391" [ref=e3626] [cursor=pointer]:
+                    - /url: tel:026408391
+                    - img [ref=e3627]
+                    - generic [ref=e3629]: 02-6408391
+                  - link "rkatz@knesset.gov.il" [ref=e3630] [cursor=pointer]:
+                    - /url: mailto:rkatz@knesset.gov.il
+                    - img [ref=e3631]
+                    - generic [ref=e3634]: rkatz@knesset.gov.il
+            - generic [ref=e3635]:
+              - button "עבור לעמוד הפרופיל של רם בן ברק" [ref=e3636] [cursor=pointer]:
+                - img [ref=e3637]
+              - generic [ref=e3642]:
+                - generic [ref=e3644]: רב
+                - generic [ref=e3645]:
+                  - heading "רם בן ברק" [level=3] [ref=e3646]
+                  - paragraph [ref=e3647]: יש עתיד
+                - generic [ref=e3648]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e3650]:
+                  - img
+                  - generic [ref=e3651]: "0"
+                - generic [ref=e3652]:
+                  - link "02-6408035, 02-6408036" [ref=e3653] [cursor=pointer]:
+                    - /url: tel:026408035,026408036
+                    - img [ref=e3654]
+                    - generic [ref=e3656]: 02-6408035, 02-6408036
+                  - link "rbenbarak@knesset.gov.il" [ref=e3657] [cursor=pointer]:
+                    - /url: mailto:rbenbarak@knesset.gov.il
+                    - img [ref=e3658]
+                    - generic [ref=e3661]: rbenbarak@knesset.gov.il
+            - generic [ref=e3662]:
+              - button "עבור לעמוד הפרופיל של שלום דנינו" [ref=e3663] [cursor=pointer]:
+                - img [ref=e3664]
+              - generic [ref=e3669]:
+                - generic [ref=e3671]: שד
+                - generic [ref=e3672]:
+                  - heading "שלום דנינו" [level=3] [ref=e3673]
+                  - paragraph [ref=e3674]: הליכוד
+                - generic [ref=e3675]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e3677]:
+                  - img
+                  - generic [ref=e3678]: "0"
+                - generic [ref=e3679]:
+                  - link "02-6408802" [ref=e3680] [cursor=pointer]:
+                    - /url: tel:026408802
+                    - img [ref=e3681]
+                    - generic [ref=e3683]: 02-6408802
+                  - link "shdanino@knesset.gov.il" [ref=e3684] [cursor=pointer]:
+                    - /url: mailto:shdanino@knesset.gov.il
+                    - img [ref=e3685]
+                    - generic [ref=e3688]: shdanino@knesset.gov.il
+            - generic [ref=e3689]:
+              - button "עבור לעמוד הפרופיל של שלי טל מירון" [ref=e3690] [cursor=pointer]:
+                - img [ref=e3691]
+              - generic [ref=e3696]:
+                - generic [ref=e3698]: שמ
+                - generic [ref=e3699]:
+                  - heading "שלי טל מירון" [level=3] [ref=e3700]
+                  - paragraph [ref=e3701]: יש עתיד
+                - generic [ref=e3702]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e3704]:
+                  - img
+                  - generic [ref=e3705]: "0"
+                - generic [ref=e3706]:
+                  - link "02-6408191" [ref=e3707] [cursor=pointer]:
+                    - /url: tel:026408191
+                    - img [ref=e3708]
+                    - generic [ref=e3710]: 02-6408191
+                  - link "shellytm@knesset.gov.il" [ref=e3711] [cursor=pointer]:
+                    - /url: mailto:shellytm@knesset.gov.il
+                    - img [ref=e3712]
+                    - generic [ref=e3715]: shellytm@knesset.gov.il
+            - generic [ref=e3716]:
+              - button "עבור לעמוד הפרופיל של שלמה קרעי" [ref=e3717] [cursor=pointer]:
+                - img [ref=e3718]
+              - generic [ref=e3723]:
+                - generic [ref=e3725]: שק
+                - generic [ref=e3726]:
+                  - heading "שלמה קרעי" [level=3] [ref=e3727]
+                  - paragraph [ref=e3728]: הליכוד
+                - generic [ref=e3729]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e3731]:
+                  - img
+                  - generic [ref=e3732]: "0"
+                - generic [ref=e3733]:
+                  - link "02-6408834" [ref=e3734] [cursor=pointer]:
+                    - /url: tel:026408834
+                    - img [ref=e3735]
+                    - generic [ref=e3737]: 02-6408834
+                  - link "shlomok@knesset.gov.il" [ref=e3738] [cursor=pointer]:
+                    - /url: mailto:shlomok@knesset.gov.il
+                    - img [ref=e3739]
+                    - generic [ref=e3742]: shlomok@knesset.gov.il
+            - generic [ref=e3743]:
+              - button "עבור לעמוד הפרופיל של שמחה רוטמן" [ref=e3744] [cursor=pointer]:
+                - img [ref=e3745]
+              - generic [ref=e3750]:
+                - generic [ref=e3752]: שר
+                - generic [ref=e3753]:
+                  - heading "שמחה רוטמן" [level=3] [ref=e3754]
+                  - paragraph [ref=e3755]: הציונות הדתית בראשות בצלאל סמוטריץ'
+                - generic [ref=e3756]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e3758]:
+                  - img
+                  - generic [ref=e3759]: "0"
+                - generic [ref=e3760]:
+                  - link "02-6408124" [ref=e3761] [cursor=pointer]:
+                    - /url: tel:026408124
+                    - img [ref=e3762]
+                    - generic [ref=e3764]: 02-6408124
+                  - link "srothman@knesset.gov.il" [ref=e3765] [cursor=pointer]:
+                    - /url: mailto:srothman@knesset.gov.il
+                    - img [ref=e3766]
+                    - generic [ref=e3769]: srothman@knesset.gov.il
+            - generic [ref=e3770]:
+              - button "עבור לעמוד הפרופיל של שרון ניר" [ref=e3771] [cursor=pointer]:
+                - img [ref=e3772]
+              - generic [ref=e3777]:
+                - generic [ref=e3779]: שנ
+                - generic [ref=e3780]:
+                  - heading "שרון ניר" [level=3] [ref=e3781]
+                  - paragraph [ref=e3782]: ישראל ביתנו
+                - generic [ref=e3783]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e3785]:
+                  - img
+                  - generic [ref=e3786]: "0"
+                - generic [ref=e3787]:
+                  - link "02-6408093" [ref=e3788] [cursor=pointer]:
+                    - /url: tel:026408093
+                    - img [ref=e3789]
+                    - generic [ref=e3791]: 02-6408093
+                  - link "shnir@knesset.gov.il" [ref=e3792] [cursor=pointer]:
+                    - /url: mailto:shnir@knesset.gov.il
+                    - img [ref=e3793]
+                    - generic [ref=e3796]: shnir@knesset.gov.il
+            - generic [ref=e3797]:
+              - button "עבור לעמוד הפרופיל של שרן מרים השכל" [ref=e3798] [cursor=pointer]:
+                - img [ref=e3799]
+              - generic [ref=e3804]:
+                - generic [ref=e3806]: שה
+                - generic [ref=e3807]:
+                  - heading "שרן מרים השכל" [level=3] [ref=e3808]
+                  - paragraph [ref=e3809]: הימין הממלכתי
+                - generic [ref=e3810]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e3812]:
+                  - img
+                  - generic [ref=e3813]: "0"
+                - generic [ref=e3814]:
+                  - link "02-6408101, 02-6408102" [ref=e3815] [cursor=pointer]:
+                    - /url: tel:026408101,026408102
+                    - img [ref=e3816]
+                    - generic [ref=e3818]: 02-6408101, 02-6408102
+                  - link "shaskel@knesset.gov.il" [ref=e3819] [cursor=pointer]:
+                    - /url: mailto:shaskel@knesset.gov.il
+                    - img [ref=e3820]
+                    - generic [ref=e3823]: shaskel@knesset.gov.il
+            - generic [ref=e3824]:
+              - button "עבור לעמוד הפרופיל של ששון ששי גואטה" [ref=e3825] [cursor=pointer]:
+                - img [ref=e3826]
+              - generic [ref=e3831]:
+                - generic [ref=e3833]: שג
+                - generic [ref=e3834]:
+                  - heading "ששון ששי גואטה" [level=3] [ref=e3835]
+                  - paragraph [ref=e3836]: הליכוד
+                - generic [ref=e3837]: מתנדנד
+                - button "אין פוסטים זמינים" [ref=e3839]:
+                  - img
+                  - generic [ref=e3840]: "0"
+                - generic [ref=e3841]:
+                  - link "02-6408494" [ref=e3842] [cursor=pointer]:
+                    - /url: tel:026408494
+                    - img [ref=e3843]
+                    - generic [ref=e3845]: 02-6408494
+                  - link "hak_guetta@knesset.gov.il" [ref=e3846] [cursor=pointer]:
+                    - /url: mailto:hak_guetta@knesset.gov.il
+                    - img [ref=e3847]
+                    - generic [ref=e3850]: hak_guetta@knesset.gov.il
+  - button "Open Next.js Dev Tools" [ref=e3856] [cursor=pointer]:
+    - img [ref=e3857]
+```

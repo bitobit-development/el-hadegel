@@ -17,7 +17,7 @@ Complete integration examples for the EL HADEGEL Tweet Tracking API in various p
 ### Submit a Tweet
 
 ```bash
-curl -X POST https://www.elhadegel.co.il/api/tweets \
+curl -X POST https://el-hadegel.vercel.app/api/tweets \
   -H "Authorization: Bearer your-api-key-here" \
   -H "Content-Type: application/json" \
   -d '{
@@ -32,7 +32,7 @@ curl -X POST https://www.elhadegel.co.il/api/tweets \
 ### Submit a Tweet Without Source URL
 
 ```bash
-curl -X POST https://www.elhadegel.co.il/api/tweets \
+curl -X POST https://el-hadegel.vercel.app/api/tweets \
   -H "Authorization: Bearer your-api-key-here" \
   -H "Content-Type: application/json" \
   -d '{
@@ -46,21 +46,21 @@ curl -X POST https://www.elhadegel.co.il/api/tweets \
 ### Retrieve All Tweets
 
 ```bash
-curl -X GET "https://www.elhadegel.co.il/api/tweets?limit=50&offset=0" \
+curl -X GET "https://el-hadegel.vercel.app/api/tweets?limit=50&offset=0" \
   -H "Authorization: Bearer your-api-key-here"
 ```
 
 ### Retrieve Tweets for Specific MK
 
 ```bash
-curl -X GET "https://www.elhadegel.co.il/api/tweets?mkId=1&limit=20" \
+curl -X GET "https://el-hadegel.vercel.app/api/tweets?mkId=1&limit=20" \
   -H "Authorization: Bearer your-api-key-here"
 ```
 
 ### Check Rate Limits
 
 ```bash
-curl -X GET "https://www.elhadegel.co.il/api/tweets?limit=1" \
+curl -X GET "https://el-hadegel.vercel.app/api/tweets?limit=1" \
   -H "Authorization: Bearer your-api-key-here" \
   -i  # Include headers in output
 ```
@@ -98,7 +98,7 @@ class ElHadegelClient:
     def __init__(
         self,
         api_key: str,
-        base_url: str = "https://www.elhadegel.co.il"
+        base_url: str = "https://el-hadegel.vercel.app"
     ):
         """
         Initialize the API client
@@ -550,7 +550,7 @@ export class ElHadegelClient {
 
   constructor(
     apiKey: string,
-    baseURL: string = 'https://www.elhadegel.co.il'
+    baseURL: string = 'https://el-hadegel.vercel.app'
   ) {
     this.client = axios.create({
       baseURL,
@@ -956,7 +956,7 @@ type GetTweetsResponse struct {
 // NewClient creates a new EL HADEGEL API client
 func NewClient(apiKey string, baseURL string) *Client {
     if baseURL == "" {
-        baseURL = "https://www.elhadegel.co.il"
+        baseURL = "https://el-hadegel.vercel.app"
     }
 
     return &Client{
@@ -1311,7 +1311,7 @@ if (result.success) {
 
 - [Developer Guide](./DEVELOPER_GUIDE.md) - Complete API documentation
 - [OpenAPI Specification](./openapi.yaml) - Machine-readable API spec
-- [Project Website](https://www.elhadegel.co.il) - View MKs and positions
+- [Project Website](https://el-hadegel.vercel.app) - View MKs and positions
 
 ---
 

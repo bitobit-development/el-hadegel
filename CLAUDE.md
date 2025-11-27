@@ -22,6 +22,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ```bash
 # Development
 pnpm dev                    # Start dev server on http://localhost:3000
+pnpm build                 # Build for production (runs prisma generate automatically)
+pnpm start                 # Start production server
+pnpm lint                  # Run ESLint
 
 # Database
 npx prisma generate        # Generate Prisma client after schema changes
@@ -29,10 +32,16 @@ npx prisma migrate dev     # Create and apply database migrations
 npx prisma db seed         # Seed database with 120 Knesset members
 npx prisma studio          # Open Prisma Studio GUI
 
-# Build & Deploy
-pnpm build                 # Build for production
-pnpm start                 # Start production server
-pnpm lint                  # Run ESLint
+# Testing
+npx playwright test                          # Run all Playwright tests (requires dev server running)
+npx playwright test --ui                     # Run tests in UI mode
+npx tsx scripts/test-api-integration.ts      # Run API integration tests (13 tests)
+npx tsx scripts/test-performance.ts          # Run performance benchmarks (7 tests)
+
+# Utility Scripts
+npx tsx scripts/cleanup-test-data.ts         # Clean up test data from database
+npx tsx scripts/create-admin.ts              # Create new admin user
+npx tsx scripts/verify-data.ts               # Verify database data integrity
 ```
 
 ## Application Architecture
@@ -47,7 +56,10 @@ pnpm lint                  # Run ESLint
 
 **Seeding**: Initial data loaded from `docs/parlament-website/all-mks-list.md`
 
-**Adapter**: Uses `@prisma/adapter-better-sqlite3` for SQLite compatibility with Next.js
+**Database Adapters**: Project supports dual database modes:
+- **Local Development**: SQLite with `@prisma/adapter-better-sqlite3`
+- **Production**: Neon Postgres with `@prisma/adapter-neon` and `@neondatabase/serverless`
+- Adapter is configured in `lib/prisma.ts` based on DATABASE_URL format
 
 ### Data Access Layer (`app/actions/`, `lib/`)
 
@@ -72,12 +84,40 @@ pnpm lint                  # Run ESLint
 - Default admin: `admin@el-hadegel.com` / `admin123`
 
 **Protected Routes**:
-- Admin layout (`app/admin/layout.tsx`) checks session server-side
-- Redirects unauthenticated users to `/login`
+- All main application routes require authentication
+- Protected routes use Next.js route groups: `app/(protected)/`
+- Server-side session check in layout prevents unauthorized access
+- Unauthenticated users redirect to `/login`
 
-### Public Frontend (`app/page.tsx`, `components/`)
+**Protected Layout** (`app/(protected)/layout.tsx`):
+- Checks session using `auth()` from NextAuth.js
+- Redirects to `/login` if no valid session
+- Wraps both landing page and admin dashboard
+- Handles ONLY authentication logic (no UI rendering)
+- Child routes/pages are responsible for rendering their own headers
 
-**Homepage** - Server-rendered with:
+**Login Flow**:
+- Route: `/login` (public, no auth required)
+- After successful login → Redirects to `/` (landing page)
+- Session persists via JWT (httpOnly cookies)
+- Default credentials: `admin@elhadegel.co.il` / `Tsitsi2025!!`
+
+**Header Components**:
+- **PageHeader** (`components/page-header.tsx`): Landing page header
+  - Displays user info (name or email)
+  - Navigation button: "לוח בקרה" → `/admin`
+  - Logout button: "התנתק" → signOut
+  - Gradient background matching brand
+
+- **AdminHeader** (`components/admin/admin-header.tsx`): Admin dashboard header
+  - Same visual design as PageHeader
+  - Navigation button: "עמוד הבית" → `/`
+  - Logout button: "התנתק" → signOut
+  - Already existed, now part of bidirectional navigation
+
+### Protected Frontend (`app/(protected)/page.tsx`, `components/`)
+
+**Landing Page** - Server-rendered with authentication required:
 - `StatsDashboard` - Position distribution with color-coded progress bar
 - `MKList` (Client Component) - Grid of MK cards with client-side filtering
   - Search by name/faction
@@ -85,11 +125,13 @@ pnpm lint                  # Run ESLint
   - `FilterPanel` for controls
 - `MKCard` - Individual member display with avatar, faction, position badge
 
-### Admin Dashboard (`app/admin/`, `components/admin/`)
+### Admin Dashboard (`app/(protected)/admin/`, `components/admin/`)
 
-**Layout** (`app/admin/layout.tsx`):
-- Session verification (redirects to `/login` if not authenticated)
-- `AdminHeader` - User info, logout, home link
+**Layout** (`app/(protected)/admin/layout.tsx`):
+- Nested within protected layout (inherits auth check)
+- No redundant session verification (parent handles it)
+- Displays AdminHeader with user info, home link, logout
+- Simplified from previous version (auth moved to parent)
 
 **Dashboard** (`app/admin/page.tsx`):
 - Same `StatsDashboard` as public page
@@ -150,10 +192,18 @@ Custom components:
 
 Required in `.env`:
 ```bash
+# Local Development (SQLite)
 DATABASE_URL="file:./dev.db"
-AUTH_SECRET="your-secret-key"      # Change in production!
-AUTH_URL="http://localhost:3000"
+
+# Production (Neon Postgres)
+# DATABASE_URL="postgres://[user]:[password]@[host]/[database]?sslmode=require"
+
+# Authentication
+AUTH_SECRET="your-secret-key"      # Change in production! Generate with: openssl rand -base64 32
+AUTH_URL="http://localhost:3000"   # Update to production URL in deployment
 ```
+
+**Note**: The database adapter automatically switches based on DATABASE_URL format (file: for SQLite, postgres: for Neon)
 
 ## Important Implementation Notes
 
@@ -169,11 +219,51 @@ Both succeed or both fail - no partial updates.
 - Use `'use client'` directive for interactivity
 - Server Actions (`'use server'`) for mutations
 
-### Prisma Better-SQLite3 Adapter
-This project uses `@prisma/adapter-better-sqlite3` instead of default Prisma for Next.js compatibility. The adapter is configured in `lib/prisma.ts`.
+### Database Adapter Pattern
+The project uses database adapters for flexibility:
+- SQLite adapter (`@prisma/adapter-better-sqlite3`) for local development
+- Neon adapter (`@prisma/adapter-neon`) for production Postgres
+- Automatic switching based on DATABASE_URL in `lib/prisma.ts`
+- Migration scripts available in `scripts/migrate-to-neon.ts` and `scripts/import-to-neon.ts`
 
 ### NextAuth.js v5 Beta
 Using beta version for Next.js 16 App Router compatibility. Session checking is done server-side in layouts.
+
+### Route Groups for Authentication
+
+This project uses Next.js 13+ route groups to organize authenticated routes:
+
+**Directory Structure:**
+```
+app/
+├── (protected)/         # Route group (doesn't affect URL)
+│   ├── layout.tsx       # Auth check ONLY (no UI rendering)
+│   ├── page.tsx         # Landing page (/) - renders PageHeader
+│   └── admin/
+│       ├── layout.tsx   # Renders AdminHeader
+│       └── page.tsx     # Admin dashboard (/admin)
+├── login/
+│   └── page.tsx         # Public login page
+└── layout.tsx           # Root layout
+```
+
+**Benefits:**
+- Single source of auth logic (parent layout)
+- Clean URLs (route group doesn't appear in path)
+- Automatic protection for all child routes
+- Easy to add new protected routes
+
+**Critical Architecture Pattern:**
+- Parent protected layout handles ONLY authentication, NOT UI rendering
+- Each page/route is responsible for rendering its own header component
+- This prevents duplicate header issues when navigating between routes
+- Landing page (`app/(protected)/page.tsx`) renders `PageHeader`
+- Admin layout (`app/(protected)/admin/layout.tsx`) renders `AdminHeader`
+
+**URL Mapping:**
+- `/` → `app/(protected)/page.tsx`
+- `/admin` → `app/(protected)/admin/page.tsx`
+- `/login` → `app/login/page.tsx` (public)
 
 ## Data Flow Examples
 
@@ -462,24 +552,41 @@ See `app/actions/api-key-actions.ts` for Server Actions:
 
 ### Testing
 
+**Test Framework**: Playwright for E2E testing
+
+**Configuration** (`playwright.config.ts`):
+- Test directory: `./tests`
+- Base URL: `http://localhost:3000`
+- Single worker (sequential execution)
+- Screenshots on failure only
+- HTML reporter
+
 **Test Files**:
+- `tests/` - Playwright E2E tests (requires dev server running)
 - `scripts/test-api-integration.ts` - 13 API tests (100% pass)
 - `scripts/test-performance.ts` - 7 performance tests
 - `docs/testing/UI_TESTING_CHECKLIST.md` - 90-item manual checklist
 
 **Running Tests**:
 ```bash
-npx tsx scripts/test-api-integration.ts
-npx tsx scripts/test-performance.ts
+# Playwright E2E tests (ensure dev server is running first)
+pnpm dev                                     # Start dev server in separate terminal
+npx playwright test                          # Run all tests
+npx playwright test --ui                     # Run with UI mode
+npx playwright test tests/auth.spec.ts       # Run specific test file
+
+# Script-based tests
+npx tsx scripts/test-api-integration.ts      # API integration tests
+npx tsx scripts/test-performance.ts          # Performance benchmarks
 ```
 
 **Test Coverage**:
-- Authentication and authorization
-- Input validation
-- CRUD operations
-- Rate limiting
-- Hebrew content support
-- Performance benchmarks
+- Authentication and authorization (Playwright)
+- Input validation (API tests)
+- CRUD operations (API tests)
+- Rate limiting (API tests)
+- Hebrew content support (E2E tests)
+- Performance benchmarks (Script tests)
 
 ### Troubleshooting
 

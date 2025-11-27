@@ -5,7 +5,7 @@
 The EL HADEGEL Tweet Tracking API allows automated systems to submit social media posts and statements from Israeli Knesset members regarding the IDF recruitment law.
 
 **Base URL**:
-- Production: `https://www.elhadegel.co.il`
+- Production: `https://el-hadegel.vercel.app/`
 - Development: `http://localhost:3000`
 
 **API Version**: 1.0.0
