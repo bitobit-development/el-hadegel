@@ -10,7 +10,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 - **Framework**: Next.js 16.0.4 (App Router with React Server Components)
 - **React**: 19.2.0
-- **Database**: SQLite with Prisma ORM 7.0.1
+- **Database**: PostgreSQL (Neon) with Prisma ORM 7.0.1 (SQLite for local dev)
 - **Authentication**: NextAuth.js v5 (beta.30)
 - **Styling**: Tailwind CSS v4, shadcn/ui components
 - **Font**: Rubik (Google Fonts) with Hebrew subset
@@ -46,6 +46,10 @@ npx tsx scripts/verify-data.ts               # Verify database data integrity
 npx tsx scripts/reset-news-posts.ts          # Delete all news posts
 npx tsx scripts/verify-news-posts.ts         # Verify news posts in database
 npx tsx scripts/check-api-keys.ts            # List API keys in database
+
+# Coalition MKs Scripts
+npx tsx scripts/export-coalition-mks.ts      # Export coalition members to CSV
+npx tsx scripts/add-x-accounts-to-csv.ts     # Update CSV with X/Twitter accounts
 ```
 
 ## Application Architecture
@@ -656,6 +660,8 @@ npx tsx scripts/test-performance.ts          # Performance benchmarks
 
 **Endpoints** (`app/api/news-posts/route.ts`):
 - `POST /api/news-posts` - Submit new news post (authenticated)
+  - Supports URL-only submission (content auto-extracted from Open Graph)
+  - Optional content field - uses OG description if not provided
 - `GET /api/news-posts` - Retrieve news posts with pagination (authenticated)
 - `OPTIONS /api/news-posts` - CORS preflight handler
 
@@ -783,7 +789,15 @@ vercel env add NEWS_API_KEY production
 
 **Using the API**:
 ```bash
-# Submit news post
+# Submit news post with URL only (content auto-extracted)
+curl -X POST https://your-domain.com/api/news-posts \
+  -H "Authorization: Bearer YOUR-API-KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "sourceUrl": "https://x.com/username/status/123456789"
+  }'
+
+# Submit news post with explicit content
 curl -X POST https://your-domain.com/api/news-posts \
   -H "Authorization: Bearer YOUR-API-KEY" \
   -H "Content-Type: application/json" \
@@ -901,4 +915,139 @@ const limit = isEnvKey ? 2000 : 200; // Increase limits
 - Wait until reset time (check X-RateLimit-Reset header)
 - Environment keys: 1000/hour, Database keys: 100/hour
 - Consider upgrading to environment key for testing
+
+## Coalition MKs Tracking System
+
+**Overview**: A comprehensive tracking system for Israeli government coalition members and their social media presence. Maintains a CSV database of 64 coalition members across 6 parties with X/Twitter account information.
+
+### Architecture
+
+#### Data Structure
+
+**Coalition CSV** (`docs/mk-coalition/coalition-members.csv`):
+- 64 coalition members from 25th Knesset
+- Fields: MK_ID, Name_Hebrew, Faction, Position, X_Account, Phone, Email, Profile_URL
+- UTF-8 BOM encoding for proper Hebrew character support
+- 93.75% X/Twitter account coverage (60/64 members)
+
+**Coalition Parties** (6 parties):
+1. הליכוד (Likud) - 32 members (100% X coverage)
+2. התאחדות הספרדים שומרי תורה (Shas) - 11 members (81.8% coverage)
+3. יהדות התורה (United Torah Judaism) - 7 members (71.4% coverage)
+4. הציונות הדתית (Religious Zionism) - 7 members (100% coverage)
+5. עוצמה יהודית (Otzma Yehudit) - 6 members (100% coverage)
+6. נעם (Noam) - 1 member (100% coverage)
+
+#### Export Scripts
+
+**Coalition Export** (`scripts/export-coalition-mks.ts`):
+- Queries database for all members of coalition parties
+- Generates CSV with member details and positions
+- Includes faction breakdown statistics
+- Exports to `docs/mk-coalition/coalition-members.csv`
+
+**X Account Updater** (`scripts/add-x-accounts-to-csv.ts`):
+- Maintains mapping of MK IDs to X/Twitter handles
+- Updates CSV with social media accounts
+- Tracks coverage statistics per party
+- Extensible KNOWN_X_ACCOUNTS object for easy updates
+
+### Usage
+
+**Exporting Coalition Members**:
+```bash
+# Generate fresh CSV from database
+export DATABASE_URL="your-database-url"
+npx tsx scripts/export-coalition-mks.ts
+
+# Output: docs/mk-coalition/coalition-members.csv
+# Shows: Faction breakdown and total member count
+```
+
+**Updating X Accounts**:
+```bash
+# Update CSV with known X/Twitter accounts
+export DATABASE_URL="your-database-url"
+npx tsx scripts/add-x-accounts-to-csv.ts
+
+# Output: Updated CSV with X_Account column populated
+# Shows: Coverage statistics and list of members with accounts
+```
+
+### Data Quality
+
+**Current Coverage** (as of latest update):
+- Total members: 64
+- X accounts found: 60 (93.75%)
+- Missing accounts: 4 (2 Shas, 2 UTJ)
+- All major ministers and party leaders have X accounts
+
+**Verification**:
+- Accounts verified through blue checkmarks
+- Bio information confirming Knesset membership
+- Hebrew language posts
+- Official government positions mentioned
+
+### Integration with News System
+
+The coalition CSV provides foundation for:
+- Automated tweet collection via X API
+- Targeted news post submission for coalition members
+- Social media monitoring and analysis
+- Position tracking correlation with social media activity
+
+### Maintenance
+
+**Adding New X Accounts**:
+1. Update KNOWN_X_ACCOUNTS in `scripts/add-x-accounts-to-csv.ts`
+2. Add entry: `'MK_ID': '@handle', // Name (optional note)`
+3. Run script to regenerate CSV
+4. Verify output shows updated coverage statistics
+
+**Adding New Coalition Member**:
+1. Ensure member is in database with correct faction name
+2. Member automatically included if faction matches COALITION_PARTIES
+3. Run export script to regenerate CSV
+4. Add X account if available
+
+**Updating Coalition Parties**:
+1. Edit COALITION_PARTIES array in `scripts/export-coalition-mks.ts`
+2. Use exact faction names from database
+3. Run export script to regenerate CSV
+
+### Common Development Tasks
+
+**Finding Missing X Accounts**:
+Script output shows which members lack X accounts:
+```
+❓ 4 MKs need X account research
+```
+Use WebSearch to find accounts: `"[Hebrew Name] Twitter X account @"`
+
+**Verifying CSV Data**:
+```bash
+# Count total lines (should be 65: 1 header + 64 members)
+wc -l docs/mk-coalition/coalition-members.csv
+
+# Count X accounts (excludes empty fields)
+grep -c '@' docs/mk-coalition/coalition-members.csv
+
+# View specific faction
+grep "הליכוד" docs/mk-coalition/coalition-members.csv
+```
+
+**Excel/Sheets Import**:
+- CSV uses UTF-8 BOM for Excel compatibility
+- Hebrew characters display correctly when opening in Excel
+- Comma-separated with quoted fields for data containing commas
+
+### Future Enhancements
+
+**Potential Features**:
+- Automated X account discovery via X API
+- Real-time sync with database
+- Historical tracking of coalition membership changes
+- Integration with tweet collection system
+- Social media analytics per member
+- Automated position tracking via social media
 

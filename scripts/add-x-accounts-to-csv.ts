@@ -8,7 +8,7 @@ import { join } from 'path';
 // Known X/Twitter accounts for coalition members
 // This can be expanded as more accounts are discovered
 const KNOWN_X_ACCOUNTS: Record<string, string> = {
-  // Likud (32 members) - 11 accounts found
+  // Likud (32 members) - 32 accounts found (100% coverage!)
   '90': '@netanyahu',  // Benjamin Netanyahu
   '1095': '@BismuthBoaz', // Boaz Bismuth
   '69': '@Israel_katz', // Israel Katz (Minister of Defense)
@@ -20,23 +20,70 @@ const KNOWN_X_ACCOUNTS: Record<string, string> = {
   '723': '@GilaGamliel', // Gila Gamliel (Minister of Science & Technology)
   '1098': '@TallyGotliv', // Tally Gotliv
   '914': '@davidbitan', // David Bitan
+  '771': '@avidichter', // Avi Dichter
+  '1126': '@AvichayBuaron', // Avihai Boaron
+  '976': '@OfirKatzMK', // Ofir Katz
+  '1123': '@OsherShkalim', // Osher Shkalim
+  '1100': '@elidallal32', // Eli Dallal
+  '1111': '@revivoeliyahu', // Eliyahu Revivo
+  '987': '@ArielKallner', // Ariel Kallner
+  '1059': '@GalitDistel', // Galit Distel Atbaryan
+  '1116': '@dillouz', // Dan Illouz
+  '992': '@ettyatia', // Hava Etty Atia
+  '1105': '@hanochmilwidsky', // Hanoch Milwidsky
+  '1109': '@MosheSaada1', // Moshe Saada
+  '1124': '@moshiko_passal', // Moshe Passal
+  '1045': '@nissimv', // Nissim Vaturi
+  '1044': '@HaleviAmit', // Amit Halevi
+  '1128': '@afefameenabed', // Afef Abed
+  '1122': '@Tsega__Melaku', // Tsega Melaku
+  '1018': '@shitrit_keti', // Keti Shitrit
+  '1101': '@ShalomDanino', // Shalom Danino
+  '1011': '@shlomo_karhi', // Shlomo Karhi
+  '1125': '@sassong24', // Sasson Guetta
 
-  // Shas (11 members) - 1 account found
+  // Shas (11 members) - 9 accounts found
   '41': '@ariyederi', // Aryeh Deri (leader of Shas)
+  '1039': '@BussoUriel', // Uriel Busso
+  '1055': '@haiimaemek', // Haim Biton
+  '906': '@BentzurYoav', // Yoav Ben Tzur
+  '1043': '@yossitaieb', // Yosef Taieb
+  '751': '@yakmargi', // Yaakov Margi
+  '957': '@malkielim82', // Michael Malkieli
+  '1029': '@Abutbulm', // Moshe Abutbul
+  '1008': '@rbl_msh38078', // Moshe Arbel
 
-  // Religious Zionism (7 members) - 2 accounts found
+  // Religious Zionism (7 members) - 7 accounts found (100% coverage!)
   '1067': '@rothmar', // Simcha Rothman
+  '1090': '@MKOhadTal', // Ohad Tal
+  '977': '@ofir_sofer', // Ofir Sofer
+  '884': '@oritstrock', // Orit Strock
+  '1060': '@michalwoldiger', // Michal Woldiger
+  '1107': '@Moshe_solomon_', // Moshe Solomon
+  '1121': '@tzvisuccot', // Tzvi Succot
 
-  // Otzma Yehudit (6 members) - 1 account found
+  // Otzma Yehudit (6 members) - 6 accounts found (100% coverage!)
   '1056': '@itamarbengvir', // Itamar Ben-Gvir
+  '1114': '@Yitzik_kroizer', // Yitzak Kroyzer
+  '1102': '@ItshakWaserlauf', // Itzhak Wasserlauf
+  '1108': '@limor_sonhrmelh', // Limor Son Har Melech
+  '1096': '@Eliyahu_a', // Amichai Eliyahu
+  '1110': '@tzvikafoghel', // Tzvika Foghel
 
-  // UTJ (7 members) - 1 account found
+  // UTJ (7 members) - 5 accounts found
   '1099': '@DOVRUTGoldknopf', // Yitzhak Goldknopf (leader of UTJ)
+  '861': '@Pikeaccount', // Yaakov Asher
+  '996': '@TESLERYANKY', // Yaakov Tesler
+  '754': '@YisraelEichler', // Yisrael Eichler
+  '35': '@mk_moshe_gafni', // Moshe Gafni
+
+  // Noam (1 member) - 1 account found (100% coverage!)
+  '1063': '@AVI_MAOZ', // Avi Maoz
 
   // Note: Bezalel Smotrich (@bezalelsm) is not currently in the Knesset as a member
   // but leads Religious Zionism party
 
-  // Add more as they are discovered...
+  // Total: 60 out of 64 coalition members have X accounts (93.75% coverage)
 };
 
 // Coalition parties
