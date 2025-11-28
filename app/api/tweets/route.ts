@@ -32,14 +32,14 @@ export async function POST(request: NextRequest) {
         {
           success: false,
           error: 'Rate limit exceeded. Try again later.',
-          resetAt: new Date(rateLimitResult.resetAt).toISOString()
+          resetAt: new Date(rateLimitResult.resetTime).toISOString()
         },
         {
           status: 429,
           headers: {
-            'X-RateLimit-Limit': '100',
-            'X-RateLimit-Remaining': '0',
-            'X-RateLimit-Reset': rateLimitResult.resetAt.toString(),
+            'X-RateLimit-Limit': rateLimitResult.limit.toString(),
+            'X-RateLimit-Remaining': rateLimitResult.remaining.toString(),
+            'X-RateLimit-Reset': rateLimitResult.resetTime.toString(),
           }
         }
       );
@@ -106,7 +106,7 @@ export async function POST(request: NextRequest) {
       headers: {
         'X-RateLimit-Limit': '100',
         'X-RateLimit-Remaining': rateLimitResult.remaining.toString(),
-        'X-RateLimit-Reset': rateLimitResult.resetAt.toString(),
+        'X-RateLimit-Reset': rateLimitResult.resetTime.toString(),
       },
     });
 
@@ -191,7 +191,7 @@ export async function GET(request: NextRequest) {
         headers: {
           'X-RateLimit-Limit': '100',
           'X-RateLimit-Remaining': rateLimitResult.remaining.toString(),
-          'X-RateLimit-Reset': rateLimitResult.resetAt.toString(),
+          'X-RateLimit-Reset': rateLimitResult.resetTime.toString(),
         },
       }
     );

@@ -40,8 +40,8 @@ export async function POST(request: NextRequest) {
     if (!authResult.authenticated || authResult.apiKeyId === undefined) {
       return NextResponse.json(
         { error: 'Unauthorized - Invalid API key' },
-        { status: 401 },
         {
+          status: 401,
           headers: {
             'Access-Control-Allow-Origin': '*', // CORS
             'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
@@ -210,7 +210,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         {
           error: 'Validation failed',
-          details: error.errors
+          details: error.issues
         },
         { status: 400 }
       );
