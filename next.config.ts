@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
         hostname: 'fs.knesset.gov.il',
         pathname: '/globaldocs/MK/**',
       },
+      {
+        // Allow all HTTPS images for Open Graph previews (news posts)
+        protocol: 'https',
+        hostname: '**',
+      },
     ],
   },
 };

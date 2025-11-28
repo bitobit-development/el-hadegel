@@ -96,3 +96,22 @@ model MKStatusInfo {
   @@index([mkId])
   @@index([createdAt])
 }
+
+// News posts with rich link previews
+model NewsPost {
+  id          Int      @id @default(autoincrement())
+  content     String   // User-provided content (Hebrew)
+  sourceUrl   String   // Original URL
+  sourceName  String?  // Optional: "ידיעות אחרונות", "X (Twitter)"
+  postedAt    DateTime // Publication time
+  createdAt   DateTime @default(now())
+
+  // Open Graph metadata (auto-scraped from sourceUrl)
+  previewTitle       String?  // og:title
+  previewImage       String?  // og:image URL
+  previewDescription String?  // og:description
+  previewSiteName    String?  // og:site_name
+
+  @@index([postedAt], name: "NewsPost_postedAt_idx")
+  @@map("news_posts")
+}

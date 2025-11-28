@@ -3,6 +3,7 @@ import { StatsDashboard } from '@/components/stats-dashboard';
 import { ChartsPanel } from '@/components/ChartsPanel';
 import { MKList } from '@/components/mk-list';
 import { PageHeader } from '@/components/page-header';
+import NewsPostsSection from '@/components/news-posts/NewsPostsSection';
 import { auth } from '@/auth';
 import Image from 'next/image';
 
@@ -23,6 +24,14 @@ export default async function HomePage() {
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Main content sections with consistent spacing */}
         <div className="space-y-6 md:space-y-8 lg:space-y-12">
+          {/* News Posts Section - appears FIRST */}
+          <section className="relative overflow-hidden rounded-2xl bg-white/80 backdrop-blur-sm shadow-lg">
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-indigo-50/50 pointer-events-none" />
+            <div className="relative z-10">
+              <NewsPostsSection />
+            </div>
+          </section>
+
           {/* Statistics Dashboard with gradient overlay */}
           <section className="relative overflow-hidden rounded-2xl bg-white/80 backdrop-blur-sm shadow-lg">
             <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-green-50/50 pointer-events-none" />
