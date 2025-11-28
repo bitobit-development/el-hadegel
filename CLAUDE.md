@@ -36,12 +36,16 @@ npx prisma studio          # Open Prisma Studio GUI
 npx playwright test                          # Run all Playwright tests (requires dev server running)
 npx playwright test --ui                     # Run tests in UI mode
 npx tsx scripts/test-api-integration.ts      # Run API integration tests (13 tests)
+npx tsx scripts/test-news-security.ts        # Run news API security tests (18 tests)
 npx tsx scripts/test-performance.ts          # Run performance benchmarks (7 tests)
 
 # Utility Scripts
 npx tsx scripts/cleanup-test-data.ts         # Clean up test data from database
 npx tsx scripts/create-admin.ts              # Create new admin user
 npx tsx scripts/verify-data.ts               # Verify database data integrity
+npx tsx scripts/reset-news-posts.ts          # Delete all news posts
+npx tsx scripts/verify-news-posts.ts         # Verify news posts in database
+npx tsx scripts/check-api-keys.ts            # List API keys in database
 ```
 
 ## Application Architecture
@@ -52,6 +56,10 @@ npx tsx scripts/verify-data.ts               # Verify database data integrity
 - `MK` - Knesset members (120 total)
 - `PositionHistory` - Audit trail of position changes
 - `Admin` - Admin users with bcrypt-hashed passwords
+- `Tweet` - Social media posts from MKs
+- `ApiKey` - API keys for external integrations
+- `NewsPost` - News feed posts with Open Graph previews
+- `MKStatusInfo` - Status logging for admin users
 - `Position` enum - SUPPORT | NEUTRAL | AGAINST
 
 **Seeding**: Initial data loaded from `docs/parlament-website/all-mks-list.md`
@@ -201,6 +209,13 @@ DATABASE_URL="file:./dev.db"
 # Authentication
 AUTH_SECRET="your-secret-key"      # Change in production! Generate with: openssl rand -base64 32
 AUTH_URL="http://localhost:3000"   # Update to production URL in deployment
+
+# Feature Flags
+NEXT_PUBLIC_ENABLE_STATUS_INFO="true"  # Enable MK status logging
+
+# News Posts API
+NEWS_API_KEY="your-api-key-here"   # API key for news posts endpoint
+                                   # Generate with: node -e "console.log(require('crypto').randomBytes(32).toString('base64url'))"
 ```
 
 **Note**: The database adapter automatically switches based on DATABASE_URL format (file: for SQLite, postgres: for Neon)
@@ -621,4 +636,269 @@ npx tsx scripts/test-performance.ts          # Performance benchmarks
 - Admin dashboard for tweet management
 - Duplicate detection
 - Tweet editing/moderation
+
+## News Posts Feed System
+
+**Overview**: A news feed system displayed on the landing page (above statistics) that aggregates news posts with rich Open Graph previews. External systems can submit posts via REST API.
+
+### Architecture
+
+#### Database Layer
+
+**NewsPost Model** (`prisma/schema.prisma`):
+- Stores news posts with Open Graph metadata
+- Fields: content, sourceUrl, sourceName, postedAt
+- Preview metadata: previewTitle, previewImage, previewDescription, previewSiteName
+- Indexed by postedAt for chronological ordering
+- Maximum 10 posts displayed at once (newest first)
+
+#### REST API Layer
+
+**Endpoints** (`app/api/news-posts/route.ts`):
+- `POST /api/news-posts` - Submit new news post (authenticated)
+- `GET /api/news-posts` - Retrieve news posts with pagination (authenticated)
+- `OPTIONS /api/news-posts` - CORS preflight handler
+
+**Authentication** (`lib/api-auth.ts`):
+- Dual authentication system:
+  - **Environment Variable**: Checks `NEWS_API_KEY` from `.env` (development/simple setup)
+  - **Database**: Checks bcrypt-hashed API keys in ApiKey table (production/multiple keys)
+- Environment-based auth uses apiKeyId = 0 (special case)
+- Database auth updates lastUsedAt timestamp on use
+
+**Rate Limiting** (`lib/rate-limit.ts`):
+- Environment keys: 1000 requests per hour
+- Database keys: 100 requests per hour
+- In-memory tracking with automatic cleanup
+- Returns X-RateLimit-* headers (Limit, Remaining, Reset)
+
+**Security (13 Layers)**:
+1. API key authentication (dual mode)
+2. Rate limiting (per-key tracking)
+3. XSS prevention (content sanitization)
+4. SSRF protection (blocks private IPs, localhost, cloud metadata)
+5. Spam detection (keyword patterns, excessive URLs)
+6. Duplicate detection (24-hour window per URL)
+7. Request size limits (100KB maximum)
+8. Image URL validation
+9. CORS headers
+10. Zod schema validation
+11. Audit logging
+12. Input sanitization
+13. Error handling
+
+**Open Graph Scraping** (`lib/og-scraper.ts`):
+- Automatic metadata extraction from sourceUrl
+- Uses `open-graph-scraper` library
+- Extracts: title, image, description, site name
+- Graceful fallback if scraping fails
+- SSRF protection against internal URLs
+
+#### Server Actions Layer
+
+**News Actions** (`app/actions/news-actions.ts`):
+- `getLatestNewsPosts(limit)` - Fetch recent posts (default 10)
+- `getNewsPostCount()` - Total count of posts
+- `deleteNewsPost(id)` - Admin-only deletion
+
+#### Utility Layer
+
+**News Utils** (`lib/news-utils.ts`):
+- `getRelativeNewsTime(date)` - Hebrew relative time ("לפני X דקות")
+- `truncateNewsContent(content, length)` - Content truncation
+- `getUrlDomain(url)` - Extract domain from URL
+- `getPlatformIcon(url)` - Platform icon mapping (X, Facebook, etc.)
+
+**Security Utils** (`lib/security-utils.ts`):
+- `sanitizeContent(content)` - XSS prevention (removes scripts, dangerous tags)
+- `sanitizeUrl(url)` - URL validation and normalization
+- `isSpam(content)` - Spam detection (keywords, patterns)
+- `hasExcessiveUrls(content)` - URL count validation
+- `isValidImageUrl(url)` - Image URL validation
+- `getClientIp(headers)` - Extract client IP for logging
+- `isValidRequestSize(body)` - Request size validation
+
+#### UI Components
+
+**NewsPostsSection** (`components/news-posts/NewsPostsSection.tsx`):
+- Main container for news feed
+- Auto-refresh every 60 seconds
+- Manual refresh button
+- Loading states
+- Empty state handling
+
+**NewsPostsList** (`components/news-posts/NewsPostsList.tsx`):
+- List wrapper with grid layout
+- Responsive design (1-3 columns)
+- Loading skeleton
+- Empty state message
+
+**NewsPostCard** (`components/news-posts/NewsPostCard.tsx`):
+- Compact horizontal layout
+- Passport-sized image (80x80px) on left
+- Content on right (title, description, user content)
+- Platform badge and source link
+- Hebrew RTL support
+
+### Data Flow
+
+**External Post Submission**:
+1. External system sends POST to `/api/news-posts` with API key
+2. Dual authentication checks env variable first, then database
+3. Rate limiter checks request count (1000/hour for env, 100/hour for DB)
+4. Request size validation (100KB max)
+5. Zod validates request body (content, sourceUrl required)
+6. Content sanitization (XSS prevention)
+7. Spam detection (keywords, excessive URLs)
+8. URL sanitization and SSRF protection
+9. Duplicate detection (same URL within 24 hours)
+10. Open Graph metadata scraping from sourceUrl
+11. Image URL validation
+12. Create NewsPost record with sanitized data
+13. Audit logging (IP, timestamp, API key ID)
+14. Trigger revalidation of landing page
+15. Return success with post data
+
+**User Viewing Posts**:
+1. Landing page auto-refreshes every 60 seconds
+2. Server Action calls `getLatestNewsPosts(10)`
+3. Fetch 10 most recent posts ordered by postedAt DESC
+4. NewsPostsList renders grid of NewsPostCard components
+5. Each card shows image, title, content, source link
+6. Manual refresh button available
+
+### API Integration
+
+**Generating API Key**:
+```bash
+# Generate secure random key
+node -e "console.log(require('crypto').randomBytes(32).toString('base64url'))"
+
+# Add to .env for local development
+NEWS_API_KEY="generated-key-here"
+
+# Or add to Vercel for production
+vercel env add NEWS_API_KEY production
+```
+
+**Using the API**:
+```bash
+# Submit news post
+curl -X POST https://your-domain.com/api/news-posts \
+  -H "Authorization: Bearer YOUR-API-KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "content": "News content in Hebrew",
+    "sourceUrl": "https://example.com/article",
+    "sourceName": "Source Name (optional)",
+    "postedAt": "2025-01-15T10:00:00Z (optional)"
+  }'
+
+# Get news posts
+curl -X GET "https://your-domain.com/api/news-posts?limit=10&offset=0" \
+  -H "Authorization: Bearer YOUR-API-KEY"
+```
+
+**Documentation**:
+- `docs/security/API_SECURITY.md` - Comprehensive security guide
+- API examples with cURL, JavaScript, Python
+
+### Testing
+
+**Security Tests** (`scripts/test-news-security.ts`):
+- 18 comprehensive security tests
+- Tests XSS prevention, SSRF protection, spam detection
+- Duplicate detection, rate limiting
+- All tests passing (100%)
+
+**Utility Scripts**:
+```bash
+npx tsx scripts/reset-news-posts.ts     # Delete all news posts
+npx tsx scripts/verify-news-posts.ts    # Verify database state
+npx tsx scripts/test-news-security.ts   # Run security test suite
+```
+
+### Common Development Tasks
+
+**Adding New Security Layer**:
+1. Add security function to `lib/security-utils.ts`
+2. Integrate into API route at appropriate step
+3. Add test case to `scripts/test-news-security.ts`
+4. Update security documentation
+
+**Modifying Rate Limits**:
+Edit `lib/rate-limit.ts`:
+```typescript
+const isEnvKey = apiKeyId === 0;
+const limit = isEnvKey ? 2000 : 200; // Increase limits
+```
+
+**Changing Display Limit**:
+1. Update constant in `types/news.ts`: `MAX_POSTS_DISPLAY`
+2. Update `getLatestNewsPosts()` default limit
+3. Update UI component prop defaults
+
+### Performance Considerations
+
+**Database Optimization**:
+- Indexed postedAt field for fast chronological sorting
+- Limit queries to 10 posts (pagination)
+- Use Server Components for initial data fetch
+
+**Caching Strategy**:
+- Server Components cache posts until revalidation
+- Manual refresh triggers client-side refetch
+- Auto-refresh every 60 seconds
+- GET endpoint includes Cache-Control header (60s)
+
+**Image Optimization**:
+- Next.js Image component for preview images
+- Lazy loading for images below fold
+- External images allowed via next.config.ts
+- Image URL validation before storing
+
+### Security Considerations
+
+**API Key Management**:
+- Environment variable: Simple, single key, higher limits
+- Database: Multiple keys, tracking, revocation capability
+- Keys generated with crypto.randomBytes(32)
+- Database keys hashed with bcrypt (cost 10)
+- Plain key shown only once during creation
+
+**Content Security**:
+- HTML tag stripping (XSS prevention)
+- Script tag removal
+- Event handler removal
+- URL validation and sanitization
+- Spam keyword detection
+
+**Network Security**:
+- SSRF protection blocks private IPs (10.x, 172.16-31.x, 192.168.x)
+- Blocks localhost, 127.0.0.1, cloud metadata endpoints
+- Validates URL protocol (https only for external)
+- Blocks URLs with embedded credentials
+
+### Troubleshooting
+
+**Issue**: API returns 401 Unauthorized
+- Check NEWS_API_KEY in .env matches request header
+- Verify environment variable is loaded (restart dev server)
+- For production, verify environment variable in Vercel
+
+**Issue**: Duplicate post error
+- Same URL submitted within last 24 hours
+- Wait 24 hours or use different URL
+- Delete old post manually if needed
+
+**Issue**: Open Graph preview not showing
+- Twitter/X may block scraping (use VPN or proxy)
+- Check sourceUrl is publicly accessible
+- Verify image URL is valid and accessible
+- Check logs for scraping errors
+
+**Issue**: Rate limit exceeded
+- Wait until reset time (check X-RateLimit-Reset header)
+- Environment keys: 1000/hour, Database keys: 100/hour
+- Consider upgrading to environment key for testing
 

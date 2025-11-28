@@ -20,7 +20,8 @@ import {
 const createNewsPostSchema = z.object({
   content: z.string()
     .min(NEWS_POST_CONSTRAINTS.MIN_CONTENT_LENGTH, 'Content too short')
-    .max(NEWS_POST_CONSTRAINTS.MAX_CONTENT_LENGTH, 'Content too long'),
+    .max(NEWS_POST_CONSTRAINTS.MAX_CONTENT_LENGTH, 'Content too long')
+    .optional(), // Content is optional - will use OG description if not provided
   sourceUrl: z.string()
     .url('Invalid URL format')
     .max(NEWS_POST_CONSTRAINTS.MAX_URL_LENGTH, 'URL too long'),
@@ -84,28 +85,7 @@ export async function POST(request: NextRequest) {
     const body = JSON.parse(bodyText);
     const validatedData = createNewsPostSchema.parse(body);
 
-    // 5. Sanitize content to prevent XSS
-    const sanitizedContent = sanitizeContent(validatedData.content);
-
-    // Check for empty content after sanitization
-    if (sanitizedContent.length < NEWS_POST_CONSTRAINTS.MIN_CONTENT_LENGTH) {
-      return NextResponse.json(
-        { error: 'Content too short after sanitization' },
-        { status: 400 }
-      );
-    }
-
-    // 6. Spam detection
-    if (isSpam(sanitizedContent) || hasExcessiveUrls(sanitizedContent)) {
-      // Log suspicious activity
-      console.warn('Spam detected from API key:', authResult.apiKeyId, 'IP:', getClientIp(request.headers));
-      return NextResponse.json(
-        { error: 'Content flagged as spam' },
-        { status: 400 }
-      );
-    }
-
-    // 7. Sanitize and validate URL for SSRF protection
+    // 7. Sanitize and validate URL for SSRF protection (moved earlier to scrape OG data if needed)
     let sanitizedUrl: string;
     try {
       sanitizedUrl = sanitizeUrl(validatedData.sourceUrl);
@@ -123,7 +103,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 8. Duplicate detection (same URL within last 24 hours)
+    // 10. Duplicate detection (same URL within last 24 hours)
     const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);
     const existingPost = await prisma.newsPost.findFirst({
       where: {
@@ -144,7 +124,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 9. Scrape Open Graph metadata (with timeout and error handling)
+    // 8. Scrape Open Graph metadata (with timeout and error handling)
     let ogData = null;
     try {
       ogData = await fetchOpenGraphData(sanitizedUrl);
@@ -159,7 +139,42 @@ export async function POST(request: NextRequest) {
       // Continue - post will be created without preview data
     }
 
-    // 10. Create news post with sanitized and validated data
+    // 5. Use OG description as content if content not provided
+    let finalContent: string;
+    if (validatedData.content) {
+      finalContent = validatedData.content;
+    } else if (ogData?.description) {
+      finalContent = ogData.description;
+      console.log('Using OG description as content');
+    } else {
+      return NextResponse.json(
+        { error: 'No content provided and could not extract from URL' },
+        { status: 400 }
+      );
+    }
+
+    // 6. Sanitize content to prevent XSS
+    const sanitizedContent = sanitizeContent(finalContent);
+
+    // Check for empty content after sanitization
+    if (sanitizedContent.length < NEWS_POST_CONSTRAINTS.MIN_CONTENT_LENGTH) {
+      return NextResponse.json(
+        { error: 'Content too short after sanitization' },
+        { status: 400 }
+      );
+    }
+
+    // 9. Spam detection
+    if (isSpam(sanitizedContent) || hasExcessiveUrls(sanitizedContent)) {
+      // Log suspicious activity
+      console.warn('Spam detected from API key:', authResult.apiKeyId, 'IP:', getClientIp(request.headers));
+      return NextResponse.json(
+        { error: 'Content flagged as spam' },
+        { status: 400 }
+      );
+    }
+
+    // 11. Create news post with sanitized and validated data
     const newsPost = await prisma.newsPost.create({
       data: {
         content: sanitizedContent,
@@ -177,7 +192,7 @@ export async function POST(request: NextRequest) {
       },
     });
 
-    // 11. Log successful creation (for audit trail)
+    // 12. Log successful creation (for audit trail)
     console.log('News post created:', {
       id: newsPost.id,
       apiKeyId: authResult.apiKeyId,
@@ -185,10 +200,10 @@ export async function POST(request: NextRequest) {
       timestamp: new Date().toISOString(),
     });
 
-    // 12. Trigger revalidation of landing page
+    // 13. Trigger revalidation of landing page
     revalidatePath('/');
 
-    // 13. Return success
+    // 14. Return success
     return NextResponse.json(
       {
         success: true,
