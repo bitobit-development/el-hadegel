@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { MKData, PositionStatus, POSITION_LABELS } from '@/types/mk';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -11,9 +11,10 @@ import { updateMKPosition, bulkUpdatePositions } from '@/app/actions/mk-actions'
 import { PositionUpdateDialog } from './position-update-dialog';
 import { PositionHistoryDialog } from './position-history-dialog';
 import { CreateStatusInfoDialog } from './CreateStatusInfoDialog';
-import { Search, History, Info } from 'lucide-react';
-import { Input } from '@/components/ui/input';
+import { AdminFilterPanel } from './admin-filter-panel';
+import { History, Info } from 'lucide-react';
 import { isStatusInfoEnabled } from '@/lib/feature-flags';
+import { isCoalitionMember, CoalitionStatus } from '@/lib/coalition-utils';
 
 interface AdminMKTableProps {
   mks: MKData[];
@@ -24,15 +25,64 @@ export function AdminMKTable({ mks, adminEmail }: AdminMKTableProps) {
   const router = useRouter();
   const [selectedMKs, setSelectedMKs] = useState<Set<number>>(new Set());
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCoalitionStatus, setSelectedCoalitionStatus] = useState<CoalitionStatus[]>([]);
+  const [selectedPositions, setSelectedPositions] = useState<PositionStatus[]>([]);
+  const [selectedFactions, setSelectedFactions] = useState<string[]>([]);
   const [editingMK, setEditingMK] = useState<MKData | null>(null);
   const [historyMK, setHistoryMK] = useState<MKData | null>(null);
   const [statusInfoMK, setStatusInfoMK] = useState<MKData | null>(null);
   const [bulkUpdateDialogOpen, setBulkUpdateDialogOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const filteredMKs = mks.filter((mk) =>
-    mk.nameHe.includes(searchQuery) || mk.faction.includes(searchQuery)
-  );
+  // Get unique factions
+  const allFactions = useMemo(() => {
+    const factions = Array.from(new Set(mks.map((mk) => mk.faction)));
+    return factions.sort((a, b) => a.localeCompare(b, 'he'));
+  }, [mks]);
+
+  // Apply all filters
+  const filteredMKs = useMemo(() => {
+    return mks.filter((mk) => {
+      // Search filter (name or faction)
+      if (searchQuery && !mk.nameHe.includes(searchQuery) && !mk.faction.includes(searchQuery)) {
+        return false;
+      }
+
+      // Coalition status filter
+      if (selectedCoalitionStatus.length > 0) {
+        const isCoalition = isCoalitionMember(mk.faction);
+        const statusMatch = selectedCoalitionStatus.some((status) =>
+          status === 'coalition' ? isCoalition : !isCoalition
+        );
+        if (!statusMatch) return false;
+      }
+
+      // Position filter
+      if (selectedPositions.length > 0 && !selectedPositions.includes(mk.currentPosition)) {
+        return false;
+      }
+
+      // Faction filter
+      if (selectedFactions.length > 0 && !selectedFactions.includes(mk.faction)) {
+        return false;
+      }
+
+      return true;
+    });
+  }, [mks, searchQuery, selectedCoalitionStatus, selectedPositions, selectedFactions]);
+
+  const clearFilters = () => {
+    setSearchQuery('');
+    setSelectedCoalitionStatus([]);
+    setSelectedPositions([]);
+    setSelectedFactions([]);
+  };
+
+  const activeFilterCount =
+    (searchQuery ? 1 : 0) +
+    selectedCoalitionStatus.length +
+    selectedPositions.length +
+    selectedFactions.length;
 
   const toggleMK = (mkId: number) => {
     const newSelected = new Set(selectedMKs);
@@ -90,29 +140,32 @@ export function AdminMKTable({ mks, adminEmail }: AdminMKTableProps) {
 
   return (
     <>
+      <AdminFilterPanel
+        factions={allFactions}
+        selectedCoalitionStatus={selectedCoalitionStatus}
+        selectedPositions={selectedPositions}
+        selectedFactions={selectedFactions}
+        searchQuery={searchQuery}
+        onCoalitionStatusChange={setSelectedCoalitionStatus}
+        onPositionChange={setSelectedPositions}
+        onFactionChange={setSelectedFactions}
+        onSearchChange={setSearchQuery}
+        onClearFilters={clearFilters}
+      />
+
       <Card>
         <CardHeader>
           <CardTitle className="text-right">ניהול עמדות חברי כנסת</CardTitle>
           <CardDescription className="text-right">
             סמן חברי כנסת לעדכון מוני או לחץ על שורה לעדכון פרטני
           </CardDescription>
-          <div className="flex gap-4 items-center mt-4">
-            <div className="relative flex-1">
-              <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input
-                type="text"
-                placeholder="חיפוש לפי שם או סיעה..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pr-10 text-right"
-              />
-            </div>
-            {selectedMKs.size > 0 && (
+          {selectedMKs.size > 0 && (
+            <div className="mt-4">
               <Button onClick={() => setBulkUpdateDialogOpen(true)}>
                 עדכון {selectedMKs.size} נבחרים
               </Button>
-            )}
-          </div>
+            </div>
+          )}
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
@@ -192,6 +245,7 @@ export function AdminMKTable({ mks, adminEmail }: AdminMKTableProps) {
           </div>
           <div className="mt-4 text-sm text-muted-foreground text-right">
             מציג {filteredMKs.length} מתוך {mks.length} חברי כנסת
+            {activeFilterCount > 0 && ` (${activeFilterCount} סננים פעילים)`}
           </div>
         </CardContent>
       </Card>

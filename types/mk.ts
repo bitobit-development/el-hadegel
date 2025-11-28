@@ -58,6 +58,14 @@ export interface FilterOptions {
   searchQuery: string;
 }
 
+// Admin filter options (includes coalition status)
+export interface AdminFilterOptions {
+  coalitionStatus: ('coalition' | 'opposition')[];
+  positions: PositionStatus[];
+  factions: string[];
+  searchQuery: string;
+}
+
 // Chart filter options
 export type ChartFilterOptions = {
   factions: string[];      // Selected faction names
