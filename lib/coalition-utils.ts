@@ -2,7 +2,7 @@
  * Coalition and Opposition utilities for the 25th Knesset
  */
 
-// Coalition parties in the 25th Knesset (64 members total across 6 parties)
+// Coalition parties in the 25th Knesset (updated to include הימין הממלכתי)
 export const COALITION_PARTIES = [
   'הליכוד',
   'התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ"ל',
@@ -10,6 +10,7 @@ export const COALITION_PARTIES = [
   'הציונות הדתית בראשות בצלאל סמוטריץ\'',
   'עוצמה יהודית בראשות איתמר בן גביר',
   'נעם - בראשות אבי מעוז',
+  'הימין הממלכתי',
 ];
 
 /**
