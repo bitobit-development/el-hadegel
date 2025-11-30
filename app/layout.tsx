@@ -1,27 +1,15 @@
 import type { Metadata } from "next";
 import { Rubik } from "next/font/google";
 import "./globals.css";
+import { OrganizationSchema, WebSiteSchema } from "@/components/JsonLd";
+import { generateHomeMetadata } from "@/lib/seo-utils";
 
 const rubik = Rubik({
   variable: "--font-rubik",
   subsets: ["hebrew", "latin"],
 });
 
-export const metadata: Metadata = {
-  title: "אל הדגל - מעקב עמדות חוק הפטור מגיוס",
-  description: "מעקב אחר עמדות חברי הכנסת בנושא חוק הפטור מגיוס",
-  openGraph: {
-    title: "אל הדגל - מעקב עמדות חוק הפטור מגיוס",
-    description: "מעקב אחר עמדות חברי הכנסת בנושא חוק הפטור מגיוס",
-    locale: "he_IL",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "אל הדגל - מעקב עמדות חוק הפטור מגיוס",
-    description: "מעקב אחר עמדות חברי הכנסת בנושא חוק הפטור מגיוס",
-  },
-};
+export const metadata: Metadata = generateHomeMetadata();
 
 export default function RootLayout({
   children,
@@ -30,6 +18,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="he" dir="rtl">
+      <head>
+        <OrganizationSchema />
+        <WebSiteSchema />
+      </head>
       <body
         className={`${rubik.variable} antialiased`}
       >

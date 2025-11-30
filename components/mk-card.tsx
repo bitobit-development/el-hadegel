@@ -12,6 +12,7 @@ import { HistoricalCommentIcon } from '@/components/HistoricalCommentIcon';
 import { HistoricalCommentsDialog } from '@/components/historical-comments/HistoricalCommentsDialog';
 import { MKDataWithCounts } from '@/types/mk';
 import { ExternalLink, Phone, Mail, MessageSquare, Info } from 'lucide-react';
+import { generateMKImageAlt } from '@/lib/seo-utils';
 
 interface MKCardProps {
   mk: MKDataWithCounts;
@@ -53,7 +54,11 @@ export function MKCard({ mk }: MKCardProps) {
             {mk.photoUrl && !imageError && (
               <AvatarImage
                 src={mk.photoUrl}
-                alt={mk.nameHe}
+                alt={generateMKImageAlt({
+                  name: mk.nameHe,
+                  faction: mk.faction,
+                  position: mk.currentPosition
+                } as any)}
                 onError={() => setImageError(true)}
                 className="object-cover group-hover:scale-110 transition-transform duration-300"
               />
