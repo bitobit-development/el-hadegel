@@ -100,9 +100,9 @@ export const POSITION_COLORS: Record<PositionStatus, { bg: string; text: string;
     border: 'border-red-800',
   },
   NEUTRAL: {
-    bg: 'bg-orange-500',
+    bg: 'bg-orange-600',
     text: 'text-white',
-    border: 'border-orange-600',
+    border: 'border-orange-700',
   },
   AGAINST: {
     bg: 'bg-green-500',
