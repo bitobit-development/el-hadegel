@@ -6,6 +6,8 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Badge } from '@/components/ui/badge';
+import { Filter, ChevronDown } from 'lucide-react';
 import { MKData } from '@/types/mk';
 import { cn } from '@/lib/utils';
 
@@ -29,6 +31,7 @@ export const ChartFilters = ({
   onClearFilters,
 }: ChartFiltersProps) => {
   const [mkSearchQuery, setMKSearchQuery] = useState('');
+  const [isExpanded, setIsExpanded] = useState(false);
 
   // Filter MKs based on search query
   const filteredMKs = useMemo(() => {
@@ -78,27 +81,85 @@ export const ChartFilters = ({
   };
 
   return (
-    <Card className="w-full">
-      <CardHeader>
-        <div className="flex items-center justify-between">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={onClearFilters}
-            disabled={!hasActiveFilters}
-            aria-label="נקה את כל הסינונים"
-          >
-            נקה סינון
-          </Button>
-          <div className="flex items-center gap-2">
-            <p className="text-sm text-muted-foreground">
-              {filteredCount} מתוך 120 ח״כים
-            </p>
-            <CardTitle className="text-right">סינון נתונים</CardTitle>
-          </div>
+    <div className="w-full">
+      {/* Toggle Button with Glow */}
+      <button
+        onClick={() => setIsExpanded((prev) => !prev)}
+        aria-expanded={isExpanded}
+        aria-controls="chart-filters"
+        aria-label="פתח או סגור סינון תרשימים"
+        className={cn(
+          // Base styles
+          'w-full flex items-center justify-between gap-3 px-6 py-4',
+          'bg-white border border-gray-200 rounded-lg',
+          'text-right chart-filter-btn',
+
+          // Hover
+          'hover:bg-gray-50 hover:border-gray-300',
+          'transition-colors duration-200',
+
+          // Focus
+          'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2',
+
+          // Active state
+          hasActiveFilters && 'border-blue-500 bg-blue-50 chart-filter-btn-active'
+        )}
+      >
+        {/* Left side: Icons and text */}
+        <div className="flex items-center gap-2">
+          <ChevronDown
+            className={cn(
+              'h-5 w-5 text-gray-600 transition-transform duration-300',
+              isExpanded && 'rotate-180'
+            )}
+            aria-hidden="true"
+          />
+          <Filter className="h-5 w-5 text-gray-600" aria-hidden="true" />
+          <span className="font-medium text-gray-900">סינון נתונים</span>
         </div>
-      </CardHeader>
-      <CardContent>
+
+        {/* Right side: Count and Badge */}
+        <div className="flex items-center gap-3">
+          <span className="text-sm text-muted-foreground">
+            {filteredCount} מתוך 120 ח״כים
+          </span>
+          {hasActiveFilters && (
+            <>
+              <Badge variant="default" className="bg-blue-600">
+                {selectedFactions.length + selectedMKIds.length} פילטרים
+              </Badge>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onClearFilters();
+                }}
+                aria-label="נקה את כל הסינונים"
+                className="h-7"
+              >
+                נקה סינון
+              </Button>
+            </>
+          )}
+        </div>
+      </button>
+
+      {/* Collapsible Filter Panel */}
+      <div
+        id="chart-filters"
+        className={cn(
+          // Collapsible animation
+          'overflow-hidden transition-all duration-300 ease-in-out',
+          isExpanded ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0',
+
+          // Layout
+          'mt-4'
+        )}
+        aria-hidden={!isExpanded}
+      >
+        <Card className="w-full">
+          <CardContent className="pt-6">
         {/* Horizontal Filter Layout for Full Width */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Faction Filter Section */}
@@ -168,7 +229,68 @@ export const ChartFilters = ({
             </div>
           </div>
         </div>
-      </CardContent>
-    </Card>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Scoped glow animation styles */}
+      <style jsx>{`
+        /* Base glow for filter button */
+        .chart-filter-btn {
+          animation: filter-ambient-glow 4s ease-in-out infinite;
+          transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes filter-ambient-glow {
+          0%, 100% {
+            box-shadow:
+              0 4px 12px -2px rgba(0, 0, 0, 0.1),
+              0 0 15px rgba(37, 99, 235, 0.15);
+          }
+          50% {
+            box-shadow:
+              0 6px 16px -2px rgba(0, 0, 0, 0.15),
+              0 0 25px rgba(37, 99, 235, 0.3);
+          }
+        }
+
+        /* Enhanced glow when filters are active */
+        .chart-filter-btn-active {
+          animation: filter-active-glow 3s ease-in-out infinite;
+        }
+
+        @keyframes filter-active-glow {
+          0%, 100% {
+            box-shadow:
+              0 6px 16px -2px rgba(0, 0, 0, 0.15),
+              0 0 20px rgba(37, 99, 235, 0.4);
+          }
+          50% {
+            box-shadow:
+              0 8px 20px -2px rgba(0, 0, 0, 0.2),
+              0 0 35px rgba(37, 99, 235, 0.6);
+          }
+        }
+
+        /* Hover enhancement */
+        .chart-filter-btn:hover {
+          box-shadow:
+            0 8px 20px -3px rgba(0, 0, 0, 0.2),
+            0 0 30px rgba(37, 99, 235, 0.5) !important;
+          transform: translateY(-2px);
+        }
+
+        /* Accessibility: Respect reduced motion preference */
+        @media (prefers-reduced-motion: reduce) {
+          .chart-filter-btn,
+          .chart-filter-btn-active {
+            animation: none !important;
+          }
+          .chart-filter-btn:hover {
+            transform: none !important;
+          }
+        }
+      `}</style>
+    </div>
   );
 };
