@@ -8,7 +8,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import { PositionStatus, POSITION_LABELS } from '@/types/mk';
 import { COALITION_LABELS, type CoalitionStatus } from '@/lib/coalition';
-import { Search, X, Filter, ChevronDown } from 'lucide-react';
+import { Search, Filter, ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface FilterPanelProps {
@@ -98,63 +98,48 @@ export function FilterPanel({
   return (
     <div className="mb-6">
       {/* Toggle Button */}
-      <div className="flex items-center gap-2">
-        <button
-          onClick={() => setIsExpanded((prev) => !prev)}
-          aria-expanded={isExpanded}
-          aria-controls="filter-panel"
-          aria-label="פתח או סגור אפשרויות סינון של חברי הכנסת"
-          className={cn(
-            // Base styles
-            'flex-1 flex items-center justify-between gap-3 px-6 py-4',
-            'bg-white border border-gray-200 rounded-lg',
-            'text-right',
+      <button
+        onClick={() => setIsExpanded((prev) => !prev)}
+        aria-expanded={isExpanded}
+        aria-controls="filter-panel"
+        aria-label="פתח או סגור אפשרויות סינון של חברי הכנסת"
+        className={cn(
+          // Base styles
+          'w-full flex items-center justify-between gap-3 px-6 py-4',
+          'bg-white border border-gray-200 rounded-lg',
+          'text-right',
 
-            // Hover
-            'hover:bg-gray-50 hover:border-gray-300',
-            'transition-colors duration-200',
+          // Hover
+          'hover:bg-gray-50 hover:border-gray-300',
+          'transition-colors duration-200',
 
-            // Focus
-            'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2',
+          // Focus
+          'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2',
 
-            // Active state
-            activeFilterCount > 0 && 'border-blue-500 bg-blue-50'
-          )}
-        >
-          {/* Left side: Icons and text */}
-          <div className="flex items-center gap-2">
-            <ChevronDown
-              className={cn(
-                'h-5 w-5 text-gray-600 transition-transform duration-300',
-                isExpanded && 'rotate-180'
-              )}
-              aria-hidden="true"
-            />
-            <Filter className="h-5 w-5 text-gray-600" aria-hidden="true" />
-            <span className="font-medium text-gray-900">סינון מתקדם של חברי הכנסת</span>
-          </div>
-
-          {/* Right side: Badge */}
-          {activeFilterCount > 0 && (
-            <Badge variant="default" className="bg-blue-600">
-              {activeFilterCount} פילטרים
-            </Badge>
-          )}
-        </button>
-
-        {/* Clear Filters Button (shown when filters active) */}
-        {activeFilterCount > 0 && (
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={onClearFilters}
-            aria-label="נקה את כל הפילטרים"
-            className="shrink-0 text-red-600 hover:bg-red-50 hover:border-red-300"
-          >
-            <X className="h-5 w-5" />
-          </Button>
+          // Active state
+          activeFilterCount > 0 && 'border-blue-500 bg-blue-50'
         )}
-      </div>
+      >
+        {/* Left side: Icons and text */}
+        <div className="flex items-center gap-2">
+          <ChevronDown
+            className={cn(
+              'h-5 w-5 text-gray-600 transition-transform duration-300',
+              isExpanded && 'rotate-180'
+            )}
+            aria-hidden="true"
+          />
+          <Filter className="h-5 w-5 text-gray-600" aria-hidden="true" />
+          <span className="font-medium text-gray-900">סינון מתקדם של חברי הכנסת</span>
+        </div>
+
+        {/* Right side: Badge */}
+        {activeFilterCount > 0 && (
+          <Badge variant="default" className="bg-blue-600">
+            {activeFilterCount} פילטרים
+          </Badge>
+        )}
+      </button>
 
       {/* Collapsible Filter Panel */}
       <div
