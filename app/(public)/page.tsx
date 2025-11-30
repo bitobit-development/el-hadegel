@@ -1,3 +1,17 @@
+/*
+ * AUTH PRESERVATION NOTES (2025-11-30)
+ * =====================================
+ * Landing page moved from (protected) to (public) route group to allow public access
+ *
+ * TO REVERT TO FULLY PROTECTED MODE:
+ * 1. Move this file back to app/(protected)/page.tsx
+ * 2. Delete app/(public)/ directory
+ * 3. Restore PageHeader to receive user prop instead of fetching session (see PageHeader component)
+ * 4. Uncomment session requirement in line 13 (change from optional to required)
+ *
+ * Original protected layout preserved at: app/(protected)/layout.tsx
+ */
+
 import { getMKs, getPositionStats, getFactions } from '../actions/mk-actions';
 import { StatsDashboard } from '@/components/stats-dashboard';
 import { ChartsPanel } from '@/components/ChartsPanel';
@@ -8,7 +22,7 @@ import { auth } from '@/auth';
 import Image from 'next/image';
 
 export default async function HomePage() {
-  // Get session for header
+  // Get session for header (optional - page is public)
   const session = await auth();
 
   // Fetch all data in parallel (including tweet counts and status info counts for MKs)
@@ -20,7 +34,7 @@ export default async function HomePage() {
 
   return (
     <div className="min-h-screen bg-background" dir="rtl">
-      <PageHeader user={session!.user} />
+      <PageHeader session={session} />
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Main content sections with consistent spacing */}
         <div className="space-y-6 md:space-y-8 lg:space-y-12">

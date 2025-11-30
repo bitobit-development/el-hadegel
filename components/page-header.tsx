@@ -1,19 +1,37 @@
+/*
+ * AUTH PRESERVATION NOTES (2025-11-30)
+ * =====================================
+ * PageHeader updated to support both public and authenticated modes
+ *
+ * TO REVERT TO FULLY PROTECTED MODE:
+ * 1. Restore original interface with required user prop (line 9-13)
+ * 2. Remove Session import and session prop (line 5, 15)
+ * 3. Remove conditional rendering logic (lines 47-87)
+ * 4. Restore original always-authenticated UI (lines 49-76 in original file)
+ *
+ * ORIGINAL INTERFACE:
+ * interface PageHeaderProps {
+ *   user: {
+ *     name?: string | null;
+ *     email?: string | null;
+ *   };
+ * }
+ */
+
 'use client';
 
 import { signOut } from 'next-auth/react';
+import { Session } from 'next-auth';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { LayoutDashboard, LogOut } from 'lucide-react';
+import { LayoutDashboard, LogOut, LogIn } from 'lucide-react';
 
 interface PageHeaderProps {
-  user: {
-    name?: string | null;
-    email?: string | null;
-  };
+  session: Session | null;
 }
 
-export function PageHeader({ user }: PageHeaderProps) {
+export function PageHeader({ session }: PageHeaderProps) {
   const handleLogout = async () => {
     await signOut({ redirect: true, callbackUrl: '/login' });
   };
@@ -45,34 +63,53 @@ export function PageHeader({ user }: PageHeaderProps) {
 
           {/* User Info and Actions Section */}
           <div className="flex flex-col gap-3 md:flex-row md:items-center md:gap-4 md:flex-shrink-0">
-            {/* User Info - Hidden on small mobile, shown on medium+ */}
-            <div className="hidden md:block text-right">
-              <p className="text-sm font-medium text-white">{user.name}</p>
-              <p className="text-xs text-white/70">{user.email}</p>
-            </div>
+            {session?.user ? (
+              // Authenticated state - show user info and logout
+              <>
+                {/* User Info - Hidden on small mobile, shown on medium+ */}
+                <div className="hidden md:block text-right">
+                  <p className="text-sm font-medium text-white">{session.user.name}</p>
+                  <p className="text-xs text-white/70">{session.user.email}</p>
+                </div>
 
-            {/* Buttons - Horizontal on mobile, maintain horizontal on desktop */}
-            <div className="flex items-center gap-2 md:gap-3">
-              <Link href="/admin" className="flex-1 md:flex-none">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="w-full md:w-auto h-10 px-3 sm:px-4 bg-white/10 hover:bg-white/20 text-white border-white/30 hover:border-white/50 text-xs sm:text-sm"
-                >
-                  <LayoutDashboard className="h-4 w-4 ml-1.5 sm:ml-2 flex-shrink-0" />
-                  <span className="truncate">לוח בקרה</span>
-                </Button>
-              </Link>
-              <Button
-                onClick={handleLogout}
-                variant="outline"
-                size="sm"
-                className="flex-1 md:flex-none h-10 px-3 sm:px-4 bg-white/10 hover:bg-white/20 text-white border-white/30 hover:border-white/50 text-xs sm:text-sm"
-              >
-                <LogOut className="h-4 w-4 ml-1.5 sm:ml-2 flex-shrink-0" />
-                <span className="truncate">התנתק</span>
-              </Button>
-            </div>
+                {/* Buttons - Horizontal on mobile, maintain horizontal on desktop */}
+                <div className="flex items-center gap-2 md:gap-3">
+                  <Link href="/admin" className="flex-1 md:flex-none">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="w-full md:w-auto h-10 px-3 sm:px-4 bg-white/10 hover:bg-white/20 text-white border-white/30 hover:border-white/50 text-xs sm:text-sm"
+                    >
+                      <LayoutDashboard className="h-4 w-4 ml-1.5 sm:ml-2 flex-shrink-0" />
+                      <span className="truncate">לוח בקרה</span>
+                    </Button>
+                  </Link>
+                  <Button
+                    onClick={handleLogout}
+                    variant="outline"
+                    size="sm"
+                    className="flex-1 md:flex-none h-10 px-3 sm:px-4 bg-white/10 hover:bg-white/20 text-white border-white/30 hover:border-white/50 text-xs sm:text-sm"
+                  >
+                    <LogOut className="h-4 w-4 ml-1.5 sm:ml-2 flex-shrink-0" />
+                    <span className="truncate">התנתק</span>
+                  </Button>
+                </div>
+              </>
+            ) : (
+              // Public state - show login button
+              <div className="flex items-center gap-2 md:gap-3">
+                <Link href="/login" className="flex-1 md:flex-none">
+                  <Button
+                    variant="default"
+                    size="sm"
+                    className="w-full md:w-auto h-10 px-4 sm:px-6 bg-white text-[#001f3f] hover:bg-white/90 text-xs sm:text-sm font-medium"
+                  >
+                    <LogIn className="h-4 w-4 ml-1.5 sm:ml-2 flex-shrink-0" />
+                    <span className="truncate">התחבר</span>
+                  </Button>
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </div>
