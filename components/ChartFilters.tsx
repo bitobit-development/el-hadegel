@@ -87,7 +87,7 @@ export const ChartFilters = ({
         onClick={() => setIsExpanded((prev) => !prev)}
         aria-expanded={isExpanded}
         aria-controls="chart-filters"
-        aria-label="פתח או סגור סינון תרשימים"
+        aria-label="פתח או סגור סינון נתונים סטטיסטיים"
         className={cn(
           // Base styles
           'w-full flex items-center justify-between gap-3 px-6 py-4',
@@ -115,7 +115,7 @@ export const ChartFilters = ({
             aria-hidden="true"
           />
           <Filter className="h-5 w-5 text-gray-600" aria-hidden="true" />
-          <span className="font-medium text-gray-900">סינון נתונים</span>
+          <span className="font-medium text-gray-900">סינון נתונים סטטיסטיים</span>
         </div>
 
         {/* Right side: Count and Badge */}
