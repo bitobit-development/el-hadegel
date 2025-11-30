@@ -66,12 +66,12 @@ export function StatsDashboard({ stats, activeFiltersCount = 0 }: StatsDashboard
         aria-atomic="true"
       />
 
-      <section className="space-y-6">
-        {/* Header - Outside panel for breathing room */}
-        <div className="flex items-center justify-between gap-3">
+      <section className="space-y-4">
+        {/* Header Panel - Matches filter panel design */}
+        <div className="flex items-center justify-between gap-3 px-6 py-4 bg-white border border-gray-200 rounded-lg">
           <div className="flex items-center gap-2">
-            <BarChart className="h-6 w-6 text-gray-600" aria-hidden="true" />
-            <h2 className="text-2xl font-bold text-gray-900">סטטיסטיקה</h2>
+            <BarChart className="h-5 w-5 text-gray-600" aria-hidden="true" />
+            <h2 className="text-lg font-semibold text-gray-900">סטטיסטיקה</h2>
           </div>
 
           {activeFiltersCount > 0 && (
@@ -84,13 +84,13 @@ export function StatsDashboard({ stats, activeFiltersCount = 0 }: StatsDashboard
 
         {/* Stats Panel - Always Visible */}
         <div
-          className="p-6 md:p-8 bg-gray-50 border border-gray-200 rounded-lg"
+          className="p-6 bg-gray-50 border border-gray-200 rounded-lg"
           role="region"
           aria-label="סטטיסטיקת עמדות חברי הכנסת"
         >
-          <div className="space-y-8">
+          <div className="space-y-6">
             {/* Stats Grid - Responsive */}
-            <div className="grid grid-cols-3 gap-4 md:gap-6">
+            <div className="grid grid-cols-3 gap-3 md:gap-4">
               {statItems.map((item) => {
                 const colors = POSITION_COLORS[item.position];
                 const label = POSITION_LABELS[item.position];
@@ -104,8 +104,8 @@ export function StatsDashboard({ stats, activeFiltersCount = 0 }: StatsDashboard
                       'border-2'
                     )}
                   >
-                    <CardContent className="p-4 md:p-8">
-                      <div className="flex flex-col items-center gap-2 md:gap-3">
+                    <CardContent className="p-3 md:p-6">
+                      <div className="flex flex-col items-center gap-1 md:gap-2">
                         <div className={cn('text-2xl md:text-4xl font-bold', colors.text)}>
                           {item.count}
                         </div>
@@ -130,7 +130,7 @@ export function StatsDashboard({ stats, activeFiltersCount = 0 }: StatsDashboard
             </div>
 
             {/* Progress Bar */}
-            <div className="space-y-2 pt-6 border-t">
+            <div className="space-y-2 pt-4 border-t">
               <div className="flex items-center justify-between text-sm text-muted-foreground">
                 <span>התפלגות עמדות</span>
                 <span className="font-medium">
@@ -141,7 +141,7 @@ export function StatsDashboard({ stats, activeFiltersCount = 0 }: StatsDashboard
               </div>
 
               <div
-                className="h-8 w-full rounded-full overflow-hidden bg-muted"
+                className="h-6 w-full rounded-full overflow-hidden bg-muted"
                 role="progressbar"
                 aria-label="התפלגות עמדות"
                 aria-valuenow={stats.total}
