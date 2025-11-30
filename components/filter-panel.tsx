@@ -103,7 +103,7 @@ export function FilterPanel({
           onClick={() => setIsExpanded((prev) => !prev)}
           aria-expanded={isExpanded}
           aria-controls="filter-panel"
-          aria-label="פתח או סגור אפשרויות סינון"
+          aria-label="פתח או סגור אפשרויות סינון של חברי הכנסת"
           className={cn(
             // Base styles
             'flex-1 flex items-center justify-between gap-3 px-6 py-4',
@@ -131,7 +131,7 @@ export function FilterPanel({
               aria-hidden="true"
             />
             <Filter className="h-5 w-5 text-gray-600" aria-hidden="true" />
-            <span className="font-medium text-gray-900">סינון מתקדם</span>
+            <span className="font-medium text-gray-900">סינון מתקדם של חברי הכנסת</span>
           </div>
 
           {/* Right side: Badge */}
