@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useRef, useMemo } from 'react';
-import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { PositionStats, POSITION_LABELS, POSITION_COLORS } from '@/types/mk';
 import { cn } from '@/lib/utils';
@@ -103,25 +102,20 @@ export function StatsDashboard({ stats, activeFiltersCount = 0 }: StatsDashboard
               <div
                 key={item.position}
                 className={cn(
-                  'stat-card',
+                  'stat-card rounded-xl border-2 p-4 md:p-6',
                   `stat-card-${item.position.toLowerCase()}`,
-                  isLeader && 'stat-card-leader'
+                  isLeader && 'stat-card-leader',
+                  colors.bg,
+                  colors.border
                 )}
                 style={{
                   '--glow-color': item.glowColor,
                 } as React.CSSProperties}
+                role="region"
+                aria-label={`${label}: ${item.count} חברי כנסת, ${item.percentage} אחוז`}
               >
-                <Card
-                  className={cn(
-                    'h-full border-2 transition-all duration-200',
-                    colors.bg,
-                    colors.border
-                  )}
-                  role="region"
-                  aria-label={`${label}: ${item.count} חברי כנסת, ${item.percentage} אחוז`}
-                >
-                  <CardContent className="p-4 md:p-6">
-                    <div className="flex flex-col items-center gap-2 md:gap-3">
+                <div className="h-full">
+                  <div className="flex flex-col items-center gap-2 md:gap-3">
                       {/* Count - Large and prominent */}
                       <div
                         className={cn(
@@ -168,8 +162,7 @@ export function StatsDashboard({ stats, activeFiltersCount = 0 }: StatsDashboard
                         חברי כנסת
                       </div>
                     </div>
-                  </CardContent>
-                </Card>
+                  </div>
               </div>
             );
           })}
