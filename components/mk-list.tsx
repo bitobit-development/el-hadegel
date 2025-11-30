@@ -14,7 +14,7 @@ interface MKListProps {
 export function MKList({ mks, factions }: MKListProps) {
   const [selectedFactions, setSelectedFactions] = useState<string[]>([]);
   const [selectedPositions, setSelectedPositions] = useState<PositionStatus[]>([]);
-  const [selectedCoalitionStatus, setSelectedCoalitionStatus] = useState<CoalitionStatus[]>([]);
+  const [selectedCoalitionStatus, setSelectedCoalitionStatus] = useState<CoalitionStatus[]>(['coalition']);
   const [searchQuery, setSearchQuery] = useState('');
 
   // Filter MKs based on selected filters
@@ -60,7 +60,7 @@ export function MKList({ mks, factions }: MKListProps) {
   const handleClearFilters = () => {
     setSelectedFactions([]);
     setSelectedPositions([]);
-    setSelectedCoalitionStatus([]);
+    setSelectedCoalitionStatus(['coalition']);
     setSearchQuery('');
   };
 
