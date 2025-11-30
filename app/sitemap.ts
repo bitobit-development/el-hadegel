@@ -71,7 +71,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   try {
     const mks = await getMKs()
     const mkRoutes: MetadataRoute.Sitemap = mks.map((mk) => ({
-      url: `${SITE_URL}/mk/${mk.id}/${slugify(mk.name)}`,
+      url: `${SITE_URL}/mk/${mk.id}/${slugify(mk.nameHe)}`,
       lastModified: mk.updatedAt ? new Date(mk.updatedAt) : new Date(),
       changeFrequency: 'weekly' as const,
       priority: 0.7,

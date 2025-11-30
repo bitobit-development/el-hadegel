@@ -71,15 +71,15 @@ export function generateHomeMetadata(): Metadata {
  * Generate MK page metadata
  */
 export function generateMKMetadata(mk: MKData): Metadata {
-  const positionText = getPositionText(mk.position)
-  const title = `${mk.name} - עמדה בחוק הגיוס | ${SITE_NAME}`
-  const description = `עמדת ${mk.name} (${mk.faction}) בחוק גיוס חרדים: ${positionText}. היסטוריית תצהירים, הצבעות ופעילות ברשתות חברתיות.`
+  const positionText = getPositionText(mk.currentPosition)
+  const title = `${mk.nameHe} - עמדה בחוק הגיוס | ${SITE_NAME}`
+  const description = `עמדת ${mk.nameHe} (${mk.faction}) בחוק גיוס חרדים: ${positionText}. היסטוריית תצהירים, הצבעות ופעילות ברשתות חברתיות.`
 
   return {
     title,
     description,
     keywords: [
-      mk.name,
+      mk.nameHe,
       mk.faction,
       'חוק הגיוס',
       'עמדה',
@@ -87,7 +87,7 @@ export function generateMKMetadata(mk: MKData): Metadata {
       'חבר כנסת',
     ],
     openGraph: {
-      title: `${mk.name} - עמדה בחוק הגיוס`,
+      title: `${mk.nameHe} - עמדה בחוק הגיוס`,
       description,
       type: 'profile',
       url: `${SITE_URL}/mk/${mk.id}`,
@@ -95,18 +95,18 @@ export function generateMKMetadata(mk: MKData): Metadata {
       locale: 'he_IL',
       images: [
         {
-          url: mk.imageUrl || `${SITE_URL}/images/mk/${mk.id}.jpg`,
+          url: mk.photoUrl || `${SITE_URL}/images/mk/${mk.id}.jpg`,
           width: 400,
           height: 400,
-          alt: `${mk.name}, חבר כנסת מטעם ${mk.faction}`,
+          alt: `${mk.nameHe}, חבר כנסת מטעם ${mk.faction}`,
         },
       ],
     },
     twitter: {
       card: 'summary',
-      title: `${mk.name} - עמדה בחוק הגיוס`,
+      title: `${mk.nameHe} - עמדה בחוק הגיוס`,
       description,
-      images: [mk.imageUrl || `${SITE_URL}/images/mk/${mk.id}.jpg`],
+      images: [mk.photoUrl || `${SITE_URL}/images/mk/${mk.id}.jpg`],
     },
     alternates: {
       canonical: `${SITE_URL}/mk/${mk.id}`,
@@ -220,8 +220,8 @@ export function slugify(text: string): string {
  * Generate image alt text for MK
  */
 export function generateMKImageAlt(mk: MKData): string {
-  const position = getPositionText(mk.position)
-  return `${mk.name}, חבר כנסת מטעם ${mk.faction}, עמדה בחוק הגיוס: ${position}`
+  const position = getPositionText(mk.currentPosition)
+  return `${mk.nameHe}, חבר כנסת מטעם ${mk.faction}, עמדה בחוק הגיוס: ${position}`
 }
 
 /**
@@ -247,7 +247,7 @@ export function generateMKBreadcrumb(mk: MKData) {
       {
         '@type': 'ListItem',
         position: 3,
-        name: mk.name,
+        name: mk.nameHe,
         item: `${SITE_URL}/mk/${mk.id}`,
       },
     ],
