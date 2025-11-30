@@ -95,19 +95,19 @@ export const POSITION_LABELS: Record<PositionStatus, string> = {
 // Position badge colors (Tailwind classes)
 export const POSITION_COLORS: Record<PositionStatus, { bg: string; text: string; border: string }> = {
   SUPPORT: {
-    bg: 'bg-red-700',
+    bg: '!bg-red-700',
     text: 'text-white',
-    border: 'border-red-800',
+    border: '!border-red-700',
   },
   NEUTRAL: {
-    bg: 'bg-orange-600',
+    bg: '!bg-orange-600',
     text: 'text-white',
-    border: 'border-orange-700',
+    border: '!border-orange-600',
   },
   AGAINST: {
-    bg: 'bg-green-500',
+    bg: '!bg-green-500',
     text: 'text-white',
-    border: 'border-green-600',
+    border: '!border-green-500',
   },
 };
 
