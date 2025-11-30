@@ -115,9 +115,9 @@ export function HistoricalCommentDetailDialog({
               </DialogDescription>
             </div>
             {comment.isVerified ? (
-              <CheckCircle className="h-6 w-6 text-green-600" title="מאומת" />
+              <CheckCircle className="h-6 w-6 text-green-600" />
             ) : (
-              <XCircle className="h-6 w-6 text-gray-400" title="לא מאומת" />
+              <XCircle className="h-6 w-6 text-gray-400" />
             )}
           </div>
         </DialogHeader>

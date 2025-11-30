@@ -6,6 +6,7 @@ import { revalidatePath } from 'next/cache';
 
 export interface HistoricalCommentData {
   id: number;
+  mkId: number;
   content: string;
   sourceUrl: string;
   sourcePlatform: string;
