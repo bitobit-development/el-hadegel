@@ -67,11 +67,11 @@ export function StatsDashboard({ stats, activeFiltersCount = 0 }: StatsDashboard
       />
 
       <section className="space-y-4">
-        {/* Header Panel - Matches filter panel design */}
-        <div className="flex items-center justify-between gap-3 px-6 py-4 bg-white border border-gray-200 rounded-lg">
+        {/* Simple header - minimal, clean appearance */}
+        <div className="flex items-center justify-between gap-3 px-2">
           <div className="flex items-center gap-2">
-            <BarChart className="h-5 w-5 text-gray-600" aria-hidden="true" />
-            <h2 className="text-lg font-semibold text-gray-900">סטטיסטיקה</h2>
+            <BarChart className="h-5 w-5 text-gray-700" aria-hidden="true" />
+            <h2 className="text-xl font-bold text-gray-900">סטטיסטיקה</h2>
           </div>
 
           {activeFiltersCount > 0 && (
