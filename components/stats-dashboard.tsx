@@ -1,9 +1,9 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { BarChart, Filter } from 'lucide-react';
+import { BarChart, Filter, ChevronDown } from 'lucide-react';
 import { PositionStats, POSITION_LABELS, POSITION_COLORS } from '@/types/mk';
 import { cn } from '@/lib/utils';
 
@@ -13,6 +13,7 @@ interface StatsDashboardProps {
 }
 
 export function StatsDashboard({ stats, activeFiltersCount = 0 }: StatsDashboardProps) {
+  const [isExpanded, setIsExpanded] = useState(false);
   const announcementRef = useRef<HTMLDivElement>(null);
   const prevStatsRef = useRef(stats);
 
@@ -36,6 +37,24 @@ export function StatsDashboard({ stats, activeFiltersCount = 0 }: StatsDashboard
 
     prevStatsRef.current = stats;
   }, [stats]);
+
+  // Keyboard shortcuts
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Escape to close panel
+      if (e.key === 'Escape' && isExpanded) {
+        setIsExpanded(false);
+      }
+      // Ctrl+S to toggle panel
+      if (e.ctrlKey && e.key === 's' && !e.shiftKey) {
+        e.preventDefault();
+        setIsExpanded((prev) => !prev);
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isExpanded]);
 
   const statItems = [
     {
@@ -67,24 +86,63 @@ export function StatsDashboard({ stats, activeFiltersCount = 0 }: StatsDashboard
       />
 
       <div className="mb-6">
-        {/* Static Header */}
-        <div className="flex items-center justify-between gap-3 mb-4">
+        {/* Toggle Button */}
+        <button
+          onClick={() => setIsExpanded((prev) => !prev)}
+          aria-expanded={isExpanded}
+          aria-controls="stats-panel"
+          aria-label="פתח או סגור סטטיסטיקה"
+          className={cn(
+            // Base styles
+            'w-full flex items-center justify-between gap-3 px-6 py-4',
+            'bg-white border border-gray-200 rounded-lg',
+            'text-right',
+
+            // Hover
+            'hover:bg-gray-50 hover:border-gray-300',
+            'transition-colors duration-200',
+
+            // Focus
+            'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2',
+
+            // Active state
+            activeFiltersCount > 0 && 'border-blue-500 bg-blue-50'
+          )}
+        >
+          {/* Left side: Icons and text */}
           <div className="flex items-center gap-2">
+            <ChevronDown
+              className={cn(
+                'h-5 w-5 text-gray-600 transition-transform duration-300',
+                isExpanded && 'rotate-180'
+              )}
+              aria-hidden="true"
+            />
             <BarChart className="h-5 w-5 text-gray-600" aria-hidden="true" />
-            <h2 className="text-lg font-semibold text-gray-900">סטטיסטיקה</h2>
+            <span className="font-medium text-gray-900">סטטיסטיקה</span>
           </div>
 
+          {/* Right side: Badge */}
           {activeFiltersCount > 0 && (
             <Badge variant="secondary" className="gap-1.5">
               <Filter className="h-3 w-3" />
               מסונן ({stats.total} מתוך 120)
             </Badge>
           )}
-        </div>
+        </button>
 
-        {/* Stats Panel - Always Visible */}
+        {/* Collapsible Stats Panel */}
         <div
-          className="p-6 bg-gray-50 border border-gray-200 rounded-lg"
+          id="stats-panel"
+          className={cn(
+            // Collapsible animation
+            'overflow-hidden transition-all duration-300 ease-in-out',
+            isExpanded ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0',
+
+            // Layout
+            'mt-4 p-6 bg-gray-50 border border-gray-200 rounded-lg'
+          )}
+          aria-hidden={!isExpanded}
           role="region"
           aria-label="סטטיסטיקת עמדות חברי הכנסת"
         >
