@@ -7,15 +7,18 @@ import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import { PositionStatus, POSITION_LABELS } from '@/types/mk';
+import { COALITION_LABELS, type CoalitionStatus } from '@/lib/coalition';
 import { Search, X } from 'lucide-react';
 
 interface FilterPanelProps {
   factions: string[];
   selectedFactions: string[];
   selectedPositions: PositionStatus[];
+  selectedCoalitionStatus: CoalitionStatus[];
   searchQuery: string;
   onFactionChange: (factions: string[]) => void;
   onPositionChange: (positions: PositionStatus[]) => void;
+  onCoalitionStatusChange: (statuses: CoalitionStatus[]) => void;
   onSearchChange: (query: string) => void;
   onClearFilters: () => void;
 }
@@ -24,9 +27,11 @@ export function FilterPanel({
   factions,
   selectedFactions,
   selectedPositions,
+  selectedCoalitionStatus,
   searchQuery,
   onFactionChange,
   onPositionChange,
+  onCoalitionStatusChange,
   onSearchChange,
   onClearFilters,
 }: FilterPanelProps) {
@@ -48,8 +53,19 @@ export function FilterPanel({
     }
   };
 
+  const handleCoalitionStatusToggle = (status: CoalitionStatus) => {
+    if (selectedCoalitionStatus.includes(status)) {
+      onCoalitionStatusChange(selectedCoalitionStatus.filter((s) => s !== status));
+    } else {
+      onCoalitionStatusChange([...selectedCoalitionStatus, status]);
+    }
+  };
+
   const hasActiveFilters =
-    selectedFactions.length > 0 || selectedPositions.length > 0 || searchQuery.length > 0;
+    selectedFactions.length > 0 ||
+    selectedPositions.length > 0 ||
+    selectedCoalitionStatus.length > 0 ||
+    searchQuery.length > 0;
 
   return (
     <Card className="mb-6">
@@ -92,7 +108,7 @@ export function FilterPanel({
 
           {/* Filters */}
           {showFilters && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 border-t">
               {/* Position Filters */}
               <div className="space-y-3">
                 <Label className="text-base font-semibold">סנן לפי עמדה</Label>
@@ -109,6 +125,28 @@ export function FilterPanel({
                         className="text-sm font-normal cursor-pointer"
                       >
                         {POSITION_LABELS[position]}
+                      </Label>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Coalition Status Filters */}
+              <div className="space-y-3">
+                <Label className="text-base font-semibold">מעמד בכנסת</Label>
+                <div className="space-y-2">
+                  {(['coalition', 'opposition'] as CoalitionStatus[]).map((status) => (
+                    <div key={status} className="flex items-center space-x-2 space-x-reverse">
+                      <Checkbox
+                        id={`coalition-${status}`}
+                        checked={selectedCoalitionStatus.includes(status)}
+                        onCheckedChange={() => handleCoalitionStatusToggle(status)}
+                      />
+                      <Label
+                        htmlFor={`coalition-${status}`}
+                        className="text-sm font-normal cursor-pointer"
+                      >
+                        {COALITION_LABELS[status]}
                       </Label>
                     </div>
                   ))}

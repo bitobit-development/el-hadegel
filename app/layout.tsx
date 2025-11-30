@@ -8,18 +8,18 @@ const rubik = Rubik({
 });
 
 export const metadata: Metadata = {
-  title: "אל הדגל",
-  description: "מעקב אחר עמדות חברי הכנסת בנושאים חקיקתיים חשובים",
+  title: "אל הדגל - מעקב עמדות חוק הפטור מגיוס",
+  description: "מעקב אחר עמדות חברי הכנסת בנושא חוק הפטור מגיוס",
   openGraph: {
-    title: "אל הדגל",
-    description: "מעקב אחר עמדות חברי הכנסת בנושאים חקיקתיים חשובים",
+    title: "אל הדגל - מעקב עמדות חוק הפטור מגיוס",
+    description: "מעקב אחר עמדות חברי הכנסת בנושא חוק הפטור מגיוס",
     locale: "he_IL",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "אל הדגל",
-    description: "מעקב אחר עמדות חברי הכנסת בנושאים חקיקתיים חשובים",
+    title: "אל הדגל - מעקב עמדות חוק הפטור מגיוס",
+    description: "מעקב אחר עמדות חברי הכנסת בנושא חוק הפטור מגיוס",
   },
 };
 

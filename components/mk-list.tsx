@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react';
 import { MKCard } from '@/components/mk-card';
 import { FilterPanel } from '@/components/filter-panel';
 import { MKDataWithCounts, PositionStatus } from '@/types/mk';
+import { isCoalitionMember, type CoalitionStatus } from '@/lib/coalition';
 
 interface MKListProps {
   mks: MKDataWithCounts[];
@@ -13,6 +14,7 @@ interface MKListProps {
 export function MKList({ mks, factions }: MKListProps) {
   const [selectedFactions, setSelectedFactions] = useState<string[]>([]);
   const [selectedPositions, setSelectedPositions] = useState<PositionStatus[]>([]);
+  const [selectedCoalitionStatus, setSelectedCoalitionStatus] = useState<CoalitionStatus[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
 
   // Filter MKs based on selected filters
@@ -28,6 +30,19 @@ export function MKList({ mks, factions }: MKListProps) {
         return false;
       }
 
+      // Coalition status filter
+      if (selectedCoalitionStatus.length > 0 && selectedCoalitionStatus.length !== 2) {
+        // If both selected OR neither selected, show all (no filter)
+        // Otherwise, filter by coalition membership
+        const isMemberCoalition = isCoalitionMember(mk.faction);
+        const matchesCoalition = selectedCoalitionStatus.some((status) => {
+          return status === 'coalition' ? isMemberCoalition : !isMemberCoalition;
+        });
+        if (!matchesCoalition) {
+          return false;
+        }
+      }
+
       // Search query (searches both name and faction)
       if (searchQuery.trim()) {
         const query = searchQuery.trim().toLowerCase();
@@ -40,11 +55,12 @@ export function MKList({ mks, factions }: MKListProps) {
 
       return true;
     });
-  }, [mks, selectedFactions, selectedPositions, searchQuery]);
+  }, [mks, selectedFactions, selectedPositions, selectedCoalitionStatus, searchQuery]);
 
   const handleClearFilters = () => {
     setSelectedFactions([]);
     setSelectedPositions([]);
+    setSelectedCoalitionStatus([]);
     setSearchQuery('');
   };
 
@@ -54,9 +70,11 @@ export function MKList({ mks, factions }: MKListProps) {
         factions={factions}
         selectedFactions={selectedFactions}
         selectedPositions={selectedPositions}
+        selectedCoalitionStatus={selectedCoalitionStatus}
         searchQuery={searchQuery}
         onFactionChange={setSelectedFactions}
         onPositionChange={setSelectedPositions}
+        onCoalitionStatusChange={setSelectedCoalitionStatus}
         onSearchChange={setSearchQuery}
         onClearFilters={handleClearFilters}
       />

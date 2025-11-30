@@ -8,6 +8,8 @@ import { PositionBadge } from '@/components/position-badge';
 import { TweetIcon } from '@/components/TweetIcon';
 import { TweetsDialog } from '@/components/TweetsDialog';
 import { StatusInfoIcon } from '@/components/StatusInfoIcon';
+import { HistoricalCommentIcon } from '@/components/HistoricalCommentIcon';
+import { HistoricalCommentsDialog } from '@/components/historical-comments/HistoricalCommentsDialog';
 import { MKDataWithCounts } from '@/types/mk';
 import { ExternalLink, Phone, Mail, MessageSquare, Info } from 'lucide-react';
 
@@ -17,6 +19,7 @@ interface MKCardProps {
 
 export function MKCard({ mk }: MKCardProps) {
   const [isTweetsDialogOpen, setIsTweetsDialogOpen] = useState(false);
+  const [isCommentsDialogOpen, setIsCommentsDialogOpen] = useState(false);
   const [imageError, setImageError] = useState(false);
 
   // Get initials from Hebrew name (first letter of first and last word)
@@ -73,8 +76,8 @@ export function MKCard({ mk }: MKCardProps) {
           {/* Position Badge */}
           <PositionBadge position={mk.currentPosition} />
 
-          {/* Icons Container - Posts and Status Info */}
-          <div className="flex gap-3 items-center" onClick={(e) => e.stopPropagation()}>
+          {/* Icons Container - Posts, Historical Comments, and Status Info */}
+          <div className="flex gap-3 items-center flex-wrap justify-center" onClick={(e) => e.stopPropagation()}>
             {/* Posts Icon - Always visible */}
             <Button
               variant="outline"
@@ -109,6 +112,14 @@ export function MKCard({ mk }: MKCardProps) {
                 {mk.tweetCount || 0}
               </span>
             </Button>
+
+            {/* Historical Comments Icon - Only when count > 0 */}
+            {mk.historicalCommentCount !== undefined && mk.historicalCommentCount > 0 && (
+              <HistoricalCommentIcon
+                count={mk.historicalCommentCount}
+                onClick={() => setIsCommentsDialogOpen(true)}
+              />
+            )}
 
             {/* Status Info Icon - Only when count > 0 */}
             {mk.statusInfoCount !== undefined && mk.statusInfoCount > 0 && (
@@ -160,6 +171,16 @@ export function MKCard({ mk }: MKCardProps) {
           mkName={mk.nameHe}
           isOpen={isTweetsDialogOpen}
           onClose={() => setIsTweetsDialogOpen(false)}
+        />
+      )}
+
+      {/* Historical Comments Dialog */}
+      {mk.historicalCommentCount !== undefined && mk.historicalCommentCount > 0 && (
+        <HistoricalCommentsDialog
+          mkId={mk.id}
+          mkName={mk.nameHe}
+          isOpen={isCommentsDialogOpen}
+          onClose={() => setIsCommentsDialogOpen(false)}
         />
       )}
     </Card>

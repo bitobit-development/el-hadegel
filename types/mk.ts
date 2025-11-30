@@ -30,6 +30,7 @@ export interface MKDataWithStatusInfoCount extends MKData {
 export interface MKDataWithCounts extends MKData {
   tweetCount: number;
   statusInfoCount: number;
+  historicalCommentCount?: number;
 }
 
 // Position history entry
@@ -56,6 +57,7 @@ export interface FilterOptions {
   factions: string[];
   positions: PositionStatus[];
   searchQuery: string;
+  coalitionStatus: ('coalition' | 'opposition')[]; // Coalition/Opposition filter
 }
 
 // Admin filter options (includes coalition status)

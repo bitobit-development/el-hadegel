@@ -15,6 +15,8 @@ import {
   getClientIp,
   isValidRequestSize,
 } from '@/lib/security-utils';
+import { identifyMK } from '@/lib/mk-identifier';
+import { syncNewsPostToTweet } from '@/lib/news-tweet-sync';
 
 // Validation schema
 const createNewsPostSchema = z.object({
@@ -103,7 +105,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 10. Duplicate detection (same URL within last 24 hours)
+    // Duplicate detection (same URL within last 24 hours)
     const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);
     const existingPost = await prisma.newsPost.findFirst({
       where: {
@@ -174,6 +176,21 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // 10. Identify MK from URL or content (auto-linking)
+    const mkIdentification = await identifyMK(sanitizedUrl, sanitizedContent);
+
+    // Log MK identification result
+    if (mkIdentification.mkId !== null) {
+      console.log('MK identified:', {
+        mkId: mkIdentification.mkId,
+        method: mkIdentification.method,
+        confidence: mkIdentification.confidence,
+        details: mkIdentification.details,
+      });
+    } else {
+      console.log('No MK identified for this post');
+    }
+
     // 11. Create news post with sanitized and validated data
     const newsPost = await prisma.newsPost.create({
       data: {
@@ -189,21 +206,45 @@ export async function POST(request: NextRequest) {
         previewImage: ogData?.image,
         previewDescription: ogData?.description ? sanitizeContent(ogData.description) : null,
         previewSiteName: ogData?.siteName ? sanitizeContent(ogData.siteName) : null,
+
+        // Auto-link to MK if identified
+        mkId: mkIdentification.mkId,
+        syncedToTweet: false, // Will be synced later if needed
       },
     });
 
-    // 12. Log successful creation (for audit trail)
+    // 12. Sync to Tweet table if MK is linked
+    let tweetId: number | null = null;
+    if (mkIdentification.mkId !== null) {
+      try {
+        tweetId = await syncNewsPostToTweet(newsPost.id);
+        if (tweetId) {
+          console.log('NewsPost synced to Tweet:', {
+            newsPostId: newsPost.id,
+            tweetId,
+            mkId: mkIdentification.mkId,
+          });
+        }
+      } catch (error) {
+        console.error('Failed to sync NewsPost to Tweet:', error);
+        // Continue - don't fail the entire request if sync fails
+      }
+    }
+
+    // 13. Log successful creation (for audit trail)
     console.log('News post created:', {
       id: newsPost.id,
+      mkId: mkIdentification.mkId,
+      tweetId,
       apiKeyId: authResult.apiKeyId,
       ip: getClientIp(request.headers),
       timestamp: new Date().toISOString(),
     });
 
-    // 13. Trigger revalidation of landing page
+    // 14. Trigger revalidation of landing page
     revalidatePath('/');
 
-    // 14. Return success
+    // 15. Return success
     return NextResponse.json(
       {
         success: true,

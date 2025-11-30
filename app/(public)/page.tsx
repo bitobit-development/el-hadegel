@@ -25,9 +25,9 @@ export default async function HomePage() {
   // Get session for header (optional - page is public)
   const session = await auth();
 
-  // Fetch all data in parallel (including tweet counts and status info counts for MKs)
+  // Fetch all data in parallel (including tweet counts, status info counts, and historical comment counts for MKs)
   const [mks, stats, factions] = await Promise.all([
-    getMKs(undefined, true, true), // Include tweet counts and status info counts
+    getMKs(undefined, true, true, true), // Include tweet counts, status info counts, and historical comment counts
     getPositionStats(),
     getFactions(),
   ]);

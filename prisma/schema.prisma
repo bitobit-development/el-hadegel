@@ -23,9 +23,11 @@ model MK {
   createdAt       DateTime          @default(now())
   updatedAt       DateTime          @updatedAt
 
-  positionHistory PositionHistory[]
-  tweets          Tweet[]
-  statusInfo      MKStatusInfo[]
+  positionHistory    PositionHistory[]
+  tweets             Tweet[]
+  statusInfo         MKStatusInfo[]
+  historicalComments HistoricalComment[]
+  newsPosts          NewsPost[]
 }
 
 // Position history tracking
@@ -66,6 +68,9 @@ model Tweet {
   createdAt      DateTime @default(now())
 
   mk MK @relation(fields: [mkId], references: [id], onDelete: Cascade)
+
+  // NewsPost Linking (reverse relation)
+  newsPost NewsPost? @relation("NewsPostToTweet")
 
   @@index([mkId])
   @@index([postedAt])
@@ -112,6 +117,66 @@ model NewsPost {
   previewDescription String?  // og:description
   previewSiteName    String?  // og:site_name
 
+  // MK Linking (auto-detected from sourceUrl or content)
+  mkId         Int?     // Optional link to MK
+  mk           MK?      @relation(fields: [mkId], references: [id], onDelete: SetNull)
+  syncedToTweet Boolean @default(false) // Track if synced to Tweet table
+  tweetId      Int?     @unique // Link to created Tweet
+  tweet        Tweet?   @relation("NewsPostToTweet", fields: [tweetId], references: [id], onDelete: SetNull)
+
   @@index([postedAt], name: "NewsPost_postedAt_idx")
+  @@index([mkId], name: "NewsPost_mkId_idx")
+  @@index([syncedToTweet], name: "NewsPost_syncedToTweet_idx")
   @@map("news_posts")
+}
+
+// Historical comments/statements from Knesset members about IDF recruitment law
+model HistoricalComment {
+  id                Int      @id @default(autoincrement())
+  mkId              Int
+
+  // Content fields
+  content           String   @db.Text
+  contentHash       String   // SHA-256 hash for exact duplicate detection
+  normalizedContent String   @db.Text // Lowercased, whitespace-normalized
+
+  // Source tracking
+  sourceUrl         String
+  sourcePlatform    String   // "News", "Twitter", "Facebook", "YouTube", "Knesset", "Interview"
+  sourceType        String   // "Primary" (direct quote) or "Secondary" (reporting)
+  sourceName        String?
+  sourceCredibility Int      @default(5) // 1-10 scale
+
+  // Classification
+  topic             String   @default("IDF_RECRUITMENT")
+  keywords          String[]
+  isVerified        Boolean  @default(false)
+
+  // Temporal
+  commentDate       DateTime // When comment was made
+  publishedAt       DateTime // When discovered/published
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  // Deduplication
+  duplicateOf       Int?
+  duplicateGroup    String?  // UUID for grouping similar content
+
+  // Media
+  imageUrl          String?
+  videoUrl          String?
+  additionalContext String?  @db.Text
+
+  // Relations
+  mk             MK                  @relation(fields: [mkId], references: [id], onDelete: Cascade)
+  duplicates     HistoricalComment[] @relation("CommentDuplicates")
+  primaryComment HistoricalComment?  @relation("CommentDuplicates", fields: [duplicateOf], references: [id])
+
+  @@index([mkId])
+  @@index([commentDate])
+  @@index([contentHash])
+  @@index([duplicateGroup])
+  @@index([topic])
+  @@index([isVerified])
+  @@unique([contentHash, sourceUrl])
 }

@@ -35,7 +35,7 @@ export function AdminHeader({ user }: AdminHeaderProps) {
             />
             <div className="text-right flex-1 min-w-0">
               <h1 className="text-base sm:text-lg md:text-2xl lg:text-3xl font-bold mb-0.5 md:mb-1 bg-gradient-to-l from-white to-gray-100 bg-clip-text text-transparent leading-tight">
-                לוח בקרה - ניהול עמדות
+                לוח בקרה - ניהול עמדות חוק הפטור מגיוס
               </h1>
               <p className="text-white/90 text-[11px] sm:text-xs md:text-sm lg:text-base leading-tight">
                 מערכת ניהול עמדות חברי הכנסת

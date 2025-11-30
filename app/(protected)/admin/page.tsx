@@ -1,13 +1,20 @@
 import { getMKs, getPositionStats } from '@/app/actions/mk-actions';
 import { AdminMKTable } from '@/components/admin/admin-mk-table';
 import { StatsDashboard } from '@/components/stats-dashboard';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import { auth } from '@/auth';
+import { getHistoricalCommentsStats } from '@/app/actions/admin-historical-comment-actions';
+import { MessageSquareQuote, ArrowLeft } from 'lucide-react';
+import Link from 'next/link';
 
 export default async function AdminPage() {
-  const [mks, stats, session] = await Promise.all([
+  const [mks, stats, session, historicalCommentsStats] = await Promise.all([
     getMKs(),
     getPositionStats(),
     auth(),
+    getHistoricalCommentsStats(),
   ]);
 
   const adminEmail = session?.user?.email || 'unknown';
@@ -22,6 +29,44 @@ export default async function AdminPage() {
       </div>
 
       <StatsDashboard stats={stats} />
+
+      {/* Quick Links Section */}
+      <Card className="border-purple-200 bg-gradient-to-br from-purple-50 to-white hover:shadow-md transition-shadow">
+        <CardHeader>
+          <div className="flex items-center gap-3">
+            <div className="bg-purple-600 p-2 rounded-lg">
+              <MessageSquareQuote className="h-6 w-6 text-white" />
+            </div>
+            <div className="flex-1">
+              <CardTitle className="text-right">ניהול ציטוטים היסטוריים</CardTitle>
+              <CardDescription className="text-right">
+                צפייה וניהול תגובות של חברי הקואליציה
+              </CardDescription>
+            </div>
+          </div>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          <div className="flex items-center justify-between text-sm">
+            <Badge variant="secondary" className="bg-purple-100 text-purple-800">
+              {historicalCommentsStats.total} ציטוטים
+            </Badge>
+            <div className="flex gap-2">
+              <Badge variant="outline" className="text-green-600 border-green-600">
+                {historicalCommentsStats.byVerification.verified} מאומתים
+              </Badge>
+              <Badge variant="outline" className="text-orange-600 border-orange-600">
+                {historicalCommentsStats.byVerification.unverified} ממתינים
+              </Badge>
+            </div>
+          </div>
+          <Link href="/admin/historical-comments">
+            <Button className="w-full bg-purple-600 hover:bg-purple-700 gap-2">
+              פתח ניהול ציטוטים
+              <ArrowLeft className="h-4 w-4" />
+            </Button>
+          </Link>
+        </CardContent>
+      </Card>
 
       <AdminMKTable mks={mks} adminEmail={adminEmail} />
     </div>

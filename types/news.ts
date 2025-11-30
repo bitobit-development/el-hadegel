@@ -2,11 +2,23 @@ import { NewsPost as PrismaNewsPost } from '@prisma/client';
 
 export type NewsPostData = PrismaNewsPost;
 
+/**
+ * NewsPost with MK information (joined data)
+ */
+export interface NewsPostWithMK extends NewsPostData {
+  mk?: {
+    id: number;
+    nameHe: string;
+    faction: string;
+  } | null;
+}
+
 export interface CreateNewsPostRequest {
   content: string;
   sourceUrl: string;
   sourceName?: string;
   postedAt?: string; // ISO 8601 format
+  mkId?: number; // Optional: Manually specify MK ID
 }
 
 export interface NewsPostsResponse {

@@ -2,18 +2,9 @@ import { config } from 'dotenv';
 config();
 
 import prisma from '@/lib/prisma';
+import { COALITION_FACTIONS } from '@/lib/coalition';
 import { writeFileSync } from 'fs';
 import { join } from 'path';
-
-// Coalition parties in the 25th Knesset
-const COALITION_PARTIES = [
-  'הליכוד',
-  'התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ"ל',
-  'יהדות התורה',
-  'הציונות הדתית בראשות בצלאל סמוטריץ\'',
-  'עוצמה יהודית בראשות איתמר בן גביר',
-  'נעם - בראשות אבי מעוז',
-];
 
 async function exportCoalitionMKs() {
   console.log('📊 Exporting Coalition MKs to CSV...\n');
@@ -23,7 +14,7 @@ async function exportCoalitionMKs() {
     const coalitionMKs = await prisma.mK.findMany({
       where: {
         faction: {
-          in: COALITION_PARTIES,
+          in: [...COALITION_FACTIONS],
         },
       },
       orderBy: [

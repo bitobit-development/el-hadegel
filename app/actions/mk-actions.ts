@@ -10,35 +10,41 @@ import { Position } from '@prisma/client';
  * @param filters - Optional filtering options
  * @param includeTweetCount - If true, includes tweet count for each MK
  * @param includeStatusInfoCount - If true, includes status info count for each MK
+ * @param includeHistoricalCommentCount - If true, includes verified historical comment count for each MK
  */
 export async function getMKs(
   filters: Partial<FilterOptions> | undefined,
   includeTweetCount: true,
-  includeStatusInfoCount: true
+  includeStatusInfoCount: true,
+  includeHistoricalCommentCount: true
 ): Promise<MKDataWithCounts[]>;
 
 export async function getMKs(
   filters: Partial<FilterOptions> | undefined,
   includeTweetCount: true,
-  includeStatusInfoCount?: false
+  includeStatusInfoCount?: boolean,
+  includeHistoricalCommentCount?: false
 ): Promise<MKDataWithTweetCount[]>;
 
 export async function getMKs(
   filters: Partial<FilterOptions> | undefined,
   includeTweetCount: false,
-  includeStatusInfoCount: true
+  includeStatusInfoCount: true,
+  includeHistoricalCommentCount?: false
 ): Promise<MKDataWithStatusInfoCount[]>;
 
 export async function getMKs(
   filters?: Partial<FilterOptions>,
   includeTweetCount?: false,
-  includeStatusInfoCount?: false
+  includeStatusInfoCount?: false,
+  includeHistoricalCommentCount?: false
 ): Promise<MKData[]>;
 
 export async function getMKs(
   filters?: Partial<FilterOptions>,
   includeTweetCount: boolean = false,
-  includeStatusInfoCount: boolean = false
+  includeStatusInfoCount: boolean = false,
+  includeHistoricalCommentCount: boolean = false
 ): Promise<MKData[] | MKDataWithTweetCount[] | MKDataWithStatusInfoCount[] | MKDataWithCounts[]> {
   const where: any = {};
 
@@ -66,7 +72,7 @@ export async function getMKs(
   });
 
   // If no counts are requested, return basic MK data
-  if (!includeTweetCount && !includeStatusInfoCount) {
+  if (!includeTweetCount && !includeStatusInfoCount && !includeHistoricalCommentCount) {
     return mks.map(mk => ({
       ...mk,
       currentPosition: mk.currentPosition as PositionStatus,
@@ -97,6 +103,19 @@ export async function getMKs(
     );
   }
 
+  // Get verified historical comment counts if requested
+  let historicalCommentCountMap = new Map<number, number>();
+  if (includeHistoricalCommentCount) {
+    const historicalCommentCounts = await prisma.historicalComment.groupBy({
+      by: ['mkId'],
+      where: { isVerified: true }, // Only count verified comments
+      _count: true,
+    });
+    historicalCommentCountMap = new Map(
+      historicalCommentCounts.map(hcc => [hcc.mkId, hcc._count])
+    );
+  }
+
   return mks.map(mk => {
     const result: any = {
       ...mk,
@@ -109,6 +128,10 @@ export async function getMKs(
 
     if (includeStatusInfoCount) {
       result.statusInfoCount = statusInfoCountMap.get(mk.id) || 0;
+    }
+
+    if (includeHistoricalCommentCount) {
+      result.historicalCommentCount = historicalCommentCountMap.get(mk.id) || 0;
     }
 
     return result;
