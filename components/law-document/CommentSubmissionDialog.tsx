@@ -254,10 +254,10 @@ export function CommentSubmissionDialog({
               <span
                 className={cn(
                   'text-xs',
-                  getCharacterCountColor(suggestedEdit.length, 5000)
+                  getCharacterCountColor(suggestedEdit?.length || 0, 5000)
                 )}
               >
-                {suggestedEdit.length}/5000 תווים
+                {suggestedEdit?.length || 0}/5000 תווים
               </span>
             </div>
             <Textarea

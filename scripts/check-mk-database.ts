@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv';
 dotenv.config();
 
-import { prisma } from '../lib/prisma';
+import prisma from '../lib/prisma';
 
 async function main() {
   console.log('🔍 Checking MK database integrity...\n');

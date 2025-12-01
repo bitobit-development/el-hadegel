@@ -7,7 +7,7 @@ import { z } from 'zod';
 
 // Question Types
 export const QuestionTypeSchema = z.enum(['YES_NO', 'TEXT', 'LONG_TEXT'], {
-  errorMap: () => ({ message: 'סוג שאלה לא תקין' }),
+  message: 'סוג שאלה לא תקין',
 });
 
 // Israeli Phone Number Regex
@@ -20,7 +20,7 @@ const ISRAELI_PHONE_REGEX = /^(\+972|0)?[-\s]?5[0-9][-\s]?\d{3}[-\s]?\d{4}$/;
  */
 export const questionnaireSchema = z.object({
   title: z
-    .string({ required_error: 'כותרת השאלון היא שדה חובה' })
+    .string()
     .min(5, 'כותרת השאלון חייבת להכיל לפחות 5 תווים')
     .max(500, 'כותרת השאלון לא יכולה לעלות על 500 תווים'),
   description: z
@@ -38,11 +38,11 @@ export type QuestionnaireInput = z.infer<typeof questionnaireSchema>;
  */
 export const questionSchema = z.object({
   questionnaireId: z
-    .number({ required_error: 'מזהה שאלון הוא שדה חובה' })
+    .number()
     .int('מזהה שאלון חייב להיות מספר שלם')
     .positive('מזהה שאלון חייב להיות חיובי'),
   questionText: z
-    .string({ required_error: 'נוסח השאלה הוא שדה חובה' })
+    .string()
     .min(10, 'נוסח השאלה חייב להכיל לפחות 10 תווים')
     .max(1000, 'נוסח השאלה לא יכול לעלות על 1000 תווים'),
   questionType: QuestionTypeSchema.default('YES_NO'),
@@ -55,7 +55,7 @@ export const questionSchema = z.object({
     .optional()
     .nullable(),
   orderIndex: z
-    .number({ required_error: 'מספר סידורי הוא שדה חובה' })
+    .number()
     .int('מספר סידורי חייב להיות מספר שלם')
     .nonnegative('מספר סידורי חייב להיות אפס או חיובי'),
 });
@@ -78,7 +78,7 @@ export type QuestionUpdate = z.infer<typeof questionUpdateSchema>;
  */
 export const responseAnswerSchema = z.object({
   questionId: z
-    .number({ required_error: 'מזהה שאלה הוא שדה חובה' })
+    .number()
     .int('מזהה שאלה חייב להיות מספר שלם')
     .positive('מזהה שאלה חייב להיות חיובי'),
   // For YES_NO questions
@@ -99,28 +99,26 @@ export type ResponseAnswerInput = z.infer<typeof responseAnswerSchema>;
  */
 export const questionnaireResponseSchema = z.object({
   questionnaireId: z
-    .number({ required_error: 'מזהה שאלון הוא שדה חובה' })
+    .number()
     .int('מזהה שאלון חייב להיות מספר שלם')
     .positive('מזהה שאלון חייב להיות חיובי'),
   fullName: z
-    .string({ required_error: 'שם מלא הוא שדה חובה' })
+    .string()
     .min(2, 'שם מלא חייב להכיל לפחות 2 תווים')
     .max(200, 'שם מלא לא יכול לעלות על 200 תווים')
     .regex(/^[\u0590-\u05FF\s\-a-zA-Z]+$/, 'שם מלא יכול להכיל רק אותיות, רווחים ומקפים'),
   phoneNumber: z
-    .string({ required_error: 'מספר טלפון הוא שדה חובה' })
+    .string()
     .regex(
       ISRAELI_PHONE_REGEX,
       'מספר טלפון לא תקין. פורמט תקין: 05XXXXXXXX, 050-1234567, או +972-50-1234567'
     ),
   email: z
-    .string({ required_error: 'כתובת אימייל היא שדה חובה' })
+    .string()
     .email('כתובת אימייל לא תקינה')
     .max(320, 'כתובת אימייל לא יכולה לעלות על 320 תווים'),
   answers: z
-    .array(responseAnswerSchema, {
-      required_error: 'יש לענות לפחות על שאלה אחת',
-    })
+    .array(responseAnswerSchema)
     .min(1, 'יש לענות לפחות על שאלה אחת')
     .max(100, 'לא ניתן לענות על יותר מ-100 שאלות'),
 });
@@ -133,7 +131,7 @@ export type QuestionnaireResponseInput = z.infer<typeof questionnaireResponseSch
  */
 export const reorderQuestionsSchema = z.object({
   questionnaireId: z
-    .number({ required_error: 'מזהה שאלון הוא שדה חובה' })
+    .number()
     .int('מזהה שאלון חייב להיות מספר שלם')
     .positive('מזהה שאלון חייב להיות חיובי'),
   questionIds: z
