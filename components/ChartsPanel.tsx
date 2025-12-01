@@ -172,7 +172,7 @@ export const ChartsPanel = ({
             <Card>
               <CardHeader>
                 <CardTitle className="text-right">
-                  {chartType === 'pie' ? 'התפלגות עמדות' : 'סטטיסטיקת עמדות'}
+                  {chartType === 'pie' ? 'התפלגות עמדות לחוק ההשתמטות' : 'סטטיסטיקת עמדות'}
                 </CardTitle>
                 {filteredStats && (
                   <p className="text-sm text-muted-foreground text-right">

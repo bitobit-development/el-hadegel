@@ -48,6 +48,8 @@ model Admin {
   password  String   // Hashed with bcrypt
   name      String
   createdAt DateTime @default(now())
+
+  lawComments  LawComment[]
 }
 
 // Position enum
@@ -179,4 +181,83 @@ model HistoricalComment {
   @@index([topic])
   @@index([isVerified])
   @@unique([contentHash, sourceUrl])
+}
+
+// Law Document - stores the IDF recruitment law document
+model LawDocument {
+  id          Int       @id @default(autoincrement())
+  title       String    // "חוק יסוד: שירות חובה למען המדינה"
+  description String?   @db.Text
+  version     String    @default("1.0")
+  isActive    Boolean   @default(true)
+  publishedAt DateTime  @default(now())
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  paragraphs  LawParagraph[]
+
+  @@index([isActive])
+  @@index([publishedAt])
+}
+
+// Law Paragraph - individual paragraphs/sections of the law document
+model LawParagraph {
+  id            Int          @id @default(autoincrement())
+  documentId    Int
+  orderIndex    Int          // Sequential order: 1, 2, 3... (for 60-70 paragraphs)
+  sectionTitle  String?      // e.g., "מטרה", "הגדרות", "חובת השירות"
+  content       String       @db.Text
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  document      LawDocument  @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  comments      LawComment[]
+
+  @@unique([documentId, orderIndex])
+  @@index([documentId])
+  @@index([orderIndex])
+}
+
+// Law Comment - visitor comments on paragraphs with moderation
+model LawComment {
+  id                  Int          @id @default(autoincrement())
+  paragraphId         Int
+
+  // Visitor Information (ALL REQUIRED)
+  firstName           String
+  lastName            String
+  email               String
+  phoneNumber         String
+
+  // Comment Content
+  commentContent      String       @db.Text
+  suggestedEdit       String?      @db.Text  // Optional paragraph edit suggestion
+
+  // Moderation
+  status              CommentStatus @default(PENDING)
+  moderatedBy         Int?
+  moderatedAt         DateTime?
+  moderationNote      String?      @db.Text
+
+  // Metadata (for spam prevention)
+  ipAddress           String?
+  userAgent           String?      @db.Text
+  submittedAt         DateTime     @default(now())
+  updatedAt           DateTime     @updatedAt
+
+  paragraph           LawParagraph @relation(fields: [paragraphId], references: [id], onDelete: Cascade)
+  moderator           Admin?       @relation(fields: [moderatedBy], references: [id])
+
+  @@index([paragraphId])
+  @@index([status])
+  @@index([submittedAt])
+  @@index([email])
+}
+
+// Comment moderation status enum
+enum CommentStatus {
+  PENDING      // Default - awaiting moderation
+  APPROVED     // Visible to public
+  REJECTED     // Not visible, kept for admin review
+  SPAM         // Flagged for pattern analysis
 }

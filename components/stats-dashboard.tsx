@@ -171,7 +171,7 @@ export function StatsDashboard({ stats, activeFiltersCount = 0 }: StatsDashboard
         {/* Progress Bar - Visual separator */}
         <div className="space-y-2 pt-2">
           <div className="flex items-center justify-between text-sm text-muted-foreground px-1">
-            <span className="font-medium">התפלגות עמדות</span>
+            <span className="font-medium">התפלגות עמדות לחוק ההשתמטות</span>
             <span className="font-medium">
               {activeFiltersCount > 0
                 ? `${stats.total} מתוך 120 חברי כנסת`

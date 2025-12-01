@@ -1,0 +1,90 @@
+// Questionnaire System - Separate Database Schema
+// This database is completely isolated from the main database (schema.prisma)
+// Connection: DATABASE_URL_QUESTIONNAIRE environment variable
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/questionnaire-client"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// Enum for question types
+enum QuestionType {
+  YES_NO      // כן/לא - Boolean answer
+  TEXT        // תשובה חופשית קצרה - Short text (max 500 chars)
+  LONG_TEXT   // תשובה חופשית ארוכה - Long text (max 2000 chars)
+}
+
+// Questionnaire - Container for a set of questions
+model Questionnaire {
+  id          Int      @id @default(autoincrement())
+  title       String   // כותרת השאלון
+  description String?  // תיאור השאלון (optional)
+  isActive    Boolean  @default(false) // Only one active at a time
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  questions Question[]
+  responses QuestionnaireResponse[]
+
+  @@index([isActive])
+  @@index([createdAt])
+}
+
+// Question - Individual question (yes/no or text)
+model Question {
+  id              Int          @id @default(autoincrement())
+  questionnaireId Int
+  orderIndex      Int          // For sorting questions (1, 2, 3, ...)
+  questionText    String       // נוסח השאלה
+  questionType    QuestionType @default(YES_NO)
+  isRequired      Boolean      @default(true)
+  maxLength       Int?         // Max characters for TEXT/LONG_TEXT (optional)
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+
+  questionnaire Questionnaire    @relation(fields: [questionnaireId], references: [id], onDelete: Cascade)
+  answers       ResponseAnswer[]
+
+  @@index([questionnaireId, orderIndex])
+  @@index([questionnaireId])
+}
+
+// QuestionnaireResponse - User submission (contact info + timestamp)
+model QuestionnaireResponse {
+  id              Int      @id @default(autoincrement())
+  questionnaireId Int
+  fullName        String   // שם מלא (required)
+  phoneNumber     String   // מספר טלפון ישראלי (required, format: 05XXXXXXXX)
+  email           String   // אימייל (required)
+  ipAddress       String?  // IP address for rate limiting
+  userAgent       String?  // Browser info for security
+  submittedAt     DateTime @default(now())
+
+  questionnaire Questionnaire    @relation(fields: [questionnaireId], references: [id], onDelete: Cascade)
+  answers       ResponseAnswer[]
+
+  @@index([questionnaireId])
+  @@index([submittedAt])
+  @@index([email])
+  @@index([ipAddress]) // For rate limiting queries
+}
+
+// ResponseAnswer - Individual answer to a question
+model ResponseAnswer {
+  id         Int      @id @default(autoincrement())
+  responseId Int
+  questionId Int
+  answer     Boolean? // For YES_NO questions (true = yes, false = no)
+  textAnswer String?  // For TEXT/LONG_TEXT questions
+  createdAt  DateTime @default(now())
+
+  response QuestionnaireResponse @relation(fields: [responseId], references: [id], onDelete: Cascade)
+  question Question              @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@unique([responseId, questionId]) // One answer per question per response
+  @@index([questionId]) // For statistics aggregation
+}

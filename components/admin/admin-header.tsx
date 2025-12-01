@@ -4,7 +4,7 @@ import { signOut } from 'next-auth/react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { LogOut, Home } from 'lucide-react';
+import { LogOut, Home, MessageSquare } from 'lucide-react';
 
 interface AdminHeaderProps {
   user: {
@@ -61,6 +61,16 @@ export function AdminHeader({ user }: AdminHeaderProps) {
                 >
                   <Home className="h-4 w-4 ml-1.5 sm:ml-2 flex-shrink-0" />
                   <span className="truncate">עמוד הבית</span>
+                </Button>
+              </Link>
+              <Link href="/admin/law-comments" className="flex-1 md:flex-none">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="w-full md:w-auto h-10 px-3 sm:px-4 bg-white/10 hover:bg-white/20 text-white border-white/30 hover:border-white/50 text-xs sm:text-sm"
+                >
+                  <MessageSquare className="h-4 w-4 ml-1.5 sm:ml-2 flex-shrink-0" />
+                  <span className="truncate">תגובות על החוק</span>
                 </Button>
               </Link>
               <Button

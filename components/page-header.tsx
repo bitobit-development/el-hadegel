@@ -25,7 +25,7 @@ import { Session } from 'next-auth';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { LayoutDashboard, LogOut, LogIn } from 'lucide-react';
+import { LayoutDashboard, LogOut, LogIn, FileText } from 'lucide-react';
 
 interface PageHeaderProps {
   session: Session | null;
@@ -82,6 +82,16 @@ export function PageHeader({ session }: PageHeaderProps) {
                     >
                       <LayoutDashboard className="h-4 w-4 ml-1.5 sm:ml-2 flex-shrink-0" />
                       <span className="truncate">לוח בקרה</span>
+                    </Button>
+                  </Link>
+                  <Link href="/law-document" className="flex-1 md:flex-none">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="w-full md:w-auto h-10 px-3 sm:px-4 bg-white/10 hover:bg-white/20 text-white border-white/30 hover:border-white/50 text-xs sm:text-sm"
+                    >
+                      <FileText className="h-4 w-4 ml-1.5 sm:ml-2 flex-shrink-0" />
+                      <span className="truncate">הצעת החוק</span>
                     </Button>
                   </Link>
                   <Button
