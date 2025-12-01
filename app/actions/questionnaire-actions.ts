@@ -292,6 +292,40 @@ export async function deactivateQuestionnaire(id: number) {
 }
 
 /**
+ * Get overall questionnaire statistics
+ * Returns aggregated stats for admin dashboard
+ */
+export async function getQuestionnaireStats() {
+  try {
+    const [totalCount, activeCount, allQuestionnaires] = await Promise.all([
+      prismaQuestionnaire.questionnaire.count(),
+      prismaQuestionnaire.questionnaire.count({ where: { isActive: true } }),
+      prismaQuestionnaire.questionnaire.findMany({
+        include: {
+          _count: {
+            select: { responses: true },
+          },
+        },
+      }),
+    ]);
+
+    const totalResponses = allQuestionnaires.reduce(
+      (sum, q) => sum + q._count.responses,
+      0
+    );
+
+    return {
+      total: totalCount,
+      active: activeCount,
+      totalResponses,
+    };
+  } catch (error) {
+    console.error('Error fetching questionnaire stats:', error);
+    throw new Error('שגיאה בטעינת סטטיסטיקות שאלונים');
+  }
+}
+
+/**
  * Get questionnaire statistics
  * Returns counts and status info
  */

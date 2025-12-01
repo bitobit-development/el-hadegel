@@ -6,15 +6,17 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { auth } from '@/auth';
 import { getHistoricalCommentsStats } from '@/app/actions/admin-historical-comment-actions';
-import { MessageSquareQuote, ArrowLeft, BarChart3 } from 'lucide-react';
+import { getQuestionnaireStats } from '@/app/actions/questionnaire-actions';
+import { MessageSquareQuote, ArrowLeft, BarChart3, ClipboardList } from 'lucide-react';
 import Link from 'next/link';
 
 export default async function AdminPage() {
-  const [mks, stats, session, historicalCommentsStats] = await Promise.all([
+  const [mks, stats, session, historicalCommentsStats, questionnaireStats] = await Promise.all([
     getMKs(),
     getPositionStats(),
     auth(),
     getHistoricalCommentsStats(),
+    getQuestionnaireStats(),
   ]);
 
   const adminEmail = session?.user?.email || 'unknown';
@@ -87,6 +89,44 @@ export default async function AdminPage() {
           <Link href="/admin/analytics">
             <Button className="w-full bg-blue-600 hover:bg-blue-700 gap-2">
               פתח ניתוח תעבורה
+              <ArrowLeft className="h-4 w-4" />
+            </Button>
+          </Link>
+        </CardContent>
+      </Card>
+
+      {/* Questionnaires Card */}
+      <Card className="border-teal-200 bg-gradient-to-br from-teal-50 to-white hover:shadow-md transition-shadow">
+        <CardHeader>
+          <div className="flex items-center gap-3">
+            <div className="bg-teal-600 p-2 rounded-lg">
+              <ClipboardList className="h-6 w-6 text-white" />
+            </div>
+            <div className="flex-1">
+              <CardTitle className="text-right">ניהול שאלונים</CardTitle>
+              <CardDescription className="text-right">
+                יצירה ועריכה של שאלונים ומעקב אחר תשובות
+              </CardDescription>
+            </div>
+          </div>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          <div className="flex items-center justify-between text-sm">
+            <Badge variant="secondary" className="bg-teal-100 text-teal-800">
+              {questionnaireStats.total} שאלונים
+            </Badge>
+            <div className="flex gap-2">
+              <Badge variant="outline" className="text-green-600 border-green-600">
+                {questionnaireStats.active} פעילים
+              </Badge>
+              <Badge variant="outline" className="text-blue-600 border-blue-600">
+                {questionnaireStats.totalResponses} תשובות
+              </Badge>
+            </div>
+          </div>
+          <Link href="/admin/questionnaires">
+            <Button className="w-full bg-teal-600 hover:bg-teal-700 gap-2">
+              פתח ניהול שאלונים
               <ArrowLeft className="h-4 w-4" />
             </Button>
           </Link>
