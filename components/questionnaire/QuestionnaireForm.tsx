@@ -1,12 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { ContactFields } from './ContactFields';
 import { QuestionCard } from './QuestionCard';
+import { ProgressIndicator } from './ProgressIndicator';
 import { submitQuestionnaireResponse } from '@/app/actions/response-actions';
 import { toast } from 'sonner';
-import { Loader2 } from 'lucide-react';
+import { Loader2, CheckCircle2 } from 'lucide-react';
 import type { QuestionnaireResponseInput } from '@/lib/validation/questionnaire-validation';
 
 interface Question {
@@ -31,6 +32,7 @@ interface QuestionnaireFormProps {
 
 export function QuestionnaireForm({ questionnaire }: QuestionnaireFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [contactInfo, setContactInfo] = useState({
     fullName: '',
     phoneNumber: '',
@@ -38,6 +40,22 @@ export function QuestionnaireForm({ questionnaire }: QuestionnaireFormProps) {
   });
   const [answers, setAnswers] = useState<Record<number, { answer?: boolean; textAnswer?: string }>>({});
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [answeredCount, setAnsweredCount] = useState(0);
+
+  // Calculate answered questions count
+  useEffect(() => {
+    const count = questionnaire.questions.filter((question) => {
+      const answer = answers[question.id];
+      if (question.questionType === 'YES_NO') {
+        return answer?.answer !== undefined;
+      } else {
+        return answer?.textAnswer && answer.textAnswer.trim() !== '';
+      }
+    }).length;
+    setAnsweredCount(count);
+  }, [answers, questionnaire.questions]);
+
+  const isComplete = answeredCount === questionnaire.questions.length;
 
   const handleContactChange = (field: string, value: string) => {
     setContactInfo((prev) => ({ ...prev, [field]: value }));
@@ -141,13 +159,19 @@ export function QuestionnaireForm({ questionnaire }: QuestionnaireFormProps) {
         description: 'תודה שמילאת את השאלון. נציגינו ייצרו איתך קשר בהקדם.',
       });
 
-      // Reset form
-      setContactInfo({ fullName: '', phoneNumber: '', email: '' });
-      setAnswers({});
-      setErrors({});
+      // Show success state
+      setIsSubmitted(true);
 
-      // Scroll to top
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Reset form after 3 seconds
+      setTimeout(() => {
+        setContactInfo({ fullName: '', phoneNumber: '', email: '' });
+        setAnswers({});
+        setErrors({});
+        setIsSubmitted(false);
+
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 3000);
     } catch (error) {
       console.error('Error submitting questionnaire:', error);
       toast.error(
@@ -185,6 +209,13 @@ export function QuestionnaireForm({ questionnaire }: QuestionnaireFormProps) {
         onChange={handleContactChange}
       />
 
+      {/* Progress Indicator */}
+      <ProgressIndicator
+        totalQuestions={questionnaire.questions.length}
+        answeredQuestions={answeredCount}
+        isComplete={isComplete}
+      />
+
       {/* Questions */}
       <div className="space-y-6">
         {questionnaire.questions.map((question, index) => (
@@ -204,10 +235,21 @@ export function QuestionnaireForm({ questionnaire }: QuestionnaireFormProps) {
         <Button
           type="submit"
           size="lg"
-          disabled={isSubmitting}
-          className="w-full bg-blue-600 text-lg font-semibold hover:bg-blue-700 sm:w-auto sm:px-12"
+          disabled={isSubmitting || isSubmitted}
+          className={`w-full text-lg font-semibold sm:w-auto px-8 py-4 ${
+            isSubmitted
+              ? 'bg-green-600 hover:bg-green-700'
+              : isSubmitting
+                ? 'bg-blue-600 opacity-50 grayscale'
+                : 'bg-blue-600 hover:bg-blue-700 submit-button-glow'
+          }`}
         >
-          {isSubmitting ? (
+          {isSubmitted ? (
+            <>
+              <CheckCircle2 className="ml-2 h-5 w-5 success-checkmark" aria-hidden="true" />
+              נשלח בהצלחה!
+            </>
+          ) : isSubmitting ? (
             <>
               <Loader2 className="ml-2 h-5 w-5 animate-spin" aria-hidden="true" />
               שולח...

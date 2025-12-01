@@ -1,7 +1,9 @@
 import { getActiveQuestionnaire } from '@/app/actions/questionnaire-actions';
 import { QuestionnaireForm } from '@/components/questionnaire/QuestionnaireForm';
+import { QuestionnaireHeader } from '@/components/questionnaire/QuestionnaireHeader';
 import { AlertCircle, FileQuestion } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import '@/components/questionnaire/questionnaire-animations.css';
 
 export const metadata = {
   title: 'שאלון | EL HADEGEL',
@@ -29,8 +31,12 @@ export default async function QuestionnairePage() {
     }
 
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 py-12">
-        <div className="container mx-auto max-w-4xl px-4">
+      <div className="questionnaire-container min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
+        <QuestionnaireHeader
+          title={questionnaire.title}
+          description={questionnaire.description}
+        />
+        <div className="container mx-auto max-w-4xl px-4 py-8 md:py-12">
           <QuestionnaireForm questionnaire={questionnaire} />
         </div>
       </div>

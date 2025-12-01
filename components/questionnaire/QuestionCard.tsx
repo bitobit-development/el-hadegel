@@ -48,8 +48,8 @@ export function QuestionCard({
 
   return (
     <div className={cn(
-      'rounded-lg border bg-white p-6 shadow-sm transition-all',
-      error && 'border-red-500 bg-red-50/50'
+      'question-card rounded-xl border-2 border-gray-200 bg-white p-6 shadow-lg transition-all',
+      error && 'border-red-500 bg-red-50/50 error-shake'
     )}>
       {/* Question Header */}
       <div className="mb-4">
@@ -115,7 +115,7 @@ export function QuestionCard({
             maxLength={maxLength}
             placeholder="הקלד את תשובתך כאן..."
             className={cn(
-              'text-right',
+              'text-right input-focus-glow',
               error && 'border-red-500 focus-visible:ring-red-500'
             )}
             aria-invalid={!!error}

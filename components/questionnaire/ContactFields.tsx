@@ -24,7 +24,7 @@ export function ContactFields({
   onChange,
 }: ContactFieldsProps) {
   return (
-    <div className="rounded-lg border bg-gradient-to-br from-blue-50 to-indigo-50 p-6 shadow-sm">
+    <div className="contact-fields-glow rounded-xl border-2 border-blue-200 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 p-6 shadow-lg">
       <h3 className="mb-4 text-lg font-semibold text-gray-900 text-right">
         פרטי יצירת קשר
         <span className="mr-2 text-red-500" aria-label="כל השדות חובה">*</span>
