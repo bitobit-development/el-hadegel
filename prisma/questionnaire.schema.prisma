@@ -88,3 +88,17 @@ model ResponseAnswer {
   @@unique([responseId, questionId]) // One answer per question per response
   @@index([questionId]) // For statistics aggregation
 }
+
+// Page View Tracking for Analytics
+model PageView {
+  id        Int      @id @default(autoincrement())
+  path      String   // URL path visited (e.g., "/", "/admin", "/about")
+  userAgent String?  // Browser/device info
+  ipAddress String?  // Visitor IP (for unique visitor counting)
+  referer   String?  // Where visitor came from
+  timestamp DateTime @default(now())
+
+  @@index([timestamp])
+  @@index([path])
+  @@index([ipAddress, timestamp])
+}

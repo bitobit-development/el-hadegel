@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { auth } from '@/auth';
 import { getHistoricalCommentsStats } from '@/app/actions/admin-historical-comment-actions';
-import { MessageSquareQuote, ArrowLeft } from 'lucide-react';
+import { MessageSquareQuote, ArrowLeft, BarChart3 } from 'lucide-react';
 import Link from 'next/link';
 
 export default async function AdminPage() {
@@ -62,6 +62,31 @@ export default async function AdminPage() {
           <Link href="/admin/historical-comments">
             <Button className="w-full bg-purple-600 hover:bg-purple-700 gap-2">
               פתח ניהול ציטוטים
+              <ArrowLeft className="h-4 w-4" />
+            </Button>
+          </Link>
+        </CardContent>
+      </Card>
+
+      {/* Analytics Card */}
+      <Card className="border-blue-200 bg-gradient-to-br from-blue-50 to-white hover:shadow-md transition-shadow">
+        <CardHeader>
+          <div className="flex items-center gap-3">
+            <div className="bg-blue-600 p-2 rounded-lg">
+              <BarChart3 className="h-6 w-6 text-white" />
+            </div>
+            <div className="flex-1">
+              <CardTitle className="text-right">ניתוח תעבורה</CardTitle>
+              <CardDescription className="text-right">
+                צפייה בסטטיסטיקות מבקרים וצפיות בדפים
+              </CardDescription>
+            </div>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <Link href="/admin/analytics">
+            <Button className="w-full bg-blue-600 hover:bg-blue-700 gap-2">
+              פתח ניתוח תעבורה
               <ArrowLeft className="h-4 w-4" />
             </Button>
           </Link>
