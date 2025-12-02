@@ -231,6 +231,12 @@ export async function getQuestionnaireResponses(
       prismaQuestionnaire.questionnaireResponse.findMany({
         where,
         include: {
+          questionnaire: {
+            select: {
+              id: true,
+              title: true,
+            },
+          },
           answers: {
             include: {
               question: {
@@ -238,6 +244,17 @@ export async function getQuestionnaireResponses(
                   id: true,
                   questionText: true,
                   questionType: true,
+                },
+              },
+            },
+          },
+          customFieldValues: {
+            include: {
+              field: {
+                select: {
+                  id: true,
+                  fieldName: true,
+                  fieldType: true,
                 },
               },
             },
@@ -286,6 +303,22 @@ export async function getResponseById(id: number) {
           },
           orderBy: {
             question: { orderIndex: 'asc' },
+          },
+        },
+        customFieldValues: {
+          include: {
+            field: {
+              select: {
+                id: true,
+                fieldName: true,
+                fieldType: true,
+                fieldOptions: true,
+                orderIndex: true,
+              },
+            },
+          },
+          orderBy: {
+            field: { orderIndex: 'asc' },
           },
         },
       },
@@ -437,11 +470,14 @@ export async function getResponseStatistics(questionnaireId: number) {
  */
 export async function getResponsesForExport(questionnaireId: number) {
   try {
-    // Get questionnaire with questions
+    // Get questionnaire with questions and custom fields
     const questionnaire = await prismaQuestionnaire.questionnaire.findUnique({
       where: { id: questionnaireId },
       include: {
         questions: {
+          orderBy: { orderIndex: 'asc' },
+        },
+        customFields: {
           orderBy: { orderIndex: 'asc' },
         },
       },
@@ -451,7 +487,7 @@ export async function getResponsesForExport(questionnaireId: number) {
       throw new Error('שאלון לא נמצא');
     }
 
-    // Get all responses with answers
+    // Get all responses with answers and custom field values
     const responses = await prismaQuestionnaire.questionnaireResponse.findMany({
       where: { questionnaireId },
       include: {
@@ -459,6 +495,13 @@ export async function getResponsesForExport(questionnaireId: number) {
           include: {
             question: {
               select: { id: true, orderIndex: true },
+            },
+          },
+        },
+        customFieldValues: {
+          include: {
+            field: {
+              select: { id: true, fieldType: true, orderIndex: true },
             },
           },
         },
@@ -483,6 +526,26 @@ export async function getResponsesForExport(questionnaireId: number) {
           row[`שאלה ${index + 1}`] = answer?.answer === true ? 'כן' : answer?.answer === false ? 'לא' : '';
         } else {
           row[`שאלה ${index + 1}`] = answer?.textAnswer || '';
+        }
+      });
+
+      // Add custom field values
+      questionnaire.customFields.forEach((customField) => {
+        const fieldValue = response.customFieldValues.find((v) => v.field.id === customField.id);
+
+        if (fieldValue) {
+          // Extract value based on field type
+          let displayValue = '';
+          if (fieldValue.field.fieldType === 'NUMBER') {
+            displayValue = fieldValue.numberValue?.toString() || '';
+          } else if (fieldValue.field.fieldType === 'DATE') {
+            displayValue = fieldValue.dateValue?.toLocaleDateString('he-IL') || '';
+          } else {
+            displayValue = fieldValue.textValue || '';
+          }
+          row[customField.fieldName] = displayValue;
+        } else {
+          row[customField.fieldName] = '';
         }
       });
 

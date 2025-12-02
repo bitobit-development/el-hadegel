@@ -19,7 +19,9 @@ const customJestConfig = {
   collectCoverageFrom: [
     'lib/content-hash.ts',
     'lib/services/comment-deduplication-service.ts',
+    'lib/validation/custom-field-validation.ts',
     'app/actions/historical-comment-actions.ts',
+    'app/actions/custom-field-actions.ts',
     'components/HistoricalCommentIcon.tsx',
     'components/historical-comments/CommentCard.tsx',
     '!**/*.d.ts',
@@ -38,11 +40,23 @@ const customJestConfig = {
       lines: 90,
       statements: 90,
     },
+    'lib/validation/custom-field-validation.ts': {
+      branches: 90,
+      functions: 100,
+      lines: 90,
+      statements: 90,
+    },
     'app/actions/historical-comment-actions.ts': {
       branches: 100,
       functions: 100,
       lines: 100,
       statements: 100,
+    },
+    'app/actions/custom-field-actions.ts': {
+      branches: 80,
+      functions: 100,
+      lines: 95,
+      statements: 95,
     },
   },
   transformIgnorePatterns: [

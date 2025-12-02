@@ -18,6 +18,15 @@ enum QuestionType {
   LONG_TEXT   // תשובה חופשית ארוכה - Long text (max 2000 chars)
 }
 
+// Enum for custom field types
+enum CustomFieldType {
+  TEXT        // קצר - Short text input
+  LONG_TEXT   // ארוך - Long text textarea
+  NUMBER      // מספר - Numeric input
+  DATE        // תאריך - Date picker
+  SELECT      // בחירה - Dropdown select (options in fieldOptions JSON)
+}
+
 // Questionnaire - Container for a set of questions
 model Questionnaire {
   id          Int      @id @default(autoincrement())
@@ -27,8 +36,9 @@ model Questionnaire {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  questions Question[]
-  responses QuestionnaireResponse[]
+  questions    Question[]
+  responses    QuestionnaireResponse[]
+  customFields CustomFieldDefinition[]
 
   @@index([isActive])
   @@index([createdAt])
@@ -64,8 +74,9 @@ model QuestionnaireResponse {
   userAgent       String?  // Browser info for security
   submittedAt     DateTime @default(now())
 
-  questionnaire Questionnaire    @relation(fields: [questionnaireId], references: [id], onDelete: Cascade)
-  answers       ResponseAnswer[]
+  questionnaire     Questionnaire      @relation(fields: [questionnaireId], references: [id], onDelete: Cascade)
+  answers           ResponseAnswer[]
+  customFieldValues CustomFieldValue[]
 
   @@index([questionnaireId])
   @@index([submittedAt])
@@ -101,4 +112,44 @@ model PageView {
   @@index([timestamp])
   @@index([path])
   @@index([ipAddress, timestamp])
+}
+
+// CustomFieldDefinition - Admin-defined custom columns per questionnaire
+model CustomFieldDefinition {
+  id              Int              @id @default(autoincrement())
+  questionnaireId Int
+  fieldName       String           // Display name (e.g., "עיר מגורים", "גיל")
+  fieldType       CustomFieldType  // Type of input field
+  fieldOptions    Json?            // For SELECT type: {"options": ["אופציה 1", "אופציה 2"]}
+  orderIndex      Int              // Display order (1, 2, 3, ...)
+  isRequired      Boolean          @default(false)
+  defaultValue    String?          // Optional default value
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+
+  questionnaire Questionnaire      @relation(fields: [questionnaireId], references: [id], onDelete: Cascade)
+  values        CustomFieldValue[]
+
+  @@unique([questionnaireId, fieldName]) // Prevent duplicate field names
+  @@index([questionnaireId])
+  @@index([questionnaireId, orderIndex])
+}
+
+// CustomFieldValue - Actual custom field values per response
+model CustomFieldValue {
+  id          Int      @id @default(autoincrement())
+  responseId  Int
+  fieldId     Int
+  textValue   String?  @db.Text // For TEXT, LONG_TEXT, SELECT types
+  numberValue Float?            // For NUMBER type
+  dateValue   DateTime?         // For DATE type
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  response QuestionnaireResponse @relation(fields: [responseId], references: [id], onDelete: Cascade)
+  field    CustomFieldDefinition @relation(fields: [fieldId], references: [id], onDelete: Cascade)
+
+  @@unique([responseId, fieldId]) // One value per field per response
+  @@index([responseId])
+  @@index([fieldId])
 }

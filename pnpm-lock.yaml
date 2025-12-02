@@ -11988,7 +11988,7 @@ snapshots:
       consola: 3.4.2
       crossws: 0.3.5
       defu: 6.1.4
-      get-port-please: 3.1.2
+      get-port-please: 3.2.0
       h3: 1.15.4
       http-shutdown: 1.2.2
       jiti: 2.6.1

@@ -124,7 +124,7 @@ export function generateFactionMetadata(
   neutralCount: number
 ): Metadata {
   const title = `${factionName} - עמדות חברי הכנסת בחוק הגיוס | ${SITE_NAME}`
-  const description = `כל חברי כנסת ${factionName} ועמדותיהם בחוק גיוס חרדים. ${supportCount} תומכים, ${againstCount} מתנגדים, ${neutralCount} מתנדנדים. מעקב עדכני.`
+  const description = `כל חברי כנסת ${factionName} ועמדותיהם בחוק גיוס חרדים. ${supportCount} תומכים בחוק הפטור, ${againstCount} מתנגדים לחוק הפטור, ${neutralCount} מתנדנדים. מעקב עדכני.`
 
   return {
     title,
@@ -156,8 +156,8 @@ export function generatePositionMetadata(
   position: 'SUPPORT' | 'AGAINST' | 'NEUTRAL'
 ): Metadata {
   const positionTexts = {
-    SUPPORT: { title: 'תומכים', description: 'תומכים בחוק הגיוס' },
-    AGAINST: { title: 'מתנגדים', description: 'מתנגדים לחוק הגיוס' },
+    SUPPORT: { title: 'תומכים בחוק הפטור', description: 'תומכים בחוק הפטור' },
+    AGAINST: { title: 'מתנגדים לחוק הפטור', description: 'מתנגדים לחוק הפטור' },
     NEUTRAL: { title: 'מתנדנדים', description: 'מתנדנדים בחוק הגיוס' },
   }
 
@@ -195,8 +195,8 @@ export function getPositionText(
   position: 'SUPPORT' | 'AGAINST' | 'NEUTRAL'
 ): string {
   const positions = {
-    SUPPORT: 'תומך',
-    AGAINST: 'מתנגד',
+    SUPPORT: 'תומך בחוק הפטור',
+    AGAINST: 'מתנגד לחוק הפטור',
     NEUTRAL: 'מתנדנד',
   }
   return positions[position]

@@ -87,9 +87,9 @@ export type FilteredPositionStats = PositionStats & {
 
 // Position badge labels in Hebrew
 export const POSITION_LABELS: Record<PositionStatus, string> = {
-  SUPPORT: 'תומך',
+  SUPPORT: 'תומך בחוק הפטור',
   NEUTRAL: 'מתנדנד',
-  AGAINST: 'מתנגד',
+  AGAINST: 'מתנגד לחוק הפטור',
 };
 
 // Position badge colors (Tailwind classes)

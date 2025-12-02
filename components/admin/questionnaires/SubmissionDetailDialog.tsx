@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import {
   Dialog,
   DialogContent,
@@ -18,6 +19,12 @@ import {
 } from '@/lib/questionnaire-utils';
 import { cn } from '@/lib/utils';
 import { Check, X, Mail, Phone, Calendar } from 'lucide-react';
+import { CustomFieldEditor } from './CustomFieldEditor';
+import {
+  getResponseCustomFieldValues,
+  getCustomFieldDefinitions
+} from '@/app/actions/custom-field-actions';
+import { extractFieldValue } from '@/lib/validation/custom-field-validation';
 
 interface Answer {
   id: number;
@@ -37,6 +44,23 @@ interface Response {
   email: string;
   submittedAt: Date | string;
   answers: Answer[];
+  questionnaire?: {
+    id: number;
+    title: string;
+  };
+  customFieldValues?: Array<{
+    id: number;
+    fieldId: number;
+    stringValue?: string | null;
+    numberValue?: number | null;
+    booleanValue?: boolean | null;
+    dateValue?: Date | string | null;
+    field: {
+      id: number;
+      fieldName: string;
+      fieldType: string;
+    };
+  }>;
 }
 
 interface SubmissionDetailDialogProps {
@@ -50,6 +74,56 @@ export function SubmissionDetailDialog({
   onOpenChange,
   response,
 }: SubmissionDetailDialogProps) {
+  const [customFields, setCustomFields] = useState<any[]>([]);
+  const [customFieldValues, setCustomFieldValues] = useState<Record<number, any>>({});
+  const [isLoadingCustomFields, setIsLoadingCustomFields] = useState(false);
+
+  useEffect(() => {
+    const loadCustomFields = async () => {
+      if (!response || !open) return;
+
+      // We need questionnaire ID from the response
+      const questionnaireId = response.questionnaire?.id;
+      if (!questionnaireId) {
+        // If no questionnaire ID, custom fields can't be loaded
+        console.log('No questionnaire ID available for custom fields');
+        return;
+      }
+
+      setIsLoadingCustomFields(true);
+      try {
+        const [fields, values] = await Promise.all([
+          getCustomFieldDefinitions(questionnaireId),
+          getResponseCustomFieldValues(response.id),
+        ]);
+
+        setCustomFields(fields);
+
+        // Convert values to Record<fieldId, value>
+        const valuesMap: Record<number, any> = {};
+        values.forEach((val) => {
+          // Find the field definition to get the type
+          const field = fields.find(f => f.id === val.fieldId);
+          if (field) {
+            valuesMap[val.fieldId] = extractFieldValue(field.fieldType, {
+              textValue: val.textValue,
+              numberValue: val.numberValue,
+              dateValue: val.dateValue,
+            });
+          }
+        });
+
+        setCustomFieldValues(valuesMap);
+      } catch (error) {
+        console.error('Error loading custom fields:', error);
+      } finally {
+        setIsLoadingCustomFields(false);
+      }
+    };
+
+    loadCustomFields();
+  }, [response, open]);
+
   if (!response) return null;
 
   return (
@@ -152,6 +226,34 @@ export function SubmissionDetailDialog({
               ))}
             </div>
           </div>
+
+          {/* Custom Fields Section */}
+          {!isLoadingCustomFields && customFields.length > 0 && (
+            <div className="border-t pt-6 mt-6">
+              <CustomFieldEditor
+                responseId={response.id}
+                fields={customFields}
+                values={customFieldValues}
+                onUpdate={async () => {
+                  // Reload custom field values after update
+                  const values = await getResponseCustomFieldValues(response.id);
+                  const valuesMap: Record<number, any> = {};
+                  values.forEach((val) => {
+                    // Find the field definition to get the type
+                    const field = customFields.find(f => f.id === val.fieldId);
+                    if (field) {
+                      valuesMap[val.fieldId] = extractFieldValue(field.fieldType, {
+                        textValue: val.textValue,
+                        numberValue: val.numberValue,
+                        dateValue: val.dateValue,
+                      });
+                    }
+                  });
+                  setCustomFieldValues(valuesMap);
+                }}
+              />
+            </div>
+          )}
         </div>
       </DialogContent>
     </Dialog>

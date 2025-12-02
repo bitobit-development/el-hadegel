@@ -10,10 +10,13 @@ import { getQuestionnaireById } from '@/app/actions/questionnaire-actions';
 import {
   getQuestionnaireResponses,
   getResponseStatistics,
+  getResponsesForExport,
 } from '@/app/actions/response-actions';
-import { ArrowLeft, Loader2, Download, TrendingUp } from 'lucide-react';
+import { ArrowLeft, Loader2, Download, TrendingUp, Settings } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { getRelativeTime } from '@/lib/questionnaire-utils';
+import { getRelativeTime, generateExcelFilename } from '@/lib/questionnaire-utils';
+import { exportResponsesToExcel } from '@/lib/excel-export';
+import { toast } from 'sonner';
 
 export default function SubmissionsPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
@@ -28,6 +31,7 @@ export default function SubmissionsPage({ params }: { params: Promise<{ id: stri
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [showStats, setShowStats] = useState(false);
+  const [isExporting, setIsExporting] = useState(false);
 
   const pageSize = 20;
 
@@ -71,6 +75,38 @@ export default function SubmissionsPage({ params }: { params: Promise<{ id: stri
     setCurrentPage(1); // Reset to first page
   };
 
+  const handleExport = async () => {
+    setIsExporting(true);
+
+    try {
+      // Fetch all responses (no pagination) with custom fields
+      const exportData = await getResponsesForExport(questionnaireId);
+
+      // Generate Excel blob
+      const blob = await exportResponsesToExcel(exportData.questionnaireTitle, {
+        questions: exportData.questions,
+        data: exportData.data,
+      });
+
+      // Trigger download
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = generateExcelFilename(exportData.questionnaireTitle);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+
+      toast.success(`ייצוא הושלם בהצלחה - ${exportData.data.length} תשובות`);
+    } catch (error) {
+      console.error('Error exporting:', error);
+      toast.error('שגיאה בייצוא לאקסל');
+    } finally {
+      setIsExporting(false);
+    }
+  };
+
   const averageAnswerRate =
     statistics && statistics.totalResponses > 0 && statistics.totalQuestions > 0
       ? (statistics.questionStats.reduce(
@@ -106,10 +142,34 @@ export default function SubmissionsPage({ params }: { params: Promise<{ id: stri
         </div>
 
         <div className="flex shrink-0 gap-2">
+          <Link href={`/admin/questionnaires/${questionnaireId}/custom-fields`}>
+            <Button variant="outline" className="bg-purple-50 text-purple-700 hover:bg-purple-100">
+              <Settings className="ml-2 h-5 w-5" />
+              נהל שדות מותאמים
+            </Button>
+          </Link>
+          <Button
+            onClick={handleExport}
+            disabled={isExporting || responses.length === 0}
+            variant="outline"
+            className="bg-green-50 text-green-700 hover:bg-green-100"
+          >
+            {isExporting ? (
+              <>
+                <Loader2 className="ml-2 h-5 w-5 animate-spin" />
+                מייצא...
+              </>
+            ) : (
+              <>
+                <Download className="ml-2 h-5 w-5" />
+                ייצא לאקסל
+              </>
+            )}
+          </Button>
           <Button
             variant="outline"
             onClick={() => setShowStats(!showStats)}
-            className="bg-purple-50 text-purple-700 hover:bg-purple-100"
+            className="bg-indigo-50 text-indigo-700 hover:bg-indigo-100"
           >
             <TrendingUp className="ml-2 h-5 w-5" />
             {showStats ? 'הסתר סטטיסטיקות' : 'הצג סטטיסטיקות'}
