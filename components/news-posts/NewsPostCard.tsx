@@ -21,11 +21,11 @@ export default function NewsPostCard({ post, maxContentLength = 200 }: NewsPostC
     <Card className="hover:shadow-md transition-all duration-200 border-r-4 border-r-blue-500">
       <CardContent className="p-4">
         {/* Horizontal Layout: Image on Left, Content on Right */}
-        <div className="flex gap-4 items-start">
+        <div className="flex gap-3 sm:gap-4 items-start">
           {/* Preview Image (Passport Photo Size - Left Side) */}
           {hasPreview && (
             <div className="flex-shrink-0">
-              <div className="relative w-20 h-20 rounded-md overflow-hidden bg-muted border">
+              <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-md overflow-hidden bg-muted border">
                 <Image
                   src={post.previewImage!}
                   alt={post.previewTitle || 'Preview'}
@@ -40,7 +40,7 @@ export default function NewsPostCard({ post, maxContentLength = 200 }: NewsPostC
           )}
 
           {/* Content Area (Right Side) */}
-          <div className="flex-1 min-w-0 space-y-2">
+          <div className="flex-1 min-w-0 space-y-2 overflow-hidden pr-1 sm:pr-0">
             {/* Preview Title (if available) */}
             {post.previewTitle && (
               <h3 className="text-base font-bold text-right leading-tight text-foreground">
