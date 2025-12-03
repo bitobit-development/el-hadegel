@@ -26,6 +26,7 @@ import {
   POSITION_CHART_COLORS,
 } from '@/types/mk';
 import { cn } from '@/lib/utils';
+import { useResponsive } from '@/hooks/useResponsive';
 
 type ChartsPanelProps = {
   initialStats: PositionStats;
@@ -45,6 +46,10 @@ export const ChartsPanel = ({
   const [filteredStats, setFilteredStats] = useState<FilteredPositionStats | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [chartType, setChartType] = useState<ChartType>('pie');
+
+  // Responsive breakpoints
+  const { isMobile, isTablet } = useResponsive();
+  const chartHeight = isMobile ? 300 : isTablet ? 350 : 400;
 
   // Fetch filtered stats with debounce
   useEffect(() => {
@@ -122,12 +127,12 @@ export const ChartsPanel = ({
         .sort(([, a], [, b]) => b - a);
 
       return (
-        <div className="bg-white border border-gray-200 rounded-lg shadow-lg p-4 text-right max-w-xs" dir="rtl">
-          <p className="font-bold text-base mb-3">{positionLabel}</p>
-          <p className="font-semibold text-sm mb-2">נתמך על ידי:</p>
-          <div className="space-y-1.5">
+        <div className="bg-white border border-gray-200 rounded-lg shadow-lg p-3 sm:p-4 text-right max-w-[280px] sm:max-w-xs" dir="rtl">
+          <p className="font-bold text-sm sm:text-base mb-2 sm:mb-3">{positionLabel}</p>
+          <p className="font-semibold text-xs sm:text-sm mb-1.5 sm:mb-2">נתמך על ידי:</p>
+          <div className="space-y-1 sm:space-y-1.5">
             {sortedFactions.map(([faction, count]) => (
-              <div key={faction} className="flex items-center gap-2 text-sm">
+              <div key={faction} className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm">
                 <span className="font-medium">• {faction}</span>
                 <span className="text-muted-foreground">({count} ח״כים)</span>
               </div>
@@ -261,20 +266,36 @@ export const ChartsPanel = ({
                     </PieChart>
                   </ResponsiveContainer>
                 ) : (
-                  <ResponsiveContainer width="100%" height={400}>
+                  <ResponsiveContainer width="100%" height={chartHeight}>
                     <BarChart
                       data={barData}
-                      margin={{ top: 20, right: 30, left: 30, bottom: 60 }}
+                      margin={{
+                        top: 20,
+                        right: isMobile ? 30 : 30,
+                        left: isMobile ? 30 : 30,
+                        bottom: isMobile ? 80 : 60,
+                      }}
                     >
                       <CartesianGrid strokeDasharray="3 3" />
                       <XAxis
                         dataKey="position"
-                        angle={0}
-                        textAnchor="middle"
-                        height={80}
-                        style={{ direction: 'rtl', fontSize: '14px' }}
+                        angle={isMobile ? -45 : 0}
+                        textAnchor={isMobile ? 'end' : 'middle'}
+                        height={isMobile ? 100 : 80}
+                        interval={0}
+                        dx={isMobile ? 0 : 0}
+                        dy={isMobile ? 5 : 0}
+                        style={{
+                          direction: 'rtl',
+                          fontSize: isMobile ? '11px' : '14px',
+                        }}
                       />
-                      <YAxis />
+                      <YAxis
+                        width={isMobile ? 40 : 60}
+                        style={{
+                          fontSize: isMobile ? '11px' : '14px',
+                        }}
+                      />
                       <Tooltip content={<CustomTooltip />} cursor={false} />
                       <Bar dataKey="count" fill="#8884d8" radius={[8, 8, 0, 0]}>
                         {barData.map((entry, index) => (
