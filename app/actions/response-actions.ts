@@ -16,6 +16,7 @@ import {
   normalizeIsraeliPhone,
   validateAnswerForQuestionType,
   validateRequiredQuestions,
+  validateExplanationText,
   type QuestionnaireResponseInput,
 } from '@/lib/validation/questionnaire-validation';
 
@@ -105,6 +106,8 @@ export async function submitQuestionnaireResponse(data: QuestionnaireResponseInp
             id: true,
             questionType: true,
             isRequired: true,
+            allowTextExplanation: true,
+            explanationMaxLength: true,
           },
         },
       },
@@ -139,6 +142,17 @@ export async function submitQuestionnaireResponse(data: QuestionnaireResponseInp
       if (!validation.valid) {
         throw new Error(validation.error);
       }
+
+      // Validate explanation text if present
+      const explanationValidation = validateExplanationText(
+        question.questionType,
+        question.allowTextExplanation,
+        answer.explanationText,
+        question.explanationMaxLength || 500
+      );
+      if (!explanationValidation.valid) {
+        throw new Error(explanationValidation.error);
+      }
     }
 
     // Create response with answers in transaction
@@ -162,6 +176,7 @@ export async function submitQuestionnaireResponse(data: QuestionnaireResponseInp
           questionId: a.questionId,
           answer: a.answer !== undefined ? a.answer : null,
           textAnswer: a.textAnswer || null,
+          explanationText: a.explanationText || null,
         })),
       });
 
@@ -244,6 +259,7 @@ export async function getQuestionnaireResponses(
                   id: true,
                   questionText: true,
                   questionType: true,
+                  allowTextExplanation: true,
                 },
               },
             },
@@ -298,6 +314,8 @@ export async function getResponseById(id: number) {
                 questionText: true,
                 questionType: true,
                 orderIndex: true,
+                allowTextExplanation: true,
+                explanationLabel: true,
               },
             },
           },
@@ -475,6 +493,14 @@ export async function getResponsesForExport(questionnaireId: number) {
       where: { id: questionnaireId },
       include: {
         questions: {
+          select: {
+            id: true,
+            questionText: true,
+            questionType: true,
+            orderIndex: true,
+            allowTextExplanation: true,
+            explanationLabel: true,
+          },
           orderBy: { orderIndex: 'asc' },
         },
         customFields: {
@@ -524,6 +550,12 @@ export async function getResponsesForExport(questionnaireId: number) {
 
         if (question.questionType === 'YES_NO') {
           row[`שאלה ${index + 1}`] = answer?.answer === true ? 'כן' : answer?.answer === false ? 'לא' : '';
+
+          // Add explanation column if feature enabled
+          if (question.allowTextExplanation) {
+            const explanationHeader = question.explanationLabel || `שאלה ${index + 1} - הסבר`;
+            row[explanationHeader] = answer?.explanationText || '';
+          }
         } else {
           row[`שאלה ${index + 1}`] = answer?.textAnswer || '';
         }

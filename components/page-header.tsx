@@ -106,18 +106,9 @@ export function PageHeader({ session }: PageHeaderProps) {
                 </div>
               </>
             ) : (
-              // Public state - show login button
+              // Public state - no login button (users access /login manually)
               <div className="flex items-center gap-2 md:gap-3">
-                <Link href="/login" className="flex-1 md:flex-none">
-                  <Button
-                    variant="default"
-                    size="sm"
-                    className="w-full md:w-auto h-10 px-4 sm:px-6 bg-white text-[#001f3f] hover:bg-white/90 text-xs sm:text-sm font-medium"
-                  >
-                    <LogIn className="h-4 w-4 ml-1.5 sm:ml-2 flex-shrink-0" />
-                    <span className="truncate">התחבר</span>
-                  </Button>
-                </Link>
+                {/* Login button removed - users navigate to /login manually */}
               </div>
             )}
           </div>

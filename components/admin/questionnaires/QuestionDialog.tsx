@@ -33,6 +33,9 @@ interface Question {
   questionType: 'YES_NO' | 'TEXT' | 'LONG_TEXT';
   isRequired: boolean;
   maxLength: number | null;
+  allowTextExplanation?: boolean;
+  explanationMaxLength?: number;
+  explanationLabel?: string | null;
 }
 
 interface QuestionDialogProps {
@@ -55,6 +58,9 @@ export function QuestionDialog({
   const [questionType, setQuestionType] = useState<'YES_NO' | 'TEXT' | 'LONG_TEXT'>('YES_NO');
   const [isRequired, setIsRequired] = useState(true);
   const [maxLength, setMaxLength] = useState<number>(500);
+  const [allowTextExplanation, setAllowTextExplanation] = useState(false);
+  const [explanationMaxLength, setExplanationMaxLength] = useState(500);
+  const [explanationLabel, setExplanationLabel] = useState('הוסף הסבר (אופציונלי)');
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const isEdit = !!question;
@@ -66,12 +72,18 @@ export function QuestionDialog({
       setQuestionType(question.questionType);
       setIsRequired(question.isRequired);
       setMaxLength(question.maxLength || (question.questionType === 'TEXT' ? 500 : 2000));
+      setAllowTextExplanation(question.allowTextExplanation || false);
+      setExplanationMaxLength(question.explanationMaxLength || 500);
+      setExplanationLabel(question.explanationLabel || 'הוסף הסבר (אופציונלי)');
     } else {
       // Reset for new question
       setQuestionText('');
       setQuestionType('YES_NO');
       setIsRequired(true);
       setMaxLength(500);
+      setAllowTextExplanation(false);
+      setExplanationMaxLength(500);
+      setExplanationLabel('הוסף הסבר (אופציונלי)');
       setErrors({});
     }
   }, [question, open]);
@@ -85,6 +97,9 @@ export function QuestionDialog({
         setQuestionType('YES_NO');
         setIsRequired(true);
         setMaxLength(500);
+        setAllowTextExplanation(false);
+        setExplanationMaxLength(500);
+        setExplanationLabel('הוסף הסבר (אופציונלי)');
         setErrors({});
       }
     }
@@ -129,6 +144,9 @@ export function QuestionDialog({
           questionType,
           isRequired,
           maxLength: questionType === 'YES_NO' ? null : maxLength,
+          allowTextExplanation: questionType === 'YES_NO' ? allowTextExplanation : false,
+          explanationMaxLength: questionType === 'YES_NO' && allowTextExplanation ? explanationMaxLength : null,
+          explanationLabel: questionType === 'YES_NO' && allowTextExplanation ? explanationLabel : null,
         });
         toast.success('השאלה עודכנה בהצלחה');
       } else {
@@ -138,6 +156,9 @@ export function QuestionDialog({
           questionType,
           isRequired,
           maxLength: questionType === 'YES_NO' ? null : maxLength,
+          allowTextExplanation: questionType === 'YES_NO' ? allowTextExplanation : false,
+          explanationMaxLength: questionType === 'YES_NO' && allowTextExplanation ? explanationMaxLength : null,
+          explanationLabel: questionType === 'YES_NO' && allowTextExplanation ? explanationLabel : null,
         });
         toast.success('השאלה נוצרה בהצלחה');
       }
@@ -276,6 +297,64 @@ export function QuestionDialog({
               שאלת חובה
             </Label>
           </div>
+
+          {/* Explanation Settings (only for YES_NO questions) */}
+          {questionType === 'YES_NO' && (
+            <div className="space-y-4 p-4 border rounded-lg bg-gray-50">
+              <h3 className="font-semibold text-sm text-right">הגדרות הסבר טקסט</h3>
+
+              {/* Enable explanation checkbox */}
+              <div className="flex items-center gap-2">
+                <Checkbox
+                  id="allowTextExplanation"
+                  checked={allowTextExplanation}
+                  onCheckedChange={(checked) => setAllowTextExplanation(!!checked)}
+                />
+                <Label htmlFor="allowTextExplanation" className="text-sm cursor-pointer">
+                  אפשר הוספת הסבר טקסט (אופציונלי)
+                </Label>
+              </div>
+
+              {/* Conditional fields */}
+              {allowTextExplanation && (
+                <div className="space-y-4 pr-6">
+                  {/* Explanation label */}
+                  <div className="space-y-2">
+                    <Label htmlFor="explanationLabel" className="text-right">
+                      תווית שדה ההסבר
+                    </Label>
+                    <Input
+                      id="explanationLabel"
+                      value={explanationLabel}
+                      onChange={(e) => setExplanationLabel(e.target.value)}
+                      placeholder="הוסף הסבר (אופציונלי)"
+                      className="text-right"
+                      dir="rtl"
+                    />
+                  </div>
+
+                  {/* Max length */}
+                  <div className="space-y-2">
+                    <Label htmlFor="explanationMaxLength" className="text-right">
+                      אורך מקסימלי (תווים)
+                    </Label>
+                    <Input
+                      id="explanationMaxLength"
+                      type="number"
+                      value={explanationMaxLength}
+                      onChange={(e) => setExplanationMaxLength(parseInt(e.target.value) || 500)}
+                      min={50}
+                      max={2000}
+                      className="text-right"
+                    />
+                    <p className="text-sm text-gray-500 text-right">
+                      מומלץ: 500 תווים
+                    </p>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
 
           <DialogFooter className="gap-2">
             <Button

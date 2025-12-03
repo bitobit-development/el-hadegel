@@ -25,6 +25,17 @@ export async function getActiveQuestionnaire() {
       where: { isActive: true },
       include: {
         questions: {
+          select: {
+            id: true,
+            questionText: true,
+            questionType: true,
+            orderIndex: true,
+            isRequired: true,
+            maxLength: true,
+            allowTextExplanation: true,
+            explanationMaxLength: true,
+            explanationLabel: true,
+          },
           orderBy: { orderIndex: 'asc' },
         },
         _count: {
@@ -75,6 +86,17 @@ export async function getQuestionnaireById(id: number) {
       where: { id },
       include: {
         questions: {
+          select: {
+            id: true,
+            questionText: true,
+            questionType: true,
+            orderIndex: true,
+            isRequired: true,
+            maxLength: true,
+            allowTextExplanation: true,
+            explanationMaxLength: true,
+            explanationLabel: true,
+          },
           orderBy: { orderIndex: 'asc' },
         },
         _count: {

@@ -54,6 +54,20 @@ export const questionSchema = z.object({
     .max(5000, 'אורך מקסימלי לא יכול לעלות על 5000 תווים')
     .optional()
     .nullable(),
+  allowTextExplanation: z.boolean().default(false),
+  explanationMaxLength: z
+    .number()
+    .int('אורך מקסימלי להסבר חייב להיות מספר שלם')
+    .positive('אורך מקסימלי להסבר חייב להיות חיובי')
+    .max(2000, 'אורך מקסימלי להסבר לא יכול לעלות על 2000 תווים')
+    .default(500)
+    .optional()
+    .nullable(),
+  explanationLabel: z
+    .string()
+    .max(200, 'תווית הסבר לא יכולה לעלות על 200 תווים')
+    .optional()
+    .nullable(),
   orderIndex: z
     .number()
     .int('מספר סידורי חייב להיות מספר שלם')
@@ -87,6 +101,12 @@ export const responseAnswerSchema = z.object({
   textAnswer: z
     .string()
     .max(5000, 'תשובה טקסטואלית לא יכולה לעלות על 5000 תווים')
+    .optional()
+    .nullable(),
+  // Optional explanation text for YES_NO questions
+  explanationText: z
+    .string()
+    .max(2000, 'הסבר לא יכול לעלות על 2000 תווים')
     .optional()
     .nullable(),
 });
@@ -210,4 +230,35 @@ export function validateRequiredQuestions(
 ): number[] {
   const answeredIds = new Set(providedAnswers.map((a) => a.questionId));
   return requiredQuestionIds.filter((id) => !answeredIds.has(id));
+}
+
+/**
+ * Validate explanation text for YES_NO questions
+ * Returns validation result with Hebrew error message
+ */
+export function validateExplanationText(
+  questionType: 'YES_NO' | 'TEXT' | 'LONG_TEXT',
+  allowTextExplanation: boolean,
+  explanationText: string | null | undefined,
+  maxLength: number = 500
+): { valid: boolean; error?: string } {
+  // Only validate for YES_NO questions with feature enabled
+  if (questionType !== 'YES_NO' || !allowTextExplanation) {
+    return { valid: true };
+  }
+
+  // Explanation is always optional
+  if (!explanationText || explanationText.trim() === '') {
+    return { valid: true };
+  }
+
+  // Check length
+  if (explanationText.length > maxLength) {
+    return {
+      valid: false,
+      error: `הסבר לא יכול לעלות על ${maxLength} תווים`
+    };
+  }
+
+  return { valid: true };
 }

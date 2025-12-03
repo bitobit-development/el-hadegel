@@ -46,15 +46,18 @@ model Questionnaire {
 
 // Question - Individual question (yes/no or text)
 model Question {
-  id              Int          @id @default(autoincrement())
-  questionnaireId Int
-  orderIndex      Int          // For sorting questions (1, 2, 3, ...)
-  questionText    String       // נוסח השאלה
-  questionType    QuestionType @default(YES_NO)
-  isRequired      Boolean      @default(true)
-  maxLength       Int?         // Max characters for TEXT/LONG_TEXT (optional)
-  createdAt       DateTime     @default(now())
-  updatedAt       DateTime     @updatedAt
+  id                   Int          @id @default(autoincrement())
+  questionnaireId      Int
+  orderIndex           Int          // For sorting questions (1, 2, 3, ...)
+  questionText         String       // נוסח השאלה
+  questionType         QuestionType @default(YES_NO)
+  isRequired           Boolean      @default(true)
+  maxLength            Int?         // Max characters for TEXT/LONG_TEXT (optional)
+  allowTextExplanation Boolean      @default(false) // Enable optional text explanation for YES_NO questions
+  explanationMaxLength Int?         @default(500)   // Max characters for explanation text
+  explanationLabel     String?      @db.Text        // Hebrew label for explanation field (e.g., "הוסף הסבר (אופציונלי)")
+  createdAt            DateTime     @default(now())
+  updatedAt            DateTime     @updatedAt
 
   questionnaire Questionnaire    @relation(fields: [questionnaireId], references: [id], onDelete: Cascade)
   answers       ResponseAnswer[]
@@ -86,12 +89,13 @@ model QuestionnaireResponse {
 
 // ResponseAnswer - Individual answer to a question
 model ResponseAnswer {
-  id         Int      @id @default(autoincrement())
-  responseId Int
-  questionId Int
-  answer     Boolean? // For YES_NO questions (true = yes, false = no)
-  textAnswer String?  // For TEXT/LONG_TEXT questions
-  createdAt  DateTime @default(now())
+  id              Int      @id @default(autoincrement())
+  responseId      Int
+  questionId      Int
+  answer          Boolean? // For YES_NO questions (true = yes, false = no)
+  textAnswer      String?  // For TEXT/LONG_TEXT questions
+  explanationText String?  @db.Text // Optional explanation text for YES_NO questions
+  createdAt       DateTime @default(now())
 
   response QuestionnaireResponse @relation(fields: [responseId], references: [id], onDelete: Cascade)
   question Question              @relation(fields: [questionId], references: [id], onDelete: Cascade)

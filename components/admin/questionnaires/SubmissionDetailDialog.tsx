@@ -30,10 +30,12 @@ interface Answer {
   id: number;
   answer: boolean | null;
   textAnswer: string | null;
+  explanationText?: string | null;
   question: {
     id: number;
     questionText: string;
     questionType: 'YES_NO' | 'TEXT' | 'LONG_TEXT';
+    explanationLabel?: string | null;
   };
 }
 
@@ -199,19 +201,33 @@ export function SubmissionDetailDialog({
                   {/* Answer */}
                   <div className="mr-10 text-right">
                     {answer.question.questionType === 'YES_NO' ? (
-                      <div className="flex items-center justify-end gap-2">
-                        {answer.answer === true ? (
-                          <div className="flex items-center gap-2 rounded-lg bg-green-100 px-4 py-2 text-green-800">
-                            <Check className="h-5 w-5" />
-                            <span className="font-semibold">כן</span>
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-end gap-2">
+                          {answer.answer === true ? (
+                            <div className="flex items-center gap-2 rounded-lg bg-green-100 px-4 py-2 text-green-800">
+                              <Check className="h-5 w-5" />
+                              <span className="font-semibold">כן</span>
+                            </div>
+                          ) : answer.answer === false ? (
+                            <div className="flex items-center gap-2 rounded-lg bg-red-100 px-4 py-2 text-red-800">
+                              <X className="h-5 w-5" />
+                              <span className="font-semibold">לא</span>
+                            </div>
+                          ) : (
+                            <div className="text-gray-500">לא נענה</div>
+                          )}
+                        </div>
+
+                        {/* Display explanation text if exists */}
+                        {answer.explanationText && (
+                          <div className="mt-3 p-3 bg-blue-50 border border-blue-200 rounded-md">
+                            <p className="text-sm font-semibold text-blue-900 mb-1">
+                              {answer.question.explanationLabel || 'הסבר'}:
+                            </p>
+                            <p className="text-sm text-blue-800 whitespace-pre-wrap text-right">
+                              {answer.explanationText}
+                            </p>
                           </div>
-                        ) : answer.answer === false ? (
-                          <div className="flex items-center gap-2 rounded-lg bg-red-100 px-4 py-2 text-red-800">
-                            <X className="h-5 w-5" />
-                            <span className="font-semibold">לא</span>
-                          </div>
-                        ) : (
-                          <div className="text-gray-500">לא נענה</div>
                         )}
                       </div>
                     ) : (

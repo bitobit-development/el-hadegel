@@ -15,6 +15,9 @@ interface Question {
   questionType: 'YES_NO' | 'TEXT' | 'LONG_TEXT';
   isRequired: boolean;
   maxLength: number | null;
+  allowTextExplanation?: boolean;
+  explanationMaxLength?: number;
+  explanationLabel?: string | null;
 }
 
 interface QuestionCardProps {
@@ -23,8 +26,9 @@ interface QuestionCardProps {
   value: {
     answer?: boolean;
     textAnswer?: string;
+    explanationText?: string;
   };
-  onChange: (value: { answer?: boolean; textAnswer?: string }) => void;
+  onChange: (value: { answer?: boolean; textAnswer?: string; explanationText?: string }) => void;
   error?: string;
 }
 
@@ -35,6 +39,10 @@ export function QuestionCard({
   onChange,
   error,
 }: QuestionCardProps) {
+  const [showExplanation, setShowExplanation] = useState(
+    question.allowTextExplanation && value?.answer !== null && value?.answer !== undefined
+  );
+
   const maxLength =
     question.questionType === 'TEXT'
       ? question.maxLength || 500
@@ -70,39 +78,100 @@ export function QuestionCard({
 
       {/* Question Input Based on Type */}
       {question.questionType === 'YES_NO' && (
-        <div className="flex gap-3">
-          <Button
-            type="button"
-            variant={value.answer === true ? 'default' : 'outline'}
-            size="lg"
-            onClick={() => onChange({ answer: true })}
-            className={cn(
-              'flex-1 text-lg font-semibold',
-              value.answer === true
-                ? 'bg-green-600 hover:bg-green-700'
-                : 'border-green-600 text-green-600 hover:bg-green-50'
-            )}
-            aria-pressed={value.answer === true}
-          >
-            <Check className="ml-2 h-5 w-5" aria-hidden="true" />
-            כן
-          </Button>
-          <Button
-            type="button"
-            variant={value.answer === false ? 'default' : 'outline'}
-            size="lg"
-            onClick={() => onChange({ answer: false })}
-            className={cn(
-              'flex-1 text-lg font-semibold',
-              value.answer === false
-                ? 'bg-red-600 hover:bg-red-700'
-                : 'border-red-600 text-red-600 hover:bg-red-50'
-            )}
-            aria-pressed={value.answer === false}
-          >
-            <X className="ml-2 h-5 w-5" aria-hidden="true" />
-            לא
-          </Button>
+        <div className="space-y-4">
+          {/* YES/NO buttons */}
+          <div className="flex gap-3">
+            <Button
+              type="button"
+              variant={value.answer === true ? 'default' : 'outline'}
+              size="lg"
+              onClick={() => {
+                onChange({ ...value, answer: true });
+                if (question.allowTextExplanation) {
+                  setShowExplanation(true);
+                }
+              }}
+              className={cn(
+                'flex-1 text-lg font-semibold',
+                value.answer === true
+                  ? 'bg-green-600 hover:bg-green-700'
+                  : 'border-green-600 text-green-600 hover:bg-green-50'
+              )}
+              aria-pressed={value.answer === true}
+            >
+              <Check className="ml-2 h-5 w-5" aria-hidden="true" />
+              כן
+            </Button>
+            <Button
+              type="button"
+              variant={value.answer === false ? 'default' : 'outline'}
+              size="lg"
+              onClick={() => {
+                onChange({ ...value, answer: false });
+                if (question.allowTextExplanation) {
+                  setShowExplanation(true);
+                }
+              }}
+              className={cn(
+                'flex-1 text-lg font-semibold',
+                value.answer === false
+                  ? 'bg-red-600 hover:bg-red-700'
+                  : 'border-red-600 text-red-600 hover:bg-red-50'
+              )}
+              aria-pressed={value.answer === false}
+            >
+              <X className="ml-2 h-5 w-5" aria-hidden="true" />
+              לא
+            </Button>
+          </div>
+
+          {/* Explanation textarea (conditional) */}
+          {question.allowTextExplanation && showExplanation && (
+            <div className="space-y-2 animate-in slide-in-from-top-2 duration-300">
+              <div className="flex items-center justify-between">
+                <Label
+                  htmlFor={`explanation-${question.id}`}
+                  className="text-sm text-gray-600"
+                >
+                  {question.explanationLabel || 'הוסף הסבר (אופציונלי)'}
+                </Label>
+                {value?.explanationText && (
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => onChange({ ...value, explanationText: '' })}
+                    className="h-6 px-2 text-gray-500 hover:text-gray-700"
+                  >
+                    <X className="h-4 w-4" />
+                  </Button>
+                )}
+              </div>
+
+              <Textarea
+                id={`explanation-${question.id}`}
+                value={value?.explanationText || ''}
+                onChange={(e) => onChange({ ...value, explanationText: e.target.value })}
+                placeholder="הוסף הסבר או פרט נוסף (אופציונלי)"
+                maxLength={question.explanationMaxLength || 500}
+                rows={3}
+                className="resize-none text-right"
+                dir="rtl"
+              />
+
+              {/* Character counter */}
+              <div className="flex justify-end">
+                <span className={cn(
+                  'text-xs',
+                  (value?.explanationText?.length || 0) > (question.explanationMaxLength || 500) * 0.9
+                    ? 'text-orange-500 font-medium'
+                    : 'text-gray-500'
+                )}>
+                  {value?.explanationText?.length || 0}/{question.explanationMaxLength || 500}
+                </span>
+              </div>
+            </div>
+          )}
         </div>
       )}
 
