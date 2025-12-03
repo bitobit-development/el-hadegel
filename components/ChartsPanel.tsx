@@ -270,10 +270,10 @@ export const ChartsPanel = ({
                     <BarChart
                       data={barData}
                       margin={{
-                        top: 20,
-                        right: isMobile ? 30 : 30,
-                        left: isMobile ? 30 : 30,
-                        bottom: isMobile ? 80 : 60,
+                        top: isMobile ? 10 : 20,
+                        right: isMobile ? 25 : 30,
+                        left: isMobile ? 10 : 30,
+                        bottom: isMobile ? 50 : 60,
                       }}
                     >
                       <CartesianGrid strokeDasharray="3 3" />
@@ -281,10 +281,10 @@ export const ChartsPanel = ({
                         dataKey="position"
                         angle={isMobile ? -45 : 0}
                         textAnchor={isMobile ? 'end' : 'middle'}
-                        height={isMobile ? 100 : 80}
+                        height={isMobile ? 70 : 80}
                         interval={0}
                         dx={isMobile ? 0 : 0}
-                        dy={isMobile ? 5 : 0}
+                        dy={isMobile ? 0 : 0}
                         style={{
                           direction: 'rtl',
                           fontSize: isMobile ? '11px' : '14px',
