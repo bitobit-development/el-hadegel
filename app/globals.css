@@ -201,4 +201,73 @@
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.05); }
   }
+
+  /* Logo shine animation */
+  @keyframes logo-shine {
+    0%, 100% {
+      filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.4))
+              drop-shadow(0 0 8px rgba(0, 88, 255, 0.3));
+    }
+    50% {
+      filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.8))
+              drop-shadow(0 0 24px rgba(0, 88, 255, 0.6))
+              brightness(1.1);
+    }
+  }
+
+  .logo-shine {
+    animation: logo-shine 3s ease-in-out infinite;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .logo-shine:hover {
+    transform: scale(1.05);
+    animation-play-state: paused;
+    filter: drop-shadow(0 0 16px rgba(255, 255, 255, 0.9))
+            drop-shadow(0 0 32px rgba(0, 88, 255, 0.7))
+            brightness(1.15);
+  }
+
+  .logo-shine:active {
+    transform: scale(0.98);
+  }
+
+  /* ElHadegel Button - shadcn/ui Style */
+  .elhadegel-button {
+    position: relative;
+
+    /* Focus visible for accessibility - shadcn style ring */
+    &:focus-visible {
+      outline: none;
+    }
+
+    &:focus-visible > div {
+      @apply ring-2 ring-ring ring-offset-2 ring-offset-background;
+    }
+  }
+
+  /* Subtle idle animation - minimal and purposeful */
+  @keyframes elhadegel-pulse {
+    0%, 100% {
+      box-shadow:
+        0 10px 15px -3px rgba(0, 31, 63, 0.1),
+        0 4px 6px -4px rgba(0, 31, 63, 0.1);
+    }
+    50% {
+      box-shadow:
+        0 10px 15px -3px rgba(0, 31, 63, 0.15),
+        0 4px 6px -4px rgba(0, 31, 63, 0.15),
+        0 0 0 1px rgba(0, 88, 255, 0.05);
+    }
+  }
+
+  .elhadegel-button > div {
+    animation: elhadegel-pulse 4s ease-in-out infinite;
+  }
+
+  /* Stop animation on hover for cleaner interaction */
+  .elhadegel-button:hover > div {
+    animation: none;
+  }
 }

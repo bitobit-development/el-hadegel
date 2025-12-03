@@ -43,14 +43,21 @@ export function PageHeader({ session }: PageHeaderProps) {
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           {/* Logo and Title Section */}
           <div className="flex items-center gap-2 sm:gap-3 md:gap-6">
-            <Image
-              src="/star.svg"
-              alt="אל הדגל"
-              width={113}
-              height={32}
-              className="opacity-90 hover:opacity-100 transition-opacity flex-shrink-0 w-[90px] h-[25px] sm:w-[113px] sm:h-[32px] md:w-[170px] md:h-[47px] lg:w-[226px] lg:h-[63px]"
-              priority
-            />
+            <Link
+              href="https://www.elhadegel.co.il/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="logo-shine flex-shrink-0"
+            >
+              <Image
+                src="/star.svg"
+                alt="אל הדגל"
+                width={113}
+                height={32}
+                className="w-[90px] h-[25px] sm:w-[113px] sm:h-[32px] md:w-[170px] md:h-[47px] lg:w-[226px] lg:h-[63px]"
+                priority
+              />
+            </Link>
             <div className="text-right flex-1 min-w-0">
               <h1 className="text-base sm:text-lg md:text-2xl lg:text-3xl font-bold mb-0.5 md:mb-1 bg-gradient-to-l from-white to-gray-100 bg-clip-text text-transparent leading-tight">
                 אל הדגל - מעקב עמדות חוק הפטור מגיוס

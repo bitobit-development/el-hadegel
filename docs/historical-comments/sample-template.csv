@@ -1,0 +1,6 @@
+mkId,content,sourceUrl,sourcePlatform,sourceType,commentDate,sourceName,sourceCredibility,imageUrl,videoUrl,additionalContext
+1,"חוק הגיוס הוא חוק חשוב למדינת ישראל ואני תומך בו בחום","https://www.ynet.co.il/news/article/example1",News,Primary,2024-01-15T10:00:00Z,ידיעות אחרונות,8,,,
+2,"גיוס חרדים נושא מורכב שדורש דיון רציני והגעה לפשרה","https://x.com/username/status/123456",Twitter,Primary,2024-01-16T14:30:00Z,,6,https://pbs.twimg.com/media/example.jpg,,
+3,"נאום של השר בנושא הגיוס בכנסת - עמדה ברורה לטובת החוק","https://main.knesset.gov.il/Activity/Plenum/example",Knesset,Primary,2024-01-17T11:00:00Z,כנסת ישראל,9,,https://www.youtube.com/watch?v=example,
+4,"ראיון בתוכנית הבוקר בנושא חוק גיוס חרדים והשלכותיו","https://www.mako.co.il/news/example",News,Secondary,2024-01-18T08:00:00Z,מאקו,7,,,דובר בשם חברי הסיעה
+5,"פוסט בפייסבוק על הצורך בשוויון בנטל וחוק הגיוס","https://www.facebook.com/profile/posts/123456",Facebook,Primary,2024-01-19T16:45:00Z,,5,https://example.com/image.jpg,,,

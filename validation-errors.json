@@ -1,0 +1,22 @@
+{
+  "timestamp": "2025-12-02T16:00:23.483Z",
+  "summary": {
+    "totalRows": 4,
+    "validRows": 3,
+    "invalidRows": 1,
+    "errorCount": 1,
+    "warningCount": 0
+  },
+  "errorSummary": {
+    "NO_KEYWORDS": 1
+  },
+  "errors": [
+    {
+      "row": 2,
+      "type": "NO_KEYWORDS",
+      "field": "content",
+      "message": "התוכן לא מכיל מילות מפתח הקשורות לחוק הגיוס"
+    }
+  ],
+  "warnings": []
+}

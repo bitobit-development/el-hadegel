@@ -18,6 +18,7 @@ import { ChartsPanel } from '@/components/ChartsPanel';
 import { MKList } from '@/components/mk-list';
 import { PageHeader } from '@/components/page-header';
 import NewsPostsSection from '@/components/news-posts/NewsPostsSection';
+import { ElHadegelButton } from '@/components/ElHadegelButton';
 import { auth } from '@/auth';
 import Image from 'next/image';
 
@@ -45,6 +46,9 @@ export default async function HomePage() {
               <StatsDashboard stats={stats} />
             </div>
           </section>
+
+          {/* El Hadegel Button - Circular link to main website */}
+          <ElHadegelButton />
 
           {/* News Posts Section - appears after statistics for context */}
           <section className="relative overflow-hidden rounded-2xl bg-white/80 backdrop-blur-sm shadow-lg">

@@ -1,0 +1,26 @@
+
+=== Batch 1 - 2025-12-02T15:18:21.347Z ===
+
+URL: https://www.ynet.co.il/news/article/example1
+Error: שגיאת שרת (500)
+MK ID: 1
+Content: חוק הגיוס הוא חוק חשוב למדינת ישראל ואני תומך בו בחום. חייבים להבטיח שכל אזרח יישא בנטל הביטחוני של ...
+Platform: News
+Date: 2024-01-15T10:00:00Z
+---
+
+URL: https://x.com/AVI_MAOZ/status/123456
+Error: שגיאת שרת (500)
+MK ID: 2
+Content: גיוס חרדים נושא מורכב שדורש דיון רציני והגעה לפשרה. חוק הגיוס חשוב אבל צריך לקחת בחשבון את הרגישויות...
+Platform: Twitter
+Date: 2024-01-16T14:30:00Z
+---
+
+URL: https://main.knesset.gov.il/Activity/Plenum/example
+Error: שגיאת שרת (500)
+MK ID: 4
+Content: בנאום בכנסת: חוק הגיוס הוא צורך ביטחוני דחוף. אני תומך בחוק ואני מקווה שהוא יעבור בקריאה שנייה ושליש...
+Platform: Knesset
+Date: 2024-01-17T11:00:00Z
+---
