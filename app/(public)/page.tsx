@@ -49,7 +49,7 @@ export default async function HomePage() {
           <div className="space-y-6 md:space-y-8 lg:space-y-12 order-1 lg:order-1 lg:col-start-1">
 
             {/* Statistics Dashboard */}
-            <section className="relative overflow-visible rounded-2xl bg-white/90 backdrop-blur-sm shadow-xl">
+            <section className="relative overflow-visible rounded-2xl bg-white/90 backdrop-blur-sm shadow-xl z-50">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 to-green-50/30 pointer-events-none" />
               <div className="relative z-10 p-6 md:p-8">
                 <StatsDashboard stats={coalitionStats} coalitionMKs={coalitionMKs} />

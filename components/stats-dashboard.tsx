@@ -195,12 +195,27 @@ export function StatsDashboard({ stats, activeFiltersCount = 0, coalitionMKs = [
                   const tooltipData = getTooltipData(item.position);
                   if (!tooltipData || tooltipData.length === 0) return null;
 
+                  // Smart positioning based on card position to prevent edge overflow
+                  const tooltipAlign =
+                    item.position === 'SUPPORT' ? 'left-0' :
+                    item.position === 'AGAINST' ? 'right-0' :
+                    'left-1/2 transform -translate-x-1/2';
+
+                  const arrowAlign =
+                    item.position === 'SUPPORT' ? 'left-4' :
+                    item.position === 'AGAINST' ? 'right-4' :
+                    'left-1/2 transform -translate-x-1/2';
+
                   return (
                     <div
-                      className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 z-50 pointer-events-none"
+                      className={`absolute top-full ${tooltipAlign} mt-1 sm:mt-2 z-[9999] pointer-events-none`}
                       role="tooltip"
                     >
-                      <div className="bg-white border border-gray-200 rounded-lg shadow-lg p-3 sm:p-4 text-right w-[280px] sm:w-[320px] md:w-[360px] max-w-[90vw]" dir="rtl">
+                      {/* Arrow pointing up */}
+                      <div className={`absolute bottom-full ${arrowAlign} -mb-px`}>
+                        <div className="border-8 border-transparent border-b-white" style={{ filter: 'drop-shadow(0 -1px 1px rgba(0,0,0,0.1))' }}></div>
+                      </div>
+                      <div className="bg-white border border-gray-200 rounded-lg shadow-lg p-3 sm:p-4 text-right w-[200px] sm:w-[240px] md:w-[280px] max-w-[90vw]" dir="rtl">
                         <p className="font-bold text-sm sm:text-base mb-2">{label}</p>
                         <p className="font-semibold text-xs sm:text-sm text-gray-700 mb-2">נתמך על ידי:</p>
                         <div className="space-y-1.5">
@@ -212,10 +227,6 @@ export function StatsDashboard({ stats, activeFiltersCount = 0, coalitionMKs = [
                             </div>
                           ))}
                         </div>
-                      </div>
-                      {/* Arrow pointing down */}
-                      <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-px">
-                        <div className="border-8 border-transparent border-t-white" style={{ filter: 'drop-shadow(0 1px 1px rgba(0,0,0,0.1))' }}></div>
                       </div>
                     </div>
                   );
