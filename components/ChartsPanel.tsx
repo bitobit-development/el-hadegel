@@ -101,16 +101,38 @@ export const ChartsPanel = ({
   const CustomTooltip = ({ active, payload }: any) => {
     if (active && payload && payload.length) {
       const data = payload[0];
-      const value = data.value || data.payload.count;
-      const total = displayStats.support + displayStats.neutral + displayStats.against;
-      const percentage = total > 0 ? ((value / total) * 100).toFixed(1) : '0.0';
+      const positionLabel = data.payload?.position || data.name;
+
+      // Map position label to PositionStatus
+      let positionStatus: 'SUPPORT' | 'NEUTRAL' | 'AGAINST' = 'SUPPORT';
+      if (positionLabel === POSITION_LABELS.NEUTRAL) positionStatus = 'NEUTRAL';
+      if (positionLabel === POSITION_LABELS.AGAINST) positionStatus = 'AGAINST';
+
+      // Filter MKs by this position (FIX: use currentPosition not position)
+      const mksWithPosition = allMKs.filter(mk => mk.currentPosition === positionStatus);
+
+      // Group by faction and count
+      const factionCounts = mksWithPosition.reduce((acc, mk) => {
+        acc[mk.faction] = (acc[mk.faction] || 0) + 1;
+        return acc;
+      }, {} as Record<string, number>);
+
+      // Sort by count descending
+      const sortedFactions = Object.entries(factionCounts)
+        .sort(([, a], [, b]) => b - a);
 
       return (
-        <div className="bg-white border border-gray-200 rounded-lg shadow-lg p-3 text-right">
-          <p className="font-semibold">{data.name || data.payload.position}</p>
-          <p className="text-sm text-muted-foreground">
-            {value} ({percentage}%)
-          </p>
+        <div className="bg-white border border-gray-200 rounded-lg shadow-lg p-4 text-right max-w-xs" dir="rtl">
+          <p className="font-bold text-base mb-3">{positionLabel}</p>
+          <p className="font-semibold text-sm mb-2">נתמך על ידי:</p>
+          <div className="space-y-1.5">
+            {sortedFactions.map(([faction, count]) => (
+              <div key={faction} className="flex items-center gap-2 text-sm">
+                <span className="font-medium">• {faction}</span>
+                <span className="text-muted-foreground">({count} ח״כים)</span>
+              </div>
+            ))}
+          </div>
         </div>
       );
     }
@@ -239,21 +261,22 @@ export const ChartsPanel = ({
                     </PieChart>
                   </ResponsiveContainer>
                 ) : (
-                  <ResponsiveContainer width="100%" height={300}>
+                  <ResponsiveContainer width="100%" height={400}>
                     <BarChart
                       data={barData}
-                      layout="horizontal"
-                      margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+                      margin={{ top: 20, right: 30, left: 30, bottom: 60 }}
                     >
                       <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis type="number" />
-                      <YAxis
-                        type="category"
+                      <XAxis
                         dataKey="position"
-                        style={{ direction: 'rtl', textAnchor: 'end' }}
+                        angle={0}
+                        textAnchor="middle"
+                        height={80}
+                        style={{ direction: 'rtl', fontSize: '14px' }}
                       />
-                      <Tooltip content={<CustomTooltip />} />
-                      <Bar dataKey="count" fill="#8884d8" label={{ position: 'right' }}>
+                      <YAxis />
+                      <Tooltip content={<CustomTooltip />} cursor={false} />
+                      <Bar dataKey="count" fill="#8884d8" radius={[8, 8, 0, 0]}>
                         {barData.map((entry, index) => (
                           <Cell key={`cell-${index}`} fill={entry.fill} />
                         ))}
