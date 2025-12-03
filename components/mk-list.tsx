@@ -85,7 +85,7 @@ export function MKList({ mks, factions }: MKListProps) {
       </div>
 
       {/* MK Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
         {filteredMKs.map((mk) => (
           <MKCard key={mk.id} mk={mk} />
         ))}

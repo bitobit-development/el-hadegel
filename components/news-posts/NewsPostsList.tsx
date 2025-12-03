@@ -31,10 +31,22 @@ export default function NewsPostsList({ posts, isLoading }: NewsPostsListProps) 
   }
 
   return (
-    <div className="space-y-4 max-h-[800px] overflow-y-auto px-1 scrollbar-thin scrollbar-thumb-blue-300 scrollbar-track-transparent">
-      {posts.map((post) => (
-        <NewsPostCard key={post.id} post={post} />
-      ))}
+    <div className="relative overflow-hidden max-h-[800px]">
+      {/* Auto-scroll container with duplicated posts for seamless loop */}
+      <div className="animate-vertical-scroll space-y-4 px-1">
+        {/* Original posts */}
+        {posts.map((post) => (
+          <NewsPostCard key={post.id} post={post} />
+        ))}
+        {/* Duplicate posts for infinite loop */}
+        {posts.map((post) => (
+          <NewsPostCard key={`duplicate-${post.id}`} post={post} />
+        ))}
+      </div>
+
+      {/* Fade gradients for visual polish - top and bottom */}
+      <div className="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-white dark:from-gray-900 to-transparent pointer-events-none z-10" />
+      <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-white dark:from-gray-900 to-transparent pointer-events-none z-10" />
     </div>
   );
 }

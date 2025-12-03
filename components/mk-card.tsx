@@ -40,17 +40,17 @@ export function MKCard({ mk }: MKCardProps) {
           e.stopPropagation();
           window.open(mk.profileUrl, '_blank');
         }}
-        className="absolute top-3 left-3 z-10 p-2 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-all duration-200 hover:scale-110 cursor-pointer group/btn"
+        className="absolute top-2 left-2 sm:top-3 sm:left-3 z-10 p-1.5 sm:p-2 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-all duration-200 hover:scale-110 cursor-pointer group/btn"
         title={`עבור לעמוד הפרופיל של ${mk.nameHe}`}
         aria-label={`עבור לעמוד הפרופיל של ${mk.nameHe}`}
       >
-        <ExternalLink className="h-4 w-4 text-white group-hover/btn:text-blue-200" />
+        <ExternalLink className="h-3 w-3 sm:h-4 sm:w-4 text-white group-hover/btn:text-blue-200" />
       </button>
 
-      <CardContent className="p-6">
-        <div className="flex flex-col items-center text-center space-y-4">
+      <CardContent className="p-3 sm:p-4 md:p-6">
+        <div className="flex flex-col items-center text-center space-y-2 sm:space-y-3 md:space-y-4">
           {/* Avatar */}
-          <Avatar className="h-28 w-28 ring-2 ring-white/20 group-hover:ring-white/50 transition-all duration-300">
+          <Avatar className="h-16 w-16 sm:h-20 sm:w-20 md:h-28 md:w-28 ring-2 ring-white/20 group-hover:ring-white/50 transition-all duration-300">
             {mk.photoUrl && !imageError && (
               <AvatarImage
                 src={mk.photoUrl}
@@ -63,17 +63,17 @@ export function MKCard({ mk }: MKCardProps) {
                 className="object-cover group-hover:scale-110 transition-transform duration-300"
               />
             )}
-            <AvatarFallback className="text-xl font-semibold bg-white/10 text-white">
+            <AvatarFallback className="text-sm sm:text-base md:text-xl font-semibold bg-white/10 text-white">
               {initials}
             </AvatarFallback>
           </Avatar>
 
           {/* Name */}
-          <div className="space-y-1">
-            <h3 className="text-lg font-semibold text-right leading-tight text-white">
+          <div className="space-y-0.5 sm:space-y-1">
+            <h3 className="text-sm sm:text-base md:text-lg font-semibold text-right leading-tight text-white">
               {mk.nameHe}
             </h3>
-            <p className="text-sm text-white/80 text-right">
+            <p className="text-xs sm:text-sm text-white/80 text-right">
               {mk.faction}
             </p>
           </div>
@@ -82,41 +82,22 @@ export function MKCard({ mk }: MKCardProps) {
           <PositionBadge position={mk.currentPosition} />
 
           {/* Icons Container - Posts, Historical Comments, and Status Info */}
-          <div className="flex gap-3 items-center flex-wrap justify-center" onClick={(e) => e.stopPropagation()}>
-            {/* Posts Icon - Always visible */}
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setIsTweetsDialogOpen(true)}
-              className="gap-2 hover:bg-blue-50 hover:border-blue-300 transition-colors"
-              title={
-                mk.tweetCount && mk.tweetCount > 0
-                  ? `${mk.tweetCount} פוסטים`
-                  : 'אין פוסטים זמינים'
-              }
-              aria-label={
-                mk.tweetCount && mk.tweetCount > 0
-                  ? `לחץ לצפייה ב-${mk.tweetCount} פוסטים`
-                  : 'אין פוסטים זמינים'
-              }
-            >
-              <MessageSquare
-                className={`h-4 w-4 ${
-                  mk.tweetCount && mk.tweetCount > 0
-                    ? 'text-blue-600'
-                    : 'text-gray-400'
-                }`}
-              />
-              <span
-                className={`text-xs px-1.5 py-0.5 rounded-full font-medium ${
-                  mk.tweetCount && mk.tweetCount > 0
-                    ? 'bg-blue-100 text-blue-700'
-                    : 'bg-gray-100 text-gray-500'
-                }`}
+          <div className="flex gap-1.5 sm:gap-2 items-center flex-wrap justify-center" onClick={(e) => e.stopPropagation()}>
+            {/* Posts Icon - Only when count > 0 */}
+            {mk.tweetCount !== undefined && mk.tweetCount > 0 && (
+              <button
+                type="button"
+                onClick={() => setIsTweetsDialogOpen(true)}
+                className="relative flex items-center justify-center bg-white/10 backdrop-blur-sm hover:bg-white/20 active:bg-white/25 rounded-lg px-1.5 py-1 sm:px-2.5 sm:py-1.5 transition-all duration-200"
+                title={`${mk.tweetCount} פוסטים`}
+                aria-label={`לחץ לצפייה ב-${mk.tweetCount} פוסטים`}
               >
-                {mk.tweetCount || 0}
-              </span>
-            </Button>
+                <MessageSquare className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-white" />
+                <span className="absolute -top-1 -right-1 flex items-center justify-center bg-blue-500 text-white text-[9px] sm:text-[10px] font-semibold rounded-full min-w-[16px] sm:min-w-[18px] h-4 sm:h-[18px] px-1 shadow-lg">
+                  {mk.tweetCount}
+                </span>
+              </button>
+            )}
 
             {/* Historical Comments Icon - Only when count > 0 */}
             {mk.historicalCommentCount !== undefined && mk.historicalCommentCount > 0 && (
@@ -138,7 +119,7 @@ export function MKCard({ mk }: MKCardProps) {
 
           {/* Contact Information */}
           {(mk.phone || mk.email) && (
-            <div className="w-full mt-2 pt-4 border-t border-white/20 space-y-2">
+            <div className="hidden sm:block w-full mt-2 pt-4 border-t border-white/20 space-y-2">
               {mk.phone && (
                 <a
                   href={`tel:${mk.phone.replace(/[\s-]/g, '')}`}

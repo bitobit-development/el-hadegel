@@ -32,23 +32,19 @@ export function HistoricalCommentIcon({
         }
       }}
       className={cn(
-        'relative flex items-center gap-1 rounded-md px-2 py-1',
-        'bg-purple-50 hover:bg-purple-100 dark:bg-purple-950 dark:hover:bg-purple-900',
-        'transition-colors duration-200',
-        'border border-purple-200 dark:border-purple-800',
-        'focus:outline-none focus:ring-2 focus:ring-purple-500',
+        'relative flex items-center justify-center rounded-lg px-1.5 py-1 sm:px-2.5 sm:py-1.5',
+        'bg-white/10 backdrop-blur-sm hover:bg-white/20 active:bg-white/25',
+        'transition-all duration-200',
+        'focus:outline-none focus:ring-2 focus:ring-white/50',
         className
       )}
       aria-label={`${count} ציטוטים היסטוריים`}
       title={`${count} ציטוטים היסטוריים`}
     >
-      <MessageSquareQuote className="h-4 w-4 text-purple-600 dark:text-purple-400" aria-hidden="true" />
-      <Badge
-        variant="secondary"
-        className="bg-purple-600 text-white dark:bg-purple-500 text-xs px-1.5"
-      >
+      <MessageSquareQuote className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-white" aria-hidden="true" />
+      <span className="absolute -top-1 -right-1 flex items-center justify-center bg-purple-500 text-white text-[9px] sm:text-[10px] font-semibold rounded-full min-w-[16px] sm:min-w-[18px] h-4 sm:h-[18px] px-1 shadow-lg">
         {count}
-      </Badge>
+      </span>
     </button>
   );
 }

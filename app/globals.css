@@ -270,4 +270,62 @@
   .elhadegel-button:hover > div {
     animation: none;
   }
+
+  /* ================================================
+     NEWS POSTS AUTO-SCROLL ANIMATION
+     ================================================ */
+
+  /* Vertical auto-scroll animation - smooth continuous upward scroll */
+  @keyframes vertical-scroll {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-50%); /* Scroll exactly half height (to duplicate posts start) */
+    }
+  }
+
+  /* Apply animation - 80 second loop (slow, readable speed ~30-40px/sec) */
+  .animate-vertical-scroll {
+    animation: vertical-scroll 80s linear infinite;
+    will-change: transform; /* Hint to browser for GPU optimization */
+  }
+
+  /* Pause animation on hover - allows users to read/interact */
+  .animate-vertical-scroll:hover {
+    animation-play-state: paused;
+  }
+
+  /* Accessibility: respect reduced motion preference (WCAG 2.1) */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-vertical-scroll {
+      animation: none !important;
+      will-change: auto;
+    }
+
+    /* Fallback to scrollable list when animation disabled */
+    .animate-vertical-scroll {
+      max-height: 800px;
+      overflow-y: auto;
+    }
+
+    /* Re-enable scrollbar styling for manual scroll */
+    .animate-vertical-scroll {
+      scrollbar-width: thin;
+      scrollbar-color: rgb(147 197 253) transparent;
+    }
+
+    .animate-vertical-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .animate-vertical-scroll::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .animate-vertical-scroll::-webkit-scrollbar-thumb {
+      background-color: rgb(147 197 253);
+      border-radius: 3px;
+    }
+  }
 }

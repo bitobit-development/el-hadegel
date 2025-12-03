@@ -48,8 +48,9 @@ export default function NewsPostsSection() {
     <Card className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950 dark:to-indigo-950 border-2 shadow-lg">
       <CardHeader className="pb-3">
         <div className="flex items-center justify-between">
-          <CardTitle className="text-2xl font-bold text-right">
+          <CardTitle className="text-2xl font-bold text-right flex items-center gap-2">
             📰 חדשות אחרונות
+            <span className="text-xs font-normal text-muted-foreground">• גלילה אוטומטית</span>
           </CardTitle>
           <Button
             variant="ghost"

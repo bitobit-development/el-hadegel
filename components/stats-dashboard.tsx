@@ -1,18 +1,20 @@
 'use client';
 
-import { useEffect, useRef, useMemo } from 'react';
+import { useEffect, useRef, useMemo, useState } from 'react';
 import { Badge } from '@/components/ui/badge';
-import { PositionStats, POSITION_LABELS, POSITION_COLORS } from '@/types/mk';
+import { PositionStats, POSITION_LABELS, POSITION_COLORS, MKDataWithCounts, PositionStatus } from '@/types/mk';
 import { cn } from '@/lib/utils';
 
 interface StatsDashboardProps {
   stats: PositionStats;
   activeFiltersCount?: number;
+  coalitionMKs?: MKDataWithCounts[];
 }
 
-export function StatsDashboard({ stats, activeFiltersCount = 0 }: StatsDashboardProps) {
+export function StatsDashboard({ stats, activeFiltersCount = 0, coalitionMKs = [] }: StatsDashboardProps) {
   const announcementRef = useRef<HTMLDivElement>(null);
   const prevStatsRef = useRef(stats);
+  const [hoveredCard, setHoveredCard] = useState<PositionStatus | null>(null);
 
   // Calculate percentages
   const supportPercentage = Math.round((stats.support / stats.total) * 100);
@@ -29,21 +31,40 @@ export function StatsDashboard({ stats, activeFiltersCount = 0 }: StatsDashboard
     return positions.reduce((max, pos) => (pos.count > max.count ? pos : max)).type;
   }, [stats]);
 
+  // Generate tooltip data for a position
+  const getTooltipData = (position: PositionStatus) => {
+    if (!coalitionMKs || coalitionMKs.length === 0) return null;
+
+    // Filter MKs by position
+    const mksWithPosition = coalitionMKs.filter(mk => mk.currentPosition === position);
+
+    // Group by faction and count
+    const factionCounts = mksWithPosition.reduce((acc, mk) => {
+      acc[mk.faction] = (acc[mk.faction] || 0) + 1;
+      return acc;
+    }, {} as Record<string, number>);
+
+    // Sort by count descending
+    const sortedFactions = Object.entries(factionCounts).sort(([, a], [, b]) => b - a);
+
+    return sortedFactions;
+  };
+
   // Announce statistics changes to screen readers
   useEffect(() => {
     const prevStats = prevStatsRef.current;
 
     if (prevStats.total !== stats.total && announcementRef.current) {
       const message =
-        stats.total === 120
-          ? 'הסטטיסטיקה עודכנה: מציג את כל 120 חברי הכנסת'
-          : `הסטטיסטיקה עודכנה: מציג ${stats.total} מתוך 120 חברי כנסת`;
+        activeFiltersCount === 0
+          ? `הסטטיסטיקה עודכנה: מציג את כל ${stats.total} ח״כי הקואליציה`
+          : `הסטטיסטיקה עודכנה: מציג ${stats.total} ח״כי קואליציה`;
 
       announcementRef.current.textContent = message;
     }
 
     prevStatsRef.current = stats;
-  }, [stats]);
+  }, [stats, activeFiltersCount]);
 
   const statItems = [
     {
@@ -84,7 +105,7 @@ export function StatsDashboard({ stats, activeFiltersCount = 0 }: StatsDashboard
       >
         {/* Hidden accessibility heading */}
         <h2 id="stats-heading" className="sr-only">
-          התפלגות עמדות חברי הכנסת בנושא חוק הגיוס
+          התפלגות עמדות חברי קואליציה בנושא חוק הגיוס
         </h2>
 
         {/* Stats Cards Grid - Floating with glow animations */}
@@ -102,7 +123,7 @@ export function StatsDashboard({ stats, activeFiltersCount = 0 }: StatsDashboard
               <div
                 key={item.position}
                 className={cn(
-                  'stat-card rounded-xl border-2 p-4 md:p-6',
+                  'stat-card rounded-xl border-2 p-4 md:p-6 relative cursor-pointer',
                   `stat-card-${item.position.toLowerCase()}`,
                   isLeader && 'stat-card-leader',
                   colors.bg,
@@ -113,6 +134,11 @@ export function StatsDashboard({ stats, activeFiltersCount = 0 }: StatsDashboard
                 } as React.CSSProperties}
                 role="region"
                 aria-label={`${label}: ${item.count} חברי כנסת, ${item.percentage} אחוז`}
+                onMouseEnter={() => setHoveredCard(item.position)}
+                onMouseLeave={() => setHoveredCard(null)}
+                onFocus={() => setHoveredCard(item.position)}
+                onBlur={() => setHoveredCard(null)}
+                tabIndex={0}
               >
                 <div className="h-full">
                   <div className="flex flex-col items-center gap-2 md:gap-3">
@@ -163,6 +189,37 @@ export function StatsDashboard({ stats, activeFiltersCount = 0 }: StatsDashboard
                       </div>
                     </div>
                   </div>
+
+                {/* Tooltip */}
+                {hoveredCard === item.position && (() => {
+                  const tooltipData = getTooltipData(item.position);
+                  if (!tooltipData || tooltipData.length === 0) return null;
+
+                  return (
+                    <div
+                      className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 z-50 pointer-events-none"
+                      role="tooltip"
+                    >
+                      <div className="bg-white border border-gray-200 rounded-lg shadow-lg p-3 sm:p-4 text-right w-[280px] sm:w-[320px] md:w-[360px] max-w-[90vw]" dir="rtl">
+                        <p className="font-bold text-sm sm:text-base mb-2">{label}</p>
+                        <p className="font-semibold text-xs sm:text-sm text-gray-700 mb-2">נתמך על ידי:</p>
+                        <div className="space-y-1.5">
+                          {tooltipData.map(([faction, count]) => (
+                            <div key={faction} className="flex items-start gap-2 text-xs sm:text-sm leading-relaxed">
+                              <span className="font-medium mt-0.5">•</span>
+                              <span className="font-medium flex-1">{faction}</span>
+                              <span className="text-muted-foreground whitespace-nowrap">({count} ח״כים)</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                      {/* Arrow pointing down */}
+                      <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-px">
+                        <div className="border-8 border-transparent border-t-white" style={{ filter: 'drop-shadow(0 1px 1px rgba(0,0,0,0.1))' }}></div>
+                      </div>
+                    </div>
+                  );
+                })()}
               </div>
             );
           })}
@@ -171,11 +228,11 @@ export function StatsDashboard({ stats, activeFiltersCount = 0 }: StatsDashboard
         {/* Progress Bar - Visual separator */}
         <div className="space-y-2 pt-2">
           <div className="flex items-center justify-between text-sm text-muted-foreground px-1">
-            <span className="font-medium">התפלגות עמדות לחוק ההשתמטות</span>
+            <span className="font-medium">התפלגות עמדות קואליציה לחוק ההשתמטות</span>
             <span className="font-medium">
               {activeFiltersCount > 0
-                ? `${stats.total} מתוך 120 חברי כנסת`
-                : 'כל 120 חברי הכנסת'}
+                ? `${stats.total} מתוך 64 ח״כי קואליציה`
+                : `כל ${stats.total} ח״כי הקואליציה`}
             </span>
           </div>
 

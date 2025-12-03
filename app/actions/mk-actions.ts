@@ -4,6 +4,7 @@ import prisma from '@/lib/prisma';
 import { MKData, MKDataWithTweetCount, MKDataWithStatusInfoCount, MKDataWithCounts, PositionStats, FilterOptions, PositionStatus, ChartFilterOptions, FilteredPositionStats } from '@/types/mk';
 import { isStatusInfoEnabled } from '@/lib/feature-flags';
 import { Position } from '@prisma/client';
+import { COALITION_FACTIONS } from '@/lib/coalition';
 
 /**
  * Get all MKs with optional filtering
@@ -147,6 +148,41 @@ export async function getPositionStats(): Promise<PositionStats> {
     prisma.mK.count({ where: { currentPosition: 'NEUTRAL' } }),
     prisma.mK.count({ where: { currentPosition: 'AGAINST' } }),
     prisma.mK.count(),
+  ]);
+
+  return { support, neutral, against, total };
+}
+
+/**
+ * Get position statistics for coalition members only
+ * Filters by COALITION_FACTIONS defined in lib/coalition.ts
+ * @returns Position statistics for coalition MKs only (~64 members)
+ */
+export async function getCoalitionPositionStats(): Promise<PositionStats> {
+  const [support, neutral, against, total] = await Promise.all([
+    prisma.mK.count({
+      where: {
+        currentPosition: 'SUPPORT',
+        faction: { in: COALITION_FACTIONS as unknown as string[] }
+      }
+    }),
+    prisma.mK.count({
+      where: {
+        currentPosition: 'NEUTRAL',
+        faction: { in: COALITION_FACTIONS as unknown as string[] }
+      }
+    }),
+    prisma.mK.count({
+      where: {
+        currentPosition: 'AGAINST',
+        faction: { in: COALITION_FACTIONS as unknown as string[] }
+      }
+    }),
+    prisma.mK.count({
+      where: {
+        faction: { in: COALITION_FACTIONS as unknown as string[] }
+      }
+    }),
   ]);
 
   return { support, neutral, against, total };
