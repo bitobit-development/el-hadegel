@@ -30,7 +30,7 @@ export async function exportResponsesToExcel(
           'טלפון': '',
           'אימייל': '',
           'תאריך הגשה': '',
-          ...Object.fromEntries(questions.map((q) => [`שאלה ${q.index}`, ''])),
+          ...Object.fromEntries(questions.map((q) => [q.text, ''])),
         },
       ];
       const ws = XLSX.utils.json_to_sheet(emptyData);
@@ -51,7 +51,7 @@ export async function exportResponsesToExcel(
 
     // Define standard column order
     const standardColumns = ['שם מלא', 'טלפון', 'אימייל', 'תאריך הגשה'];
-    const questionColumns = questions.map((q) => `שאלה ${q.index}`);
+    const questionColumns = questions.map((q) => q.text);
 
     // Extract custom field columns (all headers not in standard or question columns)
     const customFieldColumns = Array.from(allHeaders).filter(

@@ -8,8 +8,11 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import {
   getQuestionTypeLabel,
   getQuestionTypeColor,
@@ -18,8 +21,9 @@ import {
   formatAnswerSummary,
 } from '@/lib/questionnaire-utils';
 import { cn } from '@/lib/utils';
-import { Check, X, Mail, Phone, Calendar } from 'lucide-react';
+import { Mail, Phone, Calendar, User, MessageSquare, Settings2, Loader2 } from 'lucide-react';
 import { CustomFieldEditor } from './CustomFieldEditor';
+import { EditableQuestionCell } from './EditableQuestionCell';
 import {
   getResponseCustomFieldValues,
   getCustomFieldDefinitions
@@ -35,6 +39,8 @@ interface Answer {
     id: number;
     questionText: string;
     questionType: 'YES_NO' | 'TEXT' | 'LONG_TEXT';
+    isRequired: boolean;
+    orderIndex: number;
     explanationLabel?: string | null;
   };
 }
@@ -128,148 +134,242 @@ export function SubmissionDetailDialog({
 
   if (!response) return null;
 
+  const hasCustomFields = !isLoadingCustomFields && customFields.length > 0;
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-h-[90vh] max-w-3xl overflow-y-auto">
-        <DialogHeader>
-          <DialogTitle className="text-right text-xl">פרטי תשובה</DialogTitle>
-          <DialogDescription className="text-right">
-            תשובה שהוגשה ב-{formatQuestionnaireDate(response.submittedAt)}
-          </DialogDescription>
-        </DialogHeader>
-
-        <div className="space-y-6">
-          {/* Contact Info */}
-          <div className="rounded-lg border bg-gradient-to-br from-blue-50 to-indigo-50 p-4">
-            <h3 className="mb-4 text-lg font-semibold text-gray-900 text-right">
-              פרטי יצירת קשר
-            </h3>
-            <div className="grid gap-3 sm:grid-cols-3">
-              <div className="text-right">
-                <div className="text-sm font-medium text-gray-600">שם מלא</div>
-                <div className="mt-1 font-medium text-gray-900">{response.fullName}</div>
-              </div>
-              <div className="text-right">
-                <div className="text-sm font-medium text-gray-600">טלפון</div>
-                <a
-                  href={`tel:${response.phoneNumber}`}
-                  className="mt-1 flex items-center justify-end gap-2 font-medium text-blue-600 hover:text-blue-700"
-                >
-                  <Phone className="h-4 w-4" />
-                  {formatPhoneNumber(response.phoneNumber)}
-                </a>
-              </div>
-              <div className="text-right">
-                <div className="text-sm font-medium text-gray-600">אימייל</div>
-                <a
-                  href={`mailto:${response.email}`}
-                  className="mt-1 flex items-center justify-end gap-2 font-medium text-blue-600 hover:text-blue-700"
-                >
-                  <Mail className="h-4 w-4" />
-                  {response.email}
-                </a>
-              </div>
+      <DialogContent className="max-h-[90vh] max-w-4xl overflow-hidden p-0">
+        <div className="flex h-full max-h-[90vh] flex-col">
+          {/* Header with gradient */}
+          <DialogHeader className="relative overflow-hidden border-b bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 px-6 pb-5 pt-8">
+            <div className="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] opacity-20" />
+            <div className="relative space-y-1.5 pr-8">
+              <DialogTitle className="flex items-center justify-start gap-2 text-left text-2xl font-bold">
+                <User className="h-6 w-6 text-blue-600" />
+                <span className="bg-gradient-to-l from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                  פרטי תשובה
+                </span>
+              </DialogTitle>
+              <DialogDescription className="flex items-center justify-start gap-2 text-left text-sm">
+                <Calendar className="h-4 w-4" />
+                <span className="font-medium">{formatQuestionnaireDate(response.submittedAt)}</span>
+              </DialogDescription>
             </div>
-          </div>
+          </DialogHeader>
 
-          {/* Answers */}
-          <div>
-            <h3 className="mb-4 text-lg font-semibold text-gray-900 text-right">
-              תשובות ({response.answers.length})
-            </h3>
-            <div className="space-y-4">
-              {response.answers.map((answer, index) => (
-                <div
-                  key={answer.id}
-                  className="rounded-lg border bg-white p-4 shadow-sm"
+          {/* Tabs Content */}
+          <Tabs defaultValue="contact" className="flex-1 overflow-hidden" dir="rtl">
+            <TabsList className="grid w-full grid-cols-3 rounded-none border-b bg-muted/50 p-0">
+              <TabsTrigger
+                value="contact"
+                className="rounded-none data-[state=active]:bg-background data-[state=active]:shadow-sm"
+              >
+                <User className="ml-2 h-4 w-4" />
+                פרטי קשר
+              </TabsTrigger>
+              <TabsTrigger
+                value="answers"
+                className="rounded-none data-[state=active]:bg-background data-[state=active]:shadow-sm"
+              >
+                <MessageSquare className="ml-2 h-4 w-4" />
+                תשובות ({response.answers.length})
+              </TabsTrigger>
+              {hasCustomFields && (
+                <TabsTrigger
+                  value="custom"
+                  className="rounded-none data-[state=active]:bg-background data-[state=active]:shadow-sm"
                 >
-                  {/* Question */}
-                  <div className="mb-3 flex items-start gap-3">
-                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-blue-500 text-sm font-semibold text-white">
-                      {index + 1}
-                    </span>
-                    <div className="flex-1">
-                      <p className="text-right font-medium text-gray-900">
-                        {answer.question.questionText}
-                      </p>
-                      <Badge className={cn('mt-2', getQuestionTypeColor(answer.question.questionType))}>
-                        {getQuestionTypeLabel(answer.question.questionType)}
-                      </Badge>
+                  <Settings2 className="ml-2 h-4 w-4" />
+                  שדות מותאמים ({customFields.length})
+                </TabsTrigger>
+              )}
+            </TabsList>
+
+            {/* Contact Info Tab */}
+            <TabsContent value="contact" className="m-0 flex-1 overflow-auto p-6">
+              <Card className="border-2 shadow-lg">
+                <CardHeader className="bg-gradient-to-br from-blue-50 to-indigo-50 pb-4">
+                  <CardTitle className="text-right text-lg">פרטי יצירת קשר</CardTitle>
+                  <CardDescription className="text-right">מידע ליצירת קשר עם המשיב</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6 pt-6">
+                  {/* Full Name */}
+                  <div className="group">
+                    <div className="flex items-center justify-end gap-2 text-sm font-medium text-muted-foreground">
+                      <span>שם מלא</span>
+                      <User className="h-4 w-4" />
+                    </div>
+                    <div className="mt-2 text-right">
+                      <div className="inline-flex items-center rounded-lg bg-gradient-to-br from-blue-50 to-indigo-50 px-4 py-2.5 text-lg font-semibold text-gray-900 shadow-sm ring-1 ring-blue-200/50 transition-all group-hover:shadow-md">
+                        {response.fullName}
+                      </div>
                     </div>
                   </div>
 
-                  {/* Answer */}
-                  <div className="mr-10 text-right">
-                    {answer.question.questionType === 'YES_NO' ? (
-                      <div className="space-y-2">
-                        <div className="flex items-center justify-end gap-2">
-                          {answer.answer === true ? (
-                            <div className="flex items-center gap-2 rounded-lg bg-green-100 px-4 py-2 text-green-800">
-                              <Check className="h-5 w-5" />
-                              <span className="font-semibold">כן</span>
-                            </div>
-                          ) : answer.answer === false ? (
-                            <div className="flex items-center gap-2 rounded-lg bg-red-100 px-4 py-2 text-red-800">
-                              <X className="h-5 w-5" />
-                              <span className="font-semibold">לא</span>
-                            </div>
-                          ) : (
-                            <div className="text-gray-500">לא נענה</div>
-                          )}
-                        </div>
+                  <Separator />
 
-                        {/* Display explanation text if exists */}
-                        {answer.explanationText && (
-                          <div className="mt-3 p-3 bg-blue-50 border border-blue-200 rounded-md">
-                            <p className="text-sm font-semibold text-blue-900 mb-1">
-                              {answer.question.explanationLabel || 'הסבר'}:
-                            </p>
-                            <p className="text-sm text-blue-800 whitespace-pre-wrap text-right">
-                              {answer.explanationText}
-                            </p>
+                  {/* Phone Number */}
+                  <div className="group">
+                    <div className="flex items-center justify-end gap-2 text-sm font-medium text-muted-foreground">
+                      <span>מספר טלפון</span>
+                      <Phone className="h-4 w-4" />
+                    </div>
+                    <div className="mt-2 text-right">
+                      <a
+                        href={`tel:${response.phoneNumber}`}
+                        className="inline-flex items-center gap-2 rounded-lg bg-green-50 px-4 py-2.5 text-lg font-semibold text-green-700 shadow-sm ring-1 ring-green-200/50 transition-all hover:bg-green-100 hover:shadow-md"
+                      >
+                        <span dir="ltr">{formatPhoneNumber(response.phoneNumber)}</span>
+                        <Phone className="h-5 w-5" />
+                      </a>
+                    </div>
+                  </div>
+
+                  <Separator />
+
+                  {/* Email */}
+                  <div className="group">
+                    <div className="flex items-center justify-end gap-2 text-sm font-medium text-muted-foreground">
+                      <span>כתובת אימייל</span>
+                      <Mail className="h-4 w-4" />
+                    </div>
+                    <div className="mt-2 text-right">
+                      <a
+                        href={`mailto:${response.email}`}
+                        className="inline-flex items-center gap-2 rounded-lg bg-purple-50 px-4 py-2.5 font-semibold text-purple-700 shadow-sm ring-1 ring-purple-200/50 transition-all hover:bg-purple-100 hover:shadow-md"
+                      >
+                        <span dir="ltr" className="break-all text-base">{response.email}</span>
+                        <Mail className="h-5 w-5 shrink-0" />
+                      </a>
+                    </div>
+                  </div>
+
+                  <Separator />
+
+                  {/* Submission Date */}
+                  <div>
+                    <div className="flex items-center justify-end gap-2 text-sm font-medium text-muted-foreground">
+                      <span>תאריך הגשה</span>
+                      <Calendar className="h-4 w-4" />
+                    </div>
+                    <div className="mt-2 text-right">
+                      <div className="inline-flex items-center rounded-lg bg-gray-50 px-4 py-2.5 text-base font-medium text-gray-700 shadow-sm ring-1 ring-gray-200/50">
+                        {formatQuestionnaireDate(response.submittedAt)}
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            {/* Answers Tab */}
+            <TabsContent value="answers" className="m-0 flex-1 overflow-auto">
+              <ScrollArea className="h-full">
+                <div className="space-y-4 p-6">
+                  {response.answers.map((answer, index) => (
+                    <Card
+                      key={answer.id}
+                      className="overflow-hidden border-2 shadow-md transition-all hover:shadow-lg"
+                    >
+                      <CardHeader className="bg-gradient-to-br from-slate-50 to-gray-50 pb-3">
+                        <div className="flex items-start gap-3">
+                          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 text-base font-bold text-white shadow-md">
+                            {index + 1}
                           </div>
-                        )}
-                      </div>
-                    ) : (
-                      <div className="whitespace-pre-wrap rounded-lg bg-gray-50 p-3 text-gray-900">
-                        {answer.textAnswer || (
-                          <span className="text-gray-500">לא נענה</span>
-                        )}
-                      </div>
-                    )}
+                          <div className="flex-1 space-y-2">
+                            <CardTitle className="text-right text-base leading-relaxed">
+                              {answer.question.questionText}
+                            </CardTitle>
+                            <div className="flex justify-end">
+                              <Badge className={cn(
+                                'shadow-sm',
+                                getQuestionTypeColor(answer.question.questionType)
+                              )}>
+                                {getQuestionTypeLabel(answer.question.questionType)}
+                              </Badge>
+                            </div>
+                          </div>
+                        </div>
+                      </CardHeader>
+                      <CardContent className="pt-4">
+                        {/* Editable Answer - Wrapped in table for EditableQuestionCell */}
+                        <div className="rounded-lg bg-gradient-to-br from-blue-50/30 to-indigo-50/30 p-4">
+                          <table className="w-full">
+                            <tbody>
+                              <tr>
+                                <EditableQuestionCell
+                                  responseId={response.id}
+                                  question={answer.question}
+                                  currentAnswer={{
+                                    answer: answer.answer,
+                                    textAnswer: answer.textAnswer,
+                                  }}
+                                />
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </ScrollArea>
+            </TabsContent>
+
+            {/* Custom Fields Tab */}
+            {hasCustomFields && (
+              <TabsContent value="custom" className="m-0 flex-1 overflow-auto">
+                <ScrollArea className="h-full">
+                  <div className="p-6">
+                    <Card className="border-2 shadow-lg">
+                      <CardHeader className="bg-gradient-to-br from-purple-50 to-pink-50">
+                        <CardTitle className="text-right">שדות מותאמים אישית</CardTitle>
+                        <CardDescription className="text-right">
+                          מידע נוסף והגדרות מותאמות אישית
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent className="pt-6">
+                        <CustomFieldEditor
+                          responseId={response.id}
+                          fields={customFields}
+                          values={customFieldValues}
+                          onUpdate={async () => {
+                            // Reload custom field values after update
+                            const values = await getResponseCustomFieldValues(response.id);
+                            const valuesMap: Record<number, any> = {};
+                            values.forEach((val) => {
+                              // Find the field definition to get the type
+                              const field = customFields.find(f => f.id === val.fieldId);
+                              if (field) {
+                                valuesMap[val.fieldId] = extractFieldValue(field.fieldType, {
+                                  textValue: val.textValue,
+                                  numberValue: val.numberValue,
+                                  dateValue: val.dateValue,
+                                });
+                              }
+                            });
+                            setCustomFieldValues(valuesMap);
+                          }}
+                        />
+                      </CardContent>
+                    </Card>
+                  </div>
+                </ScrollArea>
+              </TabsContent>
+            )}
+
+            {/* Loading State for Custom Fields */}
+            {isLoadingCustomFields && (
+              <TabsContent value="custom" className="m-0 flex-1">
+                <div className="flex h-full items-center justify-center p-6">
+                  <div className="flex items-center gap-3 text-muted-foreground">
+                    <Loader2 className="h-5 w-5 animate-spin" />
+                    <span>טוען שדות מותאמים...</span>
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Custom Fields Section */}
-          {!isLoadingCustomFields && customFields.length > 0 && (
-            <div className="border-t pt-6 mt-6">
-              <CustomFieldEditor
-                responseId={response.id}
-                fields={customFields}
-                values={customFieldValues}
-                onUpdate={async () => {
-                  // Reload custom field values after update
-                  const values = await getResponseCustomFieldValues(response.id);
-                  const valuesMap: Record<number, any> = {};
-                  values.forEach((val) => {
-                    // Find the field definition to get the type
-                    const field = customFields.find(f => f.id === val.fieldId);
-                    if (field) {
-                      valuesMap[val.fieldId] = extractFieldValue(field.fieldType, {
-                        textValue: val.textValue,
-                        numberValue: val.numberValue,
-                        dateValue: val.dateValue,
-                      });
-                    }
-                  });
-                  setCustomFieldValues(valuesMap);
-                }}
-              />
-            </div>
-          )}
+              </TabsContent>
+            )}
+          </Tabs>
         </div>
       </DialogContent>
     </Dialog>

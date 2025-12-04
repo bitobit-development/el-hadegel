@@ -11,13 +11,16 @@
 import { headers } from 'next/headers';
 import { revalidatePath } from 'next/cache';
 import { prismaQuestionnaire } from '@/lib/prisma-questionnaire';
+import { auth } from '@/auth';
 import {
   questionnaireResponseSchema,
   normalizeIsraeliPhone,
   validateAnswerForQuestionType,
   validateRequiredQuestions,
   validateExplanationText,
+  updateResponseSchema,
   type QuestionnaireResponseInput,
+  type UpdateResponseData,
 } from '@/lib/validation/questionnaire-validation';
 
 // Rate limiting store (in-memory, simple implementation)
@@ -260,7 +263,13 @@ export async function getQuestionnaireResponses(
                   questionText: true,
                   questionType: true,
                   allowTextExplanation: true,
+                  orderIndex: true,
                 },
+              },
+            },
+            orderBy: {
+              question: {
+                orderIndex: 'asc',
               },
             },
           },
@@ -271,7 +280,13 @@ export async function getQuestionnaireResponses(
                   id: true,
                   fieldName: true,
                   fieldType: true,
+                  orderIndex: true,
                 },
+              },
+            },
+            orderBy: {
+              field: {
+                orderIndex: 'asc',
               },
             },
           },
@@ -545,19 +560,19 @@ export async function getResponsesForExport(questionnaireId: number) {
       };
 
       // Add answers in question order
-      questionnaire.questions.forEach((question, index) => {
+      questionnaire.questions.forEach((question) => {
         const answer = response.answers.find((a) => a.question.id === question.id);
 
         if (question.questionType === 'YES_NO') {
-          row[`שאלה ${index + 1}`] = answer?.answer === true ? 'כן' : answer?.answer === false ? 'לא' : '';
+          row[question.questionText] = answer?.answer === true ? 'כן' : answer?.answer === false ? 'לא' : '';
 
           // Add explanation column if feature enabled
           if (question.allowTextExplanation) {
-            const explanationHeader = question.explanationLabel || `שאלה ${index + 1} - הסבר`;
+            const explanationHeader = question.explanationLabel || `${question.questionText} - הסבר`;
             row[explanationHeader] = answer?.explanationText || '';
           }
         } else {
-          row[`שאלה ${index + 1}`] = answer?.textAnswer || '';
+          row[question.questionText] = answer?.textAnswer || '';
         }
       });
 
@@ -596,5 +611,112 @@ export async function getResponsesForExport(questionnaireId: number) {
   } catch (error) {
     console.error('Error preparing export data:', error);
     throw new Error('שגיאה בהכנת נתונים לייצוא');
+  }
+}
+
+/**
+ * Update Questionnaire Response (Inline Editing)
+ * Admin only - allows editing fullName, phoneNumber, email
+ */
+export async function updateQuestionnaireResponse(
+  responseId: number,
+  data: UpdateResponseData
+): Promise<{
+  success: boolean;
+  error?: string;
+  response?: {
+    id: number;
+    fullName: string;
+    phoneNumber: string;
+    email: string;
+    submittedAt: Date;
+  };
+}> {
+  try {
+    // 1. Validate input with Zod schema
+    const validationResult = updateResponseSchema.safeParse(data);
+    if (!validationResult.success) {
+      const firstError = validationResult.error.issues[0];
+      return {
+        success: false,
+        error: firstError.message,
+      };
+    }
+
+    const validatedData = validationResult.data;
+
+    // 2. Check authentication
+    const session = await auth();
+    if (!session?.user) {
+      return {
+        success: false,
+        error: 'אינך מורשה לבצע פעולה זו',
+      };
+    }
+
+    // 3. Check for duplicate email (excluding current record)
+    const existingEmail = await prismaQuestionnaire.questionnaireResponse.findFirst({
+      where: {
+        email: validatedData.email,
+        id: { not: responseId },
+      },
+    });
+
+    if (existingEmail) {
+      return {
+        success: false,
+        error: 'כתובת אימייל כבר קיימת במערכת',
+      };
+    }
+
+    // 4. Check for duplicate phone (excluding current record)
+    const existingPhone = await prismaQuestionnaire.questionnaireResponse.findFirst({
+      where: {
+        phoneNumber: validatedData.phoneNumber,
+        id: { not: responseId },
+      },
+    });
+
+    if (existingPhone) {
+      return {
+        success: false,
+        error: 'מספר טלפון כבר קיים במערכת',
+      };
+    }
+
+    // 5. Update the response
+    const updatedResponse = await prismaQuestionnaire.questionnaireResponse.update({
+      where: { id: responseId },
+      data: {
+        fullName: validatedData.fullName,
+        phoneNumber: validatedData.phoneNumber,
+        email: validatedData.email,
+      },
+      include: {
+        questionnaire: { select: { id: true } },
+      },
+    });
+
+    // 6. Revalidate the admin page
+    revalidatePath(`/admin/questionnaires/${updatedResponse.questionnaire.id}/submissions`);
+    revalidatePath('/admin/questionnaires');
+
+    // 7. Return success response
+    return {
+      success: true,
+      response: {
+        id: updatedResponse.id,
+        fullName: updatedResponse.fullName,
+        phoneNumber: updatedResponse.phoneNumber,
+        email: updatedResponse.email,
+        submittedAt: updatedResponse.submittedAt,
+      },
+    };
+  } catch (error) {
+    console.error('Error updating response:', error);
+    return {
+      success: false,
+      error: 'שגיאה בשמירת השינויים. נסה שוב.',
+    };
   }
 }

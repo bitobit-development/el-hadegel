@@ -7,16 +7,18 @@ import { Badge } from '@/components/ui/badge';
 import { auth } from '@/auth';
 import { getHistoricalCommentsStats } from '@/app/actions/admin-historical-comment-actions';
 import { getQuestionnaireStats } from '@/app/actions/questionnaire-actions';
-import { MessageSquareQuote, ArrowLeft, BarChart3, ClipboardList } from 'lucide-react';
+import { getVideoStats } from '@/app/actions/video-actions';
+import { MessageSquareQuote, ArrowLeft, BarChart3, ClipboardList, Video } from 'lucide-react';
 import Link from 'next/link';
 
 export default async function AdminPage() {
-  const [mks, stats, session, historicalCommentsStats, questionnaireStats] = await Promise.all([
+  const [mks, stats, session, historicalCommentsStats, questionnaireStats, videoStats] = await Promise.all([
     getMKs(),
     getPositionStats(),
     auth(),
     getHistoricalCommentsStats(),
     getQuestionnaireStats(),
+    getVideoStats(),
   ]);
 
   const adminEmail = session?.user?.email || 'unknown';
@@ -127,6 +129,44 @@ export default async function AdminPage() {
           <Link href="/admin/questionnaires">
             <Button className="w-full bg-teal-600 hover:bg-teal-700 gap-2">
               פתח ניהול שאלונים
+              <ArrowLeft className="h-4 w-4" />
+            </Button>
+          </Link>
+        </CardContent>
+      </Card>
+
+      {/* Videos Card */}
+      <Card className="border-orange-200 bg-gradient-to-br from-orange-50 to-white hover:shadow-md transition-shadow">
+        <CardHeader>
+          <div className="flex items-center gap-3">
+            <div className="bg-orange-600 p-2 rounded-lg">
+              <Video className="h-6 w-6 text-white" />
+            </div>
+            <div className="flex-1">
+              <CardTitle className="text-right">ניהול סרטונים</CardTitle>
+              <CardDescription className="text-right">
+                העלאה, עריכה ומחיקה של סרטוני וידאו
+              </CardDescription>
+            </div>
+          </div>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          <div className="flex items-center justify-between text-sm">
+            <Badge variant="secondary" className="bg-orange-100 text-orange-800">
+              {videoStats.total} סרטונים
+            </Badge>
+            <div className="flex gap-2">
+              <Badge variant="outline" className="text-green-600 border-green-600">
+                {videoStats.published} פורסמו
+              </Badge>
+              <Badge variant="outline" className="text-blue-600 border-blue-600">
+                {videoStats.totalViews} צפיות
+              </Badge>
+            </div>
+          </div>
+          <Link href="/admin/videos">
+            <Button className="w-full bg-orange-600 hover:bg-orange-700 gap-2">
+              פתח ניהול סרטונים
               <ArrowLeft className="h-4 w-4" />
             </Button>
           </Link>

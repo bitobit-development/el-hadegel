@@ -18,6 +18,7 @@ import { ChartsPanel } from '@/components/ChartsPanel';
 import { MKList } from '@/components/mk-list';
 import { PageHeader } from '@/components/page-header';
 import NewsPostsSection from '@/components/news-posts/NewsPostsSection';
+import { VideoSection } from '@/components/video/VideoSection';
 import { ElHadegelButton } from '@/components/ElHadegelButton';
 import { auth } from '@/auth';
 import { isCoalitionMember } from '@/lib/coalition';
@@ -73,6 +74,14 @@ export default async function HomePage() {
                 />
               </div>
             </div>
+
+            {/* Video Section */}
+            <section className="relative overflow-hidden rounded-2xl bg-white/80 backdrop-blur-sm shadow-lg">
+              <div className="absolute inset-0 bg-gradient-to-br from-orange-50/50 to-red-50/50 pointer-events-none" />
+              <div className="relative z-10 p-6">
+                <VideoSection />
+              </div>
+            </section>
 
             {/* Interactive Charts */}
             <section className="relative overflow-hidden rounded-2xl bg-white/80 backdrop-blur-sm shadow-lg p-6">

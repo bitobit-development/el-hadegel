@@ -262,3 +262,29 @@ export function validateExplanationText(
 
   return { valid: true };
 }
+
+/**
+ * Update Response Schema
+ * For inline editing of questionnaire responses in admin
+ * Only allows editing: fullName, phoneNumber, email
+ */
+export const updateResponseSchema = z.object({
+  fullName: z
+    .string()
+    .min(2, 'שם מלא חייב להכיל לפחות 2 תווים')
+    .max(100, 'שם מלא לא יכול לעלות על 100 תווים')
+    .trim()
+    .regex(/^[\u0590-\u05FF\s\-a-zA-Z]+$/, 'שם מלא יכול להכיל רק אותיות, רווחים ומקפים'),
+  phoneNumber: z
+    .string()
+    .trim()
+    .regex(/^05\d{8}$/, 'מספר טלפון לא תקין (פורמט נדרש: 05XXXXXXXX)'),
+  email: z
+    .string()
+    .email('כתובת אימייל לא תקינה')
+    .max(255, 'כתובת אימייל לא יכולה לעלות על 255 תווים')
+    .trim()
+    .toLowerCase(),
+});
+
+export type UpdateResponseData = z.infer<typeof updateResponseSchema>;

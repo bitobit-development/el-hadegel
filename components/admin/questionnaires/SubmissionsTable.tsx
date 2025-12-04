@@ -45,10 +45,14 @@ interface Answer {
   id: number;
   answer: boolean | null;
   textAnswer: string | null;
+  explanationText?: string | null;
   question: {
     id: number;
     questionText: string;
     questionType: 'YES_NO' | 'TEXT' | 'LONG_TEXT';
+    isRequired: boolean;
+    orderIndex: number;
+    explanationLabel?: string | null;
   };
 }
 
@@ -59,6 +63,23 @@ interface Response {
   email: string;
   submittedAt: Date | string;
   answers: Answer[];
+  questionnaire?: {
+    id: number;
+    title: string;
+  };
+  customFieldValues?: Array<{
+    id: number;
+    fieldId: number;
+    stringValue?: string | null;
+    numberValue?: number | null;
+    booleanValue?: boolean | null;
+    dateValue?: Date | string | null;
+    field: {
+      id: number;
+      fieldName: string;
+      fieldType: string;
+    };
+  }>;
 }
 
 interface SubmissionsTableProps {

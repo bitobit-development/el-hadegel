@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { use } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { SubmissionsTable } from '@/components/admin/questionnaires/SubmissionsTable';
+import { ResponsesTable } from '@/components/admin/questionnaires/ResponsesTable';
 import { QuestionStatsCard } from '@/components/admin/questionnaires/QuestionStatsCard';
 import { getQuestionnaireById } from '@/app/actions/questionnaire-actions';
 import {
@@ -12,6 +12,7 @@ import {
   getResponseStatistics,
   getResponsesForExport,
 } from '@/app/actions/response-actions';
+import { getCustomFieldDefinitions } from '@/app/actions/custom-field-actions';
 import { ArrowLeft, Loader2, Download, TrendingUp, Settings } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { getRelativeTime, generateExcelFilename } from '@/lib/questionnaire-utils';
@@ -24,6 +25,7 @@ export default function SubmissionsPage({ params }: { params: Promise<{ id: stri
 
   const [questionnaire, setQuestionnaire] = useState<any>(null);
   const [responses, setResponses] = useState<any[]>([]);
+  const [customFields, setCustomFields] = useState<any[]>([]);
   const [statistics, setStatistics] = useState<any>(null);
   const [totalCount, setTotalCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
@@ -40,18 +42,20 @@ export default function SubmissionsPage({ params }: { params: Promise<{ id: stri
       setIsLoading(true);
       setError(null);
 
-      const [questionnaireData, responsesData, statsData] = await Promise.all([
+      const [questionnaireData, responsesData, customFieldsData, statsData] = await Promise.all([
         getQuestionnaireById(questionnaireId),
         getQuestionnaireResponses(
           questionnaireId,
           searchQuery ? { search: searchQuery } : undefined,
           { limit: pageSize, offset: (currentPage - 1) * pageSize }
         ),
+        getCustomFieldDefinitions(questionnaireId),
         getResponseStatistics(questionnaireId),
       ]);
 
       setQuestionnaire(questionnaireData);
       setResponses(responsesData.responses);
+      setCustomFields(customFieldsData);
       setTotalCount(responsesData.totalCount);
       setStatistics(statsData);
     } catch (err) {
@@ -242,8 +246,8 @@ export default function SubmissionsPage({ params }: { params: Promise<{ id: stri
       )}
 
       {/* Submissions Table */}
-      {!isLoading && !error && (
-        <SubmissionsTable
+      {!isLoading && !error && questionnaire && (
+        <ResponsesTable
           responses={responses}
           totalCount={totalCount}
           currentPage={currentPage}
@@ -251,6 +255,7 @@ export default function SubmissionsPage({ params }: { params: Promise<{ id: stri
           onPageChange={handlePageChange}
           onSearch={handleSearch}
           onDelete={loadData}
+          onResponsesChange={setResponses}
         />
       )}
     </div>

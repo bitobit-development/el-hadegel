@@ -275,3 +275,40 @@ model PageView {
   @@index([path])
   @@index([ipAddress, timestamp])
 }
+
+// Video Management - stores uploaded videos for public display
+model Video {
+  id           Int      @id @default(autoincrement())
+  title        String   // Hebrew title (e.g., "אסף חלמיש בועדת חוץ וביטחון")
+  description  String?  @db.Text // Optional Hebrew description
+  fileName     String   @unique // Stored in /videos/ directory (e.g., "video-1701620000000.mp4")
+  thumbnailUrl String?  // Optional custom thumbnail path
+  duration     Int?     // Duration in seconds
+  orderIndex   Int      @default(0) // For display ordering
+  isPublished  Boolean  @default(false) // Draft by default, admin must publish
+  viewCount    Int      @default(0) // Increment on video view
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  likes        VideoLike[] // One-to-many relation
+
+  @@index([isPublished, orderIndex]) // For efficient published videos query
+  @@index([orderIndex]) // For reordering operations
+  @@index([createdAt]) // For chronological sorting
+}
+
+// Video Like/Dislike - anonymous tracking via IP address
+model VideoLike {
+  id         Int      @id @default(autoincrement())
+  videoId    Int      // Foreign key to Video
+  ipAddress  String   // For anonymous user tracking, one vote per IP per video
+  userAgent  String?  @db.Text // Browser fingerprint for spam detection
+  isLike     Boolean  // true = like, false = dislike
+  createdAt  DateTime @default(now())
+
+  video      Video    @relation(fields: [videoId], references: [id], onDelete: Cascade)
+
+  @@unique([videoId, ipAddress]) // Ensure one vote per IP per video
+  @@index([videoId]) // Fast lookup by video
+  @@index([videoId, isLike]) // Efficient count aggregation
+}

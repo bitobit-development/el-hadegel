@@ -4,6 +4,7 @@ import "./globals.css";
 import { OrganizationSchema, WebSiteSchema } from "@/components/JsonLd";
 import { generateHomeMetadata } from "@/lib/seo-utils";
 import { Analytics } from '@vercel/analytics/next';
+import { Toaster } from 'sonner';
 
 const rubik = Rubik({
   variable: "--font-rubik",
@@ -28,6 +29,7 @@ export default function RootLayout({
       >
         {children}
         <Analytics />
+        <Toaster position="top-center" richColors />
       </body>
     </html>
   );
