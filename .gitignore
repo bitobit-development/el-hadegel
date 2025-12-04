@@ -53,3 +53,10 @@ data-export.json
 
 # Database backups
 backups/
+
+# Video files (uploaded separately to Vercel/R2)
+videos/
+*.mp4
+*.mov
+*.avi
+*.webm
