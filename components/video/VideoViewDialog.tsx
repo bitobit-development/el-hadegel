@@ -10,8 +10,10 @@ import {
 } from '@/components/ui/dialog';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { ThumbsUp, ThumbsDown, Eye, Clock, X } from 'lucide-react';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { ThumbsUp, ThumbsDown, Eye, Clock, X, Share2, MessageCircle, Facebook, Twitter, Send, Mail, Copy } from 'lucide-react';
 import { toggleVideoLike, incrementViewCount } from '@/app/actions/video-actions';
+import { toast } from 'sonner';
 import type { VideoData } from '@/types/video';
 
 interface VideoViewDialogProps {
@@ -39,6 +41,7 @@ export function VideoViewDialog({
   const [viewCount, setViewCount] = useState(initialViewCount);
   const [isProcessing, setIsProcessing] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [sharePopoverOpen, setSharePopoverOpen] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const hasIncrementedView = useRef(false);
 
@@ -94,6 +97,82 @@ export function VideoViewDialog({
   const handleLoadedData = () => {
     setIsLoading(false);
   };
+
+  // Share functionality
+  const getShareUrl = () => {
+    if (typeof window !== 'undefined') {
+      return `${window.location.origin}/#videos`;
+    }
+    return '';
+  };
+
+  const getShareText = () => {
+    return `${video.title} - אל הדגל בפעולה`;
+  };
+
+  const copyToClipboard = async () => {
+    try {
+      const shareUrl = getShareUrl();
+      await navigator.clipboard.writeText(shareUrl);
+      toast.success('הקישור הועתק ללוח');
+      setSharePopoverOpen(false);
+    } catch (error) {
+      toast.error('שגיאה בהעתקת הקישור');
+    }
+  };
+
+  const handleShare = async () => {
+    const shareUrl = getShareUrl();
+    const shareText = getShareText();
+
+    // Try Web Share API first (mobile)
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: video.title,
+          text: video.description || shareText,
+          url: shareUrl,
+        });
+      } catch (error) {
+        // User cancelled or error occurred
+        console.error('Error sharing:', error);
+      }
+    }
+    // Fallback handled by popover menu
+  };
+
+  const shareOptions = [
+    {
+      name: 'WhatsApp',
+      icon: MessageCircle,
+      url: `https://wa.me/?text=${encodeURIComponent(getShareText() + ' ' + getShareUrl())}`,
+      color: 'hover:bg-green-500/20 hover:text-green-400',
+    },
+    {
+      name: 'Facebook',
+      icon: Facebook,
+      url: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(getShareUrl())}`,
+      color: 'hover:bg-blue-500/20 hover:text-blue-400',
+    },
+    {
+      name: 'Twitter',
+      icon: Twitter,
+      url: `https://twitter.com/intent/tweet?text=${encodeURIComponent(getShareText())}&url=${encodeURIComponent(getShareUrl())}`,
+      color: 'hover:bg-sky-500/20 hover:text-sky-400',
+    },
+    {
+      name: 'Telegram',
+      icon: Send,
+      url: `https://t.me/share/url?url=${encodeURIComponent(getShareUrl())}&text=${encodeURIComponent(getShareText())}`,
+      color: 'hover:bg-cyan-500/20 hover:text-cyan-400',
+    },
+    {
+      name: 'Email',
+      icon: Mail,
+      url: `mailto:?subject=${encodeURIComponent(getShareText())}&body=${encodeURIComponent(getShareUrl())}`,
+      color: 'hover:bg-purple-500/20 hover:text-purple-400',
+    },
+  ];
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -175,7 +254,7 @@ export function VideoViewDialog({
                 )}
               </div>
 
-              {/* Like/Dislike Actions */}
+              {/* Like/Dislike/Share Actions */}
               <div className="flex items-center gap-2 md:order-first">
                 <Button
                   variant="ghost"
@@ -208,6 +287,52 @@ export function VideoViewDialog({
                   <ThumbsDown className="h-4 w-4" />
                   <span className="mr-2 font-medium">{dislikeCount}</span>
                 </Button>
+
+                {/* Share Button */}
+                <Popover open={sharePopoverOpen} onOpenChange={setSharePopoverOpen}>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      disabled={isLoading}
+                      className="text-white/80 hover:bg-white/10 border border-white/10 hover:border-white/20 transition-all h-9 px-3"
+                      aria-label="שתף"
+                    >
+                      <Share2 className="h-4 w-4" />
+                      <span className="mr-2 font-medium">שתף</span>
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent align="start" className="w-64 p-2">
+                    <div className="space-y-1">
+                      <div className="px-2 py-1.5 text-sm font-semibold text-white border-b border-white/10 mb-2">
+                        שתף סרטון
+                      </div>
+                      {shareOptions.map((option) => {
+                        const Icon = option.icon;
+                        return (
+                          <a
+                            key={option.name}
+                            href={option.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`flex items-center gap-3 px-3 py-2 rounded-md text-sm text-white/90 transition-all ${option.color} border border-transparent hover:border-white/10`}
+                            onClick={() => setSharePopoverOpen(false)}
+                          >
+                            <Icon className="h-4 w-4 flex-shrink-0" />
+                            <span>{option.name}</span>
+                          </a>
+                        );
+                      })}
+                      <button
+                        onClick={copyToClipboard}
+                        className="flex items-center gap-3 px-3 py-2 rounded-md text-sm text-white/90 transition-all hover:bg-white/10 hover:text-white border border-transparent hover:border-white/10 w-full text-right"
+                      >
+                        <Copy className="h-4 w-4 flex-shrink-0" />
+                        <span>העתק קישור</span>
+                      </button>
+                    </div>
+                  </PopoverContent>
+                </Popover>
               </div>
             </div>
           </div>
