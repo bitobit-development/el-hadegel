@@ -169,7 +169,7 @@ export function VideoUploadDialog({ open, onOpenChange, onSuccess }: VideoUpload
     return null;
   };
 
-  const handleFileSelect = async (file: File) => {
+  const handleFileSelect = useCallback(async (file: File) => {
     const validationError = validateFile(file);
     if (validationError) {
       toast.error(validationError);
@@ -231,7 +231,7 @@ export function VideoUploadDialog({ open, onOpenChange, onSuccess }: VideoUpload
       toast.error('שגיאה בהעלאת הקובץ');
       resetState();
     }
-  };
+  }, []);
 
   const handleDrop = useCallback(
     (e: React.DragEvent<HTMLDivElement>) => {

@@ -27,16 +27,18 @@ export const ElHadegelButton = ({ text, href, ariaLabel, gradient }: ElHadegelBu
           relative
           w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32
           rounded-full
-          bg-gradient-to-br ${gradientClasses}
-          border border-border/20
+          bg-gradient-to-r ${gradientClasses}
+          border border-white/20
           flex flex-col items-center justify-center
           p-2 sm:p-2.5 md:p-3
           gap-1 sm:gap-1.5
-          transition-all duration-200 ease-out
+          transition-all duration-300
           shadow-lg
           group-hover:-translate-y-1
           group-hover:shadow-xl
-          group-hover:border-border/30
+          group-hover:border-white/40
+          group-hover:brightness-125
+          group-hover:scale-110
           group-active:translate-y-0
           group-active:shadow-lg
         `}

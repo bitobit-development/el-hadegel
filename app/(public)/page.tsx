@@ -64,13 +64,11 @@ export default async function HomePage() {
                   text="הצטרף לתנועה"
                   href="https://www.elhadegel.co.il/"
                   ariaLabel="הצטרף לתנועה - אל הדגל"
-                  gradient="from-[#002855] to-[#003d70]"
                 />
                 <ElHadegelButton
                   text="המתווה שלנו"
                   href="https://www.elhadegel.co.il/legislation"
                   ariaLabel="המתווה שלנו - אל הדגל"
-                  gradient="from-[#001633] to-[#002855]"
                 />
               </div>
             </div>

@@ -328,4 +328,34 @@
       border-radius: 3px;
     }
   }
+
+  /* ================================================
+     VIDEO CAROUSEL ANIMATIONS
+     ================================================ */
+
+  /* Fade in animation for carousel items */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.5s ease-out forwards;
+    opacity: 0; /* Start invisible */
+  }
+
+  /* Respect reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-fadeIn {
+      animation: none !important;
+      opacity: 1;
+      transform: none;
+    }
+  }
 }

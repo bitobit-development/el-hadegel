@@ -12,9 +12,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { writeFile, mkdir } from 'fs/promises';
-import { join } from 'path';
-import { existsSync } from 'fs';
+import { put } from '@vercel/blob';
 import { auth } from '@/auth';
 import { VIDEO_CONSTRAINTS } from '@/types/video';
 
@@ -149,25 +147,19 @@ export async function POST(request: NextRequest) {
     const timestamp = Date.now();
     const safeFileName = `video-${timestamp}.${extension}`;
 
-    // 8. Ensure /videos directory exists
-    const videosDir = join(process.cwd(), 'videos');
-    if (!existsSync(videosDir)) {
-      await mkdir(videosDir, { recursive: true });
-    }
+    // 8. Upload to Vercel Blob
+    const blob = await put(`videos/${safeFileName}`, file, {
+      access: 'public',
+      contentType: file.type,
+    });
 
-    // 9. Convert file to buffer and save
-    const bytes = await file.arrayBuffer();
-    const buffer = Buffer.from(bytes);
-    const filePath = join(videosDir, safeFileName);
-
-    await writeFile(filePath, buffer);
-
-    // 10. Return success response with file metadata
+    // 9. Return success response with file metadata and blob URL
     return NextResponse.json({
       fileName: safeFileName,
       size: file.size,
       type: file.type,
       originalName: file.name,
+      url: blob.url, // Vercel Blob public URL
     }, { status: 201 });
 
   } catch (error) {

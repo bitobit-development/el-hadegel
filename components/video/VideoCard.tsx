@@ -1,11 +1,10 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { ThumbsUp, ThumbsDown, Eye } from 'lucide-react';
-import { toggleVideoLike, incrementViewCount } from '@/app/actions/video-actions';
+import { Eye, Play } from 'lucide-react';
+import { VideoViewDialog } from './VideoViewDialog';
 import type { VideoData } from '@/types/video';
 
 interface VideoCardProps {
@@ -13,45 +12,11 @@ interface VideoCardProps {
 }
 
 export function VideoCard({ video }: VideoCardProps) {
+  const [dialogOpen, setDialogOpen] = useState(false);
   const [likeCount, setLikeCount] = useState(video.likeCount || 0);
   const [dislikeCount, setDislikeCount] = useState(video.dislikeCount || 0);
   const [userReaction, setUserReaction] = useState<'like' | 'dislike' | null>(video.userReaction || null);
   const [viewCount, setViewCount] = useState(video.viewCount || 0);
-  const [isProcessing, setIsProcessing] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const hasIncrementedView = useRef(false);
-
-  const handlePlay = async () => {
-    if (!hasIncrementedView.current) {
-      try {
-        await incrementViewCount(video.id);
-        setViewCount(prev => prev + 1);
-        hasIncrementedView.current = true;
-      } catch (error) {
-        console.error('Error incrementing view count:', error);
-      }
-    }
-  };
-
-  const handleReaction = async (isLike: boolean) => {
-    if (isProcessing) return;
-    setIsProcessing(true);
-
-    try {
-      // In a real application, IP would be captured server-side
-      // For now, we'll send a placeholder that the server can replace
-      const ipAddress = 'client-ip'; // Server will replace with actual IP
-      const result = await toggleVideoLike(video.id, isLike, ipAddress, navigator.userAgent);
-
-      setLikeCount(result.likeCount);
-      setDislikeCount(result.dislikeCount);
-      setUserReaction(result.userReaction);
-    } catch (error) {
-      console.error('Error toggling reaction:', error);
-    } finally {
-      setIsProcessing(false);
-    }
-  };
 
   const formatDuration = (seconds: number | null) => {
     if (!seconds) return '0:00';
@@ -60,80 +25,79 @@ export function VideoCard({ video }: VideoCardProps) {
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
+  const handleCardClick = () => {
+    setDialogOpen(true);
+  };
+
   return (
-    <Card className="overflow-hidden group relative border border-white/10 hover:border-white/30 hover:shadow-xl transition-all duration-300">
-      <CardContent className="p-0">
-        <div className="relative aspect-video bg-black">
-          <video
-            ref={videoRef}
-            src={`/api/videos/${video.fileName}`}
-            controls
-            className="w-full h-full"
-            poster={video.thumbnailUrl || undefined}
-            onPlay={handlePlay}
-            preload="metadata"
-          />
+    <>
+      <Card
+        className="overflow-hidden group relative border border-white/10 hover:border-white/30 hover:shadow-xl transition-all duration-300 cursor-pointer"
+        onClick={handleCardClick}
+      >
+        <CardContent className="p-0">
+          <div className="relative aspect-video bg-black">
+            {/* Thumbnail or Video Preview */}
+            <div className="relative w-full h-full">
+              {video.thumbnailUrl ? (
+                <img
+                  src={video.thumbnailUrl}
+                  alt={video.title}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-800 to-gray-900">
+                  <Play className="h-16 w-16 text-white/50" />
+                </div>
+              )}
 
-          {/* Duration Badge */}
-          {video.duration && (
-            <Badge className="absolute top-2 right-2 bg-black/70 text-white border-0">
-              {formatDuration(video.duration)}
-            </Badge>
-          )}
+              {/* Play Overlay - Visible on hover */}
+              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 group-hover:scale-110 transition-transform duration-300">
+                  <Play className="h-12 w-12 text-white" fill="white" />
+                </div>
+              </div>
 
-          {/* Title Overlay with Glassmorphism - Shows on hover */}
-          <div className="absolute bottom-0 left-0 right-0 bg-black/50 backdrop-blur-sm p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <h3 className="text-white font-semibold text-right line-clamp-2 mb-2">{video.title}</h3>
+              {/* Duration Badge */}
+              {video.duration && (
+                <Badge className="absolute top-2 right-2 bg-black/70 text-white border-0 backdrop-blur-sm">
+                  {formatDuration(video.duration)}
+                </Badge>
+              )}
 
-            {/* Description (if available) */}
-            {video.description && (
-              <p className="text-white/80 text-sm text-right line-clamp-1 mb-2">
-                {video.description}
-              </p>
-            )}
-
-            {/* Actions Row */}
-            <div className="flex items-center justify-between">
-              {/* View Count */}
-              <div className="flex items-center gap-1 text-white/80 text-sm">
-                <Eye className="h-4 w-4" />
+              {/* View Count Badge */}
+              <Badge className="absolute top-2 left-2 bg-black/70 text-white border-0 backdrop-blur-sm flex items-center gap-1">
+                <Eye className="h-3 w-3" />
                 <span>{viewCount}</span>
-              </div>
+              </Badge>
+            </div>
 
-              {/* Like/Dislike Buttons */}
-              <div className="flex items-center gap-2">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => handleReaction(true)}
-                  disabled={isProcessing}
-                  className={`${
-                    userReaction === 'like' ? 'text-green-500' : 'text-white/80'
-                  } hover:text-green-500 h-8 px-2 transition-colors`}
-                  aria-label="אהבתי"
-                >
-                  <ThumbsUp className="h-4 w-4" />
-                  <span className="mr-1">{likeCount}</span>
-                </Button>
+            {/* Title Overlay with Glassmorphism - Always visible on bottom */}
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent backdrop-blur-sm p-4">
+              <h3 className="text-white font-semibold text-right line-clamp-2 mb-1">
+                {video.title}
+              </h3>
 
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => handleReaction(false)}
-                  disabled={isProcessing}
-                  className={`${
-                    userReaction === 'dislike' ? 'text-red-500' : 'text-white/80'
-                  } hover:text-red-500 h-8 px-2 transition-colors`}
-                  aria-label="לא אהבתי"
-                >
-                  <ThumbsDown className="h-4 w-4" />
-                  <span className="mr-1">{dislikeCount}</span>
-                </Button>
-              </div>
+              {/* Description (if available) */}
+              {video.description && (
+                <p className="text-white/70 text-sm text-right line-clamp-1">
+                  {video.description}
+                </p>
+              )}
             </div>
           </div>
-        </div>
-      </CardContent>
-    </Card>
+        </CardContent>
+      </Card>
+
+      <VideoViewDialog
+        video={video}
+        open={dialogOpen}
+        onOpenChange={setDialogOpen}
+        initialLikeCount={likeCount}
+        initialDislikeCount={dislikeCount}
+        initialUserReaction={userReaction}
+        initialViewCount={viewCount}
+      />
+    </>
   );
 }

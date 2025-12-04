@@ -1,32 +1,17 @@
 /**
  * Video Streaming API Route
  *
- * Handles video file streaming with HTTP range request support for
- * efficient video playback and seeking. Supports partial content delivery
- * and proper caching headers.
+ * Handles video file streaming by redirecting to Vercel Blob public URLs.
+ * Vercel Blob automatically handles range requests for efficient video playback.
  *
  * GET /api/videos/[fileName]
- * - Supports HTTP range requests (206 Partial Content)
- * - Returns video files from /videos directory
+ * - Redirects to Vercel Blob public URL
  * - Validates filenames to prevent path traversal
- * - Sets proper Content-Type and caching headers
+ * - Vercel Blob handles caching, range requests, and streaming
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { readFile, stat } from 'fs/promises';
-import { join } from 'path';
-import { existsSync } from 'fs';
-
-/**
- * MIME type mapping for video file extensions
- *
- * Used to set correct Content-Type header for streaming response.
- */
-const MIME_TYPES: Record<string, string> = {
-  'mp4': 'video/mp4',
-  'webm': 'video/webm',
-  'mov': 'video/quicktime',
-};
+import { head } from '@vercel/blob';
 
 /**
  * Validate filename to prevent path traversal attacks
@@ -57,56 +42,13 @@ function isValidFileName(fileName: string): boolean {
 }
 
 /**
- * Get MIME type from file extension
- *
- * @param fileName - Full filename with extension
- * @returns MIME type string or 'application/octet-stream' as fallback
- */
-function getMimeType(fileName: string): string {
-  const extension = fileName.split('.').pop()?.toLowerCase();
-  return extension ? MIME_TYPES[extension] || 'application/octet-stream' : 'application/octet-stream';
-}
-
-/**
- * Parse Range header from HTTP request
- *
- * Extracts start and end byte positions from Range header.
- * Example: "bytes=0-1023" -> { start: 0, end: 1023 }
- *
- * @param rangeHeader - HTTP Range header value
- * @param fileSize - Total file size in bytes
- * @returns Object with start and end positions, or null if invalid
- */
-function parseRange(rangeHeader: string | null, fileSize: number): { start: number; end: number } | null {
-  if (!rangeHeader) {
-    return null;
-  }
-
-  // Parse "bytes=start-end" format
-  const match = rangeHeader.match(/bytes=(\d+)-(\d*)/);
-  if (!match) {
-    return null;
-  }
-
-  const start = parseInt(match[1], 10);
-  const end = match[2] ? parseInt(match[2], 10) : fileSize - 1;
-
-  // Validate range boundaries
-  if (start >= fileSize || end >= fileSize || start > end) {
-    return null;
-  }
-
-  return { start, end };
-}
-
-/**
  * GET /api/videos/[fileName]
  *
- * Stream video file with optional range request support.
+ * Fetch video from Vercel Blob and redirect to public URL.
  *
- * @param request - NextRequest with optional Range header
+ * @param request - NextRequest
  * @param params - Route params with fileName
- * @returns Video file stream or error response
+ * @returns Redirect to Vercel Blob URL or error response
  */
 export async function GET(
   request: NextRequest,
@@ -123,66 +65,31 @@ export async function GET(
       );
     }
 
-    // 2. Build file path
-    const videosDir = join(process.cwd(), 'videos');
-    const filePath = join(videosDir, fileName);
+    // 2. Get blob metadata from Vercel Blob
+    const blobPath = `videos/${fileName}`;
 
-    // 3. Check file exists
-    if (!existsSync(filePath)) {
+    try {
+      const blob = await head(blobPath);
+
+      // 3. Redirect to Vercel Blob public URL
+      // Vercel Blob automatically handles:
+      // - Range requests (206 Partial Content)
+      // - Video streaming
+      // - Caching headers
+      // - Content-Type detection
+      return NextResponse.redirect(blob.url, 302);
+
+    } catch (error) {
       return NextResponse.json(
-        { error: 'הקובץ לא נמצא' },
+        { error: 'הסרטון לא נמצא' },
         { status: 404 }
       );
     }
 
-    // 4. Get file stats (size, etc.)
-    const fileStats = await stat(filePath);
-    const fileSize = fileStats.size;
-    const mimeType = getMimeType(fileName);
-
-    // 5. Parse Range header (for video seeking)
-    const rangeHeader = request.headers.get('range');
-    const range = parseRange(rangeHeader, fileSize);
-
-    // 6. Handle range request (206 Partial Content)
-    if (range) {
-      const { start, end } = range;
-      const contentLength = end - start + 1;
-
-      // Read only requested chunk
-      const buffer = await readFile(filePath);
-      const chunk = buffer.slice(start, end + 1);
-
-      // Return 206 Partial Content with proper headers
-      return new NextResponse(chunk, {
-        status: 206,
-        headers: {
-          'Content-Range': `bytes ${start}-${end}/${fileSize}`,
-          'Accept-Ranges': 'bytes',
-          'Content-Length': contentLength.toString(),
-          'Content-Type': mimeType,
-          'Cache-Control': 'public, max-age=31536000, immutable', // Cache for 1 year
-        },
-      });
-    }
-
-    // 7. Full file request (200 OK)
-    const buffer = await readFile(filePath);
-
-    return new NextResponse(buffer, {
-      status: 200,
-      headers: {
-        'Accept-Ranges': 'bytes',
-        'Content-Length': fileSize.toString(),
-        'Content-Type': mimeType,
-        'Cache-Control': 'public, max-age=31536000, immutable', // Cache for 1 year
-      },
-    });
-
   } catch (error) {
     console.error('Video streaming error:', error);
     return NextResponse.json(
-      { error: 'שגיאה בהזרמת הקובץ' },
+      { error: 'שגיאה בטעינת הסרטון' },
       { status: 500 }
     );
   }
