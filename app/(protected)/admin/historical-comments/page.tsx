@@ -11,7 +11,10 @@ import {
   XCircle,
   Users,
   BarChart3,
+  ArrowRight,
 } from 'lucide-react';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 
 export const metadata = {
   title: 'ניהול ציטוטים היסטוריים - EL HADEGEL',
@@ -21,7 +24,7 @@ export const metadata = {
 export default async function HistoricalCommentsAdminPage() {
   // Fetch data in parallel
   const [commentsData, stats, coalitionMKs] = await Promise.all([
-    getAllHistoricalComments(undefined, { page: 1, limit: 50 }),
+    getAllHistoricalComments(undefined, { page: 1, limit: 1000 }),
     getHistoricalCommentsStats(),
     getCoalitionMKsForFilter(),
   ]);
@@ -42,6 +45,16 @@ export default async function HistoricalCommentsAdminPage() {
         <p className="text-muted-foreground text-right">
           צפייה וניהול של כל הציטוטים ההיסטוריים על חוק הגיוס לצה״ל
         </p>
+      </div>
+
+      {/* Return to Admin Button */}
+      <div className="flex justify-end">
+        <Link href="/admin">
+          <Button variant="outline" className="gap-2">
+            <ArrowRight className="h-4 w-4" />
+            חזור ללוח הבקרה
+          </Button>
+        </Link>
       </div>
 
       {/* Statistics Cards */}

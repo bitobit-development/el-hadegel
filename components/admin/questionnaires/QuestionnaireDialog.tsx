@@ -17,11 +17,13 @@ import { createQuestionnaire, updateQuestionnaire } from '@/app/actions/question
 import { toast } from 'sonner';
 import { Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { generateSlug } from '@/lib/slug-utils';
 
 interface Questionnaire {
   id: number;
   title: string;
   description: string | null;
+  slug?: string;
 }
 
 interface QuestionnaireDialogProps {
@@ -156,6 +158,24 @@ export function QuestionnaireDialog({
             <p className="text-sm text-gray-500 text-right">
               {title.length} / 500 תווים
             </p>
+            {/* Slug Preview */}
+            {!isEdit && title.trim() && (
+              <div className="mt-2 rounded-md bg-blue-50 p-3 text-right">
+                <p className="text-xs font-medium text-blue-900 mb-1">כתובת URL שתיווצר:</p>
+                <code className="text-sm text-blue-700 break-all">
+                  {window.location.origin}/q/{generateSlug(title).substring(0, 50)}
+                  {generateSlug(title).length > 50 && '...'}
+                </code>
+              </div>
+            )}
+            {isEdit && questionnaire?.slug && (
+              <div className="mt-2 rounded-md bg-gray-50 p-3 text-right">
+                <p className="text-xs font-medium text-gray-700 mb-1">כתובת URL נוכחית:</p>
+                <code className="text-sm text-gray-600 break-all">
+                  {window.location.origin}/q/{questionnaire.slug}
+                </code>
+              </div>
+            )}
           </div>
 
           {/* Description */}

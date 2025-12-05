@@ -28,6 +28,8 @@ import {
   deleteQuestionnaire,
   activateQuestionnaire,
   deactivateQuestionnaire,
+  publishQuestionnaire,
+  unpublishQuestionnaire,
 } from '@/app/actions/questionnaire-actions';
 import { toast } from 'sonner';
 import {
@@ -38,18 +40,22 @@ import {
 import {
   Edit,
   Trash2,
-  Power,
-  PowerOff,
+  Star,
+  Eye,
+  EyeOff,
   FileQuestion,
   Users,
   Loader2,
+  Clipboard,
 } from 'lucide-react';
 
 interface Questionnaire {
   id: number;
   title: string;
   description: string | null;
+  slug: string;
   isActive: boolean;
+  isPublished: boolean;
   createdAt: Date | string;
   _count: {
     questions: number;
@@ -67,6 +73,8 @@ export function QuestionnaireTable({ questionnaires: initialQuestionnaires }: Qu
   const [editingQuestionnaire, setEditingQuestionnaire] = useState<Questionnaire | null>(null);
   const [deletingId, setDeletingId] = useState<number | null>(null);
   const [activatingId, setActivatingId] = useState<number | null>(null);
+  const [publishingId, setPublishingId] = useState<number | null>(null);
+  const [unpublishingId, setUnpublishingId] = useState<number | null>(null);
   const [processingId, setProcessingId] = useState<number | null>(null);
 
   const handleDelete = async () => {
@@ -98,7 +106,7 @@ export function QuestionnaireTable({ questionnaires: initialQuestionnaires }: Qu
 
     try {
       await activateQuestionnaire(activatingId);
-      toast.success('השאלון הופעל בהצלחה');
+      toast.success('השאלון סומן כמומלץ בהצלחה');
 
       // Update local state
       setQuestionnaires((prev) =>
@@ -112,7 +120,7 @@ export function QuestionnaireTable({ questionnaires: initialQuestionnaires }: Qu
       router.refresh();
     } catch (error) {
       console.error('Error activating questionnaire:', error);
-      toast.error(error instanceof Error ? error.message : 'שגיאה בהפעלת השאלון');
+      toast.error(error instanceof Error ? error.message : 'שגיאה בסימון כמומלץ');
     } finally {
       setProcessingId(null);
     }
@@ -123,7 +131,7 @@ export function QuestionnaireTable({ questionnaires: initialQuestionnaires }: Qu
 
     try {
       await deactivateQuestionnaire(id);
-      toast.success('השאלון הופסק בהצלחה');
+      toast.success('הסימון כמומלץ בוטל בהצלחה');
 
       // Update local state
       setQuestionnaires((prev) =>
@@ -135,10 +143,68 @@ export function QuestionnaireTable({ questionnaires: initialQuestionnaires }: Qu
       router.refresh();
     } catch (error) {
       console.error('Error deactivating questionnaire:', error);
-      toast.error(error instanceof Error ? error.message : 'שגיאה בביטול הפעלת השאלון');
+      toast.error(error instanceof Error ? error.message : 'שגיאה בביטול סימון כמומלץ');
     } finally {
       setProcessingId(null);
     }
+  };
+
+  const handlePublish = async () => {
+    if (!publishingId) return;
+
+    setProcessingId(publishingId);
+
+    try {
+      await publishQuestionnaire(publishingId);
+      toast.success('השאלון פורסם בהצלחה');
+
+      // Update local state
+      setQuestionnaires((prev) =>
+        prev.map((q) =>
+          q.id === publishingId ? { ...q, isPublished: true } : q
+        )
+      );
+
+      setPublishingId(null);
+      router.refresh();
+    } catch (error) {
+      console.error('Error publishing questionnaire:', error);
+      toast.error(error instanceof Error ? error.message : 'שגיאה בפרסום השאלון');
+    } finally {
+      setProcessingId(null);
+    }
+  };
+
+  const handleUnpublish = async () => {
+    if (!unpublishingId) return;
+
+    setProcessingId(unpublishingId);
+
+    try {
+      await unpublishQuestionnaire(unpublishingId);
+      toast.success('פרסום השאלון בוטל בהצלחה');
+
+      // Update local state
+      setQuestionnaires((prev) =>
+        prev.map((q) =>
+          q.id === unpublishingId ? { ...q, isPublished: false } : q
+        )
+      );
+
+      setUnpublishingId(null);
+      router.refresh();
+    } catch (error) {
+      console.error('Error unpublishing questionnaire:', error);
+      toast.error(error instanceof Error ? error.message : 'שגיאה בביטול פרסום השאלון');
+    } finally {
+      setProcessingId(null);
+    }
+  };
+
+  const handleCopyLink = (slug: string) => {
+    const fullUrl = `${window.location.origin}/q/${slug}`;
+    navigator.clipboard.writeText(fullUrl);
+    toast.success('הקישור הועתק ללוח');
   };
 
   return (
@@ -148,6 +214,8 @@ export function QuestionnaireTable({ questionnaires: initialQuestionnaires }: Qu
           <TableHeader>
             <TableRow>
               <TableHead className="text-right font-semibold">כותרת</TableHead>
+              <TableHead className="text-center font-semibold">קישור לשאלון</TableHead>
+              <TableHead className="text-center font-semibold">מפורסם</TableHead>
               <TableHead className="text-center font-semibold">סטטוס</TableHead>
               <TableHead className="text-center font-semibold">שאלות</TableHead>
               <TableHead className="text-center font-semibold">תשובות</TableHead>
@@ -158,7 +226,7 @@ export function QuestionnaireTable({ questionnaires: initialQuestionnaires }: Qu
           <TableBody>
             {questionnaires.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={6} className="h-32 text-center">
+                <TableCell colSpan={8} className="h-32 text-center">
                   <div className="flex flex-col items-center justify-center gap-2 text-gray-500">
                     <FileQuestion className="h-12 w-12" />
                     <p>אין שאלונים במערכת</p>
@@ -178,7 +246,36 @@ export function QuestionnaireTable({ questionnaires: initialQuestionnaires }: Qu
                     )}
                   </TableCell>
 
-                  {/* Status */}
+                  {/* Link */}
+                  <TableCell className="text-center">
+                    <div className="flex items-center justify-center gap-2">
+                      <Link
+                        href={`/q/${questionnaire.slug}`}
+                        target="_blank"
+                        className="text-sm text-blue-600 hover:underline"
+                      >
+                        q/{questionnaire.slug}
+                      </Link>
+                      <Button
+                        size="sm"
+                        variant="ghost"
+                        onClick={() => handleCopyLink(questionnaire.slug)}
+                        title="העתק קישור"
+                        className="h-6 w-6 p-0"
+                      >
+                        <Clipboard className="h-3 w-3" />
+                      </Button>
+                    </div>
+                  </TableCell>
+
+                  {/* Published Status */}
+                  <TableCell className="text-center">
+                    <Badge className={questionnaire.isPublished ? 'bg-green-100 text-green-800 hover:bg-green-100' : 'bg-gray-100 text-gray-800 hover:bg-gray-100'}>
+                      {questionnaire.isPublished ? 'מפורסם ✅' : 'לא מפורסם ❌'}
+                    </Badge>
+                  </TableCell>
+
+                  {/* Featured Status */}
                   <TableCell className="text-center">
                     <Badge className={getQuestionnaireStatusColor(questionnaire.isActive)}>
                       {getQuestionnaireStatusLabel(questionnaire.isActive)}
@@ -218,19 +315,46 @@ export function QuestionnaireTable({ questionnaires: initialQuestionnaires }: Qu
                         <Edit className="h-4 w-4" />
                       </Button>
 
-                      {/* Activate/Deactivate */}
+                      {/* Publish/Unpublish */}
+                      {questionnaire.isPublished ? (
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          onClick={() => setUnpublishingId(questionnaire.id)}
+                          disabled={processingId === questionnaire.id}
+                          title="ביטול פרסום"
+                        >
+                          {processingId === questionnaire.id && unpublishingId === questionnaire.id ? (
+                            <Loader2 className="h-4 w-4 animate-spin" />
+                          ) : (
+                            <EyeOff className="h-4 w-4 text-orange-600" />
+                          )}
+                        </Button>
+                      ) : (
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          onClick={() => setPublishingId(questionnaire.id)}
+                          disabled={processingId === questionnaire.id}
+                          title="פרסום"
+                        >
+                          <Eye className="h-4 w-4 text-green-600" />
+                        </Button>
+                      )}
+
+                      {/* Featured/Unfeatured */}
                       {questionnaire.isActive ? (
                         <Button
                           size="sm"
                           variant="ghost"
                           onClick={() => handleDeactivate(questionnaire.id)}
                           disabled={processingId === questionnaire.id}
-                          title="ביטול הפעלה"
+                          title="ביטול סימון כמומלץ"
                         >
-                          {processingId === questionnaire.id ? (
+                          {processingId === questionnaire.id && !publishingId && !unpublishingId ? (
                             <Loader2 className="h-4 w-4 animate-spin" />
                           ) : (
-                            <PowerOff className="h-4 w-4 text-orange-600" />
+                            <Star className="h-4 w-4 fill-yellow-500 text-yellow-500" />
                           )}
                         </Button>
                       ) : (
@@ -239,9 +363,9 @@ export function QuestionnaireTable({ questionnaires: initialQuestionnaires }: Qu
                           variant="ghost"
                           onClick={() => setActivatingId(questionnaire.id)}
                           disabled={processingId === questionnaire.id}
-                          title="הפעלה"
+                          title="סימון כמומלץ"
                         >
-                          <Power className="h-4 w-4 text-green-600" />
+                          <Star className="h-4 w-4 text-gray-400" />
                         </Button>
                       )}
 
@@ -332,13 +456,13 @@ export function QuestionnaireTable({ questionnaires: initialQuestionnaires }: Qu
         </AlertDialogContent>
       </AlertDialog>
 
-      {/* Activate Confirmation */}
+      {/* Featured Confirmation */}
       <AlertDialog open={!!activatingId} onOpenChange={(open) => !open && setActivatingId(null)}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle className="text-right">הפעלת שאלון</AlertDialogTitle>
+            <AlertDialogTitle className="text-right">סימון שאלון כמומלץ</AlertDialogTitle>
             <AlertDialogDescription className="text-right">
-              הפעלת שאלון זה תבטל את השאלון הפעיל הנוכחי (אם קיים). רק שאלון אחד יכול להיות פעיל בכל זמן נתון.
+              סימון שאלון זה כמומלץ יבטל את הסימון של השאלון המומלץ הנוכחי (אם קיים). רק שאלון אחד יכול להיות מומלץ בכל זמן נתון.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
@@ -353,10 +477,81 @@ export function QuestionnaireTable({ questionnaires: initialQuestionnaires }: Qu
               {processingId === activatingId ? (
                 <>
                   <Loader2 className="ml-2 h-4 w-4 animate-spin" />
-                  מפעיל...
+                  מסמן...
                 </>
               ) : (
-                'הפעל שאלון'
+                'סמן כמומלץ'
+              )}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      {/* Publish Confirmation */}
+      <AlertDialog open={!!publishingId} onOpenChange={(open) => !open && setPublishingId(null)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle className="text-right">פרסום שאלון</AlertDialogTitle>
+            <AlertDialogDescription className="text-right">
+              {publishingId && (
+                <>
+                  השאלון יהיה זמין לציבור בכתובת:{' '}
+                  <span className="font-semibold">
+                    {window.location.origin}/q/{questionnaires.find(q => q.id === publishingId)?.slug}
+                  </span>
+                  <br />
+                  האם להמשיך?
+                </>
+              )}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel disabled={processingId === publishingId}>
+              ביטול
+            </AlertDialogCancel>
+            <AlertDialogAction
+              onClick={handlePublish}
+              disabled={processingId === publishingId}
+              className="bg-green-600 hover:bg-green-700"
+            >
+              {processingId === publishingId ? (
+                <>
+                  <Loader2 className="ml-2 h-4 w-4 animate-spin" />
+                  מפרסם...
+                </>
+              ) : (
+                'פרסם שאלון'
+              )}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      {/* Unpublish Confirmation */}
+      <AlertDialog open={!!unpublishingId} onOpenChange={(open) => !open && setUnpublishingId(null)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle className="text-right">ביטול פרסום שאלון</AlertDialogTitle>
+            <AlertDialogDescription className="text-right">
+              השאלון לא יהיה זמין יותר לציבור. האם להמשיך?
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel disabled={processingId === unpublishingId}>
+              ביטול
+            </AlertDialogCancel>
+            <AlertDialogAction
+              onClick={handleUnpublish}
+              disabled={processingId === unpublishingId}
+              className="bg-orange-600 hover:bg-orange-700"
+            >
+              {processingId === unpublishingId ? (
+                <>
+                  <Loader2 className="ml-2 h-4 w-4 animate-spin" />
+                  מבטל פרסום...
+                </>
+              ) : (
+                'בטל פרסום'
               )}
             </AlertDialogAction>
           </AlertDialogFooter>

@@ -1,0 +1,1290 @@
+{
+  "lastProcessedMkId": 1110,
+  "processedMks": [
+    {
+      "mkId": 771,
+      "name": "אבי דיכטר",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.889Z"
+    },
+    {
+      "mkId": 771,
+      "name": "אבי דיכטר",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.889Z"
+    },
+    {
+      "mkId": 1126,
+      "name": "אביחי אברהם בוארון",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.892Z"
+    },
+    {
+      "mkId": 1126,
+      "name": "אביחי אברהם בוארון",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.892Z"
+    },
+    {
+      "mkId": 976,
+      "name": "אופיר כץ",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.893Z"
+    },
+    {
+      "mkId": 976,
+      "name": "אופיר כץ",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.893Z"
+    },
+    {
+      "mkId": 1123,
+      "name": "אושר שקלים",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.893Z"
+    },
+    {
+      "mkId": 1123,
+      "name": "אושר שקלים",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.893Z"
+    },
+    {
+      "mkId": 1100,
+      "name": "אלי דלל",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.894Z"
+    },
+    {
+      "mkId": 1100,
+      "name": "אלי דלל",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.894Z"
+    },
+    {
+      "mkId": 1111,
+      "name": "אליהו רביבו",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.894Z"
+    },
+    {
+      "mkId": 1111,
+      "name": "אליהו רביבו",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.894Z"
+    },
+    {
+      "mkId": 953,
+      "name": "אמיר אוחנה",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.895Z"
+    },
+    {
+      "mkId": 953,
+      "name": "אמיר אוחנה",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.895Z"
+    },
+    {
+      "mkId": 987,
+      "name": "אריאל קלנר",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.895Z"
+    },
+    {
+      "mkId": 987,
+      "name": "אריאל קלנר",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.895Z"
+    },
+    {
+      "mkId": 1095,
+      "name": "בועז ביסמוט",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.896Z"
+    },
+    {
+      "mkId": 1095,
+      "name": "בועז ביסמוט",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.896Z"
+    },
+    {
+      "mkId": 90,
+      "name": "בנימין נתניהו",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.897Z"
+    },
+    {
+      "mkId": 90,
+      "name": "בנימין נתניהו",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.897Z"
+    },
+    {
+      "mkId": 723,
+      "name": "גילה גמליאל",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.897Z"
+    },
+    {
+      "mkId": 723,
+      "name": "גילה גמליאל",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.897Z"
+    },
+    {
+      "mkId": 1059,
+      "name": "גלית דיסטל אטבריאן",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.898Z"
+    },
+    {
+      "mkId": 1059,
+      "name": "גלית דיסטל אטבריאן",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.898Z"
+    },
+    {
+      "mkId": 914,
+      "name": "דוד ביטן",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.898Z"
+    },
+    {
+      "mkId": 914,
+      "name": "דוד ביטן",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.898Z"
+    },
+    {
+      "mkId": 1116,
+      "name": "דן אילוז",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.898Z"
+    },
+    {
+      "mkId": 1116,
+      "name": "דן אילוז",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.898Z"
+    },
+    {
+      "mkId": 992,
+      "name": "חוה אתי עטייה",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.899Z"
+    },
+    {
+      "mkId": 992,
+      "name": "חוה אתי עטייה",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.899Z"
+    },
+    {
+      "mkId": 1105,
+      "name": "חנוך דב מלביצקי",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.899Z"
+    },
+    {
+      "mkId": 1105,
+      "name": "חנוך דב מלביצקי",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.899Z"
+    },
+    {
+      "mkId": 1098,
+      "name": "טלי גוטליב",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.900Z"
+    },
+    {
+      "mkId": 1098,
+      "name": "טלי גוטליב",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.900Z"
+    },
+    {
+      "mkId": 1,
+      "name": "יולי יואל אדלשטיין",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.901Z"
+    },
+    {
+      "mkId": 1,
+      "name": "יולי יואל אדלשטיין",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.901Z"
+    },
+    {
+      "mkId": 826,
+      "name": "יריב לוין",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.901Z"
+    },
+    {
+      "mkId": 826,
+      "name": "יריב לוין",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.901Z"
+    },
+    {
+      "mkId": 69,
+      "name": "ישראל כץ",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.902Z"
+    },
+    {
+      "mkId": 69,
+      "name": "ישראל כץ",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.902Z"
+    },
+    {
+      "mkId": 1002,
+      "name": "מאי גולן",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.902Z"
+    },
+    {
+      "mkId": 1002,
+      "name": "מאי גולן",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.902Z"
+    },
+    {
+      "mkId": 1109,
+      "name": "משה סעדה",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.903Z"
+    },
+    {
+      "mkId": 1109,
+      "name": "משה סעדה",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.903Z"
+    },
+    {
+      "mkId": 1124,
+      "name": "משה פסל",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.903Z"
+    },
+    {
+      "mkId": 1124,
+      "name": "משה פסל",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.903Z"
+    },
+    {
+      "mkId": 1045,
+      "name": "ניסים ואטורי",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.904Z"
+    },
+    {
+      "mkId": 1045,
+      "name": "ניסים ואטורי",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.904Z"
+    },
+    {
+      "mkId": 974,
+      "name": "ניר ברקת",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.904Z"
+    },
+    {
+      "mkId": 974,
+      "name": "ניר ברקת",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.904Z"
+    },
+    {
+      "mkId": 1044,
+      "name": "עמית הלוי",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.905Z"
+    },
+    {
+      "mkId": 1044,
+      "name": "עמית הלוי",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.905Z"
+    },
+    {
+      "mkId": 1128,
+      "name": "עפיף עבד",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.905Z"
+    },
+    {
+      "mkId": 1128,
+      "name": "עפיף עבד",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.905Z"
+    },
+    {
+      "mkId": 1122,
+      "name": "צגה צגנש מלקו",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.906Z"
+    },
+    {
+      "mkId": 1122,
+      "name": "צגה צגנש מלקו",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.906Z"
+    },
+    {
+      "mkId": 1018,
+      "name": "קטי קטרין שטרית",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.906Z"
+    },
+    {
+      "mkId": 1018,
+      "name": "קטי קטרין שטרית",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.906Z"
+    },
+    {
+      "mkId": 1101,
+      "name": "שלום דנינו",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.906Z"
+    },
+    {
+      "mkId": 1101,
+      "name": "שלום דנינו",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.906Z"
+    },
+    {
+      "mkId": 1011,
+      "name": "שלמה קרעי",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.907Z"
+    },
+    {
+      "mkId": 1011,
+      "name": "שלמה קרעי",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.907Z"
+    },
+    {
+      "mkId": 1125,
+      "name": "ששון ששי גואטה",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.907Z"
+    },
+    {
+      "mkId": 1125,
+      "name": "ששון ששי גואטה",
+      "faction": "הליכוד",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.907Z"
+    },
+    {
+      "mkId": 1090,
+      "name": "אוהד טל",
+      "faction": "הציונות הדתית בראשות בצלאל סמוטריץ'",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.908Z"
+    },
+    {
+      "mkId": 1090,
+      "name": "אוהד טל",
+      "faction": "הציונות הדתית בראשות בצלאל סמוטריץ'",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.908Z"
+    },
+    {
+      "mkId": 977,
+      "name": "אופיר סופר",
+      "faction": "הציונות הדתית בראשות בצלאל סמוטריץ'",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.908Z"
+    },
+    {
+      "mkId": 977,
+      "name": "אופיר סופר",
+      "faction": "הציונות הדתית בראשות בצלאל סמוטריץ'",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.908Z"
+    },
+    {
+      "mkId": 884,
+      "name": "אורית סטרוק",
+      "faction": "הציונות הדתית בראשות בצלאל סמוטריץ'",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.909Z"
+    },
+    {
+      "mkId": 884,
+      "name": "אורית סטרוק",
+      "faction": "הציונות הדתית בראשות בצלאל סמוטריץ'",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.909Z"
+    },
+    {
+      "mkId": 1060,
+      "name": "מיכל מרים וולדיגר",
+      "faction": "הציונות הדתית בראשות בצלאל סמוטריץ'",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.910Z"
+    },
+    {
+      "mkId": 1060,
+      "name": "מיכל מרים וולדיגר",
+      "faction": "הציונות הדתית בראשות בצלאל סמוטריץ'",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.910Z"
+    },
+    {
+      "mkId": 1107,
+      "name": "משה סולומון",
+      "faction": "הציונות הדתית בראשות בצלאל סמוטריץ'",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.911Z"
+    },
+    {
+      "mkId": 1107,
+      "name": "משה סולומון",
+      "faction": "הציונות הדתית בראשות בצלאל סמוטריץ'",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.911Z"
+    },
+    {
+      "mkId": 1121,
+      "name": "צבי ידידיה סוכות",
+      "faction": "הציונות הדתית בראשות בצלאל סמוטריץ'",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.911Z"
+    },
+    {
+      "mkId": 1121,
+      "name": "צבי ידידיה סוכות",
+      "faction": "הציונות הדתית בראשות בצלאל סמוטריץ'",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.911Z"
+    },
+    {
+      "mkId": 1067,
+      "name": "שמחה רוטמן",
+      "faction": "הציונות הדתית בראשות בצלאל סמוטריץ'",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.912Z"
+    },
+    {
+      "mkId": 1067,
+      "name": "שמחה רוטמן",
+      "faction": "הציונות הדתית בראשות בצלאל סמוטריץ'",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.912Z"
+    },
+    {
+      "mkId": 1039,
+      "name": "אוריאל בוסו",
+      "faction": "\"התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ\"ל\"",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.912Z"
+    },
+    {
+      "mkId": 1039,
+      "name": "אוריאל בוסו",
+      "faction": "\"התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ\"ל\"",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.912Z"
+    },
+    {
+      "mkId": 41,
+      "name": "אריה מכלוף דרעי",
+      "faction": "\"התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ\"ל\"",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.913Z"
+    },
+    {
+      "mkId": 41,
+      "name": "אריה מכלוף דרעי",
+      "faction": "\"התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ\"ל\"",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.913Z"
+    },
+    {
+      "mkId": 1055,
+      "name": "חיים ביטון",
+      "faction": "\"התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ\"ל\"",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.913Z"
+    },
+    {
+      "mkId": 1055,
+      "name": "חיים ביטון",
+      "faction": "\"התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ\"ל\"",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.913Z"
+    },
+    {
+      "mkId": 906,
+      "name": "יואב בן צור",
+      "faction": "\"התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ\"ל\"",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.913Z"
+    },
+    {
+      "mkId": 906,
+      "name": "יואב בן צור",
+      "faction": "\"התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ\"ל\"",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.913Z"
+    },
+    {
+      "mkId": 1115,
+      "name": "יונתן מישרקי",
+      "faction": "\"התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ\"ל\"",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.914Z"
+    },
+    {
+      "mkId": 1115,
+      "name": "יונתן מישרקי",
+      "faction": "\"התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ\"ל\"",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.914Z"
+    },
+    {
+      "mkId": 1043,
+      "name": "יוסף טייב",
+      "faction": "\"התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ\"ל\"",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.914Z"
+    },
+    {
+      "mkId": 1043,
+      "name": "יוסף טייב",
+      "faction": "\"התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ\"ל\"",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.914Z"
+    },
+    {
+      "mkId": 970,
+      "name": "ינון אזולאי",
+      "faction": "\"התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ\"ל\"",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.915Z"
+    },
+    {
+      "mkId": 970,
+      "name": "ינון אזולאי",
+      "faction": "\"התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ\"ל\"",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.915Z"
+    },
+    {
+      "mkId": 751,
+      "name": "יעקב מרגי",
+      "faction": "\"התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ\"ל\"",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.915Z"
+    },
+    {
+      "mkId": 751,
+      "name": "יעקב מרגי",
+      "faction": "\"התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ\"ל\"",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.915Z"
+    },
+    {
+      "mkId": 957,
+      "name": "מיכאל מלכיאלי",
+      "faction": "\"התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ\"ל\"",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.916Z"
+    },
+    {
+      "mkId": 957,
+      "name": "מיכאל מלכיאלי",
+      "faction": "\"התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ\"ל\"",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.916Z"
+    },
+    {
+      "mkId": 1029,
+      "name": "משה אבוטבול",
+      "faction": "\"התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ\"ל\"",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.916Z"
+    },
+    {
+      "mkId": 1029,
+      "name": "משה אבוטבול",
+      "faction": "\"התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ\"ל\"",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.916Z"
+    },
+    {
+      "mkId": 1008,
+      "name": "משה ארבל",
+      "faction": "\"התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ\"ל\"",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.917Z"
+    },
+    {
+      "mkId": 1008,
+      "name": "משה ארבל",
+      "faction": "\"התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ\"ל\"",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.917Z"
+    },
+    {
+      "mkId": 814,
+      "name": "אורי מקלב",
+      "faction": "יהדות התורה",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.917Z"
+    },
+    {
+      "mkId": 814,
+      "name": "אורי מקלב",
+      "faction": "יהדות התורה",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.917Z"
+    },
+    {
+      "mkId": 861,
+      "name": "יעקב אשר",
+      "faction": "יהדות התורה",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.918Z"
+    },
+    {
+      "mkId": 861,
+      "name": "יעקב אשר",
+      "faction": "יהדות התורה",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.918Z"
+    },
+    {
+      "mkId": 996,
+      "name": "יעקב טסלר",
+      "faction": "יהדות התורה",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.918Z"
+    },
+    {
+      "mkId": 996,
+      "name": "יעקב טסלר",
+      "faction": "יהדות התורה",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.918Z"
+    },
+    {
+      "mkId": 1099,
+      "name": "יצחק גולדקנופ",
+      "faction": "יהדות התורה",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.919Z"
+    },
+    {
+      "mkId": 1099,
+      "name": "יצחק גולדקנופ",
+      "faction": "יהדות התורה",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.919Z"
+    },
+    {
+      "mkId": 754,
+      "name": "ישראל אייכלר",
+      "faction": "יהדות התורה",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.919Z"
+    },
+    {
+      "mkId": 754,
+      "name": "ישראל אייכלר",
+      "faction": "יהדות התורה",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.919Z"
+    },
+    {
+      "mkId": 103,
+      "name": "מאיר פרוש",
+      "faction": "יהדות התורה",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.920Z"
+    },
+    {
+      "mkId": 103,
+      "name": "מאיר פרוש",
+      "faction": "יהדות התורה",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.920Z"
+    },
+    {
+      "mkId": 35,
+      "name": "משה גפני",
+      "faction": "יהדות התורה",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.921Z"
+    },
+    {
+      "mkId": 35,
+      "name": "משה גפני",
+      "faction": "יהדות התורה",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.921Z"
+    },
+    {
+      "mkId": 1063,
+      "name": "אבי מעוז",
+      "faction": "נעם - בראשות אבי מעוז",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.922Z"
+    },
+    {
+      "mkId": 1063,
+      "name": "אבי מעוז",
+      "faction": "נעם - בראשות אבי מעוז",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.922Z"
+    },
+    {
+      "mkId": 1056,
+      "name": "איתמר בן גביר",
+      "faction": "עוצמה יהודית בראשות איתמר בן גביר",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.922Z"
+    },
+    {
+      "mkId": 1056,
+      "name": "איתמר בן גביר",
+      "faction": "עוצמה יהודית בראשות איתמר בן גביר",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.922Z"
+    },
+    {
+      "mkId": 1114,
+      "name": "יצחק קרויזר",
+      "faction": "עוצמה יהודית בראשות איתמר בן גביר",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.923Z"
+    },
+    {
+      "mkId": 1114,
+      "name": "יצחק קרויזר",
+      "faction": "עוצמה יהודית בראשות איתמר בן גביר",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.923Z"
+    },
+    {
+      "mkId": 1102,
+      "name": "יצחק שמעון וסרלאוף",
+      "faction": "עוצמה יהודית בראשות איתמר בן גביר",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.923Z"
+    },
+    {
+      "mkId": 1102,
+      "name": "יצחק שמעון וסרלאוף",
+      "faction": "עוצמה יהודית בראשות איתמר בן גביר",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.923Z"
+    },
+    {
+      "mkId": 1108,
+      "name": "לימור סון הר מלך",
+      "faction": "עוצמה יהודית בראשות איתמר בן גביר",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.924Z"
+    },
+    {
+      "mkId": 1108,
+      "name": "לימור סון הר מלך",
+      "faction": "עוצמה יהודית בראשות איתמר בן גביר",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.924Z"
+    },
+    {
+      "mkId": 1096,
+      "name": "עמיחי אליהו",
+      "faction": "עוצמה יהודית בראשות איתמר בן גביר",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.924Z"
+    },
+    {
+      "mkId": 1096,
+      "name": "עמיחי אליהו",
+      "faction": "עוצמה יהודית בראשות איתמר בן גביר",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.924Z"
+    },
+    {
+      "mkId": 1110,
+      "name": "צביקה פוגל",
+      "faction": "עוצמה יהודית בראשות איתמר בן גביר",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.925Z"
+    },
+    {
+      "mkId": 1110,
+      "name": "צביקה פוגל",
+      "faction": "עוצמה יהודית בראשות איתמר בן גביר",
+      "statementsFound": 0,
+      "submitted": 0,
+      "status": "complete",
+      "errors": [],
+      "lastUpdated": "2025-12-04T23:01:24.925Z"
+    }
+  ],
+  "totalSubmitted": 0,
+  "totalErrors": 0,
+  "totalDuplicates": 0,
+  "startedAt": "2025-12-04T23:01:24.887Z",
+  "lastUpdatedAt": "2025-12-04T23:01:24.925Z"
+}

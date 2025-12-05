@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 import {
   Card,
   CardContent,
@@ -66,7 +67,7 @@ export function HistoricalCommentsManager({
   coalitionMKs,
 }: HistoricalCommentsManagerProps) {
   const router = useRouter();
-  const [comments] = useState(initialComments);
+  const [comments, setComments] = useState(initialComments);
   const [selectedComments, setSelectedComments] = useState<Set<number>>(new Set());
   const [detailComment, setDetailComment] = useState<typeof initialComments[0] | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -84,6 +85,30 @@ export function HistoricalCommentsManager({
   const [sortField, setSortField] = useState<SortField>('date');
   const [sortDirection, setSortDirection] = useState<SortDirection>('desc');
   const [currentPage, setCurrentPage] = useState(1);
+
+  // Sync comments when server sends new data
+  useEffect(() => {
+    setComments(initialComments);
+  }, [initialComments]);
+
+  // Optimistically update a single comment in state
+  const updateCommentInState = useCallback((commentId: number, updates: Partial<typeof initialComments[0]>) => {
+    setComments(prev => prev.map(comment =>
+      comment.id === commentId
+        ? { ...comment, ...updates }
+        : comment
+    ));
+  }, []);
+
+  // Optimistically remove a comment from state
+  const removeCommentFromState = useCallback((commentId: number) => {
+    setComments(prev => prev.filter(comment => comment.id !== commentId));
+  }, []);
+
+  // Refresh data from server
+  const refreshData = useCallback(async () => {
+    router.refresh();
+  }, [router]);
 
   // Apply filters
   const filteredComments = useMemo(() => {
@@ -213,37 +238,58 @@ export function HistoricalCommentsManager({
   const handleBulkVerify = async (verified: boolean) => {
     if (selectedComments.size === 0) return;
 
-    const result = await bulkVerifyHistoricalComments(Array.from(selectedComments), verified);
+    const commentIds = Array.from(selectedComments);
 
-    if (result.success > 0) {
-      setSelectedComments(new Set());
-      router.refresh();
-    }
+    try {
+      // Optimistic update for all selected
+      commentIds.forEach(id => updateCommentInState(id, { isVerified: verified }));
 
-    if (result.failed > 0) {
-      alert(`${result.failed} ציטוטים נכשלו באימות`);
+      const result = await bulkVerifyHistoricalComments(commentIds, verified);
+
+      if (result.success > 0) {
+        toast.success(`${result.success} ציטוטים ${verified ? 'אומתו' : 'בוטל אימותם'} בהצלחה`);
+        setSelectedComments(new Set());
+        await refreshData();
+      }
+
+      if (result.failed > 0) {
+        toast.error(`${result.failed} ציטוטים נכשלו באימות`);
+        await refreshData(); // Revert on failure
+      }
+    } catch (error) {
+      console.error('Error bulk verifying:', error);
+      toast.error('שגיאה באימות התגובות');
+      await refreshData(); // Revert on error
     }
   };
 
   const handleBulkDelete = async () => {
     if (selectedComments.size === 0) return;
+    if (!confirm(`האם אתה בטוח שברצונך למחוק ${selectedComments.size} ציטוטים?`)) return;
 
+    const commentIds = Array.from(selectedComments);
     setIsDeleting(true);
+
     try {
-      const result = await bulkDeleteHistoricalComments(Array.from(selectedComments));
+      // Optimistic removal for all selected
+      commentIds.forEach(id => removeCommentFromState(id));
+
+      const result = await bulkDeleteHistoricalComments(commentIds);
 
       if (result.success > 0) {
+        toast.success(`${result.success} ציטוטים נמחקו בהצלחה`);
         setSelectedComments(new Set());
         setShowDeleteConfirm(false);
-        router.refresh();
       }
 
       if (result.failed > 0) {
-        alert(`${result.failed} ציטוטים נכשלו במחיקה`);
+        toast.error(`${result.failed} ציטוטים נכשלו במחיקה`);
+        await refreshData(); // Restore on failure
       }
     } catch (error) {
       console.error('Error bulk deleting:', error);
-      alert('אירעה שגיאה במחיקה');
+      toast.error('אירעה שגיאה במחיקה');
+      await refreshData(); // Restore on error
     } finally {
       setIsDeleting(false);
     }

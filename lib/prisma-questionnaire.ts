@@ -46,10 +46,10 @@ const prismaClientSingleton = () => {
 };
 
 export const prismaQuestionnaire =
-  global.prismaQuestionnaire || prismaClientSingleton();
+  globalThis.prismaQuestionnaire || prismaClientSingleton();
 
 if (process.env.NODE_ENV !== 'production') {
-  global.prismaQuestionnaire = prismaQuestionnaire;
+  globalThis.prismaQuestionnaire = prismaQuestionnaire;
 }
 
 /**

@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { toast } from 'sonner';
 import {
   Dialog,
   DialogContent,
@@ -60,43 +61,59 @@ export function HistoricalCommentDetailDialog({
   const [isDeleting, setIsDeleting] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
+  // Sync comment when props change
+  useEffect(() => {
+    setComment(initialComment);
+  }, [initialComment]);
+
   const credibilityInfo = getCredibilityInfo(comment.sourceCredibility);
 
   const handleVerify = async (verified: boolean) => {
     setIsVerifying(true);
     try {
+      // Optimistic update
+      setComment(prev => ({ ...prev, isVerified: verified }));
+
       const success = await verifyHistoricalCommentAdmin(comment.id, verified);
       if (success) {
-        setComment({ ...comment, isVerified: verified });
+        toast.success(`הציטוט ${verified ? 'אומת' : 'בוטל אימותו'} בהצלחה`);
         onUpdate?.();
         router.refresh();
       } else {
-        alert('אירעה שגיאה בעדכון סטטוס האימות');
+        // Revert on failure
+        setComment(prev => ({ ...prev, isVerified: !verified }));
+        toast.error('אירעה שגיאה בעדכון סטטוס האימות');
       }
     } catch (error) {
       console.error('Error verifying comment:', error);
-      alert('אירעה שגיאה בעדכון סטטוס האימות');
+      // Revert on error
+      setComment(prev => ({ ...prev, isVerified: !verified }));
+      toast.error('אירעה שגיאה בעדכון סטטוס האימות');
     } finally {
       setIsVerifying(false);
     }
   };
 
   const handleDelete = async () => {
+    if (!confirm('האם אתה בטוח שברצונך למחוק ציטוט זה?')) return;
+
     setIsDeleting(true);
     try {
       const success = await deleteHistoricalComment(comment.id);
       if (success) {
+        toast.success('הציטוט נמחק בהצלחה');
         onUpdate?.();
         router.refresh();
         onClose();
       } else {
-        alert('אירעה שגיאה במחיקת הציטוט');
+        toast.error('אירעה שגיאה במחיקת הציטוט');
       }
     } catch (error) {
       console.error('Error deleting comment:', error);
-      alert('אירעה שגיאה במחיקת הציטוט');
+      toast.error('אירעה שגיאה במחיקת הציטוט');
     } finally {
       setIsDeleting(false);
+      setShowDeleteConfirm(false);
     }
   };
 

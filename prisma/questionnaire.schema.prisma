@@ -32,7 +32,9 @@ model Questionnaire {
   id          Int      @id @default(autoincrement())
   title       String   // כותרת השאלון
   description String?  // תיאור השאלון (optional)
-  isActive    Boolean  @default(false) // Only one active at a time
+  slug        String   @unique // URL-friendly identifier (e.g., "army-recruitment-2025")
+  isActive    Boolean  @default(false) // Featured questionnaire (optional, backward compatible)
+  isPublished Boolean  @default(false) // Publicly accessible (multiple can be true)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
@@ -40,7 +42,9 @@ model Questionnaire {
   responses    QuestionnaireResponse[]
   customFields CustomFieldDefinition[]
 
+  @@index([slug])
   @@index([isActive])
+  @@index([isPublished])
   @@index([createdAt])
 }
 
