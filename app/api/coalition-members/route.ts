@@ -7,7 +7,7 @@ export async function GET(request: NextRequest) {
     const coalitionMKs = await prisma.mK.findMany({
       where: {
         faction: {
-          in: COALITION_FACTIONS
+          in: [...COALITION_FACTIONS]
         }
       },
       select: {
