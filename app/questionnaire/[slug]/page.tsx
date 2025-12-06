@@ -5,13 +5,14 @@ import { notFound } from 'next/navigation';
 import '@/components/questionnaire/questionnaire-animations.css';
 
 interface QuestionnairePageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({ params }: QuestionnairePageProps) {
-  const questionnaire = await getQuestionnaireBySlug(params.slug);
+  const { slug } = await params;
+  const questionnaire = await getQuestionnaireBySlug(slug);
 
   if (!questionnaire) {
     return {
@@ -27,7 +28,8 @@ export async function generateMetadata({ params }: QuestionnairePageProps) {
 }
 
 export default async function QuestionnairePage({ params }: QuestionnairePageProps) {
-  const questionnaire = await getQuestionnaireBySlug(params.slug);
+  const { slug } = await params;
+  const questionnaire = await getQuestionnaireBySlug(slug);
 
   // Return 404 if not found or not published
   if (!questionnaire) {

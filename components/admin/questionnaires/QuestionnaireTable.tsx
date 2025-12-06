@@ -202,7 +202,7 @@ export function QuestionnaireTable({ questionnaires: initialQuestionnaires }: Qu
   };
 
   const handleCopyLink = (slug: string) => {
-    const fullUrl = `${window.location.origin}/q/${slug}`;
+    const fullUrl = `${window.location.origin}/questionnaire/${slug}`;
     navigator.clipboard.writeText(fullUrl);
     toast.success('הקישור הועתק ללוח');
   };
@@ -250,11 +250,11 @@ export function QuestionnaireTable({ questionnaires: initialQuestionnaires }: Qu
                   <TableCell className="text-center">
                     <div className="flex items-center justify-center gap-2">
                       <Link
-                        href={`/q/${questionnaire.slug}`}
+                        href={`/questionnaire/${questionnaire.slug}`}
                         target="_blank"
                         className="text-sm text-blue-600 hover:underline"
                       >
-                        q/{questionnaire.slug}
+                        questionnaire/{questionnaire.slug}
                       </Link>
                       <Button
                         size="sm"
@@ -497,7 +497,7 @@ export function QuestionnaireTable({ questionnaires: initialQuestionnaires }: Qu
                 <>
                   השאלון יהיה זמין לציבור בכתובת:{' '}
                   <span className="font-semibold">
-                    {window.location.origin}/q/{questionnaires.find(q => q.id === publishingId)?.slug}
+                    {window.location.origin}/questionnaire/{questionnaires.find(q => q.id === publishingId)?.slug}
                   </span>
                   <br />
                   האם להמשיך?
