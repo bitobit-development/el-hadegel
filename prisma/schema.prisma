@@ -18,6 +18,7 @@ model MK {
   photoUrl        String?           // Profile photo URL
   profileUrl      String            // Link to official Knesset profile
   phone           String?           // Contact phone number(s)
+  mobileNumber    String?           // Mobile/cell phone number
   email           String?           // Contact email
   currentPosition Position          @default(NEUTRAL)
   createdAt       DateTime          @default(now())

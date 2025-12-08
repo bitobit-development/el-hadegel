@@ -10,9 +10,12 @@ import { TweetsDialog } from '@/components/TweetsDialog';
 import { StatusInfoIcon } from '@/components/StatusInfoIcon';
 import { HistoricalCommentIcon } from '@/components/HistoricalCommentIcon';
 import { HistoricalCommentsDialog } from '@/components/historical-comments/HistoricalCommentsDialog';
+import { WhatsAppIcon } from '@/components/WhatsAppIcon';
 import { MKDataWithCounts } from '@/types/mk';
 import { ExternalLink, Phone, Mail, MessageSquare, Info } from 'lucide-react';
 import { generateMKImageAlt } from '@/lib/seo-utils';
+import { isCoalitionMember } from '@/lib/coalition';
+import { canContactViaWhatsApp } from '@/lib/whatsapp-utils';
 
 interface MKCardProps {
   mk: MKDataWithCounts;
@@ -34,7 +37,7 @@ export function MKCard({ mk }: MKCardProps) {
 
   return (
     <Card className="hover:shadow-2xl hover:scale-105 transition-all duration-300 ease-in-out group bg-gradient-to-r from-[#001f3f] to-[#002855] border-none transform hover:-translate-y-1 relative">
-      {/* Profile Link Button - Top Right */}
+      {/* Profile Link Button - Top Left (visually) */}
       <button
         onClick={(e) => {
           e.stopPropagation();
@@ -46,6 +49,11 @@ export function MKCard({ mk }: MKCardProps) {
       >
         <ExternalLink className="h-3 w-3 sm:h-4 sm:w-4 text-white group-hover/btn:text-blue-200" />
       </button>
+
+      {/* WhatsApp Icon - Top Right (visually) - Coalition members only with mobile */}
+      {canContactViaWhatsApp(isCoalitionMember(mk.faction), mk.mobileNumber) && (
+        <WhatsAppIcon mobileNumber={mk.mobileNumber!} mkName={mk.nameHe} />
+      )}
 
       <CardContent className="p-3 sm:p-4 md:p-6">
         <div className="flex flex-col items-center text-center space-y-2 sm:space-y-3 md:space-y-4">

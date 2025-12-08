@@ -10,6 +10,7 @@ export interface MKData {
   photoUrl: string | null;
   profileUrl: string;
   phone: string | null;
+  mobileNumber: string | null; // Mobile number for WhatsApp contact
   email: string | null;
   currentPosition: PositionStatus;
   updatedAt: Date;
