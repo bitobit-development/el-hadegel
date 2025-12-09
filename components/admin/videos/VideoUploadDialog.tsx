@@ -15,6 +15,7 @@ import { Label } from '@/components/ui/label';
 import { Progress } from '@/components/ui/progress';
 import { Upload, X, Video, FileVideo, AlertCircle } from 'lucide-react';
 import { toast } from 'sonner';
+import { upload } from '@vercel/blob/client';
 import { createVideo } from '@/app/actions/video-actions';
 import { VIDEO_CONSTRAINTS, type VideoData } from '@/types/video';
 
@@ -186,49 +187,39 @@ export function VideoUploadDialog({ open, onOpenChange, onSuccess }: VideoUpload
         generateThumbnail(file),
       ]);
 
-      // Prepare FormData for upload
-      const formData = new FormData();
-      formData.append('file', file);
-
-      // Upload file with progress tracking
-      const xhr = new XMLHttpRequest();
-
-      xhr.upload.addEventListener('progress', (e) => {
-        if (e.lengthComputable) {
-          const percentComplete = Math.round((e.loaded / e.total) * 100);
-          setUploadProgress(percentComplete);
-        }
+      // Upload directly to Vercel Blob using the upload function
+      // This handles signed URL generation and upload automatically
+      const blob = await upload(file.name, file, {
+        access: 'public',
+        handleUploadUrl: '/api/videos/upload-url',
+        clientPayload: JSON.stringify({
+          filename: file.name,
+          contentType: file.type,
+          size: file.size,
+        }),
+        onUploadProgress: ({ percentage }) => {
+          setUploadProgress(percentage);
+        },
       });
 
-      xhr.addEventListener('load', () => {
-        if (xhr.status === 200 || xhr.status === 201) {
-          const response = JSON.parse(xhr.responseText);
-          setMetadata({
-            title: file.name.replace(/\.[^/.]+$/, ''), // Filename without extension
-            description: '',
-            fileName: response.fileName,
-            duration,
-            thumbnailUrl, // Use client-side generated thumbnail
-          });
-          setStep('metadata');
-          toast.success('הקובץ הועלה בהצלחה');
-        } else {
-          console.error('Upload failed:', xhr.status, xhr.responseText);
-          toast.error(`שגיאה בהעלאה (${xhr.status}): ${xhr.responseText}`);
-          resetState();
-        }
-      });
+      // Extract filename from blob URL or pathname
+      const fileName = blob.pathname.split('/').pop() || `video-${Date.now()}.mp4`;
 
-      xhr.addEventListener('error', () => {
-        toast.error('שגיאה בהעלאת הקובץ');
-        resetState();
+      // Set metadata for next step
+      setMetadata({
+        title: file.name.replace(/\.[^/.]+$/, ''), // Filename without extension
+        description: '',
+        fileName: fileName,
+        duration,
+        thumbnailUrl, // Use client-side generated thumbnail
       });
+      setStep('metadata');
+      toast.success('הקובץ הועלה בהצלחה');
 
-      xhr.open('POST', '/api/videos/upload');
-      xhr.send(formData);
     } catch (error) {
       console.error('Upload error:', error);
-      toast.error('שגיאה בהעלאת הקובץ');
+      const errorMessage = error instanceof Error ? error.message : 'שגיאה בהעלאת הקובץ';
+      toast.error(errorMessage);
       resetState();
     }
   }, []);

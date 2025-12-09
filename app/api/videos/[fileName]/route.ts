@@ -19,7 +19,7 @@ import { head } from '@vercel/blob';
  * Security function that blocks dangerous patterns:
  * - Path traversal: ../, ..\
  * - Absolute paths: /, \
- * - Only allows: alphanumeric, dash, underscore, dot
+ * - Allows: Unicode characters (including Hebrew), spaces, dash, underscore, dot
  *
  * @param fileName - Filename to validate
  * @returns true if filename is safe, false otherwise
@@ -36,9 +36,19 @@ function isValidFileName(fileName: string): boolean {
     return false;
   }
 
-  // Only allow alphanumeric, dash, underscore, and dot
-  const validPattern = /^[a-zA-Z0-9._-]+$/;
-  return validPattern.test(fileName);
+  // Allow Unicode characters (including Hebrew), spaces, alphanumeric, dash, underscore, and dot
+  // Block only dangerous characters while allowing international filenames
+  const invalidChars = /[<>:"|?*\x00-\x1F]/;
+  if (invalidChars.test(fileName)) {
+    return false;
+  }
+
+  // Ensure filename has valid length
+  if (fileName.length === 0 || fileName.length > 255) {
+    return false;
+  }
+
+  return true;
 }
 
 /**
