@@ -188,7 +188,7 @@ export function VideoUploadDialog({ open, onOpenChange, onSuccess }: VideoUpload
       ]);
 
       // Upload directly to Vercel Blob using the upload function
-      // This handles signed URL generation and upload automatically
+      // For files > 4.5MB, Vercel automatically uses multipart uploads
       const blob = await upload(file.name, file, {
         access: 'public',
         handleUploadUrl: '/api/videos/upload-url',
@@ -200,6 +200,8 @@ export function VideoUploadDialog({ open, onOpenChange, onSuccess }: VideoUpload
         onUploadProgress: ({ percentage }) => {
           setUploadProgress(percentage);
         },
+        // Force multipart for all uploads to avoid 413 errors
+        multipart: true,
       });
 
       // Extract filename from blob URL or pathname
