@@ -132,6 +132,7 @@ export async function POST(request: Request): Promise<Response> {
         return {
           allowedContentTypes: [contentType],
           maximumSizeInBytes: VIDEO_CONSTRAINTS.MAX_FILE_SIZE,
+          addRandomSuffix: true, // Prevent duplicate filename errors
           tokenPayload: JSON.stringify({
             userId: session.user.email,
             originalFilename: filename,

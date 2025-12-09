@@ -55,7 +55,9 @@ data-export.json
 backups/
 
 # Video files (uploaded separately to Vercel/R2)
-videos/
+# Only ignore video files in root or public directory, not API routes
+/videos/
+/public/videos/
 *.mp4
 *.mov
 *.avi
