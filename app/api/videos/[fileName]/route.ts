@@ -37,9 +37,12 @@ function isValidFileName(fileName: string): boolean {
   }
 
   // Allow Unicode characters (including Hebrew), spaces, alphanumeric, dash, underscore, and dot
-  // Block only dangerous characters while allowing international filenames
+  // Block only dangerous filesystem characters (but allow all Unicode including Hebrew quotes)
+  // Only block: < > : " | ? * and control characters
   const invalidChars = /[<>:"|?*\x00-\x1F]/;
-  if (invalidChars.test(fileName)) {
+  // But allow Hebrew and other Unicode characters by checking ASCII range only
+  const asciiOnly = fileName.replace(/[^\x00-\x7F]/g, '');
+  if (invalidChars.test(asciiOnly)) {
     return false;
   }
 
@@ -65,9 +68,13 @@ export async function GET(
   { params }: { params: Promise<{ fileName: string }> }
 ) {
   try {
-    const { fileName } = await params;
+    const { fileName: rawFileName } = await params;
 
-    // 1. Validate filename (security - prevent path traversal)
+    // 1. Decode URL-encoded filename (browsers encode Hebrew characters)
+    // Example: %D7%93%D7%95%D7%93 → דוד
+    const fileName = decodeURIComponent(rawFileName);
+
+    // 2. Validate filename (security - prevent path traversal)
     if (!isValidFileName(fileName)) {
       return NextResponse.json(
         { error: 'שם קובץ לא תקין' },
@@ -75,26 +82,41 @@ export async function GET(
       );
     }
 
-    // 2. Get blob metadata from Vercel Blob
-    const blobPath = `videos/${fileName}`;
+    // 3. Get blob metadata from Vercel Blob
+    // Try multiple possible blob paths since storage format may vary
+    let blob;
+    const possiblePaths = [
+      `videos/${fileName}`,  // Standard path with videos/ prefix
+      fileName,              // Direct filename without prefix
+    ];
 
-    try {
-      const blob = await head(blobPath);
+    let lastError;
+    for (const blobPath of possiblePaths) {
+      try {
+        blob = await head(blobPath);
+        break; // Found it!
+      } catch (err) {
+        lastError = err;
+        continue; // Try next path
+      }
+    }
 
-      // 3. Redirect to Vercel Blob public URL
-      // Vercel Blob automatically handles:
-      // - Range requests (206 Partial Content)
-      // - Video streaming
-      // - Caching headers
-      // - Content-Type detection
-      return NextResponse.redirect(blob.url, 302);
-
-    } catch (error) {
+    if (!blob) {
+      // None of the paths worked
+      console.error('Blob not found at any path:', possiblePaths, 'Last error:', lastError);
       return NextResponse.json(
         { error: 'הסרטון לא נמצא' },
         { status: 404 }
       );
     }
+
+    // 4. Redirect to Vercel Blob public URL
+    // Vercel Blob automatically handles:
+    // - Range requests (206 Partial Content)
+    // - Video streaming
+    // - Caching headers
+    // - Content-Type detection
+    return NextResponse.redirect(blob.url, 302);
 
   } catch (error) {
     console.error('Video streaming error:', error);
