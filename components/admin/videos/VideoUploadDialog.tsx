@@ -31,6 +31,7 @@ interface VideoMetadata {
   title: string;
   description: string;
   fileName: string;
+  blobUrl?: string; // Direct Blob URL for preview
   duration?: number;
   thumbnailUrl?: string;
 }
@@ -204,14 +205,22 @@ export function VideoUploadDialog({ open, onOpenChange, onSuccess }: VideoUpload
         multipart: true,
       });
 
-      // Extract filename from blob URL or pathname
+      // Extract filename from blob pathname
+      // blob.pathname format: "videos/filename.mp4" or just "filename.mp4"
       const fileName = blob.pathname.split('/').pop() || `video-${Date.now()}.mp4`;
+
+      console.log('Upload complete:', {
+        blobUrl: blob.url,
+        pathname: blob.pathname,
+        extractedFileName: fileName
+      });
 
       // Set metadata for next step
       setMetadata({
         title: file.name.replace(/\.[^/.]+$/, ''), // Filename without extension
         description: '',
         fileName: fileName,
+        blobUrl: blob.url, // Store the direct Blob URL for preview
         duration,
         thumbnailUrl, // Use client-side generated thumbnail
       });
@@ -367,7 +376,7 @@ export function VideoUploadDialog({ open, onOpenChange, onSuccess }: VideoUpload
                 <Label className="text-sm font-medium">תצוגה מקדימה של הסרטון</Label>
                 <div className="relative aspect-video bg-black rounded-lg overflow-hidden border border-gray-200 max-w-md mx-auto">
                   <video
-                    src={`/api/videos/${metadata.fileName}`}
+                    src={metadata.blobUrl || `/api/videos/${metadata.fileName}`}
                     controls
                     className="w-full h-full"
                     poster={metadata.thumbnailUrl || undefined}
